@@ -12,6 +12,7 @@ create table Sinhvien(
 )
 insert into Sinhvien(Masv,Passsv,HoTen,Gioitinh,Ngaysinh,Lop,Khoa) values 
 (2823220212,'282322012',N'Ngô Tuấn Việt',N'Nam',2005-12-12,N'TH28.27',N'Công Nghệ Thông Tin')
+use ExamDB
 create table Loginfo(
 	Tennguoidung nvarchar(55),
 	Hoatdong nvarchar(40),
@@ -19,16 +20,17 @@ create table Loginfo(
 	thoigian datetime,
 	chitiet nvarchar(40)
 )
-insert into Loginfo(Tennguoidung,Hoatdong,Trangthai,thoigian,chitiet) values (N'Admin',N'Đăng Nhập','Thành công',null,null);
+insert into Loginfo(Tennguoidung,Hoatdong,Trangthai,thoigian,chitiet) values (N'Admin',N'Đăng Nhập',N'thành công',GETDATE(),null);
+select * from Loginfo
 create table Giangvien(
 	Magv nvarchar(60) not null primary key,
-	Ad nvarchar(60) not null,
+	Ad BINARY not null,
 	Passgv nvarchar(60) not null,
 	Hotengv nvarchar(100),
 	Chucvu nvarchar(50),
 	Khoa nvarchar(50)
 )
-insert into Giangvien(Magv,Ad,Passgv,Hotengv,Chucvu,Khoa) values ('GV012@','Ad12','GV012@',N'Mai Quang Hải',N'Trưởng Khoa',N'Cộng Nghệ Thông Tin')
+insert into Giangvien(Magv,Ad,Passgv,Hotengv,Chucvu,Khoa) values ('GV012@',1234132,'GV012@',N'Mai Quang Hải',N'Trưởng Khoa',N'Cộng Nghệ Thông Tin')
 Create table Bangdiem(
 	Mamonhoc nvarchar(60) not null,
 	Masv nvarchar(60) not null,
