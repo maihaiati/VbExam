@@ -26,6 +26,8 @@ create table Giangvien(
 	Magv nvarchar(60) not null primary key,
 	Passgv nvarchar(60) not null,
 	Hotengv nvarchar(100) not null,
+	Gioitinh nvarchar(10) not null,
+	Ngaysinh date not null,
 	Chucvu nvarchar(50) not null,
 	Khoa nvarchar(50) not null,
 	Administrator BIT not null,
