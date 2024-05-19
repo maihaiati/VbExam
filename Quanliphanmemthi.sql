@@ -22,12 +22,13 @@ create table Loginfo(
 insert into Loginfo(Tennguoidung,Hoatdong,Trangthai,thoigian,chitiet) values (N'Admin',N'Đăng Nhập','Online',null,null);
 create table Giangvien(
 	Magv nvarchar(60) not null primary key,
+	Ad nvarchar(60) not null,
 	Passgv nvarchar(60) not null,
 	Hotengv nvarchar(100),
 	Chucvu nvarchar(50),
 	Khoa nvarchar(50)
 )
-insert into Giangvien(Magv,Passgv,Hotengv,Chucvu,Khoa) values ('GV012@','GV012@',N'Mai Quang Hải',N'Trưởng Khoa',N'Cộng Nghệ Thông Tin')
+insert into Giangvien(Magv,Ad,Passgv,Hotengv,Chucvu,Khoa) values ('GV012@','Ad12','GV012@',N'Mai Quang Hải',N'Trưởng Khoa',N'Cộng Nghệ Thông Tin')
 Create table Bangdiem(
 	Mamonhoc nvarchar(60) not null,
 	Masv nvarchar(60) not null,
