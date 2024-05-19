@@ -28,6 +28,8 @@ Partial Class Dashboard
 		btnResult = New ToolStripMenuItem()
 		btnSchedule = New ToolStripMenuItem()
 		btnMe = New ToolStripMenuItem()
+		btnMyAcc = New ToolStripMenuItem()
+		btnLogout = New ToolStripMenuItem()
 		MenuStrip1.SuspendLayout()
 		SuspendLayout()
 		' 
@@ -67,9 +69,22 @@ Partial Class Dashboard
 		' btnMe
 		' 
 		btnMe.Alignment = ToolStripItemAlignment.Right
+		btnMe.DropDownItems.AddRange(New ToolStripItem() {btnMyAcc, btnLogout})
 		btnMe.Name = "btnMe"
 		btnMe.Size = New Size(22, 20)
 		btnMe.Text = " "
+		' 
+		' btnMyAcc
+		' 
+		btnMyAcc.Name = "btnMyAcc"
+		btnMyAcc.Size = New Size(180, 22)
+		btnMyAcc.Text = "Tài khoản của tôi"
+		' 
+		' btnLogout
+		' 
+		btnLogout.Name = "btnLogout"
+		btnLogout.Size = New Size(180, 22)
+		btnLogout.Text = "Đăng xuất"
 		' 
 		' Dashboard
 		' 
@@ -92,4 +107,6 @@ Partial Class Dashboard
 	Friend WithEvents btnResult As ToolStripMenuItem
 	Friend WithEvents btnSchedule As ToolStripMenuItem
 	Friend WithEvents btnMe As ToolStripMenuItem
+	Friend WithEvents btnMyAcc As ToolStripMenuItem
+	Friend WithEvents btnLogout As ToolStripMenuItem
 End Class
