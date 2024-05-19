@@ -6,14 +6,14 @@
 	End Sub
 
 	Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
-		runSqlCommand("INSERT INTO Loginfo (Tennguoidung,Hoatdong,Trangthai,thoigian,chitiet) VALUES (N'" + userName + "',N'Đăng xuất',N'Thành công',GETDATE(),null);")
+		log(userName, "Đăng xuất", "Thành công", "Đăng xuất")
 		LoginForm.Show()
 		Close()
 	End Sub
 
 	Private Sub btnAccount_Click(sender As Object, e As EventArgs) Handles btnAccount.Click
 		AccountManagement.userName = userName
-		AccountManagement.name = name
+		AccountManagement.name = Me.name
 		AccountManagement.Show()
 		Hide()
 	End Sub

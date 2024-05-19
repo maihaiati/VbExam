@@ -24,6 +24,8 @@ Partial Class AccountManagement
 	Private Sub InitializeComponent()
 		MenuStrip1 = New MenuStrip()
 		btnCreate = New ToolStripMenuItem()
+		btnCreateTeacher = New ToolStripMenuItem()
+		btnCreateStudent = New ToolStripMenuItem()
 		btnMe = New ToolStripMenuItem()
 		btnMyAcc = New ToolStripMenuItem()
 		btnLogout = New ToolStripMenuItem()
@@ -48,9 +50,22 @@ Partial Class AccountManagement
 		' 
 		' btnCreate
 		' 
+		btnCreate.DropDownItems.AddRange(New ToolStripItem() {btnCreateTeacher, btnCreateStudent})
 		btnCreate.Name = "btnCreate"
 		btnCreate.Size = New Size(90, 20)
 		btnCreate.Text = "Tạo tài khoản"
+		' 
+		' btnCreateTeacher
+		' 
+		btnCreateTeacher.Name = "btnCreateTeacher"
+		btnCreateTeacher.Size = New Size(180, 22)
+		btnCreateTeacher.Text = "Giảng viên"
+		' 
+		' btnCreateStudent
+		' 
+		btnCreateStudent.Name = "btnCreateStudent"
+		btnCreateStudent.Size = New Size(180, 22)
+		btnCreateStudent.Text = "Sinh viên"
 		' 
 		' btnMe
 		' 
@@ -63,13 +78,13 @@ Partial Class AccountManagement
 		' btnMyAcc
 		' 
 		btnMyAcc.Name = "btnMyAcc"
-		btnMyAcc.Size = New Size(180, 22)
+		btnMyAcc.Size = New Size(163, 22)
 		btnMyAcc.Text = "Tài khoản của tôi"
 		' 
 		' btnLogout
 		' 
 		btnLogout.Name = "btnLogout"
-		btnLogout.Size = New Size(180, 22)
+		btnLogout.Size = New Size(163, 22)
 		btnLogout.Text = "Đăng xuất"
 		' 
 		' btnFilter
@@ -143,4 +158,6 @@ Partial Class AccountManagement
 	Friend WithEvents btnDashboard As ToolStripMenuItem
 	Friend WithEvents btnMyAcc As ToolStripMenuItem
 	Friend WithEvents btnLogout As ToolStripMenuItem
+	Friend WithEvents btnCreateTeacher As ToolStripMenuItem
+	Friend WithEvents btnCreateStudent As ToolStripMenuItem
 End Class

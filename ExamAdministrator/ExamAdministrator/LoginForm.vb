@@ -22,12 +22,19 @@ Public Class LoginForm
 
 		' Kiểm tra kết quả
 		If dataTable.Rows.Count > 0 Then
-			Dim logSql = "INSERT INTO Loginfo (Tennguoidung,Hoatdong,Trangthai,thoigian,chitiet) VALUES (N'" + txtUser.Text + "',N'Đăng nhập',N'Thành công',GETDATE(),null);"
+			log(txtUser.Text, "Đăng nhập", "Thành công", "Đăng nhập")
 			MsgBox("Đăng nhập thành công!")
-			runSqlCommand(logSql)
 
-			sql = "SELECT Hotengv FROM Giangvien WHERE Magv = '" + txtUser.Text + "'"
-			dataTable = getData(sql)
+			' Định nghĩa chuỗi SQL với tham số
+			sql = "SELECT Hotengv FROM Giangvien WHERE Magv = @Magv"
+
+			' Tạo danh sách các tham số
+			params = New List(Of SqlParameter) From {
+				New SqlParameter("@Magv", txtUser.Text)
+			}
+
+			' Gọi hàm getData với chuỗi SQL và danh sách tham số
+			dataTable = getData(sql, params)
 			If dataTable.Rows.Count > 0 Then
 				Dashboard.name = dataTable.Rows(0)("Hotengv").ToString()
 			Else
@@ -37,7 +44,6 @@ Public Class LoginForm
 			Dashboard.Show()
 			Hide()
 		Else
-			Dim logSql = "INSERT INTO Loginfo (Tennguoidung,Hoatdong,Trangthai,thoigian,chitiet) VALUES (N'" + txtUser.Text + "',N'Đăng nhập',N'Thất bại',GETDATE(),null);"
 			MsgBox("Đăng nhập thất bại!")
 
 			' Câu lệnh SQL với các tham số
@@ -48,7 +54,7 @@ Public Class LoginForm
 				New SqlParameter("@Magv", txtUser.Text)
 			}
 			If getData(sql, params).Rows.Count > 0 Then
-				runSqlCommand(logSql)
+				log(txtUser.Text, "Đăng nhập", "Thất bại", "Đăng nhập")
 			End If
 		End If
 	End Sub

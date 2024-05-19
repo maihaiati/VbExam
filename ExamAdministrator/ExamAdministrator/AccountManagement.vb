@@ -4,19 +4,19 @@ Public Class AccountManagement
 	Public name As String
 	Public userName As String
 
-	Private Sub loadData()
+	Public Sub loadData()
 		If accountType = 1 Then
-			assignData(dgAccount, "SELECT * FROM Sinhvien")
+			assignData(dgAccount, "SELECT * FROM Sinhvien", Nothing)
 			lblFilter.Text = "Lọc tài khoản: Sinh viên"
 		Else
-			assignData(dgAccount, "SELECT * FROM Giangvien")
+			assignData(dgAccount, "SELECT * FROM Giangvien", Nothing)
 			lblFilter.Text = "Lọc tài khoản: Giảng viên"
 		End If
 	End Sub
 
 	Private Sub AccountManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 		accountType = 1
-		btnMe.Text = name
+		btnMe.Text = Me.name
 		loadData()
 	End Sub
 
@@ -41,19 +41,27 @@ Public Class AccountManagement
 		MessageBox.Show($"Dòng: {rowIndex}, Cột: {columnIndex}")
 	End Sub
 
-	Private Sub btnCreate_Click(sender As Object, e As EventArgs) Handles btnCreate.Click
-		CreateAccount.Show()
-	End Sub
-
 	Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
 		Dashboard.Show()
 		Close()
 	End Sub
 
 	Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
-		runSqlCommand("INSERT INTO Loginfo (Tennguoidung,Hoatdong,Trangthai,thoigian,chitiet) VALUES (N'" + userName + "',N'Đăng xuất',N'Thành công',GETDATE(),null);")
+		log(userName, "Đăng xuất", "Thành công", Nothing)
 		LoginForm.Show()
 		Dashboard.Close()
 		Close()
+	End Sub
+
+	Private Sub btnCreateTeacher_Click(sender As Object, e As EventArgs) Handles btnCreateTeacher.Click
+		CreateAccount.accountType = 0
+		CreateAccount.userName = userName
+		CreateAccount.Show()
+	End Sub
+
+	Private Sub btnCreateStudent_Click(sender As Object, e As EventArgs) Handles btnCreateStudent.Click
+		CreateAccount.accountType = 1
+		CreateAccount.userName = userName
+		CreateAccount.Show()
 	End Sub
 End Class
