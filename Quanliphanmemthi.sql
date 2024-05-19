@@ -21,16 +21,16 @@ create table Loginfo(
 	chitiet nvarchar(40)
 )
 insert into Loginfo(Tennguoidung,Hoatdong,Trangthai,thoigian,chitiet) values (N'Admin',N'Đăng Nhập',N'thành công',GETDATE(),null);
-
+use ExamDB
 create table Giangvien(
 	Magv nvarchar(60) not null primary key,
-	Ad bit not null,
 	Passgv nvarchar(60) not null,
 	Hotengv nvarchar(100) not null,
 	Chucvu nvarchar(50) not null,
-	Khoa nvarchar(50) not null
+	Khoa nvarchar(50) not null,
+	Administrator BIT not null,
 )
-insert into Giangvien(Magv,Ad,Passgv,Hotengv,Chucvu,Khoa) values ('GV012@',1,'GV012@',N'Mai Quang Hải',N'Trưởng Khoa',N'Cộng Nghệ Thông Tin')
+insert into Giangvien(Magv,Passgv,Hotengv,Chucvu,Khoa,Administrator) values ('GV012@','GV012@',N'Mai Quang Hải',N'Trưởng Khoa',N'Cộng Nghệ Thông Tin', 1)
 Create table Bangdiem(
 	Mamonhoc nvarchar(60) not null,
 	Masv nvarchar(60) not null,
