@@ -32,7 +32,7 @@ create table Giangvien(
 	Khoa nvarchar(50) not null,
 	Administrator BIT not null,
 )
-insert into Giangvien(Magv,Passgv,Hotengv,Chucvu,Khoa,Administrator) values ('GV012@','GV012@',N'Mai Quang Hải',N'Trưởng Khoa',N'Cộng Nghệ Thông Tin', 1)
+insert into Giangvien(Magv,Passgv,Hotengv,Gioitinh,Ngaysinh,Chucvu,Khoa,Administrator) values ('GV012@','GV012@',N'Mai Quang Hải',N'Nam','07/16/2005',N'Trưởng Khoa',N'Cộng Nghệ Thông Tin', 1)
 Create table Bangdiem(
 	Mamonhoc nvarchar(60) not null,
 	Masv nvarchar(60) not null,
@@ -56,7 +56,7 @@ CREATE TABLE Lichthi(
 	Phongthi nvarchar(10) not null
 )
 insert into Lichthi(Mamonhoc,Masv,Tenmonhoc,Lop,Ngaythi,Phongthi) 
-values ('DHMT',2823220212,N'Đồ Hoạ Máy Tính','TH28.27','26-06-2023 09:30:00','D509') 
+values ('DHMT',2823220212,N'Đồ Hoạ Máy Tính','TH28.27',26-06-2023,'D509') 
 
 CREATE TABLE Khoa (
 	MaKhoa NVARCHAR(10) NOT NULL PRIMARY KEY,
