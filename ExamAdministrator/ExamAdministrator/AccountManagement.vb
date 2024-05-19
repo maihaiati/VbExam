@@ -1,6 +1,7 @@
 ﻿Imports System
-Public Class AccountManager
+Public Class AccountManagement
 	Public accountType As Integer '0: Teacher, 1: Student
+	Public name As String
 	Public userName As String
 
 	Private Sub loadData()
@@ -15,7 +16,7 @@ Public Class AccountManager
 
 	Private Sub AccountManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 		accountType = 1
-		btnMe.Text = userName
+		btnMe.Text = name
 		loadData()
 	End Sub
 
@@ -42,5 +43,17 @@ Public Class AccountManager
 
 	Private Sub btnCreate_Click(sender As Object, e As EventArgs) Handles btnCreate.Click
 		CreateAccount.Show()
+	End Sub
+
+	Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
+		Dashboard.Show()
+		Close()
+	End Sub
+
+	Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
+		runSqlCommand("INSERT INTO Loginfo (Tennguoidung,Hoatdong,Trangthai,thoigian,chitiet) VALUES (N'" + userName + "',N'Đăng xuất',N'Thành công',GETDATE(),null);")
+		LoginForm.Show()
+		Dashboard.Close()
+		Close()
 	End Sub
 End Class

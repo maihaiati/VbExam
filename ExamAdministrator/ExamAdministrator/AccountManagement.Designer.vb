@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class AccountManager
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class AccountManagement
 	Inherits System.Windows.Forms.Form
 
 	'Form overrides dispose to clean up the component list.
-	<System.Diagnostics.DebuggerNonUserCode()> _
+	<System.Diagnostics.DebuggerNonUserCode()>
 	Protected Overrides Sub Dispose(ByVal disposing As Boolean)
 		Try
 			If disposing AndAlso components IsNot Nothing Then
@@ -20,14 +20,17 @@ Partial Class AccountManager
 	'NOTE: The following procedure is required by the Windows Form Designer
 	'It can be modified using the Windows Form Designer.  
 	'Do not modify it using the code editor.
-	<System.Diagnostics.DebuggerStepThrough()> _
+	<System.Diagnostics.DebuggerStepThrough()>
 	Private Sub InitializeComponent()
 		MenuStrip1 = New MenuStrip()
 		btnCreate = New ToolStripMenuItem()
 		btnMe = New ToolStripMenuItem()
+		btnMyAcc = New ToolStripMenuItem()
+		btnLogout = New ToolStripMenuItem()
 		btnFilter = New ToolStripMenuItem()
 		btnStudent = New ToolStripMenuItem()
 		btnTeacher = New ToolStripMenuItem()
+		btnDashboard = New ToolStripMenuItem()
 		dgAccount = New DataGridView()
 		lblFilter = New Label()
 		MenuStrip1.SuspendLayout()
@@ -36,7 +39,7 @@ Partial Class AccountManager
 		' 
 		' MenuStrip1
 		' 
-		MenuStrip1.Items.AddRange(New ToolStripItem() {btnCreate, btnMe, btnFilter})
+		MenuStrip1.Items.AddRange(New ToolStripItem() {btnCreate, btnMe, btnFilter, btnDashboard})
 		MenuStrip1.Location = New Point(0, 0)
 		MenuStrip1.Name = "MenuStrip1"
 		MenuStrip1.Size = New Size(778, 24)
@@ -52,9 +55,22 @@ Partial Class AccountManager
 		' btnMe
 		' 
 		btnMe.Alignment = ToolStripItemAlignment.Right
+		btnMe.DropDownItems.AddRange(New ToolStripItem() {btnMyAcc, btnLogout})
 		btnMe.Name = "btnMe"
 		btnMe.Size = New Size(22, 20)
 		btnMe.Text = " "
+		' 
+		' btnMyAcc
+		' 
+		btnMyAcc.Name = "btnMyAcc"
+		btnMyAcc.Size = New Size(180, 22)
+		btnMyAcc.Text = "Tài khoản của tôi"
+		' 
+		' btnLogout
+		' 
+		btnLogout.Name = "btnLogout"
+		btnLogout.Size = New Size(180, 22)
+		btnLogout.Text = "Đăng xuất"
 		' 
 		' btnFilter
 		' 
@@ -75,6 +91,12 @@ Partial Class AccountManager
 		btnTeacher.Size = New Size(182, 22)
 		btnTeacher.Text = "Tài khoản giảng viên"
 		' 
+		' btnDashboard
+		' 
+		btnDashboard.Name = "btnDashboard"
+		btnDashboard.Size = New Size(86, 20)
+		btnDashboard.Text = "Về trang chủ"
+		' 
 		' dgAccount
 		' 
 		dgAccount.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -93,7 +115,7 @@ Partial Class AccountManager
 		lblFilter.TabIndex = 2
 		lblFilter.Text = "Lọc tài khoản: "
 		' 
-		' AccountManager
+		' AccountManagement
 		' 
 		AutoScaleDimensions = New SizeF(7F, 15F)
 		AutoScaleMode = AutoScaleMode.Font
@@ -101,7 +123,7 @@ Partial Class AccountManager
 		Controls.Add(lblFilter)
 		Controls.Add(dgAccount)
 		Controls.Add(MenuStrip1)
-		Name = "AccountManager"
+		Name = "AccountManagement"
 		Text = "Exam Administrator - Account Manager"
 		MenuStrip1.ResumeLayout(False)
 		MenuStrip1.PerformLayout()
@@ -118,4 +140,7 @@ Partial Class AccountManager
 	Friend WithEvents btnStudent As ToolStripMenuItem
 	Friend WithEvents btnTeacher As ToolStripMenuItem
 	Friend WithEvents lblFilter As Label
+	Friend WithEvents btnDashboard As ToolStripMenuItem
+	Friend WithEvents btnMyAcc As ToolStripMenuItem
+	Friend WithEvents btnLogout As ToolStripMenuItem
 End Class
