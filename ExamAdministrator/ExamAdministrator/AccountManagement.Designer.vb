@@ -22,9 +22,95 @@ Partial Class AccountManager
 	'Do not modify it using the code editor.
 	<System.Diagnostics.DebuggerStepThrough()> _
 	Private Sub InitializeComponent()
-		components = New System.ComponentModel.Container
-		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(800, 450)
-		Me.Text = "AccountManager"
+		MenuStrip1 = New MenuStrip()
+		btnCreate = New ToolStripMenuItem()
+		btnMe = New ToolStripMenuItem()
+		dgAccount = New DataGridView()
+		btnFilter = New ToolStripMenuItem()
+		btnAllAcc = New ToolStripMenuItem()
+		btnStudent = New ToolStripMenuItem()
+		btnTeacher = New ToolStripMenuItem()
+		MenuStrip1.SuspendLayout()
+		CType(dgAccount, ComponentModel.ISupportInitialize).BeginInit()
+		SuspendLayout()
+		' 
+		' MenuStrip1
+		' 
+		MenuStrip1.Items.AddRange(New ToolStripItem() {btnCreate, btnMe, btnFilter})
+		MenuStrip1.Location = New Point(0, 0)
+		MenuStrip1.Name = "MenuStrip1"
+		MenuStrip1.Size = New Size(541, 24)
+		MenuStrip1.TabIndex = 0
+		MenuStrip1.Text = "MenuStrip1"
+		' 
+		' btnCreate
+		' 
+		btnCreate.Name = "btnCreate"
+		btnCreate.Size = New Size(90, 20)
+		btnCreate.Text = "Tạo tài khoản"
+		' 
+		' btnMe
+		' 
+		btnMe.Alignment = ToolStripItemAlignment.Right
+		btnMe.Name = "btnMe"
+		btnMe.Size = New Size(22, 20)
+		btnMe.Text = " "
+		' 
+		' dgAccount
+		' 
+		dgAccount.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+		dgAccount.Location = New Point(12, 27)
+		dgAccount.Name = "dgAccount"
+		dgAccount.Size = New Size(517, 316)
+		dgAccount.TabIndex = 1
+		' 
+		' btnFilter
+		' 
+		btnFilter.DropDownItems.AddRange(New ToolStripItem() {btnAllAcc, btnStudent, btnTeacher})
+		btnFilter.Name = "btnFilter"
+		btnFilter.Size = New Size(38, 20)
+		btnFilter.Text = "Lọc"
+		' 
+		' btnAllAcc
+		' 
+		btnAllAcc.Name = "btnAllAcc"
+		btnAllAcc.Size = New Size(182, 22)
+		btnAllAcc.Text = "Tất cả tài khoản"
+		' 
+		' btnStudent
+		' 
+		btnStudent.Name = "btnStudent"
+		btnStudent.Size = New Size(182, 22)
+		btnStudent.Text = "Tài khoản sinh viên"
+		' 
+		' btnTeacher
+		' 
+		btnTeacher.Name = "btnTeacher"
+		btnTeacher.Size = New Size(182, 22)
+		btnTeacher.Text = "Tài khoản giảng viên"
+		' 
+		' AccountManager
+		' 
+		AutoScaleDimensions = New SizeF(7F, 15F)
+		AutoScaleMode = AutoScaleMode.Font
+		ClientSize = New Size(541, 355)
+		Controls.Add(dgAccount)
+		Controls.Add(MenuStrip1)
+		Name = "AccountManager"
+		Text = "Exam Administrator - Account Manager"
+		MenuStrip1.ResumeLayout(False)
+		MenuStrip1.PerformLayout()
+		CType(dgAccount, ComponentModel.ISupportInitialize).EndInit()
+		ResumeLayout(False)
+		PerformLayout()
 	End Sub
+
+	Friend WithEvents MenuStrip1 As MenuStrip
+	Friend WithEvents btnCreate As ToolStripMenuItem
+	Friend WithEvents dgAccount As DataGridView
+	Friend WithEvents btnMe As ToolStripMenuItem
+	Friend WithEvents btnFilter As ToolStripMenuItem
+	Friend WithEvents btnAllAcc As ToolStripMenuItem
+	Friend WithEvents btnStudent As ToolStripMenuItem
+	Friend WithEvents btnTeacher As ToolStripMenuItem
 End Class

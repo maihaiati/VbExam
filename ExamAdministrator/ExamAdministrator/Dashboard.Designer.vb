@@ -24,8 +24,6 @@ Partial Class Dashboard
 	Private Sub InitializeComponent()
 		MenuStrip1 = New MenuStrip()
 		btnAccount = New ToolStripMenuItem()
-		btnTeacher = New ToolStripMenuItem()
-		btnStudent = New ToolStripMenuItem()
 		btnExam = New ToolStripMenuItem()
 		btnResult = New ToolStripMenuItem()
 		btnSchedule = New ToolStripMenuItem()
@@ -44,22 +42,9 @@ Partial Class Dashboard
 		' 
 		' btnAccount
 		' 
-		btnAccount.DropDownItems.AddRange(New ToolStripItem() {btnTeacher, btnStudent})
 		btnAccount.Name = "btnAccount"
 		btnAccount.Size = New Size(112, 20)
 		btnAccount.Text = "Quản lý &tài khoản"
-		' 
-		' btnTeacher
-		' 
-		btnTeacher.Name = "btnTeacher"
-		btnTeacher.Size = New Size(124, 22)
-		btnTeacher.Text = "&Giáo Viên"
-		' 
-		' btnStudent
-		' 
-		btnStudent.Name = "btnStudent"
-		btnStudent.Size = New Size(124, 22)
-		btnStudent.Text = "&Sinh Viên"
 		' 
 		' btnExam
 		' 
@@ -103,8 +88,6 @@ Partial Class Dashboard
 
 	Friend WithEvents MenuStrip1 As MenuStrip
 	Friend WithEvents btnAccount As ToolStripMenuItem
-	Friend WithEvents btnTeacher As ToolStripMenuItem
-	Friend WithEvents btnStudent As ToolStripMenuItem
 	Friend WithEvents btnExam As ToolStripMenuItem
 	Friend WithEvents btnResult As ToolStripMenuItem
 	Friend WithEvents btnSchedule As ToolStripMenuItem
