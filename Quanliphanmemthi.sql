@@ -2,6 +2,7 @@
 use ExamDB
 create table Sinhvien(
 	Masv nvarchar(60) not null,
+	Passsv nvarchar(60) not null,
 	HoTen Nvarchar(100),
 	Gioitinh nvarchar(10),
 	Ngaysinh datetime,
@@ -9,32 +10,31 @@ create table Sinhvien(
 	Khoa nvarchar(100)
 	constraint sinhvien_id primary key (Masv)
 )
-create table Tksv(
-	Usersv nvarchar(40),
-	Passsv nvarchar(40)
-	)
-	insert into tksv(usersv,passsv) values (2823220212,N'SV123@')
-create table Tkgv(
-	Usergv nvarchar(40),
-	Passgv nvarchar(40)
+insert into Sinhvien(Masv,Passsv,HoTen,Gioitinh,Ngaysinh,Lop,Khoa) values 
+(2823220212,'282322012',N'Ngô Tuấn Việt',N'Nam',2005-12-12,N'TH28.27',N'Công Nghệ Thông Tin')
+create table Loginfo(
+	Tennguoidung nvarchar(55),
+	Hoatdong nvarchar(40),
+	Trangthai nvarchar(40),
+	thoigian datetime,
+	chitiet nvarchar(40)
 )
-	insert into tkgv(usergv,passgv) values ('GV001',N'GV123@')
+insert into Loginfo(Tennguoidung,Hoatdong,Trangthai,thoigian,chitiet) values (N'Admin',N'Đăng Nhập','Online',null,null);
 create table Giangvien(
 	Magv nvarchar(60) not null primary key,
+	Passgv nvarchar(60) not null,
 	Hotengv nvarchar(100),
 	Chucvu nvarchar(50),
 	Khoa nvarchar(50)
 )
-	insert into Giangvien(Magv,Hotengv,Chucvu,Khoa) values('GV123',N'Mai Quang Hải','Giảng viên','Công nghệ thông tin')
-	 insert into sinhvien(Masv,HoTen,Gioitinh,Ngaysinh,Lop,Khoa) values (2823220212,N'Ngô Tuấn Việt','Nam',2005-12-12,'TH28.27',N'Công Nghệ Thông Tin')
-Create table Ketquathi(
+insert into Giangvien(Magv,Passgv,Hotengv,Chucvu,Khoa) values ('GV012@','GV012@',N'Mai Quang Hải',N'Trưởng Khoa',N'Cộng Nghệ Thông Tin')
+Create table Bangdiem(
 	Mamonhoc nvarchar(60) not null,
 	Masv nvarchar(60) not null,
-	Tenmonthi nvarchar(100),
-	Phongthi nvarchar(100),
-	Diemkt int not null,
-	Diemchuyencan int not null,
-	Diemthi int not null,
+	tenmonhoc nvarchar(60),
+	Diemkt int ,
+	Diemchuyencan int,
+	Diemthi int ,
 	constraint fk_masv foreign key (Masv) references sinhvien(Masv)
 )
 use ExamDB
@@ -86,7 +86,3 @@ VALUES  ('TIN1', 'TIN01', N'Câu hỏi thứ nhất', 1),
 INSERT INTO DapAn (MaDapAn, MaCauHoi, NoiDung)
 VALUES	('DATIN1', 'TIN1', N'Đáp án câu 1'),
 		('DATIN2', 'TIN2', N'Đáp án câu 2')
-
-		delete ketquathi
-	insert into ketquathi(Mamonhoc,Masv,Tenmonthi,Phongthi,diemkt,diemchuyencan,diemthi) values ('DHMT',2823220212,N'Đồ hoạ máy tính','D604',8,0.2,9)
-	select sinhvien.Masv,HoTen,Gioitinh,Ngaysinh,Lop,Khoa from tksv inner join sinhvien on tksv.usersv = sinhvien.Masv where Masv = '2823220212'
