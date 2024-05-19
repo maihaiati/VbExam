@@ -20,7 +20,8 @@ Ex:
 	End Function
 
 	Public Function sqlConnect() As SqlConnection
-		sqlCon = New SqlConnection("")
+		Dim machineName As String = Environment.MachineName
+		sqlCon = New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
 		Return sqlCon
 	End Function
 

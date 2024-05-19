@@ -19,7 +19,7 @@ create table Loginfo(
 	thoigian datetime,
 	chitiet nvarchar(40)
 )
-insert into Loginfo(Tennguoidung,Hoatdong,Trangthai,thoigian,chitiet) values (N'Admin',N'Đăng Nhập','Online',null,null);
+insert into Loginfo(Tennguoidung,Hoatdong,Trangthai,thoigian,chitiet) values (N'Admin',N'Đăng Nhập','Thành công',null,null);
 create table Giangvien(
 	Magv nvarchar(60) not null primary key,
 	Ad nvarchar(60) not null,
