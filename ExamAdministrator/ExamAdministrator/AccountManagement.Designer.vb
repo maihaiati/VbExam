@@ -29,6 +29,7 @@ Partial Class AccountManager
 		btnStudent = New ToolStripMenuItem()
 		btnTeacher = New ToolStripMenuItem()
 		dgAccount = New DataGridView()
+		lblFilter = New Label()
 		MenuStrip1.SuspendLayout()
 		CType(dgAccount, ComponentModel.ISupportInitialize).BeginInit()
 		SuspendLayout()
@@ -77,16 +78,27 @@ Partial Class AccountManager
 		' dgAccount
 		' 
 		dgAccount.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-		dgAccount.Location = New Point(12, 27)
+		dgAccount.Location = New Point(12, 56)
 		dgAccount.Name = "dgAccount"
-		dgAccount.Size = New Size(755, 316)
+		dgAccount.ReadOnly = True
+		dgAccount.Size = New Size(755, 287)
 		dgAccount.TabIndex = 1
+		' 
+		' lblFilter
+		' 
+		lblFilter.AutoSize = True
+		lblFilter.Location = New Point(12, 28)
+		lblFilter.Name = "lblFilter"
+		lblFilter.Size = New Size(84, 15)
+		lblFilter.TabIndex = 2
+		lblFilter.Text = "Lọc tài khoản: "
 		' 
 		' AccountManager
 		' 
 		AutoScaleDimensions = New SizeF(7F, 15F)
 		AutoScaleMode = AutoScaleMode.Font
 		ClientSize = New Size(778, 355)
+		Controls.Add(lblFilter)
 		Controls.Add(dgAccount)
 		Controls.Add(MenuStrip1)
 		Name = "AccountManager"
@@ -105,4 +117,5 @@ Partial Class AccountManager
 	Friend WithEvents btnFilter As ToolStripMenuItem
 	Friend WithEvents btnStudent As ToolStripMenuItem
 	Friend WithEvents btnTeacher As ToolStripMenuItem
+	Friend WithEvents lblFilter As Label
 End Class

@@ -32,6 +32,20 @@ Ex:
 		Return dataTable
 	End Function
 
+	Public Function getData(sql As String, params As List(Of SqlParameter)) As DataTable
+		dataTable = New DataTable
+		Dim machineName As String = Environment.MachineName
+		Using sqlCon As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
+			Using sqlCommand As New SqlCommand(sql, sqlCon)
+				sqlCommand.Parameters.AddRange(params.ToArray())
+				Using dataAdapter As New SqlDataAdapter(sqlCommand)
+					dataAdapter.Fill(dataTable)
+				End Using
+			End Using
+		End Using
+		Return dataTable
+	End Function
+
 	Public Sub assignData(dgName As DataGridView, sql As String)
 		dgName.DataSource = getData(sql)
 	End Sub
