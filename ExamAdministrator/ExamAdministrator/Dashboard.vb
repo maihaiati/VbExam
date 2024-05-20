@@ -1,4 +1,6 @@
-﻿Public Class Dashboard
+﻿Imports System.ComponentModel
+
+Public Class Dashboard
 	Public name As String
 	Public userName
 	Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -16,5 +18,10 @@
 		AccountManagement.name = Me.name
 		AccountManagement.Show()
 		Hide()
+	End Sub
+
+	Private Sub Dashboard_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+		log(userName, "Đăng xuất", "Thành công", "Đăng xuất")
+		LoginForm.Show()
 	End Sub
 End Class

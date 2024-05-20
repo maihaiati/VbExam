@@ -1,15 +1,17 @@
 ﻿Imports System
+Imports System.ComponentModel
 Public Class AccountManagement
 	Public accountType As Integer '0: Teacher, 1: Student
 	Public name As String
 	Public userName As String
+	Dim logout = False
 
 	Public Sub loadData()
 		If accountType = 1 Then
-			assignData(dgAccount, "SELECT * FROM Sinhvien", Nothing)
+			assignData(dgAccount, "SELECT Masv, HoTen, Gioitinh, Ngaysinh, Lop, Khoa FROM Sinhvien", Nothing)
 			lblFilter.Text = "Lọc tài khoản: Sinh viên"
 		Else
-			assignData(dgAccount, "SELECT * FROM Giangvien", Nothing)
+			assignData(dgAccount, "SELECT Magv, Hotengv, Gioitinh, Ngaysinh, Chucvu, Khoa, Administrator FROM Giangvien", Nothing)
 			lblFilter.Text = "Lọc tài khoản: Giảng viên"
 		End If
 	End Sub
@@ -39,6 +41,8 @@ Public Class AccountManagement
 
 		' Hiển thị thông tin dòng và cột
 		MessageBox.Show($"Dòng: {rowIndex}, Cột: {columnIndex}")
+
+		EditAccount.accountType = accountType
 	End Sub
 
 	Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
@@ -49,7 +53,7 @@ Public Class AccountManagement
 	Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
 		log(userName, "Đăng xuất", "Thành công", Nothing)
 		LoginForm.Show()
-		Dashboard.Close()
+		logout = True
 		Close()
 	End Sub
 
@@ -63,5 +67,13 @@ Public Class AccountManagement
 		CreateAccount.accountType = 1
 		CreateAccount.userName = userName
 		CreateAccount.Show()
+	End Sub
+
+	Private Sub AccountManagement_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+		If Not logout Then
+			Dashboard.Show()
+		Else
+			Dashboard.Close()
+		End If
 	End Sub
 End Class

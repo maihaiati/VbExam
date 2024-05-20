@@ -14,8 +14,8 @@ Public Class CreateAccount
 		End If
 		cbbGender.Items.Add("Nam")
 		cbbGender.Items.Add("Nữ")
-		cbbGender.SelectedValue = "Nam"
-	End Sub
+        cbbGender.SelectedIndex = 0
+    End Sub
 
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         Close()
