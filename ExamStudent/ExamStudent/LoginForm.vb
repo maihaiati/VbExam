@@ -1,5 +1,5 @@
 ﻿Imports System.Data.SqlClient
-
+Imports System.Data
 Public Class LoginForm
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Dim dataTable As DataTable
@@ -32,21 +32,12 @@ Public Class LoginForm
             params = New List(Of SqlParameter) From {
             New SqlParameter("@Masv", txtUser.Text)
 }
-
-            'Gọi hàm getData với chuỗi SQL và danh sách tham số
-            'dataTable = getData(sql, params)
-            'If dataTable.Rows.Count > 0 Then
-            'Dashboard.name = dataTable.Rows(0)("Hotensv").ToString()
-            'Else
-            'Dashboard.name = txtUser.Text
-            'End If
-            'Dashboard.userName = txtUser.Text
-            'Dashboard.Show()
-            'Hide()
-            'DashboardForm.Show()
+            DashboardForm.Show()
+            Hide()
         Else
-            MsgBox("Đăng nhập thất bại!")
-
+            MsgBox("Đăng nhập thất bại, vui lòng nhập lại!")
+            txtUser.Text = ""
+            txtPass.Text = ""
             ' Câu lệnh SQL với các tham số
             sql = "SELECT * FROM Sinhvien WHERE Masv = @Masv"
 
@@ -58,5 +49,9 @@ Public Class LoginForm
                 log(txtUser.Text, "Đăng nhập", "Thất bại", "Đăng nhập")
             End If
         End If
+    End Sub
+
+    Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+        End
     End Sub
 End Class

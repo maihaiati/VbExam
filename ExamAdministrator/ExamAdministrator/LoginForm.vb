@@ -45,7 +45,8 @@ Public Class LoginForm
 			Hide()
 		Else
 			MsgBox("Đăng nhập thất bại!")
-
+			txtUser.Text = ""
+			txtPass.Text = ""
 			' Câu lệnh SQL với các tham số
 			sql = "SELECT * FROM Giangvien WHERE Magv = @Magv"
 
