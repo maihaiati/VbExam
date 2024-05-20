@@ -13,9 +13,9 @@ Public Class LoginForm
 
         ' Tạo danh sách các tham số
         Dim params As New List(Of SqlParameter) From {
-        New SqlParameter("@Masv", txtUser.Text),
-        New SqlParameter("@Passsv", txtPass.Text)
-}
+            New SqlParameter("@Masv", txtUser.Text),
+            New SqlParameter("@Passsv", txtPass.Text)
+        }
 
         ' Gọi hàm getData với câu lệnh SQL và các tham số
         dataTable = getData(sql, params)

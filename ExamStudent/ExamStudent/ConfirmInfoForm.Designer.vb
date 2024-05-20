@@ -42,7 +42,7 @@ Partial Class ConfirmInfoForm
 		ClientSize = New Size(600, 566)
 		Controls.Add(Label1)
 		Name = "ConfirmInfoForm"
-		Text = "ConfirmInfoForm"
+		Text = "Exam Student - Comfirm infomation"
 		ResumeLayout(False)
 		PerformLayout()
 	End Sub
