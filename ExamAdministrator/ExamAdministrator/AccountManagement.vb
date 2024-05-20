@@ -2,7 +2,7 @@
 Imports System.ComponentModel
 Public Class AccountManagement
 	Public accountType As Integer '0: Teacher, 1: Student
-	Public name As String
+	Public fullName As String
 	Public userName As String
 	Dim logout = False
 
@@ -18,7 +18,7 @@ Public Class AccountManagement
 
 	Private Sub AccountManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 		accountType = 1
-		btnMe.Text = Me.name
+		btnMe.Text = fullName
 		loadData()
 	End Sub
 
@@ -42,8 +42,8 @@ Public Class AccountManagement
 		' Hiển thị thông tin dòng và cột
 		MessageBox.Show($"Dòng: {rowIndex}, Cột: {columnIndex}")
 
-		EditAccount.accountType = accountType
-	End Sub
+		If dgAccount.Item Then
+    End Sub
 
 	Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
 		Dashboard.Show()

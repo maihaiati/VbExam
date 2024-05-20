@@ -1,10 +1,10 @@
 ﻿Imports System.ComponentModel
 
 Public Class Dashboard
-	Public name As String
+	Public fullName As String
 	Public userName
 	Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-		btnMe.Text = name
+		btnMe.Text = fullName
 	End Sub
 
 	Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
@@ -15,7 +15,7 @@ Public Class Dashboard
 
 	Private Sub btnAccount_Click(sender As Object, e As EventArgs) Handles btnAccount.Click
 		AccountManagement.userName = userName
-		AccountManagement.name = Me.name
+		AccountManagement.fullName = fullName
 		AccountManagement.Show()
 		Hide()
 	End Sub

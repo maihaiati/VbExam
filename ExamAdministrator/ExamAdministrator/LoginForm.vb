@@ -36,9 +36,9 @@ Public Class LoginForm
 			' Gọi hàm getData với chuỗi SQL và danh sách tham số
 			dataTable = getData(sql, params)
 			If dataTable.Rows.Count > 0 Then
-				Dashboard.name = dataTable.Rows(0)("Hotengv").ToString()
+				Dashboard.fullName = dataTable.Rows(0)("Hotengv").ToString()
 			Else
-				Dashboard.name = txtUser.Text
+				Dashboard.fullName = txtUser.Text
 			End If
 			Dashboard.userName = txtUser.Text
 			Dashboard.Show()
