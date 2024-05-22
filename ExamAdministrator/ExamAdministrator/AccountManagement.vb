@@ -39,11 +39,34 @@ Public Class AccountManagement
 		' Lấy số cột được nhấn
 		Dim columnIndex As Integer = e.ColumnIndex
 
-		' Hiển thị thông tin dòng và cột
-		MessageBox.Show($"Dòng: {rowIndex}, Cột: {columnIndex}")
+        ' Hiển thị thông tin dòng và cột
+        MessageBox.Show($"Dòng: {rowIndex}, Cột: {columnIndex}")
+		' Kiểm tra xem dòng được nhấn có hợp lệ không
+		If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
+			' Lấy dữ liệu của hàng được nhấn
+			Dim selectedRow As DataGridViewRow = dgAccount.Rows(e.RowIndex)
 
-		If dgAccount.Item Then
-    End Sub
+			' Tạo instance của form chỉnh sửa
+			Dim editForm As New EditAccount()
+
+			' Truyền dữ liệu từ DataGridView sang form chỉnh sửa
+			editForm.txtUser.Text = selectedRow.Cells("Magv").Value.ToString()
+			editForm.txtPass.Text = selectedRow.Cells("Passgv").Value.ToString()
+			editForm.txtName.Text = selectedRow.Cells("Hotengv").Value.ToString()
+			editForm.cbbGender.SelectedItem = selectedRow.Cells("Gioitinh").Value.ToString()
+			editForm.dtpBirth.Value = DateTime.Parse(selectedRow.Cells("Ngaysinh").Value.ToString())
+			editForm.txtLopChucVu.Text = selectedRow.Cells("Chucvu").Value.ToString()
+			editForm.txtKhoa.Text = selectedRow.Cells("Khoa").Value.ToString()
+			editForm.cbAdmin.Checked = Convert.ToBoolean(selectedRow.Cells("Administrator").Value)
+
+			' Hiển thị form chỉnh sửa
+			If editForm.ShowDialog() = DialogResult.OK Then
+				' Tải lại dữ liệu sau khi chỉnh sửa
+				loadData()
+			End If
+		End If
+	End Sub
+
 
 	Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
 		Dashboard.Show()
