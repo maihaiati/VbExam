@@ -29,7 +29,6 @@ Partial Class LoginForm
         txtPass = New TextBox()
         btnExit = New Button()
         btnLogin = New Button()
-        Button1 = New Button()
         SuspendLayout()
         ' 
         ' Label1
@@ -99,21 +98,11 @@ Partial Class LoginForm
         btnLogin.Text = "Đăng nhập"
         btnLogin.UseVisualStyleBackColor = True
         ' 
-        ' Button1
-        ' 
-        Button1.Location = New Point(488, 309)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(125, 46)
-        Button1.TabIndex = 7
-        Button1.Text = "Button1"
-        Button1.UseVisualStyleBackColor = True
-        ' 
         ' LoginForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(623, 419)
-        Controls.Add(Button1)
         Controls.Add(btnLogin)
         Controls.Add(btnExit)
         Controls.Add(txtPass)
@@ -135,6 +124,5 @@ Partial Class LoginForm
 	Friend WithEvents txtPass As TextBox
 	Friend WithEvents btnExit As Button
 	Friend WithEvents btnLogin As Button
-    Friend WithEvents Button1 As Button
 
 End Class
