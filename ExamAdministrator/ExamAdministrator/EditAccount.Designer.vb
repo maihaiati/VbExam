@@ -24,7 +24,7 @@ Partial Class EditAccount
     Private Sub InitializeComponent()
         Label7 = New Label()
         txtName = New TextBox()
-        btnCreateAcc = New Button()
+        btnUpdateAcc = New Button()
         btnExit = New Button()
         cbAdmin = New CheckBox()
         txtKhoa = New TextBox()
@@ -61,15 +61,15 @@ Partial Class EditAccount
         txtName.Size = New Size(257, 27)
         txtName.TabIndex = 36
         ' 
-        ' btnCreateAcc
+        ' btnUpdateAcc
         ' 
-        btnCreateAcc.Location = New Point(361, 407)
-        btnCreateAcc.Margin = New Padding(3, 4, 3, 4)
-        btnCreateAcc.Name = "btnCreateAcc"
-        btnCreateAcc.Size = New Size(101, 48)
-        btnCreateAcc.TabIndex = 35
-        btnCreateAcc.Text = "Cập nhật"
-        btnCreateAcc.UseVisualStyleBackColor = True
+        btnUpdateAcc.Location = New Point(361, 407)
+        btnUpdateAcc.Margin = New Padding(3, 4, 3, 4)
+        btnUpdateAcc.Name = "btnUpdateAcc"
+        btnUpdateAcc.Size = New Size(101, 48)
+        btnUpdateAcc.TabIndex = 35
+        btnUpdateAcc.Text = "Cập nhật"
+        btnUpdateAcc.UseVisualStyleBackColor = True
         ' 
         ' btnExit
         ' 
@@ -233,7 +233,7 @@ Partial Class EditAccount
         Controls.Add(btndelete)
         Controls.Add(Label7)
         Controls.Add(txtName)
-        Controls.Add(btnCreateAcc)
+        Controls.Add(btnUpdateAcc)
         Controls.Add(btnExit)
         Controls.Add(cbAdmin)
         Controls.Add(txtKhoa)
@@ -259,7 +259,7 @@ Partial Class EditAccount
 
     Friend WithEvents Label7 As Label
 	Friend WithEvents txtName As TextBox
-	Friend WithEvents btnCreateAcc As Button
+	Friend WithEvents btnUpdateAcc As Button
 	Friend WithEvents btnExit As Button
 	Friend WithEvents cbAdmin As CheckBox
 	Friend WithEvents txtKhoa As TextBox

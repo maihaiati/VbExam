@@ -35,7 +35,7 @@ Public Class EditAccount
         End If
     End Sub
 
-    Private Sub btnCreateAcc_Click(sender As Object, e As EventArgs) Handles btnCreateAcc.Click
+    Private Sub btnCreateAcc_Click(sender As Object, e As EventArgs) Handles btnUpdateAcc.Click
         Dim sql As String
         Dim success As Boolean
         success = False
@@ -151,4 +151,8 @@ Public Class EditAccount
         End If
     End Sub
 
+    Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+        End
+
+    End Sub
 End Class

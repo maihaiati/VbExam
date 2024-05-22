@@ -7,17 +7,17 @@ Public Class AccountManagement
 	Dim logout = False
 
 	Public Sub loadData()
-		If accountType = 1 Then
-			assignData(dgAccount, "SELECT Masv, HoTen, Gioitinh, Ngaysinh, Lop, Khoa FROM Sinhvien", Nothing)
-			lblFilter.Text = "Lọc tài khoản: Sinh viên"
-		Else
+		If accountType = 0 Then
 			assignData(dgAccount, "SELECT Magv, Hotengv, Gioitinh, Ngaysinh, Chucvu, Khoa, Administrator FROM Giangvien", Nothing)
 			lblFilter.Text = "Lọc tài khoản: Giảng viên"
+		Else
+			assignData(dgAccount, "SELECT Masv, HoTen, Gioitinh, Ngaysinh, Lop, Khoa FROM Sinhvien", Nothing)
+			lblFilter.Text = "Lọc tài khoản: Sinh viên"
 		End If
 	End Sub
 
 	Private Sub AccountManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-		accountType = 1
+		accountType = 0
 		btnMe.Text = fullName
 		loadData()
 	End Sub
@@ -44,25 +44,22 @@ Public Class AccountManagement
 
 			' Tạo instance của form chỉnh sửa
 			Dim editForm As New EditAccount()
-			If accountType = 1 Then
-                ' Truyền dữ liệu từ DataGridView sang form chỉnh sửa
-                editForm.txtUser.Text = selectedRow.Cells("Masv").Value.ToString()
-				'editForm.txtUser.Text = selectedRow.Cells("Passsv").Value.ToString()
-				editForm.txtName.Text = selectedRow.Cells("Hoten").Value.ToString()
-				editForm.cbbGender.SelectedItem = selectedRow.Cells("Gioitinh").Value.ToString()
+			If editForm.accountType = accountType Then
+				' Truyền dữ liệu từ DataGridView sang form chỉnh sửa
+				editForm.userName = selectedRow.Cells("Magv").Value.ToString()
+				editForm.fullName = selectedRow.Cells("Hotengv").Value.ToString()
+				editForm.gender = selectedRow.Cells("Gioitinh").Value.ToString()
 				editForm.dtpBirth.Value = DateTime.Parse(selectedRow.Cells("Ngaysinh").Value.ToString())
-				editForm.txtLopChucVu.Text = selectedRow.Cells("Lop").Value.ToString()
-				editForm.txtKhoa.Text = selectedRow.Cells("Khoa").Value.ToString()
+				editForm.lopChucVu = selectedRow.Cells("Chucvu").Value.ToString()
+				editForm.khoa = selectedRow.Cells("Khoa").Value.ToString()
+				editForm.administrator = Convert.ToBoolean(selectedRow.Cells("Administrator").Value)
 			Else
-                editForm.txtUser.Text = selectedRow.Cells("Magv").Value.ToString()
-				'editForm.txtUser.Text = selectedRow.Cells("Passgv").Value.ToString()
-				editForm.txtName.Text = selectedRow.Cells("Hotengv").Value.ToString()
-				editForm.cbbGender.SelectedItem = selectedRow.Cells("Gioitinh").Value.ToString()
+				editForm.userName = selectedRow.Cells("Masv").Value.ToString()
+				editForm.fullName = selectedRow.Cells("Hoten").Value.ToString()
+				editForm.gender = selectedRow.Cells("Gioitinh").Value.ToString()
 				editForm.dtpBirth.Value = DateTime.Parse(selectedRow.Cells("Ngaysinh").Value.ToString())
-				editForm.txtLopChucVu.Text = selectedRow.Cells("Chucvu").Value.ToString()
-				editForm.txtKhoa.Text = selectedRow.Cells("Khoa").Value.ToString()
-				editForm.cbAdmin.Checked = Convert.ToBoolean(selectedRow.Cells("Administrator").Value)
-
+				editForm.lopChucVu = selectedRow.Cells("Lop").Value.ToString()
+				editForm.khoa = selectedRow.Cells("Khoa").Value.ToString()
 			End If
 			' Hiển thị form chỉnh sửa
 			If editForm.ShowDialog() = DialogResult.OK Then
