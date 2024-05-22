@@ -42,30 +42,35 @@ Public Class AccountManagement
 			' Lấy dữ liệu của hàng được nhấn
 			Dim selectedRow As DataGridViewRow = dgAccount.Rows(rowIndex)
 
-			' Tạo instance của form chỉnh sửa
-			Dim editForm As New EditAccount()
-			If editForm.accountType = accountType Then
-				' Truyền dữ liệu từ DataGridView sang form chỉnh sửa
-				editForm.userName = selectedRow.Cells("Magv").Value.ToString()
-				editForm.fullName = selectedRow.Cells("Hotengv").Value.ToString()
-				editForm.gender = selectedRow.Cells("Gioitinh").Value.ToString()
-				editForm.dtpBirth.Value = DateTime.Parse(selectedRow.Cells("Ngaysinh").Value.ToString())
-				editForm.lopChucVu = selectedRow.Cells("Chucvu").Value.ToString()
-				editForm.khoa = selectedRow.Cells("Khoa").Value.ToString()
-				editForm.administrator = Convert.ToBoolean(selectedRow.Cells("Administrator").Value)
+			If accountType = 0 Then
+				If selectedRow.Cells("Magv").Value.ToString() = "" Then
+					MessageBox.Show("Thông tin tài khoản không hợp lệ!")
+					Return
+				End If
+				EditAccount.accountType = accountType
+				EditAccount.activeUserName = userName
+				EditAccount.userName = selectedRow.Cells("Magv").Value.ToString()
+				EditAccount.fullName = selectedRow.Cells("Hotengv").Value.ToString()
+				EditAccount.gender = selectedRow.Cells("Gioitinh").Value.ToString()
+				EditAccount.dtpBirth.Value = DateTime.Parse(selectedRow.Cells("Ngaysinh").Value.ToString())
+				EditAccount.lopChucVu = selectedRow.Cells("Chucvu").Value.ToString()
+				EditAccount.khoa = selectedRow.Cells("Khoa").Value.ToString()
+				EditAccount.administrator = Convert.ToBoolean(selectedRow.Cells("Administrator").Value)
 			Else
-				editForm.userName = selectedRow.Cells("Masv").Value.ToString()
-				editForm.fullName = selectedRow.Cells("Hoten").Value.ToString()
-				editForm.gender = selectedRow.Cells("Gioitinh").Value.ToString()
-				editForm.dtpBirth.Value = DateTime.Parse(selectedRow.Cells("Ngaysinh").Value.ToString())
-				editForm.lopChucVu = selectedRow.Cells("Lop").Value.ToString()
-				editForm.khoa = selectedRow.Cells("Khoa").Value.ToString()
+				If selectedRow.Cells("Masv").Value.ToString() = "" Then
+					MessageBox.Show("Thông tin tài khoản không hợp lệ!")
+					Return
+				End If
+				EditAccount.accountType = accountType
+				EditAccount.activeUserName = userName
+				EditAccount.userName = selectedRow.Cells("Masv").Value.ToString()
+				EditAccount.fullName = selectedRow.Cells("Hoten").Value.ToString()
+				EditAccount.gender = selectedRow.Cells("Gioitinh").Value.ToString()
+				EditAccount.dtpBirth.Value = DateTime.Parse(selectedRow.Cells("Ngaysinh").Value.ToString())
+				EditAccount.lopChucVu = selectedRow.Cells("Lop").Value.ToString()
+				EditAccount.khoa = selectedRow.Cells("Khoa").Value.ToString()
 			End If
-			' Hiển thị form chỉnh sửa
-			If editForm.ShowDialog() = DialogResult.OK Then
-				' Tải lại dữ liệu sau khi chỉnh sửa
-				loadData()
-			End If
+			EditAccount.Show()
 		End If
 	End Sub
 
