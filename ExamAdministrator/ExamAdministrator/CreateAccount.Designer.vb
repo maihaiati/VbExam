@@ -42,8 +42,8 @@ Partial Class CreateAccount
         btnCreateAcc = New Button()
         txtName = New TextBox()
         Label7 = New Label()
-        imgacc = New PictureBox()
-        CType(imgacc, ComponentModel.ISupportInitialize).BeginInit()
+        imgAcc = New PictureBox()
+        CType(imgAcc, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' lblUser
@@ -146,17 +146,30 @@ Partial Class CreateAccount
         resources.ApplyResources(Label7, "Label7")
         Label7.Name = "Label7"
         ' 
-        ' imgacc
+        ' imgAcc
         ' 
+<<<<<<< HEAD
         resources.ApplyResources(imgacc, "imgacc")
         imgacc.Name = "imgacc"
         imgacc.TabStop = False
+=======
+        imgAcc.Location = New Point(55, 81)
+        imgAcc.Name = "imgAcc"
+        imgAcc.Size = New Size(291, 386)
+        imgAcc.TabIndex = 19
+        imgAcc.TabStop = False
+>>>>>>> 5c600edff47f64d22c4778f2bca47c82416e856d
         ' 
         ' CreateAccount
         ' 
         resources.ApplyResources(Me, "$this")
         AutoScaleMode = AutoScaleMode.Font
+<<<<<<< HEAD
         Controls.Add(imgacc)
+=======
+        ClientSize = New Size(918, 493)
+        Controls.Add(imgAcc)
+>>>>>>> 5c600edff47f64d22c4778f2bca47c82416e856d
         Controls.Add(Label7)
         Controls.Add(txtName)
         Controls.Add(btnCreateAcc)
@@ -177,7 +190,12 @@ Partial Class CreateAccount
         Controls.Add(Label1)
         Controls.Add(lblUser)
         Name = "CreateAccount"
+<<<<<<< HEAD
         CType(imgacc, ComponentModel.ISupportInitialize).EndInit()
+=======
+        Text = "Exam Administrator - Create Account"
+        CType(imgAcc, ComponentModel.ISupportInitialize).EndInit()
+>>>>>>> 5c600edff47f64d22c4778f2bca47c82416e856d
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -201,5 +219,5 @@ Partial Class CreateAccount
 	Friend WithEvents btnCreateAcc As Button
 	Friend WithEvents txtName As TextBox
 	Friend WithEvents Label7 As Label
-    Friend WithEvents imgacc As PictureBox
+    Friend WithEvents imgAcc As PictureBox
 End Class
