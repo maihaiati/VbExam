@@ -99,7 +99,7 @@ Public Class AccountManagement
 		CreateAccount.Show()
 	End Sub
 
-	Private Sub AccountManagement_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+	Private Sub AccountManagement_Closing(sender As Object, e As CancelEventArgs) Handles MyBase.Closing
 		If Not logout Then
 			Dashboard.Show()
 		Else

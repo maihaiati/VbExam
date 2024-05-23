@@ -35,11 +35,12 @@ Public Class EditAccount
     End Sub
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
+
         Dim sql As String
         Dim success = False
 
         If txtName.Text = "" Or cbbGender.SelectedItem = "" Or txtLopChucVu.Text = "" Or txtKhoa.Text = "" Then
-            MessageBox.Show("Không được để trống thông tin trừ mật khẩu!")
+            MessageBox.Show("Không được để trống thông tin trừ mật khẩu!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 
@@ -63,11 +64,11 @@ Public Class EditAccount
                     params.Add(New SqlParameter("@Administrator", admin))
 
                     If runSqlCommand(sql, params) Then
-                        MsgBox("Chỉnh sửa tài khoản thành công")
+                        MessageBox.Show("Chỉnh sửa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         success = True
                         AccountManagement.loadData()
                     Else
-                        MsgBox("Chỉnh sửa tài khoản thất bại")
+                        MessageBox.Show("Chỉnh sửa tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                     End If
                 Else
                     MsgBox("Không tìm thấy mã giảng viên!")
@@ -86,14 +87,14 @@ Public Class EditAccount
                     params.Add(New SqlParameter("@Administrator", admin))
 
                     If runSqlCommand(sql, params) Then
-                        MsgBox("Chỉnh sửa tài khoản thành công")
+                        MessageBox.Show("Chỉnh sửa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         success = True
                         AccountManagement.loadData()
                     Else
-                        MsgBox("Chỉnh sửa tài khoản thất bại")
+                        MessageBox.Show("Chỉnh sửa tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                     End If
                 Else
-                    MsgBox("Không tìm thấy mã giảng viên!")
+                    MessageBox.Show("Không tìm thấy mã giảng viên!", "Exem Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             End If
 
@@ -115,14 +116,14 @@ Public Class EditAccount
             }
 
                 If runSqlCommand(sql, params) Then
-                    MsgBox("Chỉnh sửa tài khoản thành công")
+                    MessageBox.Show("Chỉnh sửa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     success = True
                     AccountManagement.loadData()
                 Else
-                    MsgBox("Chỉnh sửa tài khoản thất bại")
+                    MessageBox.Show("Chỉnh sửa tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
             Else
-                MsgBox("Không tìm thấy mã sinh viên!")
+                MessageBox.Show("Không tìm thấy mã sinh viên!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
 
             log(userName, "Chỉnh sửa tài khoản", If(success, "Thành công", "Thất bại"), "Chỉnh sửa tài khoản sinh viên")
@@ -142,14 +143,14 @@ Public Class EditAccount
             }
 
                 If runSqlCommand(sql, params) Then
-                    MsgBox("Xóa tài khoản thành công")
+                    MessageBox.Show("Xóa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     success = True
                     AccountManagement.loadData()
                 Else
-                    MsgBox("Xóa tài khoản thất bại")
+                    MessageBox.Show("Xóa tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
             Else
-                MsgBox("Không tìm thấy mã giảng viên!")
+                MessageBox.Show("Không tìm thấy mã giảng viên!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
 
             log(userName, "Xóa tài khoản", If(success, "Thành công", "Thất bại"), "Xóa tài khoản giảng viên")
@@ -163,14 +164,14 @@ Public Class EditAccount
             }
 
                 If runSqlCommand(sql, params) Then
-                    MsgBox("Xóa tài khoản thành công")
+                    MessageBox.Show("Xóa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     success = True
                     AccountManagement.loadData()
                 Else
-                    MsgBox("Xóa tài khoản thất bại")
+                    MessageBox.Show("Xóa tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
             Else
-                MsgBox("Không tìm thấy mã sinh viên!")
+                MessageBox.Show("Không tìm thấy mã sinh viên!", "Exam Adminstrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
 
             log(userName, "Xóa tài khoản", If(success, "Thành công", "Thất bại"), "Xóa tài khoản sinh viên")

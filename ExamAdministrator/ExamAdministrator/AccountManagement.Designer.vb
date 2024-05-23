@@ -60,13 +60,13 @@ Partial Class AccountManagement
         ' btnCreateTeacher
         ' 
         btnCreateTeacher.Name = "btnCreateTeacher"
-        btnCreateTeacher.Size = New Size(224, 26)
+        btnCreateTeacher.Size = New Size(162, 26)
         btnCreateTeacher.Text = "Giảng viên"
         ' 
         ' btnCreateStudent
         ' 
         btnCreateStudent.Name = "btnCreateStudent"
-        btnCreateStudent.Size = New Size(224, 26)
+        btnCreateStudent.Size = New Size(162, 26)
         btnCreateStudent.Text = "Sinh viên"
         ' 
         ' btnMe
@@ -122,7 +122,7 @@ Partial Class AccountManagement
         dgAccount.Name = "dgAccount"
         dgAccount.ReadOnly = True
         dgAccount.RowHeadersWidth = 51
-        dgAccount.Size = New Size(863, 383)
+        dgAccount.Size = New Size(863, 398)
         dgAccount.TabIndex = 1
         ' 
         ' lblFilter

@@ -42,8 +42,8 @@ Partial Class EditAccount
         Label1 = New Label()
         lblUser = New Label()
         btnDelete = New Button()
-        imgavatar = New PictureBox()
-        CType(imgavatar, ComponentModel.ISupportInitialize).BeginInit()
+        imgAvatar = New PictureBox()
+        CType(imgAvatar, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Label7
@@ -227,20 +227,20 @@ Partial Class EditAccount
         btnDelete.Text = "Xoá"
         btnDelete.UseVisualStyleBackColor = True
         ' 
-        ' imgavatar
+        ' imgAvatar
         ' 
-        imgavatar.Location = New Point(20, 90)
-        imgavatar.Name = "imgavatar"
-        imgavatar.Size = New Size(282, 393)
-        imgavatar.TabIndex = 39
-        imgavatar.TabStop = False
+        imgAvatar.Location = New Point(20, 90)
+        imgAvatar.Name = "imgAvatar"
+        imgAvatar.Size = New Size(282, 393)
+        imgAvatar.TabIndex = 39
+        imgAvatar.TabStop = False
         ' 
         ' EditAccount
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(808, 512)
-        Controls.Add(imgavatar)
+        Controls.Add(imgAvatar)
         Controls.Add(btnDelete)
         Controls.Add(Label7)
         Controls.Add(txtName)
@@ -264,7 +264,7 @@ Partial Class EditAccount
         Margin = New Padding(3, 4, 3, 4)
         Name = "EditAccount"
         Text = "Exam Administrator - Edit Account"
-        CType(imgavatar, ComponentModel.ISupportInitialize).EndInit()
+        CType(imgAvatar, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -289,5 +289,5 @@ Partial Class EditAccount
 	Friend WithEvents Label1 As Label
 	Friend WithEvents lblUser As Label
     Friend WithEvents btnDelete As Button
-    Friend WithEvents imgavatar As PictureBox
+    Friend WithEvents imgAvatar As PictureBox
 End Class

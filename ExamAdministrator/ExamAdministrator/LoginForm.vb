@@ -4,7 +4,7 @@ Public Class LoginForm
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Dim dataTable As DataTable
         If txtUser.Text = "" Or txtPass.Text = "" Then
-            MsgBox("Không được để trống thông tin đăng nhập!")
+            MessageBox.Show("Không được để trống thông tin đăng nhập!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 
@@ -43,7 +43,7 @@ Public Class LoginForm
             Dashboard.Show()
             Hide()
         Else
-            MsgBox("Đăng nhập thất bại!")
+            MessageBox.Show("Đăng nhập thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             txtUser.Text = ""
             txtPass.Text = ""
             ' Câu lệnh SQL với các tham số
