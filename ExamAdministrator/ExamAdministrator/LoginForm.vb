@@ -42,6 +42,8 @@ Public Class LoginForm
             Dashboard.userName = txtUser.Text
             Dashboard.Show()
             Hide()
+            txtUser.Text = ""
+            txtPass.Text = ""
         Else
             MessageBox.Show("Đăng nhập thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             txtUser.Text = ""
@@ -61,13 +63,5 @@ Public Class LoginForm
 
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         End
-    End Sub
-
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs)
-        EditAccount.Show()
-    End Sub
-
-    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-
     End Sub
 End Class

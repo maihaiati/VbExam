@@ -74,15 +74,11 @@ Public Class AccountManagement
 		End If
 	End Sub
 
-
 	Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
-		Dashboard.Show()
 		Close()
 	End Sub
 
 	Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
-		log(userName, "Đăng xuất", "Thành công", Nothing)
-		LoginForm.Show()
 		logout = True
 		Close()
 	End Sub
@@ -100,6 +96,8 @@ Public Class AccountManagement
 	End Sub
 
 	Private Sub AccountManagement_Closing(sender As Object, e As CancelEventArgs) Handles MyBase.Closing
+		EditAccount.Close()
+		CreateAccount.Close()
 		If Not logout Then
 			Dashboard.Show()
 		Else
