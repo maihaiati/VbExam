@@ -23,7 +23,6 @@ Public Class LoginForm
         ' Kiểm tra kết quả
         If dataTable.Rows.Count > 0 Then
             log(txtUser.Text, "Đăng nhập", "Thành công", "Đăng nhập")
-            MsgBox("Đăng nhập thành công!")
 
             ' Định nghĩa chuỗi SQL với tham số
             sql = "SELECT Hotengv FROM Giangvien WHERE Magv = @Magv"
@@ -66,5 +65,9 @@ Public Class LoginForm
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs)
         EditAccount.Show()
+    End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+
     End Sub
 End Class

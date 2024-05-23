@@ -22,6 +22,7 @@ Partial Class LoginForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LoginForm))
         Label1 = New Label()
         Label2 = New Label()
         Label3 = New Label()
@@ -29,13 +30,16 @@ Partial Class LoginForm
         txtPass = New TextBox()
         btnExit = New Button()
         btnLogin = New Button()
+        PictureBox1 = New PictureBox()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 20F, FontStyle.Bold)
-        Label1.Location = New Point(158, 32)
+        Label1.ForeColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
+        Label1.Location = New Point(444, 47)
         Label1.Name = "Label1"
         Label1.Size = New Size(340, 46)
         Label1.TabIndex = 0
@@ -45,7 +49,7 @@ Partial Class LoginForm
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI", 15F)
-        Label2.Location = New Point(117, 108)
+        Label2.Location = New Point(416, 125)
         Label2.Name = "Label2"
         Label2.Size = New Size(180, 35)
         Label2.TabIndex = 1
@@ -55,7 +59,7 @@ Partial Class LoginForm
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Segoe UI", 15F)
-        Label3.Location = New Point(117, 208)
+        Label3.Location = New Point(416, 223)
         Label3.Name = "Label3"
         Label3.Size = New Size(118, 35)
         Label3.TabIndex = 2
@@ -63,24 +67,26 @@ Partial Class LoginForm
         ' 
         ' txtUser
         ' 
-        txtUser.Location = New Point(117, 149)
+        txtUser.Font = New Font("Segoe UI", 10F)
+        txtUser.Location = New Point(427, 164)
         txtUser.Margin = New Padding(3, 4, 3, 4)
         txtUser.Name = "txtUser"
-        txtUser.Size = New Size(383, 27)
+        txtUser.Size = New Size(357, 30)
         txtUser.TabIndex = 3
         ' 
         ' txtPass
         ' 
-        txtPass.Location = New Point(117, 249)
+        txtPass.Font = New Font("Segoe UI", 10F)
+        txtPass.Location = New Point(427, 262)
         txtPass.Margin = New Padding(3, 4, 3, 4)
         txtPass.Name = "txtPass"
         txtPass.PasswordChar = "*"c
-        txtPass.Size = New Size(383, 27)
+        txtPass.Size = New Size(357, 30)
         txtPass.TabIndex = 4
         ' 
         ' btnExit
         ' 
-        btnExit.Location = New Point(158, 315)
+        btnExit.Location = New Point(665, 335)
         btnExit.Margin = New Padding(3, 4, 3, 4)
         btnExit.Name = "btnExit"
         btnExit.Size = New Size(119, 59)
@@ -90,7 +96,7 @@ Partial Class LoginForm
         ' 
         ' btnLogin
         ' 
-        btnLogin.Location = New Point(339, 315)
+        btnLogin.Location = New Point(427, 335)
         btnLogin.Margin = New Padding(3, 4, 3, 4)
         btnLogin.Name = "btnLogin"
         btnLogin.Size = New Size(119, 59)
@@ -98,11 +104,24 @@ Partial Class LoginForm
         btnLogin.Text = "Đăng nhập"
         btnLogin.UseVisualStyleBackColor = True
         ' 
+        ' PictureBox1
+        ' 
+        PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
+        PictureBox1.Location = New Point(-1, -1)
+        PictureBox1.Name = "PictureBox1"
+        PictureBox1.Size = New Size(400, 436)
+        PictureBox1.SizeMode = PictureBoxSizeMode.CenterImage
+        PictureBox1.TabIndex = 7
+        PictureBox1.TabStop = False
+        ' 
         ' LoginForm
         ' 
+        AcceptButton = btnLogin
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(623, 419)
+        CancelButton = btnExit
+        ClientSize = New Size(823, 435)
+        Controls.Add(PictureBox1)
         Controls.Add(btnLogin)
         Controls.Add(btnExit)
         Controls.Add(txtPass)
@@ -113,6 +132,7 @@ Partial Class LoginForm
         Margin = New Padding(3, 4, 3, 4)
         Name = "LoginForm"
         Text = "Exam Administrator - Login"
+        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -124,5 +144,6 @@ Partial Class LoginForm
 	Friend WithEvents txtPass As TextBox
 	Friend WithEvents btnExit As Button
 	Friend WithEvents btnLogin As Button
+    Friend WithEvents PictureBox1 As PictureBox
 
 End Class

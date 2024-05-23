@@ -60,13 +60,13 @@ Partial Class AccountManagement
         ' btnCreateTeacher
         ' 
         btnCreateTeacher.Name = "btnCreateTeacher"
-        btnCreateTeacher.Size = New Size(162, 26)
+        btnCreateTeacher.Size = New Size(224, 26)
         btnCreateTeacher.Text = "Giảng viên"
         ' 
         ' btnCreateStudent
         ' 
         btnCreateStudent.Name = "btnCreateStudent"
-        btnCreateStudent.Size = New Size(162, 26)
+        btnCreateStudent.Size = New Size(224, 26)
         btnCreateStudent.Text = "Sinh viên"
         ' 
         ' btnMe
@@ -117,7 +117,7 @@ Partial Class AccountManagement
         ' dgAccount
         ' 
         dgAccount.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgAccount.Location = New Point(14, 75)
+        dgAccount.Location = New Point(14, 107)
         dgAccount.Margin = New Padding(3, 4, 3, 4)
         dgAccount.Name = "dgAccount"
         dgAccount.ReadOnly = True
@@ -128,9 +128,10 @@ Partial Class AccountManagement
         ' lblFilter
         ' 
         lblFilter.AutoSize = True
-        lblFilter.Location = New Point(14, 37)
+        lblFilter.Font = New Font("Segoe UI", 10F)
+        lblFilter.Location = New Point(14, 75)
         lblFilter.Name = "lblFilter"
-        lblFilter.Size = New Size(104, 20)
+        lblFilter.Size = New Size(121, 23)
         lblFilter.TabIndex = 2
         lblFilter.Text = "Lọc tài khoản: "
         ' 
@@ -138,7 +139,7 @@ Partial Class AccountManagement
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(889, 473)
+        ClientSize = New Size(889, 518)
         Controls.Add(lblFilter)
         Controls.Add(dgAccount)
         Controls.Add(MenuStrip1)
