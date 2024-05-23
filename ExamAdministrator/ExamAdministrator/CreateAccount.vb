@@ -1,19 +1,19 @@
 ﻿Imports System
 Imports System.Data.SqlClient
 Public Class CreateAccount
-	Public accountType As Integer '0: Teacher, 1: Student
-	Public userName As String
-	Private Sub CreateAccount_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-		If accountType = 0 Then
-			lblUser.Text = "Mã giảng viên"
-			lblLopChucVu.Text = "Chức vụ"
-		Else
-			lblUser.Text = "Mã sinh viên"
-			lblLopChucVu.Text = "Lớp"
-			cbAdmin.Enabled = False
-		End If
-		cbbGender.Items.Add("Nam")
-		cbbGender.Items.Add("Nữ")
+    Public accountType As Integer '0: Teacher, 1: Student
+    Public userName As String
+    Private Sub CreateAccount_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If accountType = 0 Then
+            lblUser.Text = "Mã giảng viên"
+            lblLopChucVu.Text = "Chức vụ"
+        Else
+            lblUser.Text = "Mã sinh viên"
+            lblLopChucVu.Text = "Lớp"
+            cbAdmin.Enabled = False
+        End If
+        cbbGender.Items.Add("Nam")
+        cbbGender.Items.Add("Nữ")
         cbbGender.SelectedIndex = 0
     End Sub
 
@@ -46,14 +46,14 @@ Public Class CreateAccount
             }
 
                 If runSqlCommand(sql, params) Then
-                    MsgBox("Tạo tài khoản thành công")
+                    MessageBox.Show("Tạo tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     success = True
                     AccountManagement.loadData()
                 Else
-                    MsgBox("Tạo tài khoản thất bại")
+                    MessageBox.Show("Tạo tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
             Else
-                MsgBox("Không được trùng mã giảng viên!")
+                MessageBox.Show("Không được trùng mã giảng viên!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
 
             log(userName, "Tạo tài khoản", If(success, "Thành công", "Thất bại"), "Tạo tài khoản giảng viên")
@@ -74,17 +74,21 @@ Public Class CreateAccount
             }
 
                 If runSqlCommand(sql, params) Then
-                    MsgBox("Tạo tài khoản thành công")
+                    MessageBox.Show("Tạo tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     success = True
                     AccountManagement.loadData()
                 Else
-                    MsgBox("Tạo tài khoản thất bại")
+                    MessageBox.Show("Tạo tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
             Else
-                MsgBox("Không được trùng mã sinh viên!")
+                MessageBox.Show("Không được trùng mã sinh viên!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
 
             log(userName, "Tạo tài khoản", If(success, "Thành công", "Thất bại"), "Tạo tài khoản sinh viên")
         End If
+    End Sub
+
+    Private Sub imgAcc_Click(sender As Object, e As EventArgs) Handles imgAcc.Click
+
     End Sub
 End Class
