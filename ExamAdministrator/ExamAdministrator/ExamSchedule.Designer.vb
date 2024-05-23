@@ -23,6 +23,10 @@ Partial Class ExamSchedule
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         MenuStrip1 = New MenuStrip()
+        TạoLịchToolStripMenuItem = New ToolStripMenuItem()
+        ThayĐổiLịchThiToolStripMenuItem = New ToolStripMenuItem()
+        XóaLịchToolStripMenuItem = New ToolStripMenuItem()
+        SắpXếpLịchThiToolStripMenuItem = New ToolStripMenuItem()
         ThoátToolStripMenuItem = New ToolStripMenuItem()
         DataGridView1 = New DataGridView()
         clnMMH = New DataGridViewTextBoxColumn()
@@ -31,15 +35,11 @@ Partial Class ExamSchedule
         clnLop = New DataGridViewTextBoxColumn()
         clnNgayThi = New DataGridViewTextBoxColumn()
         clnPhong = New DataGridViewTextBoxColumn()
-        TạoLịchToolStripMenuItem = New ToolStripMenuItem()
-        ThayĐổiLịchThiToolStripMenuItem = New ToolStripMenuItem()
-        XóaLịchToolStripMenuItem = New ToolStripMenuItem()
         Label1 = New Label()
         Label2 = New Label()
         Label3 = New Label()
         Label4 = New Label()
         Button1 = New Button()
-        SắpXếpLịchThiToolStripMenuItem = New ToolStripMenuItem()
         TextBox1 = New TextBox()
         TextBox2 = New TextBox()
         TextBox3 = New TextBox()
@@ -58,6 +58,30 @@ Partial Class ExamSchedule
         MenuStrip1.Size = New Size(808, 28)
         MenuStrip1.TabIndex = 0
         MenuStrip1.Text = "MenuStrip1"
+        ' 
+        ' TạoLịchToolStripMenuItem
+        ' 
+        TạoLịchToolStripMenuItem.Name = "TạoLịchToolStripMenuItem"
+        TạoLịchToolStripMenuItem.Size = New Size(102, 24)
+        TạoLịchToolStripMenuItem.Text = "Tạo Lịch Thi"
+        ' 
+        ' ThayĐổiLịchThiToolStripMenuItem
+        ' 
+        ThayĐổiLịchThiToolStripMenuItem.Name = "ThayĐổiLịchThiToolStripMenuItem"
+        ThayĐổiLịchThiToolStripMenuItem.Size = New Size(136, 24)
+        ThayĐổiLịchThiToolStripMenuItem.Text = "Thay Đổi Lịch Thi"
+        ' 
+        ' XóaLịchToolStripMenuItem
+        ' 
+        XóaLịchToolStripMenuItem.Name = "XóaLịchToolStripMenuItem"
+        XóaLịchToolStripMenuItem.Size = New Size(79, 24)
+        XóaLịchToolStripMenuItem.Text = "Xóa Lịch"
+        ' 
+        ' SắpXếpLịchThiToolStripMenuItem
+        ' 
+        SắpXếpLịchThiToolStripMenuItem.Name = "SắpXếpLịchThiToolStripMenuItem"
+        SắpXếpLịchThiToolStripMenuItem.Size = New Size(132, 24)
+        SắpXếpLịchThiToolStripMenuItem.Text = "Sắp Xếp Lịch Thi"
         ' 
         ' ThoátToolStripMenuItem
         ' 
@@ -117,24 +141,6 @@ Partial Class ExamSchedule
         clnPhong.Name = "clnPhong"
         clnPhong.Width = 125
         ' 
-        ' TạoLịchToolStripMenuItem
-        ' 
-        TạoLịchToolStripMenuItem.Name = "TạoLịchToolStripMenuItem"
-        TạoLịchToolStripMenuItem.Size = New Size(102, 24)
-        TạoLịchToolStripMenuItem.Text = "Tạo Lịch Thi"
-        ' 
-        ' ThayĐổiLịchThiToolStripMenuItem
-        ' 
-        ThayĐổiLịchThiToolStripMenuItem.Name = "ThayĐổiLịchThiToolStripMenuItem"
-        ThayĐổiLịchThiToolStripMenuItem.Size = New Size(136, 24)
-        ThayĐổiLịchThiToolStripMenuItem.Text = "Thay Đổi Lịch Thi"
-        ' 
-        ' XóaLịchToolStripMenuItem
-        ' 
-        XóaLịchToolStripMenuItem.Name = "XóaLịchToolStripMenuItem"
-        XóaLịchToolStripMenuItem.Size = New Size(79, 24)
-        XóaLịchToolStripMenuItem.Text = "Xóa Lịch"
-        ' 
         ' Label1
         ' 
         Label1.AutoSize = True
@@ -164,9 +170,9 @@ Partial Class ExamSchedule
         Label3.ForeColor = Color.Blue
         Label3.Location = New Point(31, 182)
         Label3.Name = "Label3"
-        Label3.Size = New Size(76, 20)
+        Label3.Size = New Size(106, 20)
         Label3.TabIndex = 4
-        Label3.Text = "Ngày Thi:"
+        Label3.Text = "Thời Gian Thi:"
         ' 
         ' Label4
         ' 
@@ -189,12 +195,6 @@ Partial Class ExamSchedule
         Button1.TabIndex = 6
         Button1.Text = "Tìm Kiếm"
         Button1.UseVisualStyleBackColor = False
-        ' 
-        ' SắpXếpLịchThiToolStripMenuItem
-        ' 
-        SắpXếpLịchThiToolStripMenuItem.Name = "SắpXếpLịchThiToolStripMenuItem"
-        SắpXếpLịchThiToolStripMenuItem.Size = New Size(132, 24)
-        SắpXếpLịchThiToolStripMenuItem.Text = "Sắp Xếp Lịch Thi"
         ' 
         ' TextBox1
         ' 
@@ -219,10 +219,13 @@ Partial Class ExamSchedule
         ' 
         ' DateTimePicker1
         ' 
+        DateTimePicker1.CustomFormat = "hh:mm dd-MM-yyyy"
+        DateTimePicker1.Format = DateTimePickerFormat.Custom
         DateTimePicker1.Location = New Point(156, 177)
         DateTimePicker1.Name = "DateTimePicker1"
         DateTimePicker1.Size = New Size(172, 27)
         DateTimePicker1.TabIndex = 10
+        DateTimePicker1.Value = New Date(2024, 5, 23, 0, 0, 0, 0)
         ' 
         ' Label5
         ' 
