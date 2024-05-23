@@ -41,8 +41,8 @@ Partial Class CreateAccount
         btnCreateAcc = New Button()
         txtName = New TextBox()
         Label7 = New Label()
-        imgacc = New PictureBox()
-        CType(imgacc, ComponentModel.ISupportInitialize).BeginInit()
+        imgAcc = New PictureBox()
+        CType(imgAcc, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' lblUser
@@ -216,20 +216,20 @@ Partial Class CreateAccount
         Label7.TabIndex = 18
         Label7.Text = "Họ và tên"
         ' 
-        ' imgacc
+        ' imgAcc
         ' 
-        imgacc.Location = New Point(55, 81)
-        imgacc.Name = "imgacc"
-        imgacc.Size = New Size(291, 386)
-        imgacc.TabIndex = 19
-        imgacc.TabStop = False
+        imgAcc.Location = New Point(55, 81)
+        imgAcc.Name = "imgAcc"
+        imgAcc.Size = New Size(291, 386)
+        imgAcc.TabIndex = 19
+        imgAcc.TabStop = False
         ' 
         ' CreateAccount
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(918, 493)
-        Controls.Add(imgacc)
+        Controls.Add(imgAcc)
         Controls.Add(Label7)
         Controls.Add(txtName)
         Controls.Add(btnCreateAcc)
@@ -252,7 +252,7 @@ Partial Class CreateAccount
         Margin = New Padding(3, 4, 3, 4)
         Name = "CreateAccount"
         Text = "Exam Administrator - Create Account"
-        CType(imgacc, ComponentModel.ISupportInitialize).EndInit()
+        CType(imgAcc, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -276,5 +276,5 @@ Partial Class CreateAccount
 	Friend WithEvents btnCreateAcc As Button
 	Friend WithEvents txtName As TextBox
 	Friend WithEvents Label7 As Label
-    Friend WithEvents imgacc As PictureBox
+    Friend WithEvents imgAcc As PictureBox
 End Class
