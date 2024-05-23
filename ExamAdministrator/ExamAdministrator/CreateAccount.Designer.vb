@@ -22,6 +22,7 @@ Partial Class CreateAccount
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CreateAccount))
         lblUser = New Label()
         Label1 = New Label()
         Label2 = New Label()
@@ -47,188 +48,114 @@ Partial Class CreateAccount
         ' 
         ' lblUser
         ' 
-        lblUser.AutoSize = True
-        lblUser.Location = New Point(386, 103)
+        resources.ApplyResources(lblUser, "lblUser")
         lblUser.Name = "lblUser"
-        lblUser.Size = New Size(53, 20)
-        lblUser.TabIndex = 0
-        lblUser.Text = "Label1"
         ' 
         ' Label1
         ' 
-        Label1.AutoSize = True
-        Label1.Location = New Point(386, 146)
+        resources.ApplyResources(Label1, "Label1")
         Label1.Name = "Label1"
-        Label1.Size = New Size(70, 20)
-        Label1.TabIndex = 1
-        Label1.Text = "Mật khẩu"
         ' 
         ' Label2
         ' 
-        Label2.AutoSize = True
-        Label2.Location = New Point(386, 226)
+        resources.ApplyResources(Label2, "Label2")
         Label2.Name = "Label2"
-        Label2.Size = New Size(65, 20)
-        Label2.TabIndex = 2
-        Label2.Text = "Giới tính"
         ' 
         ' Label3
         ' 
-        Label3.AutoSize = True
-        Label3.Location = New Point(386, 264)
+        resources.ApplyResources(Label3, "Label3")
         Label3.Name = "Label3"
-        Label3.Size = New Size(74, 20)
-        Label3.TabIndex = 3
-        Label3.Text = "Ngày sinh"
         ' 
         ' lblLopChucVu
         ' 
-        lblLopChucVu.AutoSize = True
-        lblLopChucVu.Location = New Point(386, 303)
+        resources.ApplyResources(lblLopChucVu, "lblLopChucVu")
         lblLopChucVu.Name = "lblLopChucVu"
-        lblLopChucVu.Size = New Size(53, 20)
-        lblLopChucVu.TabIndex = 4
-        lblLopChucVu.Text = "Label4"
         ' 
         ' Label4
         ' 
-        Label4.AutoSize = True
-        Label4.Location = New Point(386, 342)
+        resources.ApplyResources(Label4, "Label4")
         Label4.Name = "Label4"
-        Label4.Size = New Size(43, 20)
-        Label4.TabIndex = 5
-        Label4.Text = "Khoa"
         ' 
         ' Label6
         ' 
-        Label6.AutoSize = True
-        Label6.Font = New Font("Segoe UI", 20F, FontStyle.Bold)
-        Label6.Location = New Point(326, 9)
+        resources.ApplyResources(Label6, "Label6")
         Label6.Name = "Label6"
-        Label6.Size = New Size(244, 46)
-        Label6.TabIndex = 7
-        Label6.Text = "Tạo Tài Khoản"
         ' 
         ' txtUser
         ' 
-        txtUser.Location = New Point(570, 99)
-        txtUser.Margin = New Padding(3, 4, 3, 4)
+        resources.ApplyResources(txtUser, "txtUser")
         txtUser.Name = "txtUser"
-        txtUser.Size = New Size(257, 27)
-        txtUser.TabIndex = 8
         ' 
         ' txtPass
         ' 
-        txtPass.Location = New Point(570, 142)
-        txtPass.Margin = New Padding(3, 4, 3, 4)
+        resources.ApplyResources(txtPass, "txtPass")
         txtPass.Name = "txtPass"
-        txtPass.Size = New Size(257, 27)
-        txtPass.TabIndex = 9
         ' 
         ' cbbGender
         ' 
+        resources.ApplyResources(cbbGender, "cbbGender")
         cbbGender.FormattingEnabled = True
-        cbbGender.Location = New Point(570, 222)
-        cbbGender.Margin = New Padding(3, 4, 3, 4)
         cbbGender.Name = "cbbGender"
-        cbbGender.Size = New Size(257, 28)
-        cbbGender.TabIndex = 10
         ' 
         ' dtpBirth
         ' 
-        dtpBirth.CustomFormat = ""
+        resources.ApplyResources(dtpBirth, "dtpBirth")
         dtpBirth.Format = DateTimePickerFormat.Short
-        dtpBirth.Location = New Point(570, 260)
-        dtpBirth.Margin = New Padding(3, 4, 3, 4)
         dtpBirth.Name = "dtpBirth"
-        dtpBirth.Size = New Size(257, 27)
-        dtpBirth.TabIndex = 11
         ' 
         ' txtLopChucVu
         ' 
-        txtLopChucVu.Location = New Point(570, 299)
-        txtLopChucVu.Margin = New Padding(3, 4, 3, 4)
+        resources.ApplyResources(txtLopChucVu, "txtLopChucVu")
         txtLopChucVu.Name = "txtLopChucVu"
-        txtLopChucVu.Size = New Size(257, 27)
-        txtLopChucVu.TabIndex = 12
         ' 
         ' txtKhoa
         ' 
-        txtKhoa.Location = New Point(570, 338)
-        txtKhoa.Margin = New Padding(3, 4, 3, 4)
+        resources.ApplyResources(txtKhoa, "txtKhoa")
         txtKhoa.Name = "txtKhoa"
-        txtKhoa.Size = New Size(257, 27)
-        txtKhoa.TabIndex = 13
         ' 
         ' cbAdmin
         ' 
-        cbAdmin.AutoSize = True
-        cbAdmin.Location = New Point(570, 383)
-        cbAdmin.Margin = New Padding(3, 4, 3, 4)
+        resources.ApplyResources(cbAdmin, "cbAdmin")
         cbAdmin.Name = "cbAdmin"
-        cbAdmin.Size = New Size(18, 17)
-        cbAdmin.TabIndex = 14
         cbAdmin.UseVisualStyleBackColor = True
         ' 
         ' Label5
         ' 
-        Label5.AutoSize = True
-        Label5.Location = New Point(386, 382)
+        resources.ApplyResources(Label5, "Label5")
         Label5.Name = "Label5"
-        Label5.Size = New Size(137, 20)
-        Label5.TabIndex = 6
-        Label5.Text = "Quyền quản trị viên"
         ' 
         ' btnExit
         ' 
-        btnExit.Location = New Point(706, 419)
-        btnExit.Margin = New Padding(3, 4, 3, 4)
+        resources.ApplyResources(btnExit, "btnExit")
         btnExit.Name = "btnExit"
-        btnExit.Size = New Size(121, 48)
-        btnExit.TabIndex = 15
-        btnExit.Text = "Thoát"
         btnExit.UseVisualStyleBackColor = True
         ' 
         ' btnCreateAcc
         ' 
-        btnCreateAcc.Location = New Point(434, 419)
-        btnCreateAcc.Margin = New Padding(3, 4, 3, 4)
+        resources.ApplyResources(btnCreateAcc, "btnCreateAcc")
         btnCreateAcc.Name = "btnCreateAcc"
-        btnCreateAcc.Size = New Size(126, 48)
-        btnCreateAcc.TabIndex = 16
-        btnCreateAcc.Text = "Tạo tài khoản"
         btnCreateAcc.UseVisualStyleBackColor = True
         ' 
         ' txtName
         ' 
-        txtName.Location = New Point(570, 183)
-        txtName.Margin = New Padding(3, 4, 3, 4)
+        resources.ApplyResources(txtName, "txtName")
         txtName.Name = "txtName"
-        txtName.Size = New Size(257, 27)
-        txtName.TabIndex = 17
         ' 
         ' Label7
         ' 
-        Label7.AutoSize = True
-        Label7.Location = New Point(386, 187)
+        resources.ApplyResources(Label7, "Label7")
         Label7.Name = "Label7"
-        Label7.Size = New Size(73, 20)
-        Label7.TabIndex = 18
-        Label7.Text = "Họ và tên"
         ' 
         ' imgacc
         ' 
-        imgacc.Location = New Point(55, 81)
+        resources.ApplyResources(imgacc, "imgacc")
         imgacc.Name = "imgacc"
-        imgacc.Size = New Size(291, 386)
-        imgacc.TabIndex = 19
         imgacc.TabStop = False
         ' 
         ' CreateAccount
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        resources.ApplyResources(Me, "$this")
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(918, 493)
         Controls.Add(imgacc)
         Controls.Add(Label7)
         Controls.Add(txtName)
@@ -249,9 +176,7 @@ Partial Class CreateAccount
         Controls.Add(Label2)
         Controls.Add(Label1)
         Controls.Add(lblUser)
-        Margin = New Padding(3, 4, 3, 4)
         Name = "CreateAccount"
-        Text = "Exam Administrator - Create Account"
         CType(imgacc, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()

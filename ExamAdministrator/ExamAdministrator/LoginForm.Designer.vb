@@ -96,13 +96,14 @@ Partial Class LoginForm
         ' 
         ' btnLogin
         ' 
+        btnLogin.BackColor = Color.White
         btnLogin.Location = New Point(427, 335)
         btnLogin.Margin = New Padding(3, 4, 3, 4)
         btnLogin.Name = "btnLogin"
         btnLogin.Size = New Size(119, 59)
         btnLogin.TabIndex = 6
         btnLogin.Text = "Đăng nhập"
-        btnLogin.UseVisualStyleBackColor = True
+        btnLogin.UseVisualStyleBackColor = False
         ' 
         ' PictureBox1
         ' 

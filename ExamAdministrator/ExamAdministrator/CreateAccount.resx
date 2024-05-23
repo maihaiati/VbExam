@@ -117,4 +117,550 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="txtUser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>570, 99</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Label7.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;Label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtUser.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="Label3.Text" xml:space="preserve">
+    <value>Ngày sinh</value>
+  </data>
+  <data name="Label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>386, 146</value>
+  </data>
+  <data name="Label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;cbbGender.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblUser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtKhoa.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnCreateAcc.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="Label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 20</value>
+  </data>
+  <data name="cbbGender.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="Label6.Text" xml:space="preserve">
+    <value>Tạo Tài Khoản</value>
+  </data>
+  <data name="dtpBirth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>570, 260</value>
+  </data>
+  <data name="&gt;&gt;txtKhoa.Name" xml:space="preserve">
+    <value>txtKhoa</value>
+  </data>
+  <data name="&gt;&gt;Label7.Name" xml:space="preserve">
+    <value>Label7</value>
+  </data>
+  <data name="&gt;&gt;lblUser.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;dtpBirth.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="Label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>386, 226</value>
+  </data>
+  <data name="&gt;&gt;cbAdmin.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtPass.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Label2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtPass.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;txtKhoa.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dtpBirth.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;imgacc.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtLopChucVu.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="lblUser.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;lblLopChucVu.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="imgacc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>291, 386</value>
+  </data>
+  <data name="&gt;&gt;Label2.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;Label4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="Label3.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="Label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>386, 342</value>
+  </data>
+  <data name="&gt;&gt;txtLopChucVu.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnExit.Name" xml:space="preserve">
+    <value>btnExit</value>
+  </data>
+  <data name="&gt;&gt;Label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dtpBirth.CustomFormat" xml:space="preserve">
+    <value />
+  </data>
+  <data name="imgacc.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;btnCreateAcc.Name" xml:space="preserve">
+    <value>btnCreateAcc</value>
+  </data>
+  <data name="&gt;&gt;imgacc.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lblUser.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="Label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Label6.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="lblLopChucVu.Text" xml:space="preserve">
+    <value>Label4</value>
+  </data>
+  <data name="&gt;&gt;dtpBirth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>326, 9</value>
+  </data>
+  <data name="Label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 20</value>
+  </data>
+  <data name="&gt;&gt;txtKhoa.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtUser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Label7.Text" xml:space="preserve">
+    <value>Họ và tên</value>
+  </data>
+  <data name="txtKhoa.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 27</value>
+  </data>
+  <data name="cbbGender.Location" type="System.Drawing.Point, System.Drawing">
+    <value>570, 222</value>
+  </data>
+  <data name="cbAdmin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>18, 17</value>
+  </data>
+  <data name="txtUser.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="&gt;&gt;Label7.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="txtKhoa.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="cbAdmin.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="btnExit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="lblLopChucVu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
+  </data>
+  <data name="&gt;&gt;btnCreateAcc.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;Label5.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="lblUser.Text" xml:space="preserve">
+    <value>Label1</value>
+  </data>
+  <data name="&gt;&gt;btnExit.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Label3.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="Label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="cbAdmin.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtUser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 27</value>
+  </data>
+  <data name="Label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>386, 264</value>
+  </data>
+  <data name="&gt;&gt;txtPass.Name" xml:space="preserve">
+    <value>txtPass</value>
+  </data>
+  <data name="&gt;&gt;Label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Label6.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 20pt, style=Bold</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Exam Administrator - Create Account</value>
+  </data>
+  <data name="txtPass.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="txtLopChucVu.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="lblUser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
+  </data>
+  <data name="Label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>386, 187</value>
+  </data>
+  <data name="cbbGender.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="dtpBirth.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="txtLopChucVu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>570, 299</value>
+  </data>
+  <data name="Label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 20</value>
+  </data>
+  <data name="txtKhoa.Location" type="System.Drawing.Point, System.Drawing">
+    <value>570, 338</value>
+  </data>
+  <data name="cbAdmin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>570, 383</value>
+  </data>
+  <data name="&gt;&gt;lblLopChucVu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Label4.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;imgacc.Name" xml:space="preserve">
+    <value>imgacc</value>
+  </data>
+  <data name="&gt;&gt;Label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbbGender.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="dtpBirth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 27</value>
+  </data>
+  <data name="&gt;&gt;txtPass.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnExit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 48</value>
+  </data>
+  <data name="&gt;&gt;btnExit.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="Label2.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnExit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblUser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>386, 103</value>
+  </data>
+  <data name="txtPass.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="&gt;&gt;cbbGender.Name" xml:space="preserve">
+    <value>cbbGender</value>
+  </data>
+  <data name="Label2.Text" xml:space="preserve">
+    <value>Giới tính</value>
+  </data>
+  <data name="btnCreateAcc.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;txtLopChucVu.Name" xml:space="preserve">
+    <value>txtLopChucVu</value>
+  </data>
+  <data name="&gt;&gt;Label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtLopChucVu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 27</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>918, 493</value>
+  </data>
+  <data name="&gt;&gt;Label2.Name" xml:space="preserve">
+    <value>Label2</value>
+  </data>
+  <data name="&gt;&gt;lblUser.Name" xml:space="preserve">
+    <value>lblUser</value>
+  </data>
+  <data name="&gt;&gt;Label7.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Label4.Name" xml:space="preserve">
+    <value>Label4</value>
+  </data>
+  <data name="btnExit.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;Label1.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;txtUser.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="Label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="cbAdmin.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="txtLopChucVu.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="&gt;&gt;Label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtUser.Name" xml:space="preserve">
+    <value>txtUser</value>
+  </data>
+  <data name="&gt;&gt;Label6.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 20</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="&gt;&gt;Label5.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="txtName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="&gt;&gt;txtName.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtUser.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="lblLopChucVu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>386, 303</value>
+  </data>
+  <data name="&gt;&gt;cbbGender.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dtpBirth.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="Label1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="btnCreateAcc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 48</value>
+  </data>
+  <data name="&gt;&gt;Label1.Name" xml:space="preserve">
+    <value>Label1</value>
+  </data>
+  <data name="Label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="imgacc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>55, 81</value>
+  </data>
+  <data name="btnExit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>706, 419</value>
+  </data>
+  <data name="lblLopChucVu.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;dtpBirth.Name" xml:space="preserve">
+    <value>dtpBirth</value>
+  </data>
+  <data name="&gt;&gt;Label3.Name" xml:space="preserve">
+    <value>Label3</value>
+  </data>
+  <data name="Label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 20</value>
+  </data>
+  <data name="&gt;&gt;Label3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="txtKhoa.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="&gt;&gt;Label6.Name" xml:space="preserve">
+    <value>Label6</value>
+  </data>
+  <data name="&gt;&gt;cbAdmin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Label5.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="Label4.Text" xml:space="preserve">
+    <value>Khoa</value>
+  </data>
+  <data name="Label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 46</value>
+  </data>
+  <data name="cbbGender.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 28</value>
+  </data>
+  <data name="&gt;&gt;Label6.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="Label1.Text" xml:space="preserve">
+    <value>Mật khẩu</value>
+  </data>
+  <data name="txtName.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;btnCreateAcc.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbAdmin.Name" xml:space="preserve">
+    <value>cbAdmin</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>CreateAccount</value>
+  </data>
+  <data name="btnCreateAcc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>434, 419</value>
+  </data>
+  <data name="&gt;&gt;lblLopChucVu.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;txtName.Name" xml:space="preserve">
+    <value>txtName</value>
+  </data>
+  <data name="&gt;&gt;lblLopChucVu.Name" xml:space="preserve">
+    <value>lblLopChucVu</value>
+  </data>
+  <data name="lblUser.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblLopChucVu.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtPass.Location" type="System.Drawing.Point, System.Drawing">
+    <value>570, 142</value>
+  </data>
+  <data name="&gt;&gt;txtName.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="Label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;imgacc.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="txtName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 27</value>
+  </data>
+  <data name="&gt;&gt;cbAdmin.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="btnExit.Text" xml:space="preserve">
+    <value>Thoát</value>
+  </data>
+  <data name="&gt;&gt;txtLopChucVu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>570, 183</value>
+  </data>
+  <data name="Label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>386, 382</value>
+  </data>
+  <data name="&gt;&gt;Label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label5.Name" xml:space="preserve">
+    <value>Label5</value>
+  </data>
+  <data name="btnCreateAcc.Text" xml:space="preserve">
+    <value>Tạo tài khoản</value>
+  </data>
+  <data name="&gt;&gt;btnCreateAcc.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="Label5.Text" xml:space="preserve">
+    <value>Quyền quản trị viên</value>
+  </data>
+  <data name="&gt;&gt;Label4.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="txtPass.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 27</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, System.Private.CoreLib, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>en-BM</value>
+  </metadata>
 </root>
