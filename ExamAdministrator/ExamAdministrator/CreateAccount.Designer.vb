@@ -148,6 +148,7 @@ Partial Class CreateAccount
         ' 
         ' imgAcc
         ' 
+        imgAcc.BackColor = SystemColors.ActiveCaption
         resources.ApplyResources(imgAcc, "imgAcc")
         imgAcc.Name = "imgAcc"
         imgAcc.TabStop = False

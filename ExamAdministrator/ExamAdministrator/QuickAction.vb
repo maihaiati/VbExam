@@ -1,7 +1,7 @@
 ﻿Imports System
 Imports System.Data
 Imports System.Data.SqlClient
-Module SqlOperation
+Module QuickAction
 	Public sqlCon As SqlClient.SqlConnection
 	Public dataAdapter As SqlClient.SqlDataAdapter
 	Public dataTable As DataTable

@@ -2,14 +2,12 @@
 
 Public Class Dashboard
 	Public fullName As String
-	Public userName
+	Public userName As String
 	Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 		btnMe.Text = fullName
 	End Sub
 
 	Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
-		log(userName, "Đăng xuất", "Thành công", "Đăng xuất")
-		LoginForm.Show()
 		Close()
 	End Sub
 
@@ -23,5 +21,12 @@ Public Class Dashboard
 	Private Sub Dashboard_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
 		log(userName, "Đăng xuất", "Thành công", "Đăng xuất")
 		LoginForm.Show()
+	End Sub
+
+	Private Sub btnExam_Click(sender As Object, e As EventArgs) Handles btnExam.Click
+		ExamManagement.userName = userName
+		ExamManagement.fullName = fullName
+		ExamManagement.Show()
+		Hide()
 	End Sub
 End Class
