@@ -5,7 +5,6 @@ Public Class Dashboard
     Public userName As String
     Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         btnMe.Text = fullName
-        Label3.Text = DateTime.Now().Date
     End Sub
 
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
@@ -35,11 +34,11 @@ Public Class Dashboard
 
     End Sub
 
-    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
+    Private Sub Label3_Click(sender As Object, e As EventArgs)
 
     End Sub
 

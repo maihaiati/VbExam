@@ -22,7 +22,6 @@ Partial Class Dashboard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Dashboard))
         MenuStrip1 = New MenuStrip()
         btnAccount = New ToolStripMenuItem()
         btnExam = New ToolStripMenuItem()
@@ -33,10 +32,7 @@ Partial Class Dashboard
         btnLogout = New ToolStripMenuItem()
         Label1 = New Label()
         Label2 = New Label()
-        PictureBox1 = New PictureBox()
-        Label3 = New Label()
         MenuStrip1.SuspendLayout()
-        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' MenuStrip1
@@ -98,41 +94,21 @@ Partial Class Dashboard
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 15F)
-        Label1.Location = New Point(130, 230)
+        Label1.Location = New Point(134, 68)
         Label1.Name = "Label1"
-        Label1.Size = New Size(666, 35)
+        Label1.Size = New Size(663, 35)
         Label1.TabIndex = 1
-        Label1.Text = "Chào Mừng Bạn Đến Hệ Thống Tải Khoản Thi Trắc Nghiệm"
+        Label1.Text = "Chào Mừng Bạn Đến Hệ Thống Tài Khoản Thi Trắc Nghiệm"
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI", 12F)
-        Label2.Location = New Point(277, 275)
+        Label2.Location = New Point(240, 119)
         Label2.Name = "Label2"
-        Label2.Size = New Size(377, 28)
+        Label2.Size = New Size(451, 28)
         Label2.TabIndex = 2
-        Label2.Text = "Trường Kinh Doanh và Công Nghệ Hà Nội"
-        ' 
-        ' PictureBox1
-        ' 
-        PictureBox1.BackColor = Color.Transparent
-        PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
-        PictureBox1.Location = New Point(326, 60)
-        PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(269, 153)
-        PictureBox1.SizeMode = PictureBoxSizeMode.CenterImage
-        PictureBox1.TabIndex = 3
-        PictureBox1.TabStop = False
-        ' 
-        ' Label3
-        ' 
-        Label3.AutoSize = True
-        Label3.Location = New Point(440, 333)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(53, 20)
-        Label3.TabIndex = 4
-        Label3.Text = "Label3"
+        Label2.Text = "Trường Đại Học Kinh Doanh và Công Nghệ Hà Nội"
         ' 
         ' Dashboard
         ' 
@@ -141,8 +117,6 @@ Partial Class Dashboard
         BackgroundImage = My.Resources.Resources.imgae_truong_hubt
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(926, 512)
-        Controls.Add(Label3)
-        Controls.Add(PictureBox1)
         Controls.Add(Label2)
         Controls.Add(Label1)
         Controls.Add(MenuStrip1)
@@ -152,7 +126,6 @@ Partial Class Dashboard
         Text = "Exam Administrator - Dashboard"
         MenuStrip1.ResumeLayout(False)
         MenuStrip1.PerformLayout()
-        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -167,6 +140,4 @@ Partial Class Dashboard
 	Friend WithEvents btnLogout As ToolStripMenuItem
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents Label3 As Label
 End Class
