@@ -138,7 +138,7 @@ Partial Class EditAccount
         ' 
         ' txtUser
         ' 
-        txtUser.Location = New Point(503, 108)
+        txtUser.Location = New Point(503, 112)
         txtUser.Margin = New Padding(3, 4, 3, 4)
         txtUser.Name = "txtUser"
         txtUser.Size = New Size(257, 27)

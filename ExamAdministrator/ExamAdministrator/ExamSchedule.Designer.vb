@@ -189,7 +189,7 @@ Partial Class ExamSchedule
         ' 
         Button1.BackColor = Color.FromArgb(CByte(128), CByte(128), CByte(255))
         Button1.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
-        Button1.Location = New Point(645, 41)
+        Button1.Location = New Point(604, 42)
         Button1.Name = "Button1"
         Button1.Size = New Size(107, 37)
         Button1.TabIndex = 6

@@ -51,7 +51,7 @@ Public Class CreateAccount
         If accountType = 0 Then
             Dim admin As Integer
             admin = If(cbAdmin.Checked, 1, 0)
-            sql = "INSERT INTO Giangvien (Magv, Passgv,image, Hotengv, Gioitinh, Ngaysinh, Chucvu, Khoa, Administrator, ) " &
+            sql = "INSERT INTO Giangvien (Magv, Passgv,image, Hotengv, Gioitinh, Ngaysinh, Chucvu, Khoa, Administrator ) " &
           "VALUES (@Magv, @Passgv,@image, @Hotengv, @Gioitinh, @Ngaysinh, @Chucvu, @Khoa, @Administrator )"
 
             If Not checkExists("Magv", "Giangvien", txtUser.Text) Then
