@@ -82,12 +82,17 @@ CREATE TABLE CauHoi (
 	MaCauHoi NVARCHAR(10) NOT NULL PRIMARY KEY,
 	MaDeThi NVARCHAR(10) NOT NULL,
 	NoiDung NVARCHAR(MAX) NOT NULL,
+	DapAnA NVARCHAR(MAX),
+	DapAnB NVARCHAR(MAX),
+	DapAnC NVARCHAR(MAX),
+	DapAnD NVARCHAR(MAX),
+	DapAnDung int,
 	ThuTuCau int NOT NULL
 )
 
-INSERT INTO CauHoi (MaCauHoi, MaDeThi, NoiDung, ThuTuCau) 
-VALUES  ('TIN1', 'TIN01', N'Câu hỏi thứ nhất', 1),
-		('TIN2', 'TIN01', N'Câu hỏi thứ hai', 2)
+INSERT INTO CauHoi (MaCauHoi, MaDeThi, NoiDung, DapAnA, DapAnB, DapAnC, DapAnD, DapAnDung, ThuTuCau) 
+VALUES  ('TIN1', 'TIN01', N'Câu hỏi thứ nhất', N'Đáp án A', N'Đáp án B', N'Đáp án C', N'Đáp án D', 1, (SELECT (SELECT COUNT(*) FROM CauHoi WHERE MaDeThi = 'TIN01') + 1)),
+		('TIN2', 'TIN01', N'Câu hỏi thứ hai', N'Đáp án A', N'Đáp án B', N'Đáp án C', N'Đáp án D', 2, (SELECT (SELECT COUNT(*) FROM CauHoi WHERE MaDeThi = 'TIN01') + 1))
 
 create table Imagecauhoi(
 	MaCauHoi nvarchar(40) not null,
@@ -95,15 +100,16 @@ create table Imagecauhoi(
 )
 insert into Imagecauhoi(MaCauHoi,imagech) values ('TIN1',(SELECT * FROM OPENROWSET(BULK 'C:\Users\Admin\Documents\VbExam\imagesv\2823220212.jpg', SINGLE_BLOB) AS image))
 
-CREATE TABLE DapAn (
-	MaDapAn NVARCHAR(10) NOT NULL PRIMARY KEY,
-	MaCauHoi NVARCHAR(10) NOT NULL,
-	NoiDung NVARCHAR(MAX) NOT NULL
-)
-INSERT INTO DapAn (MaDapAn, MaCauHoi, NoiDung)
-VALUES	('DATIN1', 'TIN1', N'Đáp án câu 1'),
-		('DATIN2', 'TIN2', N'Đáp án câu 2')
-		insert into Loginfo(Tennguoidung,Hoatdong,Trangthai,thoigian,chitiet) values (N'Admin',N'Đăng Nhập',N'thành công','2024-05-30',null);
+--CREATE TABLE DapAn (
+--	MaDapAn NVARCHAR(10) NOT NULL PRIMARY KEY,
+--	MaCauHoi NVARCHAR(10) NOT NULL,
+--	NoiDung NVARCHAR(MAX) NOT NULL
+--)
+--INSERT INTO DapAn (MaDapAn, MaCauHoi, NoiDung)
+--VALUES	('DATIN1', 'TIN1', N'Đáp án câu 1'),
+--		('DATIN2', 'TIN2', N'Đáp án câu 2')
+
+insert into Loginfo(Tennguoidung,Hoatdong,Trangthai,thoigian,chitiet) values (N'Admin',N'Đăng Nhập',N'thành công','2024-05-30',null);
 
 
 
