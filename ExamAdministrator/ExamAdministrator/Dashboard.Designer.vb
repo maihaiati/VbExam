@@ -20,7 +20,7 @@ Partial Class Dashboard
 	'NOTE: The following procedure is required by the Windows Form Designer
 	'It can be modified using the Windows Form Designer.  
 	'Do not modify it using the code editor.
-	<System.Diagnostics.DebuggerStepThrough()> _
+	<System.Diagnostics.DebuggerStepThrough()>
 	Private Sub InitializeComponent()
 		MenuStrip1 = New MenuStrip()
 		btnAccount = New ToolStripMenuItem()
@@ -119,7 +119,7 @@ Partial Class Dashboard
 		' 
 		' Dashboard
 		' 
-		AutoScaleDimensions = New SizeF(7F, 15F)
+		AutoScaleDimensions = New SizeF(7.0F, 15.0F)
 		AutoScaleMode = AutoScaleMode.Font
 		ClientSize = New Size(672, 382)
 		Controls.Add(MenuStrip1)
@@ -140,8 +140,8 @@ Partial Class Dashboard
 	Friend WithEvents btnMe As ToolStripMenuItem
 	Friend WithEvents btnMyAcc As ToolStripMenuItem
 	Friend WithEvents btnLogout As ToolStripMenuItem
-    Friend WithEvents TạoTàiKhoảnToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents DanhSáchTàiKhoảnToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents TàiKhoảnSinhViênToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents TàiKhoảnGiảngViênToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents TạoTàiKhoảnToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents DanhSáchTàiKhoảnToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents TàiKhoảnSinhViênToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents TàiKhoảnGiảngViênToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -52,14 +52,14 @@ Public Class CreateAccount
             Dim admin As Integer
             admin = If(cbAdmin.Checked, 1, 0)
 
-            sql = "INSERT INTO Giangvien (Magv, Passgv,imagegv, Hotengv, Gioitinh, Ngaysinh, Chucvu, Khoa, Administrator, ) " &
-          "VALUES (@Magv, @Passgv,@imagegv, @Hotengv, @Gioitinh, @Ngaysinh, @Chucvu, @Khoa, @Administrator, )"
+            sql = "INSERT INTO Giangvien (Magv, Passgv,image, Hotengv, Gioitinh, Ngaysinh, Chucvu, Khoa, Administrator, ) " &
+          "VALUES (@Magv, @Passgv,@image, @Hotengv, @Gioitinh, @Ngaysinh, @Chucvu, @Khoa, @Administrator, )"
 
             If Not checkExists("Magv", "Giangvien", txtUser.Text) Then
                 Dim params As New List(Of SqlParameter) From {
             New SqlParameter("@Magv", txtUser.Text),
             New SqlParameter("@Passgv", txtPass.Text),
-            New SqlParameter("@Image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)),
+            New SqlParameter("@image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)),
             New SqlParameter("@Hotengv", txtName.Text),
             New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()),
             New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")),
@@ -82,14 +82,14 @@ Public Class CreateAccount
             log(userName, "Tạo tài khoản", If(success, "Thành công", "Thất bại"), "Tạo tài khoản giảng viên")
 
         Else
-            sql = "INSERT INTO Sinhvien (Masv, Passsv,imagesv, HoTen, Gioitinh, Ngaysinh, Lop, Khoa) " &
-          "VALUES (@Masv, @Passsv,@imagesv, @HoTen, @Gioitinh, @Ngaysinh, @Lop, @Khoa)"
+            sql = "INSERT INTO Sinhvien (Masv, Passsv,image, HoTen, Gioitinh, Ngaysinh, Lop, Khoa) " &
+          "VALUES (@Masv, @Passsv,@image, @HoTen, @Gioitinh, @Ngaysinh, @Lop, @Khoa)"
 
             If Not checkExists("Masv", "Sinhvien", txtUser.Text) Then
                 Dim params As New List(Of SqlParameter) From {
             New SqlParameter("@Masv", txtUser.Text),
             New SqlParameter("@Passsv", txtPass.Text),
-            New SqlParameter("@imagesv", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)),
+            New SqlParameter("@image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)),
             New SqlParameter("@HoTen", txtName.Text),
             New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()),
             New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")),
