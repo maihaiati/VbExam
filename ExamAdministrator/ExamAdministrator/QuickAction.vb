@@ -20,6 +20,10 @@ Module QuickAction
 			sqlCommand.ExecuteNonQuery()
 			Return True
 		Catch ex As Exception
+			Debug.WriteLine("====================================")
+			Debug.WriteLine(sql)
+			Debug.WriteLine("====================================")
+			Debug.WriteLine(ex.ToString())
 			Return False
 		End Try
 	End Function
