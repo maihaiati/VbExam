@@ -229,6 +229,7 @@ Partial Class EditAccount
         ' 
         ' imgAvatar
         ' 
+        imgAvatar.BackColor = SystemColors.AppWorkspace
         imgAvatar.Location = New Point(20, 90)
         imgAvatar.Name = "imgAvatar"
         imgAvatar.Size = New Size(282, 393)

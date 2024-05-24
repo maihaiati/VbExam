@@ -3,7 +3,7 @@ use ExamDB
 create table Sinhvien(
 	Masv nvarchar(60) not null,
 	Passsv nvarchar(60) not null,
-	imagesv varbinary(max),
+	Image varbinary(max),
 	HoTen Nvarchar(100) not null,
 	Gioitinh nvarchar(10) not null,
 	Ngaysinh date not null,
@@ -12,8 +12,8 @@ create table Sinhvien(
 	constraint sinhvien_id primary key (Masv)
 )
 	use ExamDB
-insert into Sinhvien(Masv,Passsv,imagesv,HoTen,Gioitinh,Ngaysinh,Lop,Khoa) values 
-('2823220212',2823220212,(SELECT * FROM OPENROWSET(BULK 'C:\Users\Admin\Documents\VbExam\imagesv\2823220212.jpg', SINGLE_BLOB) AS image),N'Ngô Tuấn Việt',N'Nam','2005-12-12',N'TH28.27',N'Công Nghệ Thông Tin')
+insert into Sinhvien(Masv,Passsv,image,HoTen,Gioitinh,Ngaysinh,Lop,Khoa) values 
+('2823220212',2823220212,(SELECT * FROM OPENROWSET(BULK 'C:\Users\ntv\Downloads\Compressed\VbExam\imagesv\2823220212.jpg', SINGLE_BLOB) AS image),N'Ngô Tuấn Việt',N'Nam','2005-12-12',N'TH28.27',N'Công Nghệ Thông Tin')
 
 select * from Loginfo
 delete Loginfo
@@ -29,7 +29,7 @@ use ExamDB
 create table Giangvien(
 	Magv nvarchar(60) not null primary key,
 	Passgv nvarchar(60) not null,
-	imagegv varbinary(max),
+	Image varbinary(max),
 	Hotengv nvarchar(100) not null,
 	Gioitinh nvarchar(10) not null,
 	Ngaysinh date not null,
@@ -38,7 +38,7 @@ create table Giangvien(
 	Administrator BIT not null,
 )
 use ExamDB
-insert into Giangvien(Magv,Passgv,imagegv,Hotengv,Gioitinh,Ngaysinh,Chucvu,Khoa,Administrator) values ('GV012@','GV012@',(SELECT * FROM OPENROWSET(BULK 'C:\Users\Admin\Documents\VbExam\imagegv\GV012@.jpg', SINGLE_BLOB) AS image),N'Mai Quang Hải',N'Nam','07/16/2005',N'Trưởng Khoa',N'Công Nghệ Thông Tin', 1)
+insert into Giangvien(Magv,Passgv,image,Hotengv,Gioitinh,Ngaysinh,Chucvu,Khoa,Administrator) values ('GV012@','GV012@',(SELECT * FROM OPENROWSET(BULK 'C:\Users\ntv\Downloads\Compressed\VbExam\imagegv\GV012@.jpg', SINGLE_BLOB) AS image),N'Mai Quang Hải',N'Nam','07/16/2005',N'Trưởng Khoa',N'Công Nghệ Thông Tin', 1)
 
 Create table Bangdiem(
 	Mamonhoc nvarchar(60) not null,

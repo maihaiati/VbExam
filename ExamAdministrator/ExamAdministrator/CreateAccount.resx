@@ -541,7 +541,7 @@
     <value>4</value>
   </data>
   <data name="btnCreateAcc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>360, 419</value>
+    <value>352, 419</value>
   </data>
   <data name="btnCreateAcc.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 4, 3, 4</value>

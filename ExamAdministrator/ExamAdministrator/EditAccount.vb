@@ -89,8 +89,8 @@ Public Class EditAccount
                 conn.Open()
                 Dim reader As SqlDataReader = cmd.ExecuteReader()
                 If reader.Read() Then
-                    If Not IsDBNull(reader("image")) Then
-                        imageData = CType(reader("image"), Byte())
+                    If Not IsDBNull(reader("Image")) Then
+                        imageData = CType(reader("Image"), Byte())
                     End If
                 End If
             End Using
@@ -103,9 +103,9 @@ Public Class EditAccount
         Dim sql As String
 
         If isTeacher Then
-            sql = "UPDATE Giangvien SET image = @Image WHERE Magv = @Magv"
+            sql = "UPDATE Giangvien SET Image = @Image WHERE Magv = @Magv"
         Else
-            sql = "UPDATE Sinhvien SET image = @Image WHERE Masv = @Masv"
+            sql = "UPDATE Sinhvien SET Image = @Image WHERE Masv = @Masv"
         End If
 
         Using conn As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
@@ -134,13 +134,13 @@ Public Class EditAccount
             Dim params As New List(Of SqlParameter)
 
             If txtPass.Text <> "" Then
-                sql = "UPDATE Giangvien SET Passgv = @Passgv, image = @image , Hotengv = @Hotengv, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Chucvu = @Chucvu, Khoa = @Khoa, Administrator = @Administrator" &
+                sql = "UPDATE Giangvien SET Passgv = @Passgv, Image = @Image , Hotengv = @Hotengv, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Chucvu = @Chucvu, Khoa = @Khoa, Administrator = @Administrator" &
               "WHERE Magv = @Magv"
 
                 If checkExists("Magv", "Giangvien", userName) Then
                     params.Add(New SqlParameter("@Magv", userName))
                     params.Add(New SqlParameter("@Passgv", txtPass.Text))
-                    params.Add(New SqlParameter("@image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)))
+                    params.Add(New SqlParameter("@Image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)))
                     params.Add(New SqlParameter("@Hotengv", txtName.Text))
                     params.Add(New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()))
                     params.Add(New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")))
@@ -160,12 +160,12 @@ Public Class EditAccount
                     MsgBox("Không tìm thấy mã giảng viên!")
                 End If
             Else
-                sql = "UPDATE Giangvien SET  image = @image,Hotengv = @Hotengv, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Chucvu = @Chucvu, Khoa = @Khoa, Administrator = @Administrator " &
+                sql = "UPDATE Giangvien SET  Hotengv = @Hotengv,Image = @Image, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Chucvu = @Chucvu, Khoa = @Khoa, Administrator = @Administrator " &
               "WHERE Magv = @Magv"
 
                 If checkExists("Magv", "Giangvien", userName) Then
-                    params.Add(New SqlParameter("@image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)))
                     params.Add(New SqlParameter("@Magv", userName))
+                    params.Add(New SqlParameter("@Image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)))
                     params.Add(New SqlParameter("@Hotengv", txtName.Text))
                     params.Add(New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()))
                     params.Add(New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")))

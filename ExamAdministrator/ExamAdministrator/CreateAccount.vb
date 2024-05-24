@@ -51,24 +51,23 @@ Public Class CreateAccount
         If accountType = 0 Then
             Dim admin As Integer
             admin = If(cbAdmin.Checked, 1, 0)
-
             sql = "INSERT INTO Giangvien (Magv, Passgv,image, Hotengv, Gioitinh, Ngaysinh, Chucvu, Khoa, Administrator, ) " &
-          "VALUES (@Magv, @Passgv,@image, @Hotengv, @Gioitinh, @Ngaysinh, @Chucvu, @Khoa, @Administrator, )"
+          "VALUES (@Magv, @Passgv,@image, @Hotengv, @Gioitinh, @Ngaysinh, @Chucvu, @Khoa, @Administrator )"
 
-            If Not checkExists("Magv", "Giangvien", txtUser.Text) Then
-                Dim params As New List(Of SqlParameter) From {
-            New SqlParameter("@Magv", txtUser.Text),
-            New SqlParameter("@Passgv", txtPass.Text),
-            New SqlParameter("@image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)),
-            New SqlParameter("@Hotengv", txtName.Text),
-            New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()),
-            New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")),
-            New SqlParameter("@Chucvu", txtLopChucVu.Text),
-            New SqlParameter("@Khoa", txtKhoa.Text),
-            New SqlParameter("@Administrator", admin)
-        }
+                If Not checkExists("Magv", "Giangvien", txtUser.Text) Then
+                    Dim params As New List(Of SqlParameter) From {
+                New SqlParameter("@Magv", txtUser.Text),
+                New SqlParameter("@Passgv", txtPass.Text),
+                New SqlParameter("@image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)),
+                New SqlParameter("@Hotengv", txtName.Text),
+                New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()),
+                New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")),
+                New SqlParameter("@Chucvu", txtLopChucVu.Text),
+                New SqlParameter("@Khoa", txtKhoa.Text),
+                New SqlParameter("@Administrator", admin)
+            }
 
-                If runSqlCommand(sql, params) Then
+                    If runSqlCommand(sql, params) Then
                     MessageBox.Show("Tạo tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     success = True
                     AccountManagement.loadData()
