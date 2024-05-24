@@ -1,10 +1,19 @@
 ﻿Imports System.ComponentModel
+Imports System.Data.SqlClient
 
 Public Class Dashboard
     Public fullName As String
     Public userName As String
+    Dim sql As String
+    Dim params As New List(Of SqlParameter)
+
     Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        btnMe.Text = fullName
+		btnMe.Text = fullName
+        sql = "SELECT Administrator FROM Giangvien WHERE Magv = @Magv"
+        params.Add(New SqlParameter("@Magv", userName))
+        If getData(sql, params).Rows.Item(0).Item("Administrator") = 0 Then
+            btnAccount.Enabled = False
+        End If
     End Sub
 
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click

@@ -10,15 +10,28 @@ Module QuickAction
 
 	Public Function runSqlCommand(sql As String, params As List(Of SqlParameter)) As Boolean
 		Try
-			sqlCommand = New SqlCommand(sql, sqlConnect())
-			If params IsNot Nothing Then
-				If params.Count > 0 Then
-					sqlCommand.Parameters.AddRange(params.ToArray())
-				End If
-			End If
-			If sqlCon.State <> ConnectionState.Open Then sqlCon.Open()
-			sqlCommand.ExecuteNonQuery()
-			Return True
+			Dim machineName As String = Environment.MachineName
+			Using sqlCon As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
+				Using sqlCommand As New SqlCommand(sql, sqlCon)
+					If params IsNot Nothing AndAlso params.Count > 0 Then
+						For Each param As SqlParameter In params
+							' Tạo bản sao của SqlParameter
+							Dim newParam As New SqlParameter(param.ParameterName, param.SqlDbType) With {
+							.Value = param.Value,
+							.Direction = param.Direction,
+							.IsNullable = param.IsNullable,
+							.Size = param.Size,
+							.Precision = param.Precision,
+							.Scale = param.Scale
+						}
+							sqlCommand.Parameters.Add(newParam)
+						Next
+					End If
+					If sqlCon.State <> ConnectionState.Open Then sqlCon.Open()
+					sqlCommand.ExecuteNonQuery()
+					Return True
+				End Using
+			End Using
 		Catch ex As Exception
 			Debug.WriteLine("====================================")
 			Debug.WriteLine(sql)
@@ -28,21 +41,24 @@ Module QuickAction
 		End Try
 	End Function
 
-	Public Function sqlConnect() As SqlConnection
-		Dim machineName As String = Environment.MachineName
-		sqlCon = New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
-		Return sqlCon
-	End Function
-
 	Public Function getData(sql As String, params As List(Of SqlParameter)) As DataTable
-		dataTable = New DataTable
+		Dim dataTable As New DataTable()
 		Dim machineName As String = Environment.MachineName
 		Using sqlCon As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
 			Using sqlCommand As New SqlCommand(sql, sqlCon)
-				If params IsNot Nothing Then
-					If params.Count > 0 Then
-						sqlCommand.Parameters.AddRange(params.ToArray())
-					End If
+				If params IsNot Nothing AndAlso params.Count > 0 Then
+					For Each param As SqlParameter In params
+						' Tạo bản sao của SqlParameter
+						Dim newParam As New SqlParameter(param.ParameterName, param.SqlDbType) With {
+						.Value = param.Value,
+						.Direction = param.Direction,
+						.IsNullable = param.IsNullable,
+						.Size = param.Size,
+						.Precision = param.Precision,
+						.Scale = param.Scale
+					}
+						sqlCommand.Parameters.Add(newParam)
+					Next
 				End If
 				Using dataAdapter As New SqlDataAdapter(sqlCommand)
 					dataAdapter.Fill(dataTable)
@@ -66,7 +82,7 @@ Module QuickAction
 
 	Public Sub log(userName As String, operation As String, status As String, details As String)
 		sql = "INSERT INTO Loginfo (Tennguoidung, Hoatdong, Trangthai, thoigian, chitiet) VALUES (@userName, @operation, @status, GETDATE(), @details)"
-		Dim params As New List(Of SqlParameter)()
+		Dim params As New List(Of SqlParameter)
 		params.Add(New SqlParameter("@userName", userName))
 		params.Add(New SqlParameter("@operation", operation))
 		params.Add(New SqlParameter("@status", status))

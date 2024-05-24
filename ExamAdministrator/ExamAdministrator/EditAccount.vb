@@ -28,6 +28,7 @@ Public Class EditAccount
 
         If userName = activeUserName Then
             btnDelete.Enabled = False
+            cbAdmin.Enabled = False
         End If
         txtUser.Enabled = False
         txtUser.Text = userName
@@ -122,6 +123,9 @@ Public Class EditAccount
 
         Dim sql As String
         Dim success = False
+        Dim admin As Integer
+        admin = If(cbAdmin.Checked, 1, 0)
+        Dim params As New List(Of SqlParameter)
 
         If txtName.Text = "" Or cbbGender.SelectedItem = "" Or txtLopChucVu.Text = "" Or txtKhoa.Text = "" Then
             MessageBox.Show("Không được để trống thông tin trừ mật khẩu!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -129,9 +133,6 @@ Public Class EditAccount
         End If
 
         If accountType = 0 Then
-            Dim admin As Integer
-            admin = If(cbAdmin.Checked, 1, 0)
-            Dim params As New List(Of SqlParameter)
 
             If txtPass.Text <> "" Then
                 sql = "UPDATE Giangvien SET Passgv = @Passgv, Image = @Image , Hotengv = @Hotengv, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Chucvu = @Chucvu, Khoa = @Khoa, Administrator = @Administrator " &
@@ -147,7 +148,6 @@ Public Class EditAccount
                     params.Add(New SqlParameter("@Chucvu", txtLopChucVu.Text))
                     params.Add(New SqlParameter("@Khoa", txtKhoa.Text))
                     params.Add(New SqlParameter("@Administrator", admin))
-
 
                     If runSqlCommand(sql, params) Then
                         MessageBox.Show("Chỉnh sửa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -168,11 +168,10 @@ Public Class EditAccount
                     params.Add(New SqlParameter("@Image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)))
                     params.Add(New SqlParameter("@Hotengv", txtName.Text))
                     params.Add(New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()))
-                    params.Add(New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("đd-MM-yyyy")))
+                    params.Add(New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")))
                     params.Add(New SqlParameter("@Chucvu", txtLopChucVu.Text))
                     params.Add(New SqlParameter("@Khoa", txtKhoa.Text))
                     params.Add(New SqlParameter("@Administrator", admin))
-
 
                     If runSqlCommand(sql, params) Then
                         MessageBox.Show("Chỉnh sửa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -193,16 +192,14 @@ Public Class EditAccount
           "WHERE Masv = @Masv"
 
             If checkExists("Masv", "Sinhvien", userName) Then
-                Dim params As New List(Of SqlParameter) From {
-        New SqlParameter("@Masv", userName),
-        New SqlParameter("@Passsv", txtPass.Text),
-        New SqlParameter("@image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)),
-        New SqlParameter("@HoTen", txtName.Text),
-        New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()),
-        New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")),
-        New SqlParameter("@Lop", txtLopChucVu.Text),
-        New SqlParameter("@Khoa", txtKhoa.Text)
-    }
+                params.Add(New SqlParameter("@Masv", userName))
+                params.Add(New SqlParameter("@Passsv", txtPass.Text))
+                params.Add(New SqlParameter("@image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)))
+                params.Add(New SqlParameter("@HoTen", txtName.Text))
+                params.Add(New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()))
+                params.Add(New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")))
+                params.Add(New SqlParameter("@Lop", txtLopChucVu.Text))
+                params.Add(New SqlParameter("@Khoa", txtKhoa.Text))
 
                 If runSqlCommand(sql, params) Then
                     MessageBox.Show("Chỉnh sửa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -243,6 +240,9 @@ Public Class EditAccount
             End If
 
             log(userName, "Xóa tài khoản", If(success, "Thành công", "Thất bại"), "Xóa tài khoản giảng viên")
+            If success Then
+                Close()
+            End If
 
         Else
             sql = "DELETE FROM Sinhvien WHERE Masv = @Masv"
