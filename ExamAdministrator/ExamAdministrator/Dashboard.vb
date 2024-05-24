@@ -18,12 +18,12 @@ Public Class Dashboard
 		Hide()
 	End Sub
 
-	Private Sub Dashboard_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-		log(userName, "Đăng xuất", "Thành công", "Đăng xuất")
-		LoginForm.Show()
-	End Sub
+    Private Sub Dashboard_Closing(sender As Object, e As CancelEventArgs) Handles MyBase.Closing
+        log(userName, "Đăng xuất", "Thành công", "Đăng xuất")
+        LoginForm.Show
+    End Sub
 
-	Private Sub btnExam_Click(sender As Object, e As EventArgs) Handles btnExam.Click
+    Private Sub btnExam_Click(sender As Object, e As EventArgs) Handles btnExam.Click
 		ExamManagement.userName = userName
 		ExamManagement.fullName = fullName
 		ExamManagement.Show()

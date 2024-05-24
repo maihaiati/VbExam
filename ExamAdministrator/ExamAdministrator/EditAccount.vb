@@ -89,8 +89,8 @@ Public Class EditAccount
                 conn.Open()
                 Dim reader As SqlDataReader = cmd.ExecuteReader()
                 If reader.Read() Then
-                    If Not IsDBNull(reader("Image")) Then
-                        imageData = CType(reader("Image"), Byte())
+                    If Not IsDBNull(reader("image")) Then
+                        imageData = CType(reader("image"), Byte())
                     End If
                 End If
             End Using
@@ -134,7 +134,7 @@ Public Class EditAccount
             Dim params As New List(Of SqlParameter)
 
             If txtPass.Text <> "" Then
-                sql = "UPDATE Giangvien SET Passgv = @Passgv, Image = @Image , Hotengv = @Hotengv, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Chucvu = @Chucvu, Khoa = @Khoa, Administrator = @Administrator" &
+                sql = "UPDATE Giangvien SET Passgv = @Passgv, Image = @Image , Hotengv = @Hotengv, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Chucvu = @Chucvu, Khoa = @Khoa, Administrator = @Administrator " &
               "WHERE Magv = @Magv"
 
                 If checkExists("Magv", "Giangvien", userName) Then
@@ -168,7 +168,7 @@ Public Class EditAccount
                     params.Add(New SqlParameter("@Image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)))
                     params.Add(New SqlParameter("@Hotengv", txtName.Text))
                     params.Add(New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()))
-                    params.Add(New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")))
+                    params.Add(New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("đd-MM-yyyy")))
                     params.Add(New SqlParameter("@Chucvu", txtLopChucVu.Text))
                     params.Add(New SqlParameter("@Khoa", txtKhoa.Text))
                     params.Add(New SqlParameter("@Administrator", admin))
