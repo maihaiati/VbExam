@@ -81,6 +81,7 @@ INSERT INTO DeThi (MaDeThi, MaKhoa, TenDeThi, SoCau) VALUES ('TIN01', 'CNTT', N'
 CREATE TABLE CauHoi (
 	MaCauHoi NVARCHAR(10) NOT NULL PRIMARY KEY,
 	MaDeThi NVARCHAR(10) NOT NULL,
+	Maanh nvarchar(40) not null,
 	NoiDung NVARCHAR(MAX) NOT NULL,
 	DapAnA NVARCHAR(MAX),
 	DapAnB NVARCHAR(MAX),
@@ -94,9 +95,9 @@ INSERT INTO CauHoi (MaCauHoi, MaDeThi, NoiDung, DapAnA, DapAnB, DapAnC, DapAnD, 
 VALUES  ('TIN1', 'TIN01', N'Câu hỏi thứ nhất', N'Đáp án A', N'Đáp án B', N'Đáp án C', N'Đáp án D', 1, (SELECT (SELECT COUNT(*) FROM CauHoi WHERE MaDeThi = 'TIN01') + 1)),
 		('TIN2', 'TIN01', N'Câu hỏi thứ hai', N'Đáp án A', N'Đáp án B', N'Đáp án C', N'Đáp án D', 2, (SELECT (SELECT COUNT(*) FROM CauHoi WHERE MaDeThi = 'TIN01') + 1))
 
-create table Imagecauhoi(
-	MaCauHoi nvarchar(40) not null,
-	imagech varbinary (max)
+create table ImageData(
+	Maanh nvarchar(40) not null,
+	image varbinary (max)
 )
 insert into Imagecauhoi(MaCauHoi,imagech) values ('TIN1',(SELECT * FROM OPENROWSET(BULK 'C:\Users\Admin\Documents\VbExam\imagesv\2823220212.jpg', SINGLE_BLOB) AS image))
 
