@@ -2,16 +2,20 @@
 
 Public Class CreateExam
     Dim sql As String
-    Dim params As New List(Of SqlParameter)
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         Close()
     End Sub
 
     Private Sub btnCreate_Click(sender As Object, e As EventArgs) Handles btnCreate.Click
+        Dim params As New List(Of SqlParameter)
         If txtMaDe.Text = "" Or txtMaKhoa.Text = "" Or txtTenDe.Text = "" Then
             MessageBox.Show("Không được để trống thông tin!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            sql = "INSERT INTO DeThi (MaDeThi, MaKhoa, TenDeThi, SoCau) VALUES (@Madethi, @Makhoa, @Tendethi, 0)"
+            If txtMaDe.Text.Length > 20 Then
+                MessageBox.Show("Mã đề không được quá 20 ký tự!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End If
+            sql = "INSERT INTO DeThi (MaDeThi, MaKhoa, TenDeThi) VALUES (@Madethi, @Makhoa, @Tendethi)"
             params.Add(New SqlParameter("@Madethi", txtMaDe.Text))
             params.Add(New SqlParameter("@Makhoa", txtMaKhoa.Text))
             params.Add(New SqlParameter("@Tendethi", txtTenDe.Text))

@@ -25,9 +25,7 @@ Partial Class EditQuestions
 		btnDelImage = New Button()
 		picPreview = New PictureBox()
 		btnBrowImg = New Button()
-		chkAutoSave = New CheckBox()
 		delQues = New Button()
-		btnSave = New Button()
 		grpChooseAns = New GroupBox()
 		radioC = New RadioButton()
 		radioD = New RadioButton()
@@ -55,7 +53,7 @@ Partial Class EditQuestions
 		' btnDelImage
 		' 
 		btnDelImage.Font = New Font("Segoe UI", 11F)
-		btnDelImage.Location = New Point(581, 507)
+		btnDelImage.Location = New Point(581, 553)
 		btnDelImage.Name = "btnDelImage"
 		btnDelImage.Size = New Size(193, 43)
 		btnDelImage.TabIndex = 45
@@ -75,22 +73,12 @@ Partial Class EditQuestions
 		' btnBrowImg
 		' 
 		btnBrowImg.Font = New Font("Segoe UI", 11F)
-		btnBrowImg.Location = New Point(581, 444)
+		btnBrowImg.Location = New Point(581, 490)
 		btnBrowImg.Name = "btnBrowImg"
 		btnBrowImg.Size = New Size(193, 43)
 		btnBrowImg.TabIndex = 43
 		btnBrowImg.Text = "Chèn ảnh"
 		btnBrowImg.UseVisualStyleBackColor = True
-		' 
-		' chkAutoSave
-		' 
-		chkAutoSave.AutoSize = True
-		chkAutoSave.Location = New Point(581, 575)
-		chkAutoSave.Name = "chkAutoSave"
-		chkAutoSave.Size = New Size(193, 19)
-		chkAutoSave.TabIndex = 42
-		chkAutoSave.Text = "Tự động lưu khi chuyển câu hỏi"
-		chkAutoSave.UseVisualStyleBackColor = True
 		' 
 		' delQues
 		' 
@@ -101,16 +89,6 @@ Partial Class EditQuestions
 		delQues.TabIndex = 41
 		delQues.Text = "Xoá câu hỏi"
 		delQues.UseVisualStyleBackColor = True
-		' 
-		' btnSave
-		' 
-		btnSave.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-		btnSave.Location = New Point(581, 600)
-		btnSave.Name = "btnSave"
-		btnSave.Size = New Size(193, 45)
-		btnSave.TabIndex = 40
-		btnSave.Text = "Lưu thay đổi"
-		btnSave.UseVisualStyleBackColor = True
 		' 
 		' grpChooseAns
 		' 
@@ -128,6 +106,7 @@ Partial Class EditQuestions
 		' radioC
 		' 
 		radioC.AutoSize = True
+		radioC.Enabled = False
 		radioC.Font = New Font("Segoe UI", 11F)
 		radioC.Location = New Point(6, 82)
 		radioC.Name = "radioC"
@@ -140,6 +119,7 @@ Partial Class EditQuestions
 		' radioD
 		' 
 		radioD.AutoSize = True
+		radioD.Enabled = False
 		radioD.Font = New Font("Segoe UI", 11F)
 		radioD.Location = New Point(6, 112)
 		radioD.Name = "radioD"
@@ -152,6 +132,7 @@ Partial Class EditQuestions
 		' radioB
 		' 
 		radioB.AutoSize = True
+		radioB.Enabled = False
 		radioB.Font = New Font("Segoe UI", 11F)
 		radioB.Location = New Point(6, 52)
 		radioB.Name = "radioB"
@@ -164,6 +145,7 @@ Partial Class EditQuestions
 		' radioA
 		' 
 		radioA.AutoSize = True
+		radioA.Enabled = False
 		radioA.Font = New Font("Segoe UI", 11F)
 		radioA.Location = New Point(6, 22)
 		radioA.Name = "radioA"
@@ -185,6 +167,7 @@ Partial Class EditQuestions
 		' 
 		' cbbQues
 		' 
+		cbbQues.Enabled = False
 		cbbQues.FormattingEnabled = True
 		cbbQues.Location = New Point(182, 592)
 		cbbQues.Name = "cbbQues"
@@ -193,6 +176,7 @@ Partial Class EditQuestions
 		' 
 		' createQues
 		' 
+		createQues.Enabled = False
 		createQues.Font = New Font("Segoe UI", 11F)
 		createQues.Location = New Point(21, 535)
 		createQues.Name = "createQues"
@@ -203,6 +187,7 @@ Partial Class EditQuestions
 		' 
 		' nextQues
 		' 
+		nextQues.Enabled = False
 		nextQues.Font = New Font("Segoe UI", 11F)
 		nextQues.Location = New Point(182, 472)
 		nextQues.Name = "nextQues"
@@ -213,6 +198,7 @@ Partial Class EditQuestions
 		' 
 		' previousQues
 		' 
+		previousQues.Enabled = False
 		previousQues.Font = New Font("Segoe UI", 11F)
 		previousQues.Location = New Point(21, 472)
 		previousQues.Name = "previousQues"
@@ -324,9 +310,7 @@ Partial Class EditQuestions
 		Controls.Add(btnDelImage)
 		Controls.Add(picPreview)
 		Controls.Add(btnBrowImg)
-		Controls.Add(chkAutoSave)
 		Controls.Add(delQues)
-		Controls.Add(btnSave)
 		Controls.Add(grpChooseAns)
 		Controls.Add(Label1)
 		Controls.Add(cbbQues)
@@ -356,9 +340,7 @@ Partial Class EditQuestions
 	Friend WithEvents btnDelImage As Button
 	Friend WithEvents picPreview As PictureBox
 	Friend WithEvents btnBrowImg As Button
-	Friend WithEvents chkAutoSave As CheckBox
 	Friend WithEvents delQues As Button
-	Friend WithEvents btnSave As Button
 	Friend WithEvents grpChooseAns As GroupBox
 	Friend WithEvents radioC As RadioButton
 	Friend WithEvents radioD As RadioButton

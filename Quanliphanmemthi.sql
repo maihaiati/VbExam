@@ -13,7 +13,7 @@ create table Sinhvien(
 )
 	use ExamDB
 insert into Sinhvien(Masv,Passsv,image,HoTen,Gioitinh,Ngaysinh,Lop,Khoa) values 
-('2823220212',2823220212,(SELECT * FROM OPENROWSET(BULK 'C:\Users\ntv\Downloads\Compressed\VbExam\imagesv\2823220212.jpg', SINGLE_BLOB) AS image),N'Ngô Tuấn Việt',N'Nam','2005-12-12',N'TH28.27',N'Công Nghệ Thông Tin')
+('2823220212',2823220212,(SELECT * FROM OPENROWSET(BULK 'D:\TaiLieuHocTap\TaiLieuHUBT\Modules\LTTQ\VbExam\imagesv\2823220212.jpg', SINGLE_BLOB) AS image),N'Ngô Tuấn Việt',N'Nam','2005-12-12',N'TH28.27',N'Công Nghệ Thông Tin')
 
 select * from Loginfo
 delete Loginfo
@@ -38,7 +38,7 @@ create table Giangvien(
 	Administrator BIT not null,
 )
 use ExamDB
-insert into Giangvien(Magv,Passgv,image,Hotengv,Gioitinh,Ngaysinh,Chucvu,Khoa,Administrator) values ('GV012@','GV012@',(SELECT * FROM OPENROWSET(BULK 'C:\Users\ntv\Downloads\Compressed\VbExam\imagegv\GV012@.jpg', SINGLE_BLOB) AS image),N'Mai Quang Hải',N'Nam','07/16/2005',N'Trưởng Khoa',N'Công Nghệ Thông Tin', 1)
+insert into Giangvien(Magv,Passgv,image,Hotengv,Gioitinh,Ngaysinh,Chucvu,Khoa,Administrator) values ('GV012@','GV012@',(SELECT * FROM OPENROWSET(BULK 'D:\TaiLieuHocTap\TaiLieuHUBT\Modules\LTTQ\VbExam\imagegv\GV012@.jpg', SINGLE_BLOB) AS image),N'Mai Quang Hải',N'Nam','07/16/2005',N'Trưởng Khoa',N'Công Nghệ Thông Tin', 1)
 
 Create table Bangdiem(
 	Mamonhoc nvarchar(60) not null,
@@ -75,13 +75,17 @@ CREATE TABLE DeThi (
 	MaDeThi NVARCHAR(10) NOT NULL PRIMARY KEY,
 	MaKhoa NVARCHAR(10) NOT NULL,
 	TenDeThi NVARCHAR(40) NOT NULL,
-	SoCau int
 )
 INSERT INTO DeThi (MaDeThi, MaKhoa, TenDeThi, SoCau) VALUES ('TIN01', 'CNTT', N'Tin 1', 2)
 CREATE TABLE CauHoi (
+
 	MaCauHoi NVARCHAR(10) NOT NULL PRIMARY KEY,
 	MaDeThi NVARCHAR(10) NOT NULL,
 	Maanh nvarchar(40) not null,
+
+	MaCauHoi NVARCHAR(40) NOT NULL PRIMARY KEY,
+	MaDeThi NVARCHAR(20) NOT NULL,
+
 	NoiDung NVARCHAR(MAX) NOT NULL,
 	DapAnA NVARCHAR(MAX),
 	DapAnB NVARCHAR(MAX),
@@ -99,7 +103,7 @@ create table ImageData(
 	Maanh nvarchar(40) not null,
 	image varbinary (max)
 )
-insert into Imagecauhoi(MaCauHoi,imagech) values ('TIN1',(SELECT * FROM OPENROWSET(BULK 'C:\Users\Admin\Documents\VbExam\imagesv\2823220212.jpg', SINGLE_BLOB) AS image))
+insert into Imagecauhoi(MaCauHoi,imagech) values ('TIN1',(SELECT * FROM OPENROWSET(BULK 'D:\TaiLieuHocTap\TaiLieuHUBT\Modules\LTTQ\VbExam\imagesv\2823220212.jpg', SINGLE_BLOB) AS image))
 
 --CREATE TABLE DapAn (
 --	MaDapAn NVARCHAR(10) NOT NULL PRIMARY KEY,
