@@ -44,7 +44,6 @@ Public Class AccountManagement
 
             If accountType = 0 Then
                 If selectedRow.Cells("Magv").Value.ToString() = "" Then
-                    MessageBox.Show("Thông tin tài khoản không hợp lệ!")
                     Return
                 End If
                 EditAccount.accountType = accountType
@@ -58,7 +57,6 @@ Public Class AccountManagement
                 EditAccount.administrator = Convert.ToBoolean(selectedRow.Cells("Administrator").Value)
             Else
                 If selectedRow.Cells("Masv").Value.ToString() = "" Then
-                    MessageBox.Show("Thông tin tài khoản không hợp lệ!")
                     Return
                 End If
                 EditAccount.accountType = accountType

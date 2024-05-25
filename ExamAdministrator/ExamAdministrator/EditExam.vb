@@ -6,20 +6,21 @@ Public Class EditExam
     Public maKhoa As String
     Public tenDe As String
     Dim sql As String
-    Dim params As New List(Of SqlParameter)
+
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        Dim params As New List(Of SqlParameter)
         sql = "DELETE FROM DeThi WHERE MaDeThi = @Made"
         params.Add(New SqlParameter("@Made", maDe))
         If checkExists("MaDeThi", "DeThi", maDe) Then
             If runSqlCommand(sql, params) Then
                 ExamManagement.loadData("SELECT * FROM DeThi", Nothing)
+                Close()
             Else
                 MessageBox.Show("Xoá đề thi thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
         Else
             MessageBox.Show("Mã đề thi không tồn tại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
-        params.Clear()
     End Sub
 
     Private Sub EditExam_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -34,7 +35,20 @@ Public Class EditExam
     End Sub
 
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
-
+        If txtMaKhoa.Text = "" Or txtTenDe.Text = "" Then
+            MessageBox.Show("Không được để trống thông tin!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Else
+			Dim params As New List(Of SqlParameter)
+            sql = "UPDATE DeThi SET MaKhoa = @MaKhoa, TenDeThi = @TenDeThi WHERE MaDeThi = @MaDe"
+            params.Add(New SqlParameter("@MaKhoa", txtMaKhoa.Text))
+			params.Add(New SqlParameter("@TenDeThi", txtTenDe.Text))
+			params.Add(New SqlParameter("@MaDe", maDe))
+			If Not runSqlCommand(sql, params) Then
+				MessageBox.Show("Chỉnh sửa đề thi thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+			Else
+				ExamManagement.loadData("SELECT * FROM DeThi", Nothing)
+			End If
+        End If
     End Sub
 
     Private Sub EditExam_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing

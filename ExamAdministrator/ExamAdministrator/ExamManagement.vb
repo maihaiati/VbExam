@@ -45,12 +45,16 @@ Public Class ExamManagement
 			' Lấy dữ liệu của hàng được nhấn
 			Dim selectedRow As DataGridViewRow = dgExam.Rows(rowIndex)
 
+			If (selectedRow.Cells("MaDeThi").Value.ToString() = "") Then
+				Return
+			End If
+
 			EditType.maDe = selectedRow.Cells("MaDeThi").Value.ToString()
-			EditType.maKhoa = selectedRow.Cells("MaKhoa").Value.ToString()
-			EditType.tenDe = selectedRow.Cells("TenDeThi").Value.ToString()
-			EditType.Show()
-		End If
-	End Sub
+				EditType.maKhoa = selectedRow.Cells("MaKhoa").Value.ToString()
+				EditType.tenDe = selectedRow.Cells("TenDeThi").Value.ToString()
+				EditType.Show()
+			End If
+    End Sub
 
 	Private Sub btnFilter_Click(sender As Object, e As EventArgs) Handles btnFilter.Click
 		ExamFilter.Show()
