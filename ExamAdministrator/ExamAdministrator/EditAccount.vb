@@ -265,6 +265,7 @@ Public Class EditAccount
 
             log(userName, "Xóa tài khoản", If(success, "Thành công", "Thất bại"), "Xóa tài khoản sinh viên")
         End If
+
     End Sub
 
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
@@ -273,12 +274,6 @@ Public Class EditAccount
 
     Private Sub imgAvatar_Click(sender As Object, e As EventArgs) Handles imgAvatar.Click
         imageBytes = LoadImage()
-        If imageBytes IsNot Nothing Then
-            If UpdateImageInDatabase(userName, imageBytes, accountType = 0) Then
-                MessageBox.Show("Cập nhật ảnh thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Else
-                MessageBox.Show("Cập nhật ảnh thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End If
-        End If
+        MessageBox.Show("Đẩy hình ảnh thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 End Class

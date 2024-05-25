@@ -54,4 +54,8 @@ Public Class Dashboard
     Private Sub btnMyAcc_Click(sender As Object, e As EventArgs) Handles btnMyAcc.Click
         InfoAccount.Show()
     End Sub
+
+    Private Sub btnSchedule_Click(sender As Object, e As EventArgs) Handles btnSchedule.Click
+        ExamSchedule.Show()
+    End Sub
 End Class

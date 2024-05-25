@@ -32,14 +32,14 @@ Partial Class InfoAccount
         TextBox1 = New TextBox()
         TXTmasinhvien = New TextBox()
         TXTtensinhvien = New TextBox()
-        TextBox5 = New TextBox()
-        TextBox6 = New TextBox()
-        TextBox7 = New TextBox()
+        txtchucvu = New TextBox()
+        txtkhoa = New TextBox()
         dtpBirth = New DateTimePicker()
         btnedit = New Button()
         btncancel = New Button()
-        PictureBox1 = New PictureBox()
-        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        imgAvatar = New PictureBox()
+        cbgender = New ComboBox()
+        CType(imgAvatar, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Label1
@@ -60,9 +60,9 @@ Partial Class InfoAccount
         Label2.ForeColor = SystemColors.HotTrack
         Label2.Location = New Point(297, 321)
         Label2.Name = "Label2"
-        Label2.Size = New Size(46, 21)
+        Label2.Size = New Size(82, 21)
         Label2.TabIndex = 2
-        Label2.Text = "Lớp :"
+        Label2.Text = "Chức Vụ :"
         ' 
         ' Label3
         ' 
@@ -140,26 +140,19 @@ Partial Class InfoAccount
         TXTtensinhvien.Size = New Size(259, 27)
         TXTtensinhvien.TabIndex = 11
         ' 
-        ' TextBox5
+        ' txtchucvu
         ' 
-        TextBox5.Location = New Point(434, 264)
-        TextBox5.Name = "TextBox5"
-        TextBox5.Size = New Size(259, 27)
-        TextBox5.TabIndex = 10
+        txtchucvu.Location = New Point(434, 317)
+        txtchucvu.Name = "txtchucvu"
+        txtchucvu.Size = New Size(259, 27)
+        txtchucvu.TabIndex = 10
         ' 
-        ' TextBox6
+        ' txtkhoa
         ' 
-        TextBox6.Location = New Point(434, 317)
-        TextBox6.Name = "TextBox6"
-        TextBox6.Size = New Size(259, 27)
-        TextBox6.TabIndex = 10
-        ' 
-        ' TextBox7
-        ' 
-        TextBox7.Location = New Point(434, 376)
-        TextBox7.Name = "TextBox7"
-        TextBox7.Size = New Size(259, 27)
-        TextBox7.TabIndex = 10
+        txtkhoa.Location = New Point(434, 376)
+        txtkhoa.Name = "txtkhoa"
+        txtkhoa.Size = New Size(259, 27)
+        txtkhoa.TabIndex = 10
         ' 
         ' dtpBirth
         ' 
@@ -189,28 +182,37 @@ Partial Class InfoAccount
         btncancel.Text = "Huỷ Bỏ"
         btncancel.UseVisualStyleBackColor = True
         ' 
-        ' PictureBox1
+        ' imgAvatar
         ' 
-        PictureBox1.BackColor = SystemColors.ActiveBorder
-        PictureBox1.Location = New Point(29, 100)
-        PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(231, 314)
-        PictureBox1.TabIndex = 15
-        PictureBox1.TabStop = False
+        imgAvatar.BackColor = SystemColors.ActiveBorder
+        imgAvatar.Location = New Point(29, 100)
+        imgAvatar.Name = "imgAvatar"
+        imgAvatar.Size = New Size(231, 314)
+        imgAvatar.TabIndex = 15
+        imgAvatar.TabStop = False
+        ' 
+        ' cbgender
+        ' 
+        cbgender.FormattingEnabled = True
+        cbgender.Items.AddRange(New Object() {"Nam", "Nữ"})
+        cbgender.Location = New Point(434, 266)
+        cbgender.Name = "cbgender"
+        cbgender.Size = New Size(151, 28)
+        cbgender.TabIndex = 16
         ' 
         ' InfoAccount
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(745, 531)
-        Controls.Add(PictureBox1)
+        Controls.Add(cbgender)
+        Controls.Add(imgAvatar)
         Controls.Add(btncancel)
         Controls.Add(btnedit)
         Controls.Add(dtpBirth)
         Controls.Add(TXTtensinhvien)
-        Controls.Add(TextBox7)
-        Controls.Add(TextBox6)
-        Controls.Add(TextBox5)
+        Controls.Add(txtkhoa)
+        Controls.Add(txtchucvu)
         Controls.Add(TXTmasinhvien)
         Controls.Add(TextBox1)
         Controls.Add(Label7)
@@ -222,7 +224,7 @@ Partial Class InfoAccount
         Controls.Add(Label1)
         Name = "InfoAccount"
         Text = "InfoAccount"
-        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        CType(imgAvatar, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -236,11 +238,11 @@ Partial Class InfoAccount
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents TXTmasinhvien As TextBox
     Friend WithEvents TXTtensinhvien As TextBox
-    Friend WithEvents TextBox5 As TextBox
-    Friend WithEvents TextBox6 As TextBox
-    Friend WithEvents TextBox7 As TextBox
+    Friend WithEvents txtchucvu As TextBox
+    Friend WithEvents txtkhoa As TextBox
     Friend WithEvents dtpBirth As DateTimePicker
     Friend WithEvents btnedit As Button
     Friend WithEvents btncancel As Button
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents imgAvatar As PictureBox
+    Friend WithEvents cbgender As ComboBox
 End Class

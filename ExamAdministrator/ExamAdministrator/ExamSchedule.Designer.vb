@@ -55,7 +55,7 @@ Partial Class ExamSchedule
         MenuStrip1.Items.AddRange(New ToolStripItem() {TạoLịchToolStripMenuItem, ThayĐổiLịchThiToolStripMenuItem, XóaLịchToolStripMenuItem, SắpXếpLịchThiToolStripMenuItem, ThoátToolStripMenuItem})
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
-        MenuStrip1.Size = New Size(808, 28)
+        MenuStrip1.Size = New Size(839, 28)
         MenuStrip1.TabIndex = 0
         MenuStrip1.Text = "MenuStrip1"
         ' 
@@ -96,7 +96,7 @@ Partial Class ExamSchedule
         DataGridView1.Location = New Point(0, 269)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.RowHeadersWidth = 51
-        DataGridView1.Size = New Size(805, 333)
+        DataGridView1.Size = New Size(839, 333)
         DataGridView1.TabIndex = 1
         ' 
         ' clnMMH
@@ -189,7 +189,7 @@ Partial Class ExamSchedule
         ' 
         Button1.BackColor = Color.FromArgb(CByte(128), CByte(128), CByte(255))
         Button1.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
-        Button1.Location = New Point(604, 42)
+        Button1.Location = New Point(664, 42)
         Button1.Name = "Button1"
         Button1.Size = New Size(107, 37)
         Button1.TabIndex = 6
@@ -242,7 +242,7 @@ Partial Class ExamSchedule
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(808, 604)
+        ClientSize = New Size(839, 604)
         Controls.Add(Label5)
         Controls.Add(DateTimePicker1)
         Controls.Add(TextBox3)

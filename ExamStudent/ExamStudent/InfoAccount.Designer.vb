@@ -119,9 +119,9 @@ Partial Class InfoAccount
         ' PictureBox1
         ' 
         PictureBox1.BackColor = SystemColors.ControlDark
-        PictureBox1.Location = New Point(49, 101)
+        PictureBox1.Location = New Point(39, 99)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(257, 323)
+        PictureBox1.Size = New Size(252, 323)
         PictureBox1.TabIndex = 9
         PictureBox1.TabStop = False
         ' 
@@ -173,7 +173,7 @@ Partial Class InfoAccount
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Font = New Font("Times New Roman", 15.0F, FontStyle.Bold, GraphicsUnit.Point, 0)
+        Label1.Font = New Font("Times New Roman", 15F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.IndianRed
         Label1.Location = New Point(304, 37)
         Label1.Name = "Label1"
@@ -189,7 +189,7 @@ Partial Class InfoAccount
         Label8.Name = "Label8"
         Label8.Size = New Size(364, 21)
         Label8.TabIndex = 17
-        Label8.Text = "Bạn xác minh và cập nhật đầy đủ thông tin cá nhân." + vbCrLf
+        Label8.Text = "Bạn xác minh và cập nhật đầy đủ thông tin cá nhân." & vbCrLf
         ' 
         ' btnupdate
         ' 
@@ -222,7 +222,7 @@ Partial Class InfoAccount
         ' Label10
         ' 
         Label10.AutoSize = True
-        Label10.Font = New Font("Segoe UI", 14.0F, FontStyle.Bold)
+        Label10.Font = New Font("Segoe UI", 14F, FontStyle.Bold)
         Label10.ForeColor = Color.Red
         Label10.Location = New Point(93, 461)
         Label10.Name = "Label10"
@@ -230,9 +230,9 @@ Partial Class InfoAccount
         Label10.TabIndex = 21
         Label10.Text = "Lưu ý"
         ' 
-        ' InfoAccountform
+        ' InfoAccount
         ' 
-        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(865, 612)
         Controls.Add(Label10)
@@ -255,7 +255,7 @@ Partial Class InfoAccount
         Controls.Add(Label3)
         Controls.Add(Label2)
         Margin = New Padding(3, 4, 3, 4)
-        Name = "InfoAccountform"
+        Name = "InfoAccount"
         Text = "ExamStudent - InfoAccount"
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
