@@ -2,6 +2,7 @@
 Imports System.Data.SqlClient
 Imports System.IO
 Imports System.Windows.Forms.VisualStyles
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
 
 Public Class EditQuestions
 	Public maDe As String
@@ -11,6 +12,7 @@ Public Class EditQuestions
 	Dim sql As String
 
 	Dim maCauHoi As String
+	Dim maAnh As String
 	Dim question As String
 	Dim answerA As String
 	Dim answerB As String
@@ -21,7 +23,15 @@ Public Class EditQuestions
 	Dim numOfQues As Integer ' Tổng số lượng câu hỏi
 	Dim dataTable As New DataTable
 	Dim imageBytes As Byte() = Nothing
+	Dim imageName As String
 	Dim saved = True
+	Dim machineName As String = Environment.MachineName
+
+	Function ByteArrayToImage(ByVal byteArray As Byte()) As Image
+		Using ms As New MemoryStream(byteArray)
+			Return Image.FromStream(ms)
+		End Using
+	End Function
 
 	Function ImageToByteArray(ByVal image As Image) As Byte()
 		Using ms As New MemoryStream()
@@ -37,20 +47,21 @@ Public Class EditQuestions
 			If ofd.ShowDialog() = DialogResult.OK Then
 				Dim img As Image = Image.FromFile(ofd.FileName)
 				picPreview.Image = img
+				imageName = Path.GetFileName(ofd.FileName)
 				Return ImageToByteArray(img)
 			End If
 		End Using
 		Return Nothing
 	End Function
 
-	Function GetImageFromDatabase(ByVal maCauHoi As String) As Byte()
+	Function GetImageFromDatabase(ByVal maAnh As String) As Byte()
 		Dim imageData As Byte() = Nothing
 
-		sql = "SELECT image FROM Giangvien WHERE Magv = @Magv"
+		sql = "SELECT image FROM ImageData WHERE Maanh = @MaAnh"
 
-			Using conn As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
+		Using conn As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
 			Using cmd As New SqlCommand(sql, conn)
-				cmd.Parameters.AddWithValue(If(isTeacher, "@Magv", "@Masv"), userId)
+				cmd.Parameters.AddWithValue("@MaAnh", maAnh)
 				conn.Open()
 				Dim reader As SqlDataReader = cmd.ExecuteReader()
 				If reader.Read() Then
@@ -65,7 +76,7 @@ Public Class EditQuestions
 
 	Private Sub loadData(quesIndex As Integer)
 		Dim params As New List(Of SqlParameter)
-		sql = "SELECT MaCauHoi, NoiDung, DapAnA, DapAnB, DapAnC, DapAnD, DapAnDung, ThuTuCau FROM CauHoi WHERE MaDeThi = @MaDeThi ORDER BY ThuTuCau ASC"
+		sql = "SELECT MaCauHoi, Maanh, NoiDung, DapAnA, DapAnB, DapAnC, DapAnD, DapAnDung, ThuTuCau FROM CauHoi WHERE MaDeThi = @MaDeThi ORDER BY ThuTuCau ASC"
 		params.Add(New SqlParameter("@MaDeThi", maDe))
 		dataTable = getData(sql, params)
 
@@ -75,6 +86,18 @@ Public Class EditQuestions
 		End If
 
 		maCauHoi = dataTable.Rows.Item(quesIndex).Item("MaCauHoi")
+		maAnh = If(Not IsDBNull(dataTable.Rows.Item(quesIndex).Item("Maanh")), dataTable.Rows.Item(quesIndex).Item("Maanh"), "")
+		If maAnh <> "" Then
+			imageName = maAnh
+			imageBytes = GetImageFromDatabase(maAnh)
+			If imageBytes IsNot Nothing Then
+				picPreview.Image = ByteArrayToImage(imageBytes)
+			End If
+		Else
+			imageBytes = Nothing
+			imageName = ""
+			picPreview.Image = Nothing
+		End If
 		question = If(Not IsDBNull(dataTable.Rows.Item(quesIndex).Item("NoiDung")), dataTable.Rows.Item(quesIndex).Item("NoiDung"), "")
 		answerA = If(Not IsDBNull(dataTable.Rows.Item(quesIndex).Item("DapAnA")), dataTable.Rows.Item(quesIndex).Item("DapAnA"), "")
 		answerB = If(Not IsDBNull(dataTable.Rows.Item(quesIndex).Item("DapAnB")), dataTable.Rows.Item(quesIndex).Item("DapAnB"), "")
@@ -126,16 +149,29 @@ Public Class EditQuestions
 		dataTable = getData(sql, params)
 		numOfQues = dataTable.Rows.Item(0).Item("SoCau")
 		quesIndex = 0
+		imageName = ""
 		For i = 1 To numOfQues
 			cbbQues.Items.Add(i)
 		Next
 		loadData(quesIndex)
-    End Sub
+	End Sub
 
 	Private Sub saveData()
 		If Not saved Then
 			Dim params As New List(Of SqlParameter)
-			sql = "UPDATE CauHoi SET NoiDung = @NoiDung, DapAnA = @DapAnA, DapAnB = @DapAnB, DapAnC = @DapAnC, DapAnD = @DapAnD, DapAnDung = @DapAnDung WHERE MaCauHoi = @MaCauHoi"
+			If Not checkExists("Maanh", "ImageData", imageName) And imageName <> "" Then
+				If imageBytes IsNot Nothing And imageName <> "" Then
+					sql = "INSERT INTO ImageData (Maanh, image) VALUES (@MaAnh, @Image)"
+					params.Add(New SqlParameter("@MaAnh", imageName))
+					params.Add(New SqlParameter("@Image", imageBytes))
+					If Not runSqlCommand(sql, params) Then
+						MessageBox.Show("Lưu ảnh thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+					End If
+					params.Clear()
+				End If
+			End If
+			sql = "UPDATE CauHoi Set Maanh = @MaAnh, NoiDung = @NoiDung, DapAnA = @DapAnA, DapAnB = @DapAnB, DapAnC = @DapAnC, DapAnD = @DapAnD, DapAnDung = @DapAnDung WHERE MaCauHoi = @MaCauHoi"
+			params.Add(New SqlParameter("@MaAnh", If(imageName <> "", imageName, DBNull.Value)))
 			params.Add(New SqlParameter("@NoiDung", question))
 			params.Add(New SqlParameter("@DapAnA", answerA))
 			params.Add(New SqlParameter("@DapAnB", answerB))
@@ -152,6 +188,10 @@ Public Class EditQuestions
 	End Sub
 
 	Private Sub EditQuestions_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+		If Not saved Then
+			saveData()
+		End If
+		ExamManagement.loadData("SELECT * FROM DeThi", Nothing)
 		ExamManagement.Show()
 	End Sub
 
@@ -269,13 +309,19 @@ Public Class EditQuestions
 		txtB.Clear()
 		txtC.Clear()
 		txtD.Clear()
+		picPreview.Image = Nothing
+		imageBytes = Nothing
+		imageName = ""
 	End Sub
 
 	Private Sub createQuestion()
+		If Not saved Then
+			saveData()
+		End If
 		Dim params As New List(Of SqlParameter)
 		Dim timeID As String
 		timeID = getData("SELECT CONCAT(MONTH(GETDATE()), DAY(GETDATE()), YEAR(GETDATE()), '_', DATEPART(HOUR, GETDATE()), DATEPART(MINUTE, GETDATE()), DATEPART(SECOND, GETDATE())) AS TimeID", Nothing).Rows.Item(0).Item("TimeID")
-		sql = "INSERT INTO CauHoi (MaCauHoi, MaDeThi, NoiDung, DapAnA, DapAnB, DapAnC, DapAnD, DapAnDung, ThuTuCau) VALUES (@MaCauHoi, @MaDeThi, N'', NULL, NULL, NULL, NULL, NULL, @ThuTuCau)"
+		sql = "INSERT INTO CauHoi (MaCauHoi, MaDeThi, Maanh, NoiDung, DapAnA, DapAnB, DapAnC, DapAnD, DapAnDung, ThuTuCau) VALUES (@MaCauHoi, @MaDeThi, NULL, N'', NULL, NULL, NULL, NULL, NULL, @ThuTuCau)"
 		params.Add(New SqlParameter("@MaCauHoi", maDe & "_" & timeID))
 		params.Add(New SqlParameter("@MaDeThi", maDe))
 		params.Add(New SqlParameter("@ThuTuCau", numOfQues + 1))
@@ -284,7 +330,8 @@ Public Class EditQuestions
 		Else
 			numOfQues += 1
 			cbbQues.Items.Add(numOfQues)
-			loadData(numOfQues - 1)
+			quesIndex = numOfQues - 1
+			loadData(quesIndex)
 		End If
 	End Sub
 
@@ -294,6 +341,69 @@ Public Class EditQuestions
 
 	Private Sub delQues_Click(sender As Object, e As EventArgs) Handles delQues.Click
 		Dim params As New List(Of SqlParameter)
-		sql = "DELETE "
+		If numOfQues = 1 Then
+			MessageBox.Show("Không cho phép xoá câu hỏi duy nhất trong đề", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+			Return
+		End If
+		sql = "DELETE CauHoi WHERE MaCauHoi = @MaCauHoi"
+		params.Add(New SqlParameter("@MaCauHoi", maCauHoi))
+		If Not runSqlCommand(sql, params) Then
+			MessageBox.Show("Xoá câu hỏi thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+		Else
+			params.Clear()
+			cbbQues.Items.Remove(numOfQues)
+			numOfQues -= 1
+			sql = "SELECT MaCauHoi, Maanh, NoiDung, DapAnA, DapAnB, DapAnC, DapAnD, DapAnDung, ThuTuCau FROM CauHoi WHERE MaDeThi = @MaDeThi ORDER BY ThuTuCau ASC"
+			params.Add(New SqlParameter("@MaDeThi", maDe))
+			dataTable = getData(sql, params)
+			Try
+				For i = 0 To numOfQues - 1
+					params.Clear()
+					If (Not IsDBNull(dataTable.Rows.Item(i).Item("MaCauHoi"))) Then
+						sql = "UPDATE CauHoi SET ThuTuCau = @ThuTuCau WHERE MaCauHoi = @MaCauHoi"
+						params.Add(New SqlParameter("@MaCauHoi", dataTable.Rows.Item(i).Item("MaCauHoi")))
+						params.Add(New SqlParameter("@ThuTuCau", i + 1))
+						If Not runSqlCommand(sql, params) Then
+							Debug.WriteLine("==============================================")
+							Debug.WriteLine("Reorder failed: ")
+							Debug.WriteLine("SQL: " & sql)
+							Debug.WriteLine("Ques index: " & quesIndex)
+							Debug.WriteLine("Num of ques: " & numOfQues)
+							Debug.WriteLine("==============================================")
+						End If
+					Else
+						Debug.WriteLine("==============================================")
+						Debug.WriteLine("Reorder failed: Null element")
+						Debug.WriteLine("==============================================")
+					End If
+				Next
+				If quesIndex = numOfQues Then
+					loadData(quesIndex - 1)
+				Else
+					loadData(quesIndex)
+				End If
+
+			Catch ex As Exception
+				Debug.WriteLine("==============================================")
+				Debug.WriteLine("Reorder failed: ")
+				Debug.WriteLine("SQL: " & sql)
+				Debug.WriteLine("Ques index: " & quesIndex)
+				Debug.WriteLine("Num of ques: " & numOfQues)
+				Debug.WriteLine("Exception: " & ex.ToString())
+				Debug.WriteLine("==============================================")
+			End Try
+		End If
+	End Sub
+
+	Private Sub btnBrowImg_Click(sender As Object, e As EventArgs) Handles btnBrowImg.Click
+		imageBytes = LoadImage()
+		saved = False
+	End Sub
+
+	Private Sub btnDelImage_Click(sender As Object, e As EventArgs) Handles btnDelImage.Click
+		imageBytes = Nothing
+		imageName = ""
+		picPreview.Image = Nothing
+		saved = False
 	End Sub
 End Class

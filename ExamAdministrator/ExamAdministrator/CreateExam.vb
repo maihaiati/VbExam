@@ -15,7 +15,7 @@ Public Class CreateExam
                 MessageBox.Show("Mã đề không được quá 20 ký tự!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return
             End If
-            sql = "INSERT INTO DeThi (MaDeThi, MaKhoa, TenDeThi) VALUES (@Madethi, @Makhoa, @Tendethi)"
+            sql = "INSERT INTO DeThi (MaDeThi, MaKhoa, TenDeThi, SoCau) VALUES (@Madethi, @Makhoa, @Tendethi, 0)"
             params.Add(New SqlParameter("@Madethi", txtMaDe.Text))
             params.Add(New SqlParameter("@Makhoa", txtMaKhoa.Text))
             params.Add(New SqlParameter("@Tendethi", txtTenDe.Text))

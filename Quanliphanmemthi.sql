@@ -38,7 +38,7 @@ create table Giangvien(
 	Administrator BIT not null,
 )
 use ExamDB
-insert into Giangvien(Magv,Passgv,image,Hotengv,Gioitinh,Ngaysinh,Chucvu,Khoa,Administrator) values ('GV012@','GV012@',(SELECT * FROM OPENROWSET(BULK 'D:\TaiLieuHocTap\TaiLieuHUBT\Modules\LTTQ\VbExam\imagegv\GV012@.jpg', SINGLE_BLOB) AS image),N'Mai Quang Hải',N'Nam','07/16/2005',N'Trưởng Khoa',N'Công Nghệ Thông Tin', 1)
+insert into Giangvien(Magv,Passgv,image,Hotengv,Gioitinh,Ngaysinh,Chucvu,Khoa,Administrator) values ('GV012','12345',(SELECT * FROM OPENROWSET(BULK 'D:\TaiLieuHocTap\TaiLieuHUBT\Modules\LTTQ\VbExam\imagegv\GV012@.jpg', SINGLE_BLOB) AS image),N'Mai Quang Hải',N'Nam','07/16/2005',N'Trưởng Khoa',N'Công Nghệ Thông Tin', 1)
 
 Create table Bangdiem(
 	Mamonhoc nvarchar(60) not null,
@@ -72,20 +72,16 @@ CREATE TABLE Khoa (
 )
 INSERT INTO Khoa (MaKhoa, TenKhoa) VALUES ('CNTT', N'Công nghệ thông tin')
 CREATE TABLE DeThi (
-	MaDeThi NVARCHAR(10) NOT NULL PRIMARY KEY,
+	MaDeThi NVARCHAR(20) NOT NULL PRIMARY KEY,
 	MaKhoa NVARCHAR(10) NOT NULL,
 	TenDeThi NVARCHAR(40) NOT NULL,
+	SoCau int
 )
 INSERT INTO DeThi (MaDeThi, MaKhoa, TenDeThi, SoCau) VALUES ('TIN01', 'CNTT', N'Tin 1', 2)
 CREATE TABLE CauHoi (
-
-	MaCauHoi NVARCHAR(10) NOT NULL PRIMARY KEY,
-	MaDeThi NVARCHAR(10) NOT NULL,
-	Maanh nvarchar(40) not null,
-
 	MaCauHoi NVARCHAR(40) NOT NULL PRIMARY KEY,
 	MaDeThi NVARCHAR(20) NOT NULL,
-
+	Maanh nvarchar(40),
 	NoiDung NVARCHAR(MAX) NOT NULL,
 	DapAnA NVARCHAR(MAX),
 	DapAnB NVARCHAR(MAX),
@@ -116,6 +112,39 @@ insert into Imagecauhoi(MaCauHoi,imagech) values ('TIN1',(SELECT * FROM OPENROWS
 
 insert into Loginfo(Tennguoidung,Hoatdong,Trangthai,thoigian,chitiet) values (N'Admin',N'Đăng Nhập',N'thành công','2024-05-30',null);
 
+CREATE TRIGGER trg_UpdateSoCauHoiOnInsert
+ON CauHoi
+AFTER INSERT
+AS
+BEGIN
+    UPDATE DeThi
+    SET SoCau = (
+        SELECT COUNT(*)
+        FROM CauHoi
+        WHERE CauHoi.MaDeThi = DeThi.MaDeThi
+    )
+    WHERE MaDeThi IN (
+        SELECT MaDeThi
+        FROM INSERTED
+    );
+END;
+
+CREATE TRIGGER trg_UpdateSoCauHoiOnDelete
+ON CauHoi
+AFTER DELETE
+AS
+BEGIN
+    UPDATE DeThi
+    SET SoCau = (
+        SELECT COUNT(*)
+        FROM CauHoi
+        WHERE CauHoi.MaDeThi = DeThi.MaDeThi
+    )
+    WHERE MaDeThi IN (
+        SELECT MaDeThi
+        FROM DELETED
+    );
+END;
 
 
 	CREATE PROCEDURE DeleteOldData

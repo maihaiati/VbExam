@@ -9,18 +9,25 @@ Public Class EditExam
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         Dim params As New List(Of SqlParameter)
+
+        ' Xoá câu hỏi
+        sql = "DELETE FROM CauHoi WHERE MaDeThi = @Made"
+        params.Add(New SqlParameter("@Made", maDe))
+        If Not runSqlCommand(sql, params) Then
+            MessageBox.Show("Xoá đề thi thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+        params.Clear()
+
+        ' Xoá thông tin đề
         sql = "DELETE FROM DeThi WHERE MaDeThi = @Made"
         params.Add(New SqlParameter("@Made", maDe))
-        If checkExists("MaDeThi", "DeThi", maDe) Then
-            If runSqlCommand(sql, params) Then
-                ExamManagement.loadData("SELECT * FROM DeThi", Nothing)
-                Close()
-            Else
-                MessageBox.Show("Xoá đề thi thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            End If
+        If runSqlCommand(sql, params) Then
+            ExamManagement.loadData("SELECT * FROM DeThi", Nothing)
+            Close()
         Else
-            MessageBox.Show("Mã đề thi không tồn tại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Xoá đề thi thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
+
     End Sub
 
     Private Sub EditExam_Load(sender As Object, e As EventArgs) Handles MyBase.Load
