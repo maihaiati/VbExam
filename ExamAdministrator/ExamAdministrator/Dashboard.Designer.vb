@@ -81,13 +81,13 @@ Partial Class Dashboard
         ' btnMyAcc
         ' 
         btnMyAcc.Name = "btnMyAcc"
-        btnMyAcc.Size = New Size(203, 26)
+        btnMyAcc.Size = New Size(224, 26)
         btnMyAcc.Text = "Tài khoản của tôi"
         ' 
         ' btnLogout
         ' 
         btnLogout.Name = "btnLogout"
-        btnLogout.Size = New Size(203, 26)
+        btnLogout.Size = New Size(224, 26)
         btnLogout.Text = "Đăng xuất"
         ' 
         ' Label1

@@ -22,7 +22,6 @@ Partial Class InfoAccount
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        PictureBox1 = New PictureBox()
         Label1 = New Label()
         Label2 = New Label()
         Label3 = New Label()
@@ -39,22 +38,16 @@ Partial Class InfoAccount
         dtpBirth = New DateTimePicker()
         btnedit = New Button()
         btncancel = New Button()
+        PictureBox1 = New PictureBox()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
-        ' 
-        ' PictureBox1
-        ' 
-        PictureBox1.Location = New Point(12, 12)
-        PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(205, 419)
-        PictureBox1.TabIndex = 0
-        PictureBox1.TabStop = False
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 20F, FontStyle.Bold)
-        Label1.Location = New Point(348, 9)
+        Label1.ForeColor = SystemColors.MenuHighlight
+        Label1.Location = New Point(241, 21)
         Label1.Name = "Label1"
         Label1.Size = New Size(277, 46)
         Label1.TabIndex = 1
@@ -63,54 +56,66 @@ Partial Class InfoAccount
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(260, 303)
+        Label2.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        Label2.ForeColor = SystemColors.HotTrack
+        Label2.Location = New Point(297, 321)
         Label2.Name = "Label2"
-        Label2.Size = New Size(41, 20)
+        Label2.Size = New Size(46, 21)
         Label2.TabIndex = 2
         Label2.Text = "Lớp :"
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(260, 82)
+        Label3.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        Label3.ForeColor = SystemColors.HotTrack
+        Label3.Location = New Point(295, 100)
         Label3.Name = "Label3"
-        Label3.Size = New Size(98, 20)
+        Label3.Size = New Size(115, 21)
         Label3.TabIndex = 3
         Label3.Text = "Mã sinh viên :"
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(258, 142)
+        Label4.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        Label4.ForeColor = SystemColors.HotTrack
+        Label4.Location = New Point(295, 160)
         Label4.Name = "Label4"
-        Label4.Size = New Size(100, 20)
+        Label4.Size = New Size(118, 21)
         Label4.TabIndex = 4
         Label4.Text = "Tên sinh viên :"
         ' 
         ' Label5
         ' 
         Label5.AutoSize = True
-        Label5.Location = New Point(260, 362)
+        Label5.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        Label5.ForeColor = SystemColors.HotTrack
+        Label5.Location = New Point(297, 380)
         Label5.Name = "Label5"
-        Label5.Size = New Size(50, 20)
+        Label5.Size = New Size(57, 21)
         Label5.TabIndex = 5
         Label5.Text = "Khoa :"
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Location = New Point(258, 196)
+        Label6.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        Label6.ForeColor = SystemColors.HotTrack
+        Label6.Location = New Point(295, 214)
         Label6.Name = "Label6"
-        Label6.Size = New Size(78, 20)
+        Label6.Size = New Size(92, 21)
         Label6.TabIndex = 6
         Label6.Text = "ngày sinh :"
         ' 
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.Location = New Point(258, 250)
+        Label7.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        Label7.ForeColor = SystemColors.HotTrack
+        Label7.Location = New Point(295, 268)
         Label7.Name = "Label7"
-        Label7.Size = New Size(75, 20)
+        Label7.Size = New Size(87, 21)
         Label7.TabIndex = 7
         Label7.Text = "Giới Tính :"
         ' 
@@ -123,72 +128,82 @@ Partial Class InfoAccount
         ' 
         ' TXTmasinhvien
         ' 
-        TXTmasinhvien.Location = New Point(440, 79)
+        TXTmasinhvien.Location = New Point(434, 100)
         TXTmasinhvien.Name = "TXTmasinhvien"
-        TXTmasinhvien.Size = New Size(308, 27)
+        TXTmasinhvien.Size = New Size(259, 27)
         TXTmasinhvien.TabIndex = 9
         ' 
         ' TXTtensinhvien
         ' 
-        TXTtensinhvien.Location = New Point(440, 135)
+        TXTtensinhvien.Location = New Point(434, 156)
         TXTtensinhvien.Name = "TXTtensinhvien"
-        TXTtensinhvien.Size = New Size(308, 27)
+        TXTtensinhvien.Size = New Size(259, 27)
         TXTtensinhvien.TabIndex = 11
         ' 
         ' TextBox5
         ' 
-        TextBox5.Location = New Point(440, 243)
+        TextBox5.Location = New Point(434, 264)
         TextBox5.Name = "TextBox5"
-        TextBox5.Size = New Size(308, 27)
+        TextBox5.Size = New Size(259, 27)
         TextBox5.TabIndex = 10
         ' 
         ' TextBox6
         ' 
-        TextBox6.Location = New Point(440, 296)
+        TextBox6.Location = New Point(434, 317)
         TextBox6.Name = "TextBox6"
-        TextBox6.Size = New Size(308, 27)
+        TextBox6.Size = New Size(259, 27)
         TextBox6.TabIndex = 10
         ' 
         ' TextBox7
         ' 
-        TextBox7.Location = New Point(440, 355)
+        TextBox7.Location = New Point(434, 376)
         TextBox7.Name = "TextBox7"
-        TextBox7.Size = New Size(308, 27)
+        TextBox7.Size = New Size(259, 27)
         TextBox7.TabIndex = 10
         ' 
         ' dtpBirth
         ' 
         dtpBirth.CustomFormat = ""
         dtpBirth.Format = DateTimePickerFormat.Short
-        dtpBirth.Location = New Point(440, 191)
+        dtpBirth.Location = New Point(434, 212)
         dtpBirth.Margin = New Padding(3, 4, 3, 4)
         dtpBirth.Name = "dtpBirth"
-        dtpBirth.Size = New Size(308, 27)
+        dtpBirth.Size = New Size(163, 27)
         dtpBirth.TabIndex = 12
         ' 
         ' btnedit
         ' 
-        btnedit.Location = New Point(228, 428)
+        btnedit.Location = New Point(99, 452)
         btnedit.Name = "btnedit"
-        btnedit.Size = New Size(163, 46)
+        btnedit.Size = New Size(185, 48)
         btnedit.TabIndex = 13
         btnedit.Text = "Thay Đổi Thông Tin"
         btnedit.UseVisualStyleBackColor = True
         ' 
         ' btncancel
         ' 
-        btncancel.Location = New Point(531, 428)
+        btncancel.Location = New Point(462, 452)
         btncancel.Name = "btncancel"
-        btncancel.Size = New Size(113, 46)
+        btncancel.Size = New Size(135, 48)
         btncancel.TabIndex = 14
         btncancel.Text = "Huỷ Bỏ"
         btncancel.UseVisualStyleBackColor = True
+        ' 
+        ' PictureBox1
+        ' 
+        PictureBox1.BackColor = SystemColors.ActiveBorder
+        PictureBox1.Location = New Point(29, 100)
+        PictureBox1.Name = "PictureBox1"
+        PictureBox1.Size = New Size(231, 314)
+        PictureBox1.TabIndex = 15
+        PictureBox1.TabStop = False
         ' 
         ' InfoAccount
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(792, 501)
+        ClientSize = New Size(745, 531)
+        Controls.Add(PictureBox1)
         Controls.Add(btncancel)
         Controls.Add(btnedit)
         Controls.Add(dtpBirth)
@@ -205,15 +220,12 @@ Partial Class InfoAccount
         Controls.Add(Label3)
         Controls.Add(Label2)
         Controls.Add(Label1)
-        Controls.Add(PictureBox1)
         Name = "InfoAccount"
         Text = "InfoAccount"
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
-
-    Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
@@ -230,4 +242,5 @@ Partial Class InfoAccount
     Friend WithEvents dtpBirth As DateTimePicker
     Friend WithEvents btnedit As Button
     Friend WithEvents btncancel As Button
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

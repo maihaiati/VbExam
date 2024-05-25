@@ -8,7 +8,7 @@ Public Class Dashboard
     Dim params As New List(Of SqlParameter)
 
     Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-		btnMe.Text = fullName
+        btnMe.Text = fullName
         sql = "SELECT Administrator FROM Giangvien WHERE Magv = @Magv"
         params.Add(New SqlParameter("@Magv", userName))
         If getData(sql, params).Rows.Item(0).Item("Administrator") = 0 Then
@@ -51,5 +51,7 @@ Public Class Dashboard
 
     End Sub
 
-
+    Private Sub btnMyAcc_Click(sender As Object, e As EventArgs) Handles btnMyAcc.Click
+        InfoAccount.Show()
+    End Sub
 End Class

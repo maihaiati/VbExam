@@ -1,3 +1,3 @@
-﻿Module InfoAccount
+﻿Module InfoAccountform
 
 End Module
