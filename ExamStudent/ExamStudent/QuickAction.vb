@@ -81,7 +81,7 @@ Module QuickAction
 
 	Public Function checkExists(fieldName As String, tableName As String, value As String) As Boolean
 		sql = "SELECT " + fieldName + " FROM " + tableName + " WHERE " + fieldName + "= @value"
-		Dim params As New List(Of SqlParameter)
+		Dim params As New List(Of SqlParameter)()
 		params.Add(New SqlParameter("@value", value))
 		dataTable = getData(sql, params)
 		Return dataTable.Rows.Count > 0

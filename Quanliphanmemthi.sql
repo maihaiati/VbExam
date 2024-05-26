@@ -55,7 +55,7 @@ CREATE TABLE Monhoc(
 	Tenmonhoc nvarchar(60) not null,
 )
 CREATE TABLE Lichthi(
-	Mamonhoc nvarchar(60) not null, 
+	MaDeThi nvarchar(60) not null, 
 	Masv nvarchar(60) not null,
 	Tenmonhoc nvarchar(60) not null,
 	Lop nvarchar(10) not null,
@@ -63,7 +63,7 @@ CREATE TABLE Lichthi(
 	Phongthi nvarchar(10) not null
 )
 use ExamDB
-insert into Lichthi(Mamonhoc,Masv,Tenmonhoc,Lop,Ngaythi,Phongthi) 
+insert into Lichthi(MaDeThi, Masv, Tenmonhoc, Lop, Ngaythi, Phongthi) 
 values ('DHMT',2823220212,N'Đồ Hoạ Máy Tính','TH28.27','2023-04-05 09:30:00','D509')
 		
 CREATE TABLE Khoa (

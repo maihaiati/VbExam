@@ -39,18 +39,6 @@ Public Class Dashboard
         Hide()
     End Sub
 
-    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
-
-    End Sub
-
-    Private Sub PictureBox1_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Label3_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
     Private Sub btnMyAcc_Click(sender As Object, e As EventArgs) Handles btnMyAcc.Click
         InfoAccount.Show()
     End Sub
