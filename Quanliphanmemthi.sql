@@ -2,7 +2,7 @@
 use ExamDB
 create table Sinhvien(
 	Masv nvarchar(60) not null,
-	Passsv nvarchar(60) not null,
+	Passsv nvarchar(70) not null,
 	Image varbinary(max),
 	HoTen Nvarchar(100) not null,
 	Gioitinh nvarchar(10) not null,
@@ -28,7 +28,7 @@ insert into Loginfo(Tennguoidung,Hoatdong,Trangthai,thoigian,chitiet) values (N'
 use ExamDB
 create table Giangvien(
 	Magv nvarchar(60) not null primary key,
-	Passgv nvarchar(60) not null,
+	Passgv nvarchar(70) not null,
 	Image varbinary(max),
 	Hotengv nvarchar(100) not null,
 	Gioitinh nvarchar(10) not null,
