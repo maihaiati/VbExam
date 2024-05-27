@@ -73,13 +73,15 @@ CREATE TABLE Khoa (
 	TenKhoa NVARCHAR(30) NOT NULL
 )
 INSERT INTO Khoa (MaKhoa, TenKhoa) VALUES ('CNTT', N'Công nghệ thông tin')
+use ExamDB
 CREATE TABLE DeThi (
 	MaDeThi NVARCHAR(20) NOT NULL PRIMARY KEY,
 	MaKhoa NVARCHAR(10) NOT NULL,
 	TenDeThi NVARCHAR(40) NOT NULL,
-	SoCau int
+	SoCau int,
+	ThoiGian time
 )
-INSERT INTO DeThi (MaDeThi, MaKhoa, TenDeThi, SoCau) VALUES ('TIN01', 'CNTT', N'Tin 1', 2)
+INSERT INTO DeThi (MaDeThi, MaKhoa, TenDeThi, SoCau,ThoiGian) VALUES ('TIN01', 'CNTT', N'Tin 1', 2,'00:30:00')
 CREATE TABLE CauHoi (
 	MaCauHoi NVARCHAR(40) NOT NULL PRIMARY KEY,
 	MaDeThi NVARCHAR(20) NOT NULL,
