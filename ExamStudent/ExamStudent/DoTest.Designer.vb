@@ -31,13 +31,16 @@ Partial Class DoTest
 		Button6 = New Button()
 		Label1 = New Label()
 		ComboBox1 = New ComboBox()
+		MenuStrip1 = New MenuStrip()
+		btnMe = New ToolStripMenuItem()
+		MenuStrip1.SuspendLayout()
 		SuspendLayout()
 		' 
 		' RichTextBox1
 		' 
-		RichTextBox1.Location = New Point(12, 12)
+		RichTextBox1.Location = New Point(12, 37)
 		RichTextBox1.Name = "RichTextBox1"
-		RichTextBox1.Size = New Size(875, 587)
+		RichTextBox1.Size = New Size(875, 562)
 		RichTextBox1.TabIndex = 0
 		RichTextBox1.Text = ""
 		' 
@@ -119,6 +122,22 @@ Partial Class DoTest
 		ComboBox1.Size = New Size(121, 23)
 		ComboBox1.TabIndex = 8
 		' 
+		' MenuStrip1
+		' 
+		MenuStrip1.Items.AddRange(New ToolStripItem() {btnMe})
+		MenuStrip1.Location = New Point(0, 0)
+		MenuStrip1.Name = "MenuStrip1"
+		MenuStrip1.Size = New Size(899, 24)
+		MenuStrip1.TabIndex = 9
+		MenuStrip1.Text = "MenuStrip1"
+		' 
+		' btnMe
+		' 
+		btnMe.Alignment = ToolStripItemAlignment.Right
+		btnMe.Name = "btnMe"
+		btnMe.Size = New Size(22, 20)
+		btnMe.Text = " "
+		' 
 		' DoTest
 		' 
 		AutoScaleDimensions = New SizeF(7F, 15F)
@@ -133,8 +152,12 @@ Partial Class DoTest
 		Controls.Add(Button2)
 		Controls.Add(Button1)
 		Controls.Add(RichTextBox1)
+		Controls.Add(MenuStrip1)
+		MainMenuStrip = MenuStrip1
 		Name = "DoTest"
 		Text = "Exam Student"
+		MenuStrip1.ResumeLayout(False)
+		MenuStrip1.PerformLayout()
 		ResumeLayout(False)
 		PerformLayout()
 	End Sub
@@ -148,4 +171,6 @@ Partial Class DoTest
 	Friend WithEvents Button6 As Button
 	Friend WithEvents Label1 As Label
 	Friend WithEvents ComboBox1 As ComboBox
+	Friend WithEvents MenuStrip1 As MenuStrip
+	Friend WithEvents btnMe As ToolStripMenuItem
 End Class

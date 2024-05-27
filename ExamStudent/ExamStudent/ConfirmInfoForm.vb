@@ -4,6 +4,7 @@ Imports System.IO
 Public Class ConfirmInfoForm
 	Public userName As String
 	Public maDeThi As String
+	Dim fullName As String
 	Dim machineName As String = Environment.MachineName
 
 	' Hàm chuyển đổi từ mảng byte sang đối tượng Image
@@ -39,7 +40,10 @@ Public Class ConfirmInfoForm
 	End Sub
 
 	Private Sub btnConfirm_Click(sender As Object, e As EventArgs) Handles btnConfirm.Click
-
+		DoTest.userName = userName
+		DoTest.maDeThi = maDeThi
+		DoTest.fullName = fullName
+		DoTest.Show()
 	End Sub
 
 	Private Sub ConfirmInfoForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -50,6 +54,7 @@ Public Class ConfirmInfoForm
 		If dataTable.Rows.Count > 0 Then
 			lbMSV.Text = userName
 			lbHoTen.Text = dataTable.Rows.Item(0).Item("HoTen")
+			fullName = dataTable.Rows.Item(0).Item("HoTen")
 			lbGioiTinh.Text = dataTable.Rows.Item(0).Item("Gioitinh")
 			lbNgaySinh.Text = dataTable.Rows.Item(0).Item("Ngaysinh")
 			lbLop.Text = dataTable.Rows.Item(0).Item("Lop")
