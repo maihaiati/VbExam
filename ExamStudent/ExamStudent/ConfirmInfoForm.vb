@@ -43,7 +43,9 @@ Public Class ConfirmInfoForm
 		DoTest.userName = userName
 		DoTest.maDeThi = maDeThi
 		DoTest.fullName = fullName
+		DoTest.imageStudent = GetImageFromDatabase(userName)
 		DoTest.Show()
+		Hide()
 	End Sub
 
 	Private Sub ConfirmInfoForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load

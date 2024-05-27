@@ -34,11 +34,7 @@ Public Class DashboardForm
 		params.Add(New SqlParameter("@MaSv", userName))
 
 		Dim dataTable As DataTable = getData(sql, params)
-		Dim result As New DataTable
-
-		For Each column As DataColumn In dataTable.Columns
-			result.Columns.Add(column.ColumnName, column.DataType)
-		Next
+		Dim result As DataTable = dataTable.Clone()
 
 		If dataTable.Rows.Count > 0 Then
 			Dim examTime As DateTime
@@ -76,6 +72,7 @@ Public Class DashboardForm
 			ConfirmInfoForm.userName = selectedRow.Cells("Masv").Value.ToString()
 			ConfirmInfoForm.maDeThi = selectedRow.Cells("MaDeThi").Value.ToString()
 			ConfirmInfoForm.Show()
+			Hide()
 		End If
 	End Sub
 End Class

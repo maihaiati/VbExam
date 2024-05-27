@@ -1,6 +1,7 @@
 ﻿Imports System
 Imports System.Data
 Imports System.Data.SqlClient
+Imports System.Reflection.Metadata.Ecma335
 Module QuickAction
 	Public sqlCon As SqlClient.SqlConnection
 	Public dataAdapter As SqlClient.SqlDataAdapter
@@ -96,4 +97,9 @@ Module QuickAction
 		params.Add(New SqlParameter("@details", details))
 		runSqlCommand(sql, params)
 	End Sub
+
+	Public Function GetRandom(ByVal Min As Integer, ByVal Max As Integer) As Integer
+		Dim Generator As System.Random = New System.Random()
+		Return Generator.Next(Min, Max)
+	End Function
 End Module
