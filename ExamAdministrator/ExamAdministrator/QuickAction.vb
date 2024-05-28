@@ -102,7 +102,7 @@ Module QuickAction
 	Public Function HashPasswordWithSalt(password As String, salt As String) As String
 		Dim saltedPassword As String = password & salt
 
-		Using sha256 As SHA256 = sha256.Create()
+		Using sha256 As SHA256 = SHA256.Create()
 			Dim hashBytes As Byte() = sha256.ComputeHash(Encoding.UTF8.GetBytes(saltedPassword))
 			Dim hash As New StringBuilder()
 			For Each b As Byte In hashBytes

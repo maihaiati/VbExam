@@ -13,7 +13,7 @@ create table Sinhvien(
 	constraint sinhvien_id primary key (Masv)
 )
 	use ExamDB
-insert into Sinhvien(Masv,Passsv,image,HoTen,Gioitinh,Ngaysinh,Lop,Khoa,salt) values 
+insert into Sinhvien(Masv,da7b628aa72d4dc9b8349bafbf9b4b7ed8df0bd4432e35392c70f27a08254d7b,image,HoTen,Gioitinh,Ngaysinh,Lop,Khoa,salt) values 
 ('2823220212',2823220212,(SELECT * FROM OPENROWSET(BULK 'C:\Users\ntv\Downloads\Compressed\VbExam\imagesv\2823220212.jpg', SINGLE_BLOB) AS image),N'Ngô Tuấn Việt',N'Nam','2005-12-12',N'TH28.27',N'Công Nghệ Thông Tin',434282283)
 
 select * from Loginfo
