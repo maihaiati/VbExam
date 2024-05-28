@@ -36,12 +36,12 @@ create table Giangvien(
 	Ngaysinh date not null,
 	Chucvu nvarchar(50) not null,
 	Khoa nvarchar(50) not null,
-	salt nvarchar(24) not null,
+	salt nvarchar not null,
 	Administrator BIT not null
 )
 use ExamDB
-insert into Giangvien(Magv,Passgv,image,Hotengv,Gioitinh,Ngaysinh,Chucvu,Khoa,salt,Administrator) values ('GV012','12345',(SELECT * FROM OPENROWSET(BULK 'C:\Users\ntv\Downloads\Compressed\VbExam\imagegv\GV012@.jpg', SINGLE_BLOB) AS image),N'Mai Quang Hải',N'Nam','07/16/2005',N'Trưởng Khoa',N'Công Nghệ Thông Tin',3456467, 1)
-
+insert into Giangvien(Magv,Passgv,image,Hotengv,Gioitinh,Ngaysinh,Chucvu,Khoa,salt,Administrator) values ('GV012@','12345',(SELECT * FROM OPENROWSET(BULK 'C:\Users\ntv\Downloads\Compressed\VbExam\imagegv\GV012@.jpg', SINGLE_BLOB) AS image),N'Mai Quang Hải',N'Nam','07/16/2005',N'Trưởng Khoa',N'Công Nghệ Thông Tin',3456467, 1)
+select * from Loginfo
 Create table Bangdiem(
 	Mamonhoc nvarchar(60) not null,
 	Masv nvarchar(60) not null,
@@ -133,6 +133,32 @@ BEGIN
     );
 END;
 
+select * from Loginfo
+use ExamDB
+
+CREATE TRIGGER check_account_delete
+ON Giangvien
+INSTEAD OF DELETE
+AS
+BEGIN
+    -- Đếm số lượng bản ghi trong bảng Users
+    DECLARE @user_count INT;
+    SELECT @user_count = COUNT(*) FROM Giangvien;
+
+    -- Kiểm tra nếu chỉ còn một bản ghi, thì ngăn không cho xóa
+    IF @user_count <= 1
+    BEGIN
+        RAISERROR (N'Không thể xoá tài khoản cuối cùng trong bảng', 16, 1);
+        RETURN;
+    END
+
+    -- Thực hiện lệnh xóa nếu số lượng bản ghi > 1
+    DELETE FROM Giangvien
+    WHERE Magv IN (SELECT Magv FROM deleted);
+END;
+
+-- kiểm tra số lượng tài khoản
+
 CREATE TRIGGER trg_UpdateSoCauHoiOnDelete
 ON CauHoi
 AFTER DELETE
@@ -150,7 +176,7 @@ BEGIN
     );
 END;
 
-
+-- Xoá bảng ghi log
 	CREATE PROCEDURE DeleteOldData
 AS
 BEGIN
@@ -159,6 +185,3 @@ BEGIN
     DELETE FROM Loginfo WHERE thoigian < DATEADD(WEEK, -1, GETDATE());
 END
 EXEC DeleteOldData;
-select * from Loginfo
-use ExamDB
-select * from Giangvien
