@@ -2,6 +2,8 @@
 Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Reflection.Metadata.Ecma335
+Imports System.Security.Cryptography
+Imports System.Text
 Module QuickAction
 	Public sqlCon As SqlClient.SqlConnection
 	Public dataAdapter As SqlClient.SqlDataAdapter
@@ -98,8 +100,28 @@ Module QuickAction
 		runSqlCommand(sql, params)
 	End Sub
 
-	Public Function GetRandom(ByVal Min As Integer, ByVal Max As Integer) As Integer
-		Dim Generator As System.Random = New System.Random()
-		Return Generator.Next(Min, Max)
+	Public Function HashPasswordWithSalt(password As String, salt As String) As String
+		Dim saltedPassword As String = password & salt
+
+		Using sha256 As SHA256 = SHA256.Create()
+			Dim hashBytes As Byte() = sha256.ComputeHash(Encoding.UTF8.GetBytes(saltedPassword))
+			Dim hash As New StringBuilder()
+			For Each b As Byte In hashBytes
+				hash.Append(b.ToString("x2"))
+			Next
+			Return hash.ToString()
+		End Using
+	End Function
+
+	Public Function GenerateSalt(length As Integer) As String
+		Dim saltBytes(length - 1) As Byte
+
+		Using rng As New RNGCryptoServiceProvider()
+			rng.GetBytes(saltBytes)
+		End Using
+
+		Dim salt As String = Convert.ToBase64String(saltBytes)
+
+		Return salt
 	End Function
 End Module

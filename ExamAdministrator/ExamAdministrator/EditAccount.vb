@@ -135,18 +135,22 @@ Public Class EditAccount
         If accountType = 0 Then
 
             If txtPass.Text <> "" Then
-                sql = "UPDATE Giangvien SET Passgv = @Passgv, Image = @Image , Hotengv = @Hotengv, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Chucvu = @Chucvu, Khoa = @Khoa, Administrator = @Administrator " &
+                sql = "UPDATE Giangvien SET Passgv = @Passgv, Image = @Image , Hotengv = @Hotengv, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Chucvu = @Chucvu, Khoa = @Khoa, salt = @Salt, Administrator = @Administrator " &
               "WHERE Magv = @Magv"
+
+                Dim salt = GenerateSalt(15)
+                Dim pass As String = HashPasswordWithSalt(txtPass.Text, salt)
 
                 If checkExists("Magv", "Giangvien", userName) Then
                     params.Add(New SqlParameter("@Magv", userName))
-                    params.Add(New SqlParameter("@Passgv", txtPass.Text))
+                    params.Add(New SqlParameter("@Passgv", pass))
                     params.Add(New SqlParameter("@Image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)))
                     params.Add(New SqlParameter("@Hotengv", txtName.Text))
                     params.Add(New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()))
                     params.Add(New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")))
                     params.Add(New SqlParameter("@Chucvu", txtLopChucVu.Text))
                     params.Add(New SqlParameter("@Khoa", txtKhoa.Text))
+                    params.Add(New SqlParameter("@Salt", salt))
                     params.Add(New SqlParameter("@Administrator", admin))
 
                     If runSqlCommand(sql, params) Then
@@ -160,7 +164,7 @@ Public Class EditAccount
                     MsgBox("Không tìm thấy mã giảng viên!")
                 End If
             Else
-                sql = "UPDATE Giangvien SET  Hotengv = @Hotengv,Image = @Image, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Chucvu = @Chucvu, Khoa = @Khoa, Administrator = @Administrator " &
+                sql = "UPDATE Giangvien SET Hotengv = @Hotengv,Image = @Image, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Chucvu = @Chucvu, Khoa = @Khoa, Administrator = @Administrator " &
               "WHERE Magv = @Magv"
 
                 If checkExists("Magv", "Giangvien", userName) Then
@@ -188,28 +192,57 @@ Public Class EditAccount
             log(userName, "Chỉnh sửa tài khoản", If(success, "Thành công", "Thất bại"), "Chỉnh sửa tài khoản giảng viên")
 
         Else
-            sql = "UPDATE Sinhvien SET Passsv = @Passsv,image = @image, HoTen = @HoTen, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Lop = @Lop, Khoa = @Khoa " &
-          "WHERE Masv = @Masv"
+            If txtPass.Text <> "" Then
+                sql = "UPDATE Sinhvien SET Passsv = @Passsv,image = @image, HoTen = @HoTen, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Lop = @Lop, Khoa = @Khoa, salt = @Salt " &
+                "WHERE Masv = @Masv"
 
-            If checkExists("Masv", "Sinhvien", userName) Then
-                params.Add(New SqlParameter("@Masv", userName))
-                params.Add(New SqlParameter("@Passsv", txtPass.Text))
-                params.Add(New SqlParameter("@image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)))
-                params.Add(New SqlParameter("@HoTen", txtName.Text))
-                params.Add(New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()))
-                params.Add(New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")))
-                params.Add(New SqlParameter("@Lop", txtLopChucVu.Text))
-                params.Add(New SqlParameter("@Khoa", txtKhoa.Text))
+                Dim salt = GenerateSalt(15)
+                Dim pass As String = HashPasswordWithSalt(txtPass.Text, salt)
 
-                If runSqlCommand(sql, params) Then
-                    MessageBox.Show("Chỉnh sửa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    success = True
-                    AccountManagement.loadData()
+                If checkExists("Masv", "Sinhvien", userName) Then
+                    params.Add(New SqlParameter("@Masv", userName))
+                    params.Add(New SqlParameter("@Passsv", pass))
+                    params.Add(New SqlParameter("@image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)))
+                    params.Add(New SqlParameter("@HoTen", txtName.Text))
+                    params.Add(New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()))
+                    params.Add(New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")))
+                    params.Add(New SqlParameter("@Lop", txtLopChucVu.Text))
+                    params.Add(New SqlParameter("@Khoa", txtKhoa.Text))
+                    params.Add(New SqlParameter("@Salt", salt))
+
+                    If runSqlCommand(sql, params) Then
+                        MessageBox.Show("Chỉnh sửa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        success = True
+                        AccountManagement.loadData()
+                    Else
+                        MessageBox.Show("Chỉnh sửa tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
                 Else
-                    MessageBox.Show("Chỉnh sửa tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    MessageBox.Show("Không tìm thấy mã sinh viên!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             Else
-                MessageBox.Show("Không tìm thấy mã sinh viên!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                sql = "UPDATE Sinhvien SET image = @image, HoTen = @HoTen, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Lop = @Lop, Khoa = @Khoa " &
+                "WHERE Masv = @Masv"
+
+                If checkExists("Masv", "Sinhvien", userName) Then
+                    params.Add(New SqlParameter("@Masv", userName))
+                    params.Add(New SqlParameter("@image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)))
+                    params.Add(New SqlParameter("@HoTen", txtName.Text))
+                    params.Add(New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()))
+                    params.Add(New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")))
+                    params.Add(New SqlParameter("@Lop", txtLopChucVu.Text))
+                    params.Add(New SqlParameter("@Khoa", txtKhoa.Text))
+
+                    If runSqlCommand(sql, params) Then
+                        MessageBox.Show("Chỉnh sửa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        success = True
+                        AccountManagement.loadData()
+                    Else
+                        MessageBox.Show("Chỉnh sửa tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
+                Else
+                    MessageBox.Show("Không tìm thấy mã sinh viên!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
             End If
 
             log(userName, "Chỉnh sửa tài khoản", If(success, "Thành công", "Thất bại"), "Chỉnh sửa tài khoản sinh viên")

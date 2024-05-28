@@ -8,15 +8,19 @@ Public Class LoginForm
             Return
         End If
 
-        Dim sql As String = "SELECT * FROM Sinhvien WHERE Masv = @Masv AND Passsv = @Passsv"
-        Dim params As New List(Of SqlParameter)
-
-        params.Add(New SqlParameter("@Masv", txtUser.Text))
-        params.Add(New SqlParameter("@Passsv", txtPass.Text))
+        Dim sql As String = "SELECT * FROM Sinhvien WHERE Masv = @Masv"
+        Dim params As New List(Of SqlParameter) From {New SqlParameter("@Masv", txtUser.Text)}
 
         dataTable = getData(sql, params)
+        If dataTable.Rows.Count = 0 Then
+            MessageBox.Show("Đăng nhập thất bại!", "Exam Student", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtUser.Text = ""
+            txtPass.Text = ""
+        End If
 
-        If dataTable.Rows.Count > 0 Then
+        Dim inputPass = HashPasswordWithSalt(txtPass.Text, dataTable.Rows.Item(0).Item("salt"))
+
+        If inputPass = dataTable.Rows.Item(0).Item("Passsv") Then
             log(txtUser.Text, "Đăng nhập", "Thành công", "Đăng nhập")
 
             DashboardForm.userName = dataTable.Rows.Item(0).Item("Masv")
@@ -26,18 +30,10 @@ Public Class LoginForm
             txtUser.Text = ""
             txtPass.Text = ""
         Else
-            MsgBox("Đăng nhập thất bại, vui lòng thử lại!")
+            MessageBox.Show("Đăng nhập thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            log(txtUser.Text, "Đăng nhập", "Thất bại", "Đăng nhập")
             txtUser.Text = ""
             txtPass.Text = ""
-
-            sql = "SELECT * FROM Sinhvien WHERE Masv = @Masv"
-
-            params.Clear()
-            params.Add(New SqlParameter("@Masv", txtUser.Text))
-
-            If getData(sql, params).Rows.Count > 0 Then
-                log(txtUser.Text, "Đăng nhập", "Thất bại", "Đăng nhập")
-            End If
         End If
     End Sub
 

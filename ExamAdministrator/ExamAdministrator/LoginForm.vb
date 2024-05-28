@@ -8,37 +8,24 @@ Public Class LoginForm
             Return
         End If
 
-        ' Câu lệnh SQL với các tham số
-        Dim sql As String = "SELECT * FROM Giangvien WHERE Magv = @Magv AND Passgv = @Passgv"
+        Dim sql As String = "SELECT * FROM Giangvien WHERE Magv = @Magv"
 
-        ' Tạo danh sách các tham số
-        Dim params As New List(Of SqlParameter) From {
-            New SqlParameter("@Magv", txtUser.Text),
-            New SqlParameter("@Passgv", txtPass.Text)
-        }
+        Dim params As New List(Of SqlParameter) From {New SqlParameter("@Magv", txtUser.Text)}
 
-        ' Gọi hàm getData với câu lệnh SQL và các tham số
-        dataTable = getData(sql, params)
+		dataTable = getData(sql, params)
+        If dataTable.Rows.Count = 0 Then
+            MessageBox.Show("Đăng nhập thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            'Không ghi log vì trường hợp này mã gv không tồn tại (tương tự với Exam Student)
+            txtUser.Text = ""
+            txtPass.Text = ""
+        End If
 
-        ' Kiểm tra kết quả
-        If dataTable.Rows.Count > 0 Then
+        Dim inputPass = HashPasswordWithSalt(txtPass.Text, dataTable.Rows.Item(0).Item("salt"))
+
+        If inputPass = dataTable.Rows.Item(0).Item("Passgv") Then
             log(txtUser.Text, "Đăng nhập", "Thành công", "Đăng nhập")
 
-            ' Định nghĩa chuỗi SQL với tham số
-            sql = "SELECT Hotengv FROM Giangvien WHERE Magv = @Magv"
-
-            ' Tạo danh sách các tham số
-            params = New List(Of SqlParameter) From {
-                New SqlParameter("@Magv", txtUser.Text)
-            }
-
-            ' Gọi hàm getData với chuỗi SQL và danh sách tham số
-            dataTable = getData(sql, params)
-            If dataTable.Rows.Count > 0 Then
-                Dashboard.fullName = dataTable.Rows(0)("Hotengv").ToString()
-            Else
-                Dashboard.fullName = txtUser.Text
-            End If
+            Dashboard.fullName = dataTable.Rows.Item(0).Item("Hotengv").ToString()
             Dashboard.userName = txtUser.Text
             Dashboard.Show()
             Hide()
@@ -46,18 +33,9 @@ Public Class LoginForm
             txtPass.Text = ""
         Else
             MessageBox.Show("Đăng nhập thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            log(txtUser.Text, "Đăng nhập", "Thất bại", "Đăng nhập")
             txtUser.Text = ""
             txtPass.Text = ""
-            ' Câu lệnh SQL với các tham số
-            sql = "SELECT * FROM Giangvien WHERE Magv = @Magv"
-
-            ' Tạo danh sách các tham số
-            params = New List(Of SqlParameter) From {
-                New SqlParameter("@Magv", txtUser.Text)
-            }
-            If getData(sql, params).Rows.Count > 0 Then
-                log(txtUser.Text, "Đăng nhập", "Thất bại", "Đăng nhập")
-            End If
         End If
     End Sub
 
