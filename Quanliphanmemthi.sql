@@ -69,14 +69,15 @@ insert into Lichthi(MaDeThi, Masv, Tenmonhoc, Lop, Ngaythi, Phongthi)
 values ('DHMT',2823220212,N'Đồ Hoạ Máy Tính','TH28.27','2023-04-05 09:30:00','D509')
 		
 CREATE TABLE Khoa (
-	MaKhoa NVARCHAR(10) NOT NULL PRIMARY KEY,
+	MaKhoa NVARCHAR(40) NOT NULL PRIMARY KEY,
 	TenKhoa NVARCHAR(30) NOT NULL
 )
 INSERT INTO Khoa (MaKhoa, TenKhoa) VALUES ('CNTT', N'Công nghệ thông tin')
 use ExamDB
 CREATE TABLE DeThi (
-	MaDeThi NVARCHAR(20) NOT NULL PRIMARY KEY,
-	MaKhoa NVARCHAR(10) NOT NULL,
+	MaLichThi NVARCHAR(40) NOT NULL PRIMARY KEY,
+	MaDeThi NVARCHAR(40) NOT NULL,
+	MaKhoa NVARCHAR(40) NOT NULL,
 	TenDeThi NVARCHAR(40) NOT NULL,
 	SoCau int,
 	ThoiGian int

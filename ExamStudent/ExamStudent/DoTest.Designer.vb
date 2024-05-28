@@ -47,6 +47,7 @@ Partial Class DoTest
 		lblTenDeThi = New Label()
 		lblSoCau = New Label()
 		lblSoPhut = New Label()
+		btnSubmit = New Button()
 		CType(picture, ComponentModel.ISupportInitialize).BeginInit()
 		SuspendLayout()
 		' 
@@ -55,7 +56,7 @@ Partial Class DoTest
 		txtQues.Font = New Font("Segoe UI", 12F)
 		txtQues.Location = New Point(250, 12)
 		txtQues.Name = "txtQues"
-		txtQues.Size = New Size(637, 587)
+		txtQues.Size = New Size(756, 587)
 		txtQues.TabIndex = 0
 		txtQues.Text = ""
 		' 
@@ -267,11 +268,22 @@ Partial Class DoTest
 		lblSoPhut.TabIndex = 23
 		lblSoPhut.Text = "Số phút: "
 		' 
+		' btnSubmit
+		' 
+		btnSubmit.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+		btnSubmit.Location = New Point(893, 614)
+		btnSubmit.Name = "btnSubmit"
+		btnSubmit.Size = New Size(113, 49)
+		btnSubmit.TabIndex = 24
+		btnSubmit.Text = "Nộp bài"
+		btnSubmit.UseVisualStyleBackColor = True
+		' 
 		' DoTest
 		' 
 		AutoScaleDimensions = New SizeF(7F, 15F)
 		AutoScaleMode = AutoScaleMode.Font
-		ClientSize = New Size(899, 675)
+		ClientSize = New Size(1020, 677)
+		Controls.Add(btnSubmit)
 		Controls.Add(lblSoPhut)
 		Controls.Add(lblSoCau)
 		Controls.Add(lblTenDeThi)
@@ -326,4 +338,5 @@ Partial Class DoTest
 	Friend WithEvents lblTenDeThi As Label
 	Friend WithEvents lblSoCau As Label
 	Friend WithEvents lblSoPhut As Label
+	Friend WithEvents btnSubmit As Button
 End Class

@@ -12,24 +12,24 @@ Public Class DoTest
 	Public lop As String
 
 	Dim sql As String
-	Dim dataTable As DataTable
-	Dim shuffleDataTable As New DataTable
-	Dim numOfQues As Integer
-	Dim quesIndex As Integer
-	Dim machineName As String = Environment.MachineName
-	Dim studentAnswer As New List(Of Integer)
-	Dim progress As Integer = 0
+	Dim dataTable As DataTable ' Dữ liệu đề thi chưa đảo
+	Dim shuffleDataTable As New DataTable ' Dữ liệu đề thi đảo
+	Dim numOfQues As Integer ' Số câu
+	Dim quesIndex As Integer ' Câu hỏi đang xem
+	Dim machineName As String = Environment.MachineName ' Lấy tên của máy tính
+	Dim studentAnswer As New List(Of Integer) ' Mảng chứa đáp án đã chọn
+	Dim progress As Integer = 0 ' Số câu đã làm
 	Dim hour As Integer
 	Dim minute As Integer
 	Dim second As Integer
 
-	Function ByteArrayToImage(ByVal byteArray As Byte()) As Image
+	Function ByteArrayToImage(ByVal byteArray As Byte()) As Image ' Chuyển đổi mảng byte thành ảnh
 		Using ms As New MemoryStream(byteArray)
 			Return Image.FromStream(ms)
 		End Using
 	End Function
 
-	Function GetImageFromDatabase(ByVal maAnh As String) As Byte()
+	Function GetImageFromDatabase(ByVal maAnh As String) As Byte() ' Lấy ảnh từ database theo mã ảnh
 		Dim imageData As Byte() = Nothing
 		Dim sql As String
 		sql = "SELECT image FROM ImageData WHERE Maanh = @MaAnh"
@@ -49,13 +49,13 @@ Public Class DoTest
 		Return imageData
 	End Function
 
-	Private Sub insertImage(rtb As RichTextBox, maAnh As String)
+	Private Sub insertImage(rtb As RichTextBox, maAnh As String) ' Chèn ảnh vào textbox
 		Dim image As Image = ByteArrayToImage(GetImageFromDatabase(maAnh))
 		Clipboard.SetImage(image)
 		rtb.Paste()
 	End Sub
 
-	Private Sub loadQues(quesIndex As Integer)
+	Private Sub loadQues(quesIndex As Integer) ' Hàm hiển thị câu hỏi
 		Dim quesData As String
 		cbbQues.SelectedIndex = quesIndex
 		quesData = shuffleDataTable.Rows.Item(quesIndex).Item("NoiDung") & vbCrLf & vbCrLf & "A: " & shuffleDataTable.Rows.Item(quesIndex).Item("DapAnA") & vbCrLf & vbCrLf & "B: " & shuffleDataTable.Rows.Item(quesIndex).Item("DapAnB") & vbCrLf & vbCrLf & "C: " & shuffleDataTable.Rows.Item(quesIndex).Item("DapAnC") & vbCrLf & vbCrLf & "D: " + shuffleDataTable.Rows.Item(quesIndex).Item("DapAnD")
@@ -67,9 +67,13 @@ Public Class DoTest
 		Else
 			txtQues.Text = quesData
 		End If
+		btnA.Enabled = If(shuffleDataTable.Rows.Item(quesIndex).Item("DapAnA") <> "", True, False)
+		btnB.Enabled = If(shuffleDataTable.Rows.Item(quesIndex).Item("DapAnB") <> "", True, False)
+		btnC.Enabled = If(shuffleDataTable.Rows.Item(quesIndex).Item("DapAnC") <> "", True, False)
+		btnD.Enabled = If(shuffleDataTable.Rows.Item(quesIndex).Item("DapAnD") <> "", True, False)
 	End Sub
 
-	Private Sub shuffleQues()
+	Private Sub shuffleQues() ' Hàm đảo câu hỏi
 		Dim rows As DataRow() = dataTable.Select()
 		shuffleDataTable = dataTable.Clone()
 
@@ -213,26 +217,32 @@ Public Class DoTest
 	End Sub
 
 	Private Sub scoreCal()
+		' Vô hiệu hoá các phần tử điều khiển trên form
 		btnA.Enabled = False
 		btnB.Enabled = False
 		btnC.Enabled = False
 		btnD.Enabled = False
+		btnSubmit.Enabled = False
 		cbbQues.Enabled = False
 		btnNext.Enabled = False
 		btnPrevious.Enabled = False
+		' Dừng timer
 		Timer.Stop()
-		Dim score As Double = 0
-		Dim trueAnsNum As Integer = 0
+		Dim score As Double = 0 ' Điểm
+		Dim trueAnsNum As Integer = 0 ' Số câu đúng
+		Dim skipNum As Integer = 0 ' Số câu bỏ qua
 		For answer = 0 To numOfQues - 1
 			If studentAnswer.Item(answer) = shuffleDataTable.Rows.Item(answer).Item("DapAnDung") Then
 				trueAnsNum += 1
+			ElseIf studentAnswer.Item(answer) = -1 Then
+				skipNum += 1
 			End If
 		Next
 		score = (10 / numOfQues) * trueAnsNum
 		txtQues.Text = "Điểm của bạn: " & score
 	End Sub
 
-	Private Sub countDown()
+	Private Sub countDown() ' Hàm đếm ngược
 		Dim strHour, strMinute, strSecond As String
 		strHour = If(hour < 10, "0" & hour, hour)
 		strMinute = If(minute < 10, "0" & minute, minute)
@@ -261,5 +271,12 @@ Public Class DoTest
 
 	Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
 		countDown()
+	End Sub
+
+	Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
+		Dim result As DialogResult = MessageBox.Show("Bạn có chắc muốn nộp bài?", "Exam Student", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+		If result = DialogResult.Yes Then
+			scoreCal()
+		End If
 	End Sub
 End Class

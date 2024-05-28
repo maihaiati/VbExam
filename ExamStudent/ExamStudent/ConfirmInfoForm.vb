@@ -1,4 +1,5 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.ComponentModel
+Imports System.Data.SqlClient
 Imports System.IO
 
 Public Class ConfirmInfoForm
@@ -7,14 +8,12 @@ Public Class ConfirmInfoForm
 	Dim fullName As String
 	Dim machineName As String = Environment.MachineName
 
-	' Hàm chuyển đổi từ mảng byte sang đối tượng Image
 	Function ByteArrayToImage(ByVal byteArray As Byte()) As Image
 		Using ms As New MemoryStream(byteArray)
 			Return Image.FromStream(ms)
 		End Using
 	End Function
 
-	' Hàm lấy dữ liệu ảnh từ cơ sở dữ liệu
 	Function GetImageFromDatabase(ByVal userId As String) As Byte()
 		Dim imageData As Byte() = Nothing
 		Dim sql As String
@@ -70,5 +69,9 @@ Public Class ConfirmInfoForm
 			btnConfirm.Enabled = False
 			btnDenied.Enabled = False
 		End If
+	End Sub
+
+	Private Sub ConfirmInfoForm_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+		DashboardForm.Show()
 	End Sub
 End Class

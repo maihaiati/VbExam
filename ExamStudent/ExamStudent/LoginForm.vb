@@ -21,7 +21,7 @@ Public Class LoginForm
         Dim inputPass = HashPasswordWithSalt(txtPass.Text, dataTable.Rows.Item(0).Item("salt"))
 
         If inputPass = dataTable.Rows.Item(0).Item("Passsv") Then
-            log(txtUser.Text, "Đăng nhập", "Thành công", "Đăng nhập")
+            log(txtUser.Text, "Đăng nhập", "Thành công", "Đăng nhập") ' Ghi nhật ký vào hệ thống
 
             DashboardForm.userName = dataTable.Rows.Item(0).Item("Masv")
             DashboardForm.fullName = dataTable.Rows.Item(0).Item("HoTen")

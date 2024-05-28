@@ -10,6 +10,7 @@ Public Class DashboardForm
 		dgExam.DataSource = data
 	End Sub
 	Private Sub btnMyAccount_Click(sender As Object, e As EventArgs) Handles btnMyAccount.Click
+		InfoAccount.userName = userName
 		InfoAccount.Show()
 	End Sub
 
@@ -38,15 +39,15 @@ Public Class DashboardForm
 
 		If dataTable.Rows.Count > 0 Then
 			Dim examTime As DateTime
-			Dim dataRow As DataRow
-			For i = 0 To dataTable.Rows.Count - 1
-				examTime = Convert.ToDateTime(dataTable.Rows.Item(i).Item("Ngaythi"))
+
+			For Each row As DataRow In dataTable.Rows
+				examTime = Convert.ToDateTime(row("Ngaythi"))
 
 				If currentTime > examTime Then
-					dataRow = dataTable.Rows.Item(i)
-					result.ImportRow(dataRow)
+					result.ImportRow(row)
 				End If
 			Next
+
 			loadData(result)
 		End If
 	End Sub
