@@ -50,11 +50,12 @@ Public Class ExamManagement
 			End If
 
 			EditType.maDe = selectedRow.Cells("MaDeThi").Value.ToString()
-				EditType.maKhoa = selectedRow.Cells("MaKhoa").Value.ToString()
-				EditType.tenDe = selectedRow.Cells("TenDeThi").Value.ToString()
-				EditType.Show()
-			End If
-    End Sub
+			EditType.maKhoa = selectedRow.Cells("MaKhoa").Value.ToString()
+			EditType.tenDe = selectedRow.Cells("TenDeThi").Value.ToString()
+			EditType.soPhut = selectedRow.Cells("ThoiGian").Value
+			EditType.Show()
+		End If
+	End Sub
 
 	Private Sub btnFilter_Click(sender As Object, e As EventArgs) Handles btnFilter.Click
 		ExamFilter.Show()

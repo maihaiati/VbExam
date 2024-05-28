@@ -406,4 +406,10 @@ Public Class EditQuestions
 		picPreview.Image = Nothing
 		saved = False
 	End Sub
+
+	Private Sub cbbQues_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbQues.SelectedIndexChanged
+		saveData()
+		quesIndex = cbbQues.SelectedIndex
+		loadData(quesIndex)
+	End Sub
 End Class

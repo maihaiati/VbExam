@@ -5,6 +5,7 @@ Public Class EditExam
     Public maDe As String
     Public maKhoa As String
     Public tenDe As String
+    Public soPhut As Integer
     Dim sql As String
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
@@ -34,6 +35,7 @@ Public Class EditExam
         txtMaDe.Text = maDe
         txtMaKhoa.Text = maKhoa
         txtTenDe.Text = tenDe
+        numMinute.Value = soPhut
         txtMaDe.Enabled = False
     End Sub
 
@@ -46,11 +48,12 @@ Public Class EditExam
             MessageBox.Show("Không được để trống thông tin!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
 			Dim params As New List(Of SqlParameter)
-            sql = "UPDATE DeThi SET MaKhoa = @MaKhoa, TenDeThi = @TenDeThi WHERE MaDeThi = @MaDe"
+            sql = "UPDATE DeThi SET MaKhoa = @MaKhoa, TenDeThi = @TenDeThi, ThoiGian = @ThoiGian WHERE MaDeThi = @MaDe"
             params.Add(New SqlParameter("@MaKhoa", txtMaKhoa.Text))
 			params.Add(New SqlParameter("@TenDeThi", txtTenDe.Text))
-			params.Add(New SqlParameter("@MaDe", maDe))
-			If Not runSqlCommand(sql, params) Then
+            params.Add(New SqlParameter("@MaDe", maDe))
+            params.Add(New SqlParameter("@ThoiGian", numMinute.Value))
+            If Not runSqlCommand(sql, params) Then
 				MessageBox.Show("Chỉnh sửa đề thi thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 			Else
 				ExamManagement.loadData("SELECT * FROM DeThi", Nothing)

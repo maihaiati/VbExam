@@ -79,9 +79,9 @@ CREATE TABLE DeThi (
 	MaKhoa NVARCHAR(10) NOT NULL,
 	TenDeThi NVARCHAR(40) NOT NULL,
 	SoCau int,
-	ThoiGian time
+	ThoiGian int
 )
-INSERT INTO DeThi (MaDeThi, MaKhoa, TenDeThi, SoCau,ThoiGian) VALUES ('TIN01', 'CNTT', N'Tin 1', 2,'00:30:00')
+INSERT INTO DeThi (MaDeThi, MaKhoa, TenDeThi, SoCau,ThoiGian) VALUES ('TIN01', 'CNTT', N'Tin 1', 15, 5)
 CREATE TABLE CauHoi (
 	MaCauHoi NVARCHAR(40) NOT NULL PRIMARY KEY,
 	MaDeThi NVARCHAR(20) NOT NULL,

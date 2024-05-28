@@ -32,33 +32,30 @@ Partial Class DoTest
 		btnNext = New Button()
 		Label1 = New Label()
 		cbbQues = New ComboBox()
-		MenuStrip1 = New MenuStrip()
-		btnMe = New ToolStripMenuItem()
 		picture = New PictureBox()
 		Label2 = New Label()
 		lblMsv = New Label()
 		lblHoTen = New Label()
 		lblLop = New Label()
 		lblNgaySinh = New Label()
-		lblKhoa = New Label()
+		lblGioiTinh = New Label()
 		Timer = New Timer(components)
 		Label3 = New Label()
-		Label4 = New Label()
-		Label5 = New Label()
+		lblTienTrinh = New Label()
+		lblThoiGian = New Label()
 		Label6 = New Label()
-		Label7 = New Label()
-		Label8 = New Label()
-		Label9 = New Label()
-		MenuStrip1.SuspendLayout()
+		lblTenDeThi = New Label()
+		lblSoCau = New Label()
+		lblSoPhut = New Label()
 		CType(picture, ComponentModel.ISupportInitialize).BeginInit()
 		SuspendLayout()
 		' 
 		' txtQues
 		' 
 		txtQues.Font = New Font("Segoe UI", 12F)
-		txtQues.Location = New Point(250, 37)
+		txtQues.Location = New Point(250, 12)
 		txtQues.Name = "txtQues"
-		txtQues.Size = New Size(637, 562)
+		txtQues.Size = New Size(637, 587)
 		txtQues.TabIndex = 0
 		txtQues.Text = ""
 		' 
@@ -140,25 +137,9 @@ Partial Class DoTest
 		cbbQues.Size = New Size(121, 23)
 		cbbQues.TabIndex = 8
 		' 
-		' MenuStrip1
-		' 
-		MenuStrip1.Items.AddRange(New ToolStripItem() {btnMe})
-		MenuStrip1.Location = New Point(0, 0)
-		MenuStrip1.Name = "MenuStrip1"
-		MenuStrip1.Size = New Size(899, 24)
-		MenuStrip1.TabIndex = 9
-		MenuStrip1.Text = "MenuStrip1"
-		' 
-		' btnMe
-		' 
-		btnMe.Alignment = ToolStripItemAlignment.Right
-		btnMe.Name = "btnMe"
-		btnMe.Size = New Size(22, 20)
-		btnMe.Text = " "
-		' 
 		' picture
 		' 
-		picture.Location = New Point(12, 37)
+		picture.Location = New Point(12, 12)
 		picture.Name = "picture"
 		picture.Size = New Size(232, 285)
 		picture.SizeMode = PictureBoxSizeMode.Zoom
@@ -168,7 +149,7 @@ Partial Class DoTest
 		' Label2
 		' 
 		Label2.AutoSize = True
-		Label2.Location = New Point(22, 397)
+		Label2.Location = New Point(22, 381)
 		Label2.Name = "Label2"
 		Label2.Size = New Size(212, 15)
 		Label2.TabIndex = 11
@@ -177,7 +158,7 @@ Partial Class DoTest
 		' lblMsv
 		' 
 		lblMsv.AutoSize = True
-		lblMsv.Location = New Point(12, 420)
+		lblMsv.Location = New Point(12, 404)
 		lblMsv.Name = "lblMsv"
 		lblMsv.Size = New Size(80, 15)
 		lblMsv.TabIndex = 12
@@ -186,7 +167,7 @@ Partial Class DoTest
 		' lblHoTen
 		' 
 		lblHoTen.AutoSize = True
-		lblHoTen.Location = New Point(12, 445)
+		lblHoTen.Location = New Point(12, 429)
 		lblHoTen.Name = "lblHoTen"
 		lblHoTen.Size = New Size(64, 15)
 		lblHoTen.TabIndex = 13
@@ -195,7 +176,7 @@ Partial Class DoTest
 		' lblLop
 		' 
 		lblLop.AutoSize = True
-		lblLop.Location = New Point(12, 495)
+		lblLop.Location = New Point(12, 479)
 		lblLop.Name = "lblLop"
 		lblLop.Size = New Size(33, 15)
 		lblLop.TabIndex = 14
@@ -204,20 +185,20 @@ Partial Class DoTest
 		' lblNgaySinh
 		' 
 		lblNgaySinh.AutoSize = True
-		lblNgaySinh.Location = New Point(12, 470)
+		lblNgaySinh.Location = New Point(12, 454)
 		lblNgaySinh.Name = "lblNgaySinh"
 		lblNgaySinh.Size = New Size(63, 15)
 		lblNgaySinh.TabIndex = 15
 		lblNgaySinh.Text = "Ngày sinh:"
 		' 
-		' lblKhoa
+		' lblGioiTinh
 		' 
-		lblKhoa.AutoSize = True
-		lblKhoa.Location = New Point(12, 520)
-		lblKhoa.Name = "lblKhoa"
-		lblKhoa.Size = New Size(40, 15)
-		lblKhoa.TabIndex = 16
-		lblKhoa.Text = "Khoa: "
+		lblGioiTinh.AutoSize = True
+		lblGioiTinh.Location = New Point(12, 504)
+		lblGioiTinh.Name = "lblGioiTinh"
+		lblGioiTinh.Size = New Size(58, 15)
+		lblGioiTinh.TabIndex = 16
+		lblGioiTinh.Text = "Giới tính: "
 		' 
 		' Timer
 		' 
@@ -226,79 +207,79 @@ Partial Class DoTest
 		' Label3
 		' 
 		Label3.AutoSize = True
-		Label3.Location = New Point(22, 532)
+		Label3.Location = New Point(22, 516)
 		Label3.Name = "Label3"
 		Label3.Size = New Size(212, 15)
 		Label3.TabIndex = 17
 		Label3.Text = "_________________________________________"
 		' 
-		' Label4
+		' lblTienTrinh
 		' 
-		Label4.AutoSize = True
-		Label4.Location = New Point(12, 560)
-		Label4.Name = "Label4"
-		Label4.Size = New Size(87, 15)
-		Label4.TabIndex = 18
-		Label4.Text = "Số câu đã làm: "
+		lblTienTrinh.AutoSize = True
+		lblTienTrinh.Location = New Point(12, 544)
+		lblTienTrinh.Name = "lblTienTrinh"
+		lblTienTrinh.Size = New Size(87, 15)
+		lblTienTrinh.TabIndex = 18
+		lblTienTrinh.Text = "Số câu đã làm: "
 		' 
-		' Label5
+		' lblThoiGian
 		' 
-		Label5.AutoSize = True
-		Label5.Location = New Point(12, 584)
-		Label5.Name = "Label5"
-		Label5.Size = New Size(100, 15)
-		Label5.TabIndex = 19
-		Label5.Text = "Thời gian còn lại: "
+		lblThoiGian.AutoSize = True
+		lblThoiGian.Location = New Point(12, 568)
+		lblThoiGian.Name = "lblThoiGian"
+		lblThoiGian.Size = New Size(100, 15)
+		lblThoiGian.TabIndex = 19
+		lblThoiGian.Text = "Thời gian còn lại: "
 		' 
 		' Label6
 		' 
 		Label6.AutoSize = True
-		Label6.Location = New Point(22, 322)
+		Label6.Location = New Point(22, 299)
 		Label6.Name = "Label6"
 		Label6.Size = New Size(212, 15)
 		Label6.TabIndex = 20
 		Label6.Text = "_________________________________________"
 		' 
-		' Label7
+		' lblTenDeThi
 		' 
-		Label7.AutoSize = True
-		Label7.Location = New Point(12, 339)
-		Label7.Name = "Label7"
-		Label7.Size = New Size(64, 15)
-		Label7.TabIndex = 21
-		Label7.Text = "Tên đề thi: "
+		lblTenDeThi.AutoSize = True
+		lblTenDeThi.Location = New Point(12, 323)
+		lblTenDeThi.Name = "lblTenDeThi"
+		lblTenDeThi.Size = New Size(64, 15)
+		lblTenDeThi.TabIndex = 21
+		lblTenDeThi.Text = "Tên đề thi: "
 		' 
-		' Label8
+		' lblSoCau
 		' 
-		Label8.AutoSize = True
-		Label8.Location = New Point(12, 363)
-		Label8.Name = "Label8"
-		Label8.Size = New Size(48, 15)
-		Label8.TabIndex = 22
-		Label8.Text = "Số câu: "
+		lblSoCau.AutoSize = True
+		lblSoCau.Location = New Point(12, 347)
+		lblSoCau.Name = "lblSoCau"
+		lblSoCau.Size = New Size(48, 15)
+		lblSoCau.TabIndex = 22
+		lblSoCau.Text = "Số câu: "
 		' 
-		' Label9
+		' lblSoPhut
 		' 
-		Label9.AutoSize = True
-		Label9.Location = New Point(12, 388)
-		Label9.Name = "Label9"
-		Label9.Size = New Size(54, 15)
-		Label9.TabIndex = 23
-		Label9.Text = "Số phút: "
+		lblSoPhut.AutoSize = True
+		lblSoPhut.Location = New Point(12, 372)
+		lblSoPhut.Name = "lblSoPhut"
+		lblSoPhut.Size = New Size(54, 15)
+		lblSoPhut.TabIndex = 23
+		lblSoPhut.Text = "Số phút: "
 		' 
 		' DoTest
 		' 
 		AutoScaleDimensions = New SizeF(7F, 15F)
 		AutoScaleMode = AutoScaleMode.Font
 		ClientSize = New Size(899, 675)
-		Controls.Add(Label9)
-		Controls.Add(Label8)
-		Controls.Add(Label7)
+		Controls.Add(lblSoPhut)
+		Controls.Add(lblSoCau)
+		Controls.Add(lblTenDeThi)
 		Controls.Add(Label6)
-		Controls.Add(Label5)
-		Controls.Add(Label4)
+		Controls.Add(lblThoiGian)
+		Controls.Add(lblTienTrinh)
 		Controls.Add(Label3)
-		Controls.Add(lblKhoa)
+		Controls.Add(lblGioiTinh)
 		Controls.Add(lblNgaySinh)
 		Controls.Add(lblLop)
 		Controls.Add(lblHoTen)
@@ -314,12 +295,8 @@ Partial Class DoTest
 		Controls.Add(btnB)
 		Controls.Add(btnA)
 		Controls.Add(txtQues)
-		Controls.Add(MenuStrip1)
-		MainMenuStrip = MenuStrip1
 		Name = "DoTest"
 		Text = "Exam Student"
-		MenuStrip1.ResumeLayout(False)
-		MenuStrip1.PerformLayout()
 		CType(picture, ComponentModel.ISupportInitialize).EndInit()
 		ResumeLayout(False)
 		PerformLayout()
@@ -334,21 +311,19 @@ Partial Class DoTest
 	Friend WithEvents btnNext As Button
 	Friend WithEvents Label1 As Label
 	Friend WithEvents cbbQues As ComboBox
-	Friend WithEvents MenuStrip1 As MenuStrip
-	Friend WithEvents btnMe As ToolStripMenuItem
 	Friend WithEvents picture As PictureBox
 	Friend WithEvents Label2 As Label
 	Friend WithEvents lblMsv As Label
 	Friend WithEvents lblHoTen As Label
 	Friend WithEvents lblLop As Label
 	Friend WithEvents lblNgaySinh As Label
-	Friend WithEvents lblKhoa As Label
+	Friend WithEvents lblGioiTinh As Label
 	Friend WithEvents Timer As Timer
 	Friend WithEvents Label3 As Label
-	Friend WithEvents Label4 As Label
-	Friend WithEvents Label5 As Label
+	Friend WithEvents lblTienTrinh As Label
+	Friend WithEvents lblThoiGian As Label
 	Friend WithEvents Label6 As Label
-	Friend WithEvents Label7 As Label
-	Friend WithEvents Label8 As Label
-	Friend WithEvents Label9 As Label
+	Friend WithEvents lblTenDeThi As Label
+	Friend WithEvents lblSoCau As Label
+	Friend WithEvents lblSoPhut As Label
 End Class

@@ -7,6 +7,10 @@ Public Class DoTest
 	Public fullName As String
 	Public maDeThi As String
 	Public imageStudent As Byte() = Nothing
+	Public ngaySinh As String
+	Public gioiTinh As String
+	Public lop As String
+
 	Dim sql As String
 	Dim dataTable As DataTable
 	Dim shuffleDataTable As New DataTable
@@ -14,6 +18,10 @@ Public Class DoTest
 	Dim quesIndex As Integer
 	Dim machineName As String = Environment.MachineName
 	Dim studentAnswer As New List(Of Integer)
+	Dim progress As Integer = 0
+	Dim hour As Integer
+	Dim minute As Integer
+	Dim second As Integer
 
 	Function ByteArrayToImage(ByVal byteArray As Byte()) As Image
 		Using ms As New MemoryStream(byteArray)
@@ -81,18 +89,37 @@ Public Class DoTest
 	End Sub
 
 	Private Sub DoTest_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-		btnMe.Text = fullName
 		sql = "SELECT * FROM CauHoi WHERE MaDeThi = @MaDeThi"
+		picture.Image = ByteArrayToImage(imageStudent)
 		Dim params As New List(Of SqlParameter) From {New SqlParameter("@MaDeThi", maDeThi)}
+
+		dataTable = getData("SELECT * FROM DeThi WHERE MaDeThi = @MaDeThi", params)
+		If dataTable.Rows.Count > 0 Then
+			lblTenDeThi.Text = "Tên đề thi: " & dataTable.Rows.Item(0).Item("TenDeThi")
+			lblSoPhut.Text = "Số phút: " & dataTable.Rows.Item(0).Item("ThoiGian")
+			hour = Convert.ToInt32(dataTable.Rows.Item(0).Item("ThoiGian")) / 60
+			minute = Convert.ToInt32(dataTable.Rows.Item(0).Item("ThoiGian")) Mod 60
+			second = 0
+		End If
+		lblMsv.Text = "Mã sinh viên: " & userName
+		lblHoTen.Text = "Họ và tên: " & fullName
+		lblNgaySinh.Text = "Ngày sinh: " & ngaySinh
+		lblLop.Text = "Lớp: " & lop
+		lblGioiTinh.Text = "Giới tính: " & gioiTinh
+
 		dataTable = getData(sql, params)
 		If dataTable.Rows.Count > 0 Then
 			numOfQues = dataTable.Rows.Count
+			lblSoCau.Text = "Số câu: " & numOfQues
+			lblTienTrinh.Text = "Số câu đã làm: " & progress & "/" & numOfQues
 			For i = 1 To numOfQues
 				cbbQues.Items.Add(i)
 				studentAnswer.Add(-1)
 			Next
 			shuffleQues()
 			quesIndex = 0
+			countDown()
+			Timer.Start()
 			loadQues(quesIndex)
 		Else
 			MessageBox.Show("Không tải được đề thi", "Exam student", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -122,46 +149,117 @@ Public Class DoTest
 
 	Private Sub btnA_Click(sender As Object, e As EventArgs) Handles btnA.Click
 		cbbQues.Items(quesIndex) = cbbQues.SelectedIndex + 1 & " (Đã chọn A)"
-		studentAnswer.Item(quesIndex) = 1
-		quesIndex += 1
-		If quesIndex > numOfQues - 1 Then
-			quesIndex = 0
+		If studentAnswer.Item(quesIndex) = -1 Then
+			progress += 1
 		End If
-		loadQues(quesIndex)
+		lblTienTrinh.Text = "Số câu đã làm: " & progress & "/" & numOfQues
+		studentAnswer.Item(quesIndex) = 1
+		If progress = numOfQues Then
+			Dim result As DialogResult = MessageBox.Show("Bạn đã làm xong đề thi. Bạn có muốn nộp bài?", "Exam Student", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+			If result = DialogResult.Yes Then
+				scoreCal()
+			End If
+		End If
 	End Sub
 
 	Private Sub btnB_Click(sender As Object, e As EventArgs) Handles btnB.Click
 		cbbQues.Items(quesIndex) = cbbQues.SelectedIndex + 1 & " (Đã chọn B)"
-		studentAnswer.Item(quesIndex) = 2
-		quesIndex += 1
-		If quesIndex > numOfQues - 1 Then
-			quesIndex = 0
+		If studentAnswer.Item(quesIndex) = -1 Then
+			progress += 1
 		End If
-		loadQues(quesIndex)
+		lblTienTrinh.Text = "Số câu đã làm: " & progress & "/" & numOfQues
+		studentAnswer.Item(quesIndex) = 2
+		If progress = numOfQues Then
+			Dim result As DialogResult = MessageBox.Show("Bạn đã làm xong đề thi. Bạn có muốn nộp bài?", "Exam Student", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+			If result = DialogResult.Yes Then
+				scoreCal()
+			End If
+		End If
 	End Sub
 
 	Private Sub btnC_Click(sender As Object, e As EventArgs) Handles btnC.Click
 		cbbQues.Items(quesIndex) = cbbQues.SelectedIndex + 1 & " (Đã chọn C)"
-		studentAnswer.Item(quesIndex) = 3
-		quesIndex += 1
-		If quesIndex > numOfQues - 1 Then
-			quesIndex = 0
+		If studentAnswer.Item(quesIndex) = -1 Then
+			progress += 1
 		End If
-		loadQues(quesIndex)
+		lblTienTrinh.Text = "Số câu đã làm: " & progress & "/" & numOfQues
+		studentAnswer.Item(quesIndex) = 3
+		If progress = numOfQues Then
+			Dim result As DialogResult = MessageBox.Show("Bạn đã làm xong đề thi. Bạn có muốn nộp bài?", "Exam Student", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+			If result = DialogResult.Yes Then
+				scoreCal()
+			End If
+		End If
 	End Sub
 
 	Private Sub btnD_Click(sender As Object, e As EventArgs) Handles btnD.Click
 		cbbQues.Items(quesIndex) = cbbQues.SelectedIndex + 1 & " (Đã chọn D)"
-		studentAnswer.Item(quesIndex) = 4
-		quesIndex += 1
-		If quesIndex > numOfQues - 1 Then
-			quesIndex = 0
+		If studentAnswer.Item(quesIndex) = -1 Then
+			progress += 1
 		End If
-		loadQues(quesIndex)
+		lblTienTrinh.Text = "Số câu đã làm: " & progress & "/" & numOfQues
+		studentAnswer.Item(quesIndex) = 4
+		If progress = numOfQues Then
+			Dim result As DialogResult = MessageBox.Show("Bạn đã làm xong đề thi. Bạn có muốn nộp bài?", "Exam Student", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+			If result = DialogResult.Yes Then
+				scoreCal()
+			End If
+		End If
 	End Sub
 
 	Private Sub DoTest_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
 		ConfirmInfoForm.Close()
 		DashboardForm.Show()
+	End Sub
+
+	Private Sub scoreCal()
+		btnA.Enabled = False
+		btnB.Enabled = False
+		btnC.Enabled = False
+		btnD.Enabled = False
+		cbbQues.Enabled = False
+		btnNext.Enabled = False
+		btnPrevious.Enabled = False
+		Timer.Stop()
+		Dim score As Double = 0
+		Dim trueAnsNum As Integer = 0
+		For answer = 0 To numOfQues - 1
+			If studentAnswer.Item(answer) = shuffleDataTable.Rows.Item(answer).Item("DapAnDung") Then
+				trueAnsNum += 1
+			End If
+		Next
+		score = (10 / numOfQues) * trueAnsNum
+		txtQues.Text = "Điểm của bạn: " & score
+	End Sub
+
+	Private Sub countDown()
+		Dim strHour, strMinute, strSecond As String
+		strHour = If(hour < 10, "0" & hour, hour)
+		strMinute = If(minute < 10, "0" & minute, minute)
+		strSecond = If(second < 10, "0" & second, second)
+		lblThoiGian.Text = "Thời gian còn lại: " & strHour & ":" & strMinute & ":" & strSecond
+		If hour = 0 And minute = 0 And second = 0 Then
+			Timer.Stop()
+			MessageBox.Show("Đã hết thời gian làm bài. Hệ thống sẽ tự động nộp bài", "Exam Student", MessageBoxButtons.OK, MessageBoxIcon.Information)
+			scoreCal()
+			Return
+		End If
+		If second > 0 Then
+			second -= 1
+		Else
+			second = 59
+			If minute > 0 Then
+				minute -= 1
+			Else
+				minute = 59
+				If hour > 0 Then
+					hour -= 1
+				End If
+			End If
+		End If
+	End Sub
+
+	Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
+		countDown()
 	End Sub
 End Class

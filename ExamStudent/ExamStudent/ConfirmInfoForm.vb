@@ -43,6 +43,9 @@ Public Class ConfirmInfoForm
 		DoTest.userName = userName
 		DoTest.maDeThi = maDeThi
 		DoTest.fullName = fullName
+		DoTest.gioiTinh = lbGioiTinh.Text
+		DoTest.lop = lbLop.Text
+		DoTest.ngaySinh = lbNgaySinh.Text
 		DoTest.imageStudent = GetImageFromDatabase(userName)
 		DoTest.Show()
 		Hide()
