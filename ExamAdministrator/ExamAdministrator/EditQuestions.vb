@@ -234,6 +234,8 @@ Public Class EditQuestions
 		answerA = txtA.Text
 		If txtA.Text = "" Then
 			radioA.Enabled = False
+			radioA.Checked = False
+			trueAnswer = -1
 		Else
 			radioA.Enabled = True
 		End If
@@ -244,6 +246,8 @@ Public Class EditQuestions
 		answerB = txtB.Text
 		If txtB.Text = "" Then
 			radioB.Enabled = False
+			radioB.Checked = False
+			trueAnswer = -1
 		Else
 			radioB.Enabled = True
 		End If
@@ -254,6 +258,8 @@ Public Class EditQuestions
 		answerC = txtC.Text
 		If txtC.Text = "" Then
 			radioC.Enabled = False
+			radioC.Checked = False
+			trueAnswer = -1
 		Else
 			radioC.Enabled = True
 		End If
@@ -264,6 +270,8 @@ Public Class EditQuestions
 		answerD = txtD.Text
 		If txtD.Text = "" Then
 			radioD.Enabled = False
+			radioD.Checked = False
+			trueAnswer = -1
 		Else
 			radioD.Enabled = True
 		End If
