@@ -49,10 +49,15 @@ Public Class ExamManagement
 				Return
 			End If
 
+			Dim params As New List(Of SqlParameter) From {New SqlParameter("@MaMonHoc", selectedRow.Cells("Mamonhoc").Value.ToString())}
+			Dim dataTable As DataTable = getData("SELECT Tenmonhoc FROM Monhoc WHERE Mamonhoc = @MaMonHoc", params)
+
 			EditType.maDe = selectedRow.Cells("MaDeThi").Value.ToString()
 			EditType.maKhoa = selectedRow.Cells("MaKhoa").Value.ToString()
-			EditType.tenDe = selectedRow.Cells("TenDeThi").Value.ToString()
+			EditType.maMonHoc = selectedRow.Cells("Mamonhoc").Value.ToString()
+			EditType.tenDe = dataTable.Rows(0)("Tenmonhoc")
 			EditType.soPhut = selectedRow.Cells("ThoiGian").Value
+			EditType.hienDeThi = selectedRow.Cells("HienDeThi").Value
 			EditType.Show()
 		End If
 	End Sub

@@ -30,26 +30,10 @@ Public Class DashboardForm
 
 	Private Sub updateList()
 		Dim currentTime As DateTime = DateTime.Now
-		sql = "SELECT MaDeThi, Masv, Tenmonhoc, Lop, Ngaythi, Phongthi FROM Lichthi WHERE Masv = @MaSv"
-		Dim params As New List(Of SqlParameter)
-		params.Add(New SqlParameter("@MaSv", userName))
+		sql = "SELECT MaDeThi, MaKhoa, Mamonhoc, SoCau, ThoiGian FROM DeThi WHERE HienDeThi = 1"
 
-		Dim dataTable As DataTable = getData(sql, params)
-		Dim result As DataTable = dataTable.Clone()
-
-		If dataTable.Rows.Count > 0 Then
-			Dim examTime As DateTime
-
-			For Each row As DataRow In dataTable.Rows
-				examTime = Convert.ToDateTime(row("Ngaythi"))
-
-				If currentTime > examTime Then
-					result.ImportRow(row)
-				End If
-			Next
-
-			loadData(result)
-		End If
+		Dim dataTable As DataTable = getData(sql, Nothing)
+		loadData(dataTable)
 	End Sub
 
 	Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
@@ -66,11 +50,11 @@ Public Class DashboardForm
 			' Lấy dữ liệu của hàng được nhấn
 			Dim selectedRow As DataGridViewRow = dgExam.Rows(rowIndex)
 
-			If (selectedRow.Cells("Masv").Value.ToString() = "" Or selectedRow.Cells("MaDeThi").Value.ToString() = "") Then
+			If selectedRow.Cells("MaDeThi").Value.ToString() = "" Then
 				Return
 			End If
 
-			ConfirmInfoForm.userName = selectedRow.Cells("Masv").Value.ToString()
+			ConfirmInfoForm.userName = userName
 			ConfirmInfoForm.maDeThi = selectedRow.Cells("MaDeThi").Value.ToString()
 			ConfirmInfoForm.Show()
 			Hide()

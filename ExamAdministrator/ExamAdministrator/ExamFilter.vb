@@ -9,7 +9,7 @@ Public Class ExamFilter
 
 	Private Sub btnFilter_Click(sender As Object, e As EventArgs) Handles btnFilter.Click
         If cbAllTrue.Checked Then
-			sql = "SELECT * FROM DeThi WHERE" + If(txtMaDeThi.Text <> "", " MaDeThi = @Madethi AND ", "") + If(txtMaKhoa.Text <> "", " MaKhoa = @Makhoa AND ", "") + If(txtTenDeThi.Text <> "", " TenDeThi = @Tendethi AND ", "") + " SoCau = " + numOfQues.Value.ToString() + ""
+			sql = "SELECT * FROM DeThi WHERE" + If(txtMaDeThi.Text <> "", " MaDeThi = @Madethi AND ", "") + If(txtMaKhoa.Text <> "", " MaKhoa = @Makhoa AND ", "") + If(txtTenDeThi.Text <> "", " TenDeThi = @Tendethi AND ", "") + " SoCau = " + numOfQues.Value.ToString()
 			If txtMaDeThi.Text <> "" Then
                 params.Add(New SqlParameter("@Madethi", txtMaDeThi.Text))
             End If
