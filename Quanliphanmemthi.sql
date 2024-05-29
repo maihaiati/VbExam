@@ -57,7 +57,8 @@ CREATE TABLE Monhoc(
 	Tenmonhoc nvarchar(60) not null,
 )
 CREATE TABLE Lichthi(
-	MaDeThi nvarchar(60) not null, 
+	MaLichThi NVARCHAR(40) NOT NULL PRIMARY KEY,
+	MaDeThi nvarchar(40) not null, 
 	Masv nvarchar(60) not null,
 	Tenmonhoc nvarchar(60) not null,
 	Lop nvarchar(10) not null,
@@ -75,8 +76,7 @@ CREATE TABLE Khoa (
 INSERT INTO Khoa (MaKhoa, TenKhoa) VALUES ('CNTT', N'Công nghệ thông tin')
 use ExamDB
 CREATE TABLE DeThi (
-	MaLichThi NVARCHAR(40) NOT NULL PRIMARY KEY,
-	MaDeThi NVARCHAR(40) NOT NULL,
+	MaDeThi NVARCHAR(40) NOT NULL PRIMARY KEY,
 	MaKhoa NVARCHAR(40) NOT NULL,
 	TenDeThi NVARCHAR(40) NOT NULL,
 	SoCau int,
