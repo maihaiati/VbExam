@@ -55,6 +55,7 @@ use ExamDB
 CREATE TABLE Monhoc(
 	Mamonhoc nvarchar(60) not null primary key,
 	Tenmonhoc nvarchar(60) not null,
+	SoTiet int not null
 )
 		
 CREATE TABLE Khoa (
@@ -66,7 +67,7 @@ use ExamDB
 CREATE TABLE DeThi (
 	MaDeThi NVARCHAR(40) NOT NULL PRIMARY KEY,
 	MaKhoa NVARCHAR(40) NOT NULL,
-	TenMonHoc NVARCHAR(40) NOT NULL,
+	Mamonhoc NVARCHAR(40) NOT NULL,
 	SoCau int,
 	ThoiGian int,
 	HienDeThi BIT
