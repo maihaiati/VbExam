@@ -42,4 +42,8 @@ Public Class Dashboard
     Private Sub btnMyAcc_Click(sender As Object, e As EventArgs) Handles btnMyAcc.Click
         InfoAccount.Show()
     End Sub
+
+    Private Sub btnmonhoc_Click(sender As Object, e As EventArgs) Handles btnmonhoc.Click
+        ExamSubject.Show()
+    End Sub
 End Class
