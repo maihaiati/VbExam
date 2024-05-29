@@ -303,7 +303,7 @@ Public Class EditQuestions
 		answerB = ""
 		answerC = ""
 		answerD = ""
-		trueAnswer = 1
+		trueAnswer = -1
 		txtQues.Clear()
 		txtA.Clear()
 		txtB.Clear()
