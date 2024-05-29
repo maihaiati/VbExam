@@ -56,18 +56,6 @@ CREATE TABLE Monhoc(
 	Mamonhoc nvarchar(60) not null primary key,
 	Tenmonhoc nvarchar(60) not null,
 )
-CREATE TABLE Lichthi(
-	MaLichThi NVARCHAR(40) NOT NULL PRIMARY KEY,
-	MaDeThi nvarchar(40) not null, 
-	Masv nvarchar(60) not null,
-	Tenmonhoc nvarchar(60) not null,
-	Lop nvarchar(10) not null,
-	Ngaythi datetime not null,
-	Phongthi nvarchar(10) not null
-)
-use ExamDB
-insert into Lichthi(MaDeThi, Masv, Tenmonhoc, Lop, Ngaythi, Phongthi) 
-values ('DHMT',2823220212,N'Đồ Hoạ Máy Tính','TH28.27','2023-04-05 09:30:00','D509')
 		
 CREATE TABLE Khoa (
 	MaKhoa NVARCHAR(40) NOT NULL PRIMARY KEY,
@@ -80,9 +68,10 @@ CREATE TABLE DeThi (
 	MaKhoa NVARCHAR(40) NOT NULL,
 	TenMonHoc NVARCHAR(40) NOT NULL,
 	SoCau int,
-	ThoiGian int
+	ThoiGian int,
+	HienDeThi BIT
 )
-INSERT INTO DeThi (MaDeThi, MaKhoa, TenDeThi, SoCau,ThoiGian) VALUES ('TIN01', 'CNTT', N'Tin 1', 15, 5)
+INSERT INTO DeThi (MaDeThi, MaKhoa, TenDeThi, SoCau,ThoiGian) VALUES ('TIN01', 'CNTT', N'Tin 1', 15, 5, 1)
 CREATE TABLE CauHoi (
 	MaCauHoi NVARCHAR(40) NOT NULL PRIMARY KEY,
 	MaDeThi NVARCHAR(20) NOT NULL,
