@@ -13,11 +13,11 @@ Public Class EditQuestions
 
 	Dim maCauHoi As String
 	Dim maAnh As String
-	Dim question As String
-	Dim answerA As String
-	Dim answerB As String
-	Dim answerC As String
-	Dim answerD As String
+	Dim question As String = ""
+	Dim answerA As String = ""
+	Dim answerB As String = ""
+	Dim answerC As String = ""
+	Dim answerD As String = ""
 	Dim trueAnswer As Integer
 	Dim quesIndex As Integer ' Câu hỏi hiện tại
 	Dim numOfQues As Integer ' Tổng số lượng câu hỏi

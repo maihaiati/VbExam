@@ -99,11 +99,14 @@ Public Class DoTest
 
 		dataTable = getData("SELECT * FROM DeThi WHERE MaDeThi = @MaDeThi", params)
 		If dataTable.Rows.Count > 0 Then
-			lblTenDeThi.Text = "Tên đề thi: " & dataTable.Rows.Item(0).Item("TenDeThi")
-			lblSoPhut.Text = "Số phút: " & dataTable.Rows.Item(0).Item("ThoiGian")
-			hour = Convert.ToInt32(dataTable.Rows.Item(0).Item("ThoiGian")) / 60
-			minute = Convert.ToInt32(dataTable.Rows.Item(0).Item("ThoiGian")) Mod 60
+			lblSoPhut.Text = "Số phút: " & dataTable.Rows(0)("ThoiGian")
+			hour = Convert.ToInt32(dataTable.Rows(0)("ThoiGian")) / 60
+			minute = Convert.ToInt32(dataTable.Rows(0)("ThoiGian")) Mod 60
 			second = 0
+
+			params.Add(New SqlParameter("@MaMonHoc", dataTable.Rows(0)("Mamonhoc")))
+			dataTable = getData("SELECT Tenmonhoc FROM Monhoc WHERE Mamonhoc = @MaMonHoc", params)
+			lblTenDeThi.Text = "Tên đề thi: " & dataTable.Rows(0)("Tenmonhoc")
 		End If
 		lblMsv.Text = "Mã sinh viên: " & userName
 		lblHoTen.Text = "Họ và tên: " & fullName
