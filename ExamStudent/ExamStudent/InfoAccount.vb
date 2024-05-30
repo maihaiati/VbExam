@@ -6,32 +6,13 @@ Public Class InfoAccount
 	Dim sql As String
 	Dim machineName As String = Environment.MachineName ' Lấy tên của máy tính
 
-	Function ByteArrayToImage(ByVal byteArray As Byte()) As Image ' Chuyển đổi mảng byte thành ảnh
-		Using ms As New MemoryStream(byteArray)
-			Return Image.FromStream(ms)
+	' Hàm chuyển đổi ảnh thành mảng byte
+	Function ImageToByteArray(ByVal image As Image) As Byte()
+		Using ms As New MemoryStream()
+			image.Save(ms, image.RawFormat)
+			Return ms.ToArray()
 		End Using
 	End Function
-
-	Function GetImageFromDatabase(ByVal userid As String) As Byte() ' Lấy ảnh từ database theo mã ảnh
-		Dim imageData As Byte() = Nothing
-		Dim sql As String
-		sql = "SELECT image FROM Sinhvien WHERE Masv = @Masv"
-
-		Using conn As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
-			Using cmd As New SqlCommand(sql, conn)
-				cmd.Parameters.AddWithValue("@Masv", userid)
-				conn.Open()
-				Dim reader As SqlDataReader = cmd.ExecuteReader()
-				If reader.Read() Then
-					If Not IsDBNull(reader("image")) Then
-						imageData = CType(reader("image"), Byte())
-					End If
-				End If
-			End Using
-		End Using
-		Return imageData
-	End Function
-
 	Private Sub InfoAccount_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 		Dim params As New List(Of SqlParameter) From {New SqlParameter("@Masv", userName)}
 		Dim dataTable As DataTable = getData("SELECT * FROM Sinhvien WHERE Masv = @Masv", params)
@@ -47,7 +28,8 @@ Public Class InfoAccount
 		cbbGioiTinh.Items.Add("Nam")
 		cbbGioiTinh.Items.Add("Nữ")
 		cbbGioiTinh.SelectedItem = dataTable.Rows(0)("Gioitinh")
-		picture.Image = ByteArrayToImage(GetImageFromDatabase(userName))
+		picture.Image = ByteArrayToImage(GetUserImageFromDatabase(userName))
+		txtMsv.Enabled = False
 	End Sub
 
 	Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click

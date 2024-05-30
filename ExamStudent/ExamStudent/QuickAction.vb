@@ -1,19 +1,19 @@
 ﻿Imports System
 Imports System.Data
 Imports System.Data.SqlClient
-Imports System.Reflection.Metadata.Ecma335
-Imports System.Security.Cryptography
 Imports System.Text
+Imports System.Security.Cryptography
+Imports System.IO
 Module QuickAction
 	Public sqlCon As SqlClient.SqlConnection
 	Public dataAdapter As SqlClient.SqlDataAdapter
 	Public dataTable As DataTable
 	Dim sqlCommand As SqlCommand
 	Public sql As String
+	Dim machineName As String = Environment.MachineName
 
 	Public Function runSqlCommand(sql As String, params As List(Of SqlParameter)) As Boolean
 		Try
-			Dim machineName As String = Environment.MachineName
 			Using sqlCon As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
 				Using sqlCommand As New SqlCommand(sql, sqlCon)
 					If params IsNot Nothing AndAlso params.Count > 0 Then
@@ -46,7 +46,6 @@ Module QuickAction
 
 	Public Function getData(sql As String, params As List(Of SqlParameter)) As DataTable
 		Dim dataTable As New DataTable()
-		Dim machineName As String = Environment.MachineName
 		Using sqlCon As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
 			Using sqlCommand As New SqlCommand(sql, sqlCon)
 				If params IsNot Nothing AndAlso params.Count > 0 Then
@@ -84,7 +83,7 @@ Module QuickAction
 
 	Public Function checkExists(fieldName As String, tableName As String, value As String) As Boolean
 		sql = "SELECT " + fieldName + " FROM " + tableName + " WHERE " + fieldName + "= @value"
-		Dim params As New List(Of SqlParameter)()
+		Dim params As New List(Of SqlParameter)
 		params.Add(New SqlParameter("@value", value))
 		dataTable = getData(sql, params)
 		Return dataTable.Rows.Count > 0
@@ -113,15 +112,78 @@ Module QuickAction
 		End Using
 	End Function
 
+
+	' Hàm chuyển đổi từ mảng byte sang đối tượng Image
+	Function ByteArrayToImage(ByVal byteArray As Byte()) As Image
+		Using ms As New MemoryStream(byteArray)
+			Return Image.FromStream(ms)
+		End Using
+	End Function
+
+	' Hàm chuyển đổi từ đối tượng Image sang mảng byte
+	Function ImageToByteArray(ByVal image As Image) As Byte()
+		Using ms As New MemoryStream()
+			image.Save(ms, image.RawFormat)
+			Return ms.ToArray()
+		End Using
+	End Function
+
+	' Hàm tải ảnh từ hộp thoại tệp và hiển thị trong PictureBox
+	Function LoadImage(picture As PictureBox) As Byte()
+		Using ofd As New OpenFileDialog()
+			ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp"
+			If ofd.ShowDialog() = DialogResult.OK Then
+				Dim img As Image = Image.FromFile(ofd.FileName)
+				picture.Image = img
+				Return ImageToByteArray(img)
+			End If
+		End Using
+		Return Nothing
+	End Function
+
+	' Hàm lấy dữ liệu ảnh từ cơ sở dữ liệu
+	Function GetUserImageFromDatabase(ByVal userId As String) As Byte()
+		Dim imageData As Byte() = Nothing
+		Dim sql As String
+		sql = "SELECT image FROM Sinhvien WHERE Masv = @Masv"
+		Using conn As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
+			Using cmd As New SqlCommand(sql, conn)
+				cmd.Parameters.AddWithValue("@Masv", userId)
+				conn.Open()
+				Dim reader As SqlDataReader = cmd.ExecuteReader()
+				If reader.Read() Then
+					If Not IsDBNull(reader("image")) Then
+						imageData = CType(reader("image"), Byte())
+					End If
+				End If
+			End Using
+		End Using
+		Return imageData
+	End Function
+
+	Function GetQuestionImageFromDatabase(ByVal maAnh As String) As Byte()
+		Dim imageData As Byte() = Nothing
+
+		sql = "SELECT image FROM ImageData WHERE Maanh = @MaAnh"
+
+		Using conn As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
+			Using cmd As New SqlCommand(sql, conn)
+				cmd.Parameters.AddWithValue("@MaAnh", maAnh)
+				conn.Open()
+				Dim reader As SqlDataReader = cmd.ExecuteReader()
+				If reader.Read() Then
+					If Not IsDBNull(reader("image")) Then
+						imageData = CType(reader("image"), Byte())
+					End If
+				End If
+			End Using
+		End Using
+		Return imageData
+	End Function
 	Public Function GenerateSalt(length As Integer) As String
 		Dim saltBytes(length - 1) As Byte
-
-		Using rng As New RNGCryptoServiceProvider()
-			rng.GetBytes(saltBytes)
-		End Using
-
+		RandomNumberGenerator.Fill(saltBytes)
 		Dim salt As String = Convert.ToBase64String(saltBytes)
-
 		Return salt
 	End Function
 End Module
