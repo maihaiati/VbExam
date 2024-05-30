@@ -61,9 +61,9 @@ Partial Class EditExam
 		' 
 		' txtMaDe
 		' 
-		txtMaDe.Enabled = False
 		txtMaDe.Location = New Point(151, 70)
 		txtMaDe.Name = "txtMaDe"
+		txtMaDe.ReadOnly = True
 		txtMaDe.Size = New Size(246, 23)
 		txtMaDe.TabIndex = 13
 		' 

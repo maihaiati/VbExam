@@ -25,54 +25,6 @@ Public Class EditQuestions
 	Dim imageBytes As Byte() = Nothing
 	Dim imageName As String
 	Dim saved = True
-	Dim machineName As String = Environment.MachineName
-
-	Function ByteArrayToImage(ByVal byteArray As Byte()) As Image
-		Using ms As New MemoryStream(byteArray)
-			Return Image.FromStream(ms)
-		End Using
-	End Function
-
-	Function ImageToByteArray(ByVal image As Image) As Byte()
-		Using ms As New MemoryStream()
-			image.Save(ms, image.RawFormat)
-			Return ms.ToArray()
-		End Using
-	End Function
-
-	' Hàm tải ảnh từ hộp thoại tệp và hiển thị trong PictureBox
-	Function LoadImage() As Byte()
-		Using ofd As New OpenFileDialog()
-			ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png"
-			If ofd.ShowDialog() = DialogResult.OK Then
-				Dim img As Image = Image.FromFile(ofd.FileName)
-				picPreview.Image = img
-				imageName = Path.GetFileName(ofd.FileName)
-				Return ImageToByteArray(img)
-			End If
-		End Using
-		Return Nothing
-	End Function
-
-	Function GetImageFromDatabase(ByVal maAnh As String) As Byte()
-		Dim imageData As Byte() = Nothing
-
-		sql = "SELECT image FROM ImageData WHERE Maanh = @MaAnh"
-
-		Using conn As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
-			Using cmd As New SqlCommand(sql, conn)
-				cmd.Parameters.AddWithValue("@MaAnh", maAnh)
-				conn.Open()
-				Dim reader As SqlDataReader = cmd.ExecuteReader()
-				If reader.Read() Then
-					If Not IsDBNull(reader("image")) Then
-						imageData = CType(reader("image"), Byte())
-					End If
-				End If
-			End Using
-		End Using
-		Return imageData
-	End Function
 
 	Private Sub loadData(quesIndex As Integer)
 		Dim params As New List(Of SqlParameter)
@@ -89,7 +41,7 @@ Public Class EditQuestions
 		maAnh = If(Not IsDBNull(dataTable.Rows.Item(quesIndex).Item("Maanh")), dataTable.Rows.Item(quesIndex).Item("Maanh"), "")
 		If maAnh <> "" Then
 			imageName = maAnh
-			imageBytes = GetImageFromDatabase(maAnh)
+			imageBytes = GetQuestionImageFromDatabase(maAnh)
 			If imageBytes IsNot Nothing Then
 				picPreview.Image = ByteArrayToImage(imageBytes)
 			End If
@@ -404,7 +356,7 @@ Public Class EditQuestions
 	End Sub
 
 	Private Sub btnBrowImg_Click(sender As Object, e As EventArgs) Handles btnBrowImg.Click
-		imageBytes = LoadImage()
+		imageBytes = LoadImage(picPreview)
 		saved = False
 	End Sub
 

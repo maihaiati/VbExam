@@ -23,28 +23,6 @@ Public Class CreateAccount
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         Close()
     End Sub
-    ' Hàm chuyển đổi ảnh thành mảng byte
-    Function ImageToByteArray(ByVal image As Image) As Byte()
-        Using ms As New MemoryStream()
-            image.Save(ms, image.RawFormat)
-            Return ms.ToArray()
-        End Using
-    End Function
-
-    ' Hàm tải ảnh từ hộp thoại tệp và hiển thị trong PictureBox
-    Function LoadImage() As Byte()
-        Using ofd As New OpenFileDialog()
-            ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp"
-            If ofd.ShowDialog() = DialogResult.OK Then
-                Dim img As Image = Image.FromFile(ofd.FileName)
-                imgAcc.Image = img
-                Return ImageToByteArray(img)
-            End If
-        End Using
-        Return Nothing
-    End Function
-
-
 
     Private Sub btnCreateAcc_Click(sender As Object, e As EventArgs) Handles btnCreateAcc.Click
         Dim sql As String
@@ -136,6 +114,6 @@ Public Class CreateAccount
 
     Private Sub imgAcc_Click(sender As Object, e As EventArgs) Handles imgAcc.Click
         imgAcc.SizeMode = PictureBoxSizeMode.Zoom
-        imageBytes = LoadImage()
+        imageBytes = LoadImage(imgAcc)
     End Sub
 End Class

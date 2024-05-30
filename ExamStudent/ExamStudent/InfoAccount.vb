@@ -4,15 +4,9 @@ Imports System.IO
 Public Class InfoAccount
 	Public userName As String
 	Dim sql As String
+	Dim imageByte As Byte() = Nothing
 	Dim machineName As String = Environment.MachineName ' Lấy tên của máy tính
 
-	' Hàm chuyển đổi ảnh thành mảng byte
-	Function ImageToByteArray(ByVal image As Image) As Byte()
-		Using ms As New MemoryStream()
-			image.Save(ms, image.RawFormat)
-			Return ms.ToArray()
-		End Using
-	End Function
 	Private Sub InfoAccount_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 		Dim params As New List(Of SqlParameter) From {New SqlParameter("@Masv", userName)}
 		Dim dataTable As DataTable = getData("SELECT * FROM Sinhvien WHERE Masv = @Masv", params)
@@ -28,7 +22,8 @@ Public Class InfoAccount
 		cbbGioiTinh.Items.Add("Nam")
 		cbbGioiTinh.Items.Add("Nữ")
 		cbbGioiTinh.SelectedItem = dataTable.Rows(0)("Gioitinh")
-		picture.Image = ByteArrayToImage(GetUserImageFromDatabase(userName))
+		imageByte = GetUserImageFromDatabase(userName)
+		picture.Image = ByteArrayToImage(imageByte)
 		txtMsv.Enabled = False
 	End Sub
 
@@ -37,6 +32,19 @@ Public Class InfoAccount
 	End Sub
 
 	Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
-		sql = "UPDATE Sinhvien SET "
+		sql = "UPDATE Sinhvien SET Image = @Image, HoTen = @HoTen, Gioitinh = @GioiTinh, Ngaysinh = @NgaySinh, Lop = @Lop, Khoa = @Khoa WHERE Masv = @MaSv"
+		Dim params As New List(Of SqlParameter)
+		params.Add(New SqlParameter("@Image", If(imageByte IsNot Nothing, imageByte, DBNull.Value)))
+		params.Add(New SqlParameter("@HoTen", txtHoTen.Text))
+		params.Add(New SqlParameter("@GioiTinh", cbbGioiTinh.SelectedItem))
+		params.Add(New SqlParameter("@NgaySinh", dtpNgaySinh.Value.ToString))
+		params.Add(New SqlParameter("@Lop", txtLop.Text))
+		params.Add(New SqlParameter("@Khoa", txtKhoa.Text))
+		params.Add(New SqlParameter("@MaSv", userName))
+		If runSqlCommand(sql, params) Then
+			MessageBox.Show("Thay đổi thông tin thành công!", "Exam Student", MessageBoxButtons.OK, MessageBoxIcon.Information)
+		Else
+			MessageBox.Show("Thay đổi thông tin thất bại!", "Exam Student", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+		End If
 	End Sub
 End Class

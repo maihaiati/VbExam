@@ -13,7 +13,6 @@ Public Class EditAccount
     Dim sql As String
     Dim success = False
     Dim imageBytes As Byte() = Nothing ' Khởi tạo giá trị mặc định
-    Dim machineName As String = Environment.MachineName
 
     Private Sub EditAccount_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If accountType = 0 Then
@@ -39,85 +38,11 @@ Public Class EditAccount
         txtLopChucVu.Text = lopChucVu
         txtKhoa.Text = khoa
         imgAvatar.SizeMode = PictureBoxSizeMode.Zoom
-        imageBytes = GetImageFromDatabase(userName, accountType = 0)
+        imageBytes = GetUserImageFromDatabase(userName, accountType = 0)
         If imageBytes IsNot Nothing Then
             imgAvatar.Image = ByteArrayToImage(imageBytes)
         End If
     End Sub
-
-    ' Hàm chuyển đổi từ mảng byte sang đối tượng Image
-    Function ByteArrayToImage(ByVal byteArray As Byte()) As Image
-        Using ms As New MemoryStream(byteArray)
-            Return Image.FromStream(ms)
-        End Using
-    End Function
-
-    ' Hàm chuyển đổi từ đối tượng Image sang mảng byte
-    Function ImageToByteArray(ByVal image As Image) As Byte()
-        Using ms As New MemoryStream()
-            image.Save(ms, image.RawFormat)
-            Return ms.ToArray()
-        End Using
-    End Function
-
-    ' Hàm tải ảnh từ hộp thoại tệp và hiển thị trong PictureBox
-    Function LoadImage() As Byte()
-        Using ofd As New OpenFileDialog()
-            ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp"
-            If ofd.ShowDialog() = DialogResult.OK Then
-                Dim img As Image = Image.FromFile(ofd.FileName)
-                imgAvatar.Image = img
-                Return ImageToByteArray(img)
-            End If
-        End Using
-        Return Nothing
-    End Function
-
-    ' Hàm lấy dữ liệu ảnh từ cơ sở dữ liệu
-    Function GetImageFromDatabase(ByVal userId As String, ByVal isTeacher As Boolean) As Byte()
-        Dim imageData As Byte() = Nothing
-        Dim sql As String
-
-        If isTeacher Then
-            sql = "SELECT image FROM Giangvien WHERE Magv = @Magv"
-        Else
-            sql = "SELECT image FROM Sinhvien WHERE Masv = @Masv"
-        End If
-
-        Using conn As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
-            Using cmd As New SqlCommand(sql, conn)
-                cmd.Parameters.AddWithValue(If(isTeacher, "@Magv", "@Masv"), userId)
-                conn.Open()
-                Dim reader As SqlDataReader = cmd.ExecuteReader()
-                If reader.Read() Then
-                    If Not IsDBNull(reader("image")) Then
-                        imageData = CType(reader("image"), Byte())
-                    End If
-                End If
-            End Using
-        End Using
-        Return imageData
-    End Function
-
-    ' Hàm cập nhật ảnh trong cơ sở dữ liệu
-    Function UpdateImageInDatabase(ByVal userId As String, ByVal imageBytes As Byte(), ByVal isTeacher As Boolean) As Boolean
-        Dim sql As String
-
-        If isTeacher Then
-            sql = "UPDATE Giangvien SET Image = @Image WHERE Magv = @Magv"
-        Else
-            sql = "UPDATE Sinhvien SET Image = @Image WHERE Masv = @Masv"
-        End If
-
-        Using conn As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
-            Using cmd As New SqlCommand(sql, conn)
-                cmd.Parameters.AddWithValue(If(isTeacher, "@Magv", "@Masv"), userId)
-                cmd.Parameters.AddWithValue("@image", imageBytes)
-                conn.Open()
-                Return cmd.ExecuteNonQuery() > 0
-            End Using
-        End Using
-    End Function
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
 
@@ -306,7 +231,7 @@ Public Class EditAccount
     End Sub
 
     Private Sub imgAvatar_Click(sender As Object, e As EventArgs) Handles imgAvatar.Click
-        imageBytes = LoadImage()
+        imageBytes = LoadImage(imgAvatar)
         MessageBox.Show("Đẩy hình ảnh thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 End Class

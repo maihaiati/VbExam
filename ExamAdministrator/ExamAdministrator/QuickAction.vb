@@ -114,13 +114,8 @@ Module QuickAction
 
 	Public Function GenerateSalt(length As Integer) As String
 		Dim saltBytes(length - 1) As Byte
-
-		Using rng As New RNGCryptoServiceProvider()
-			rng.GetBytes(saltBytes)
-		End Using
-
+		RandomNumberGenerator.Fill(saltBytes)
 		Dim salt As String = Convert.ToBase64String(saltBytes)
-
 		Return salt
 	End Function
 
@@ -196,25 +191,5 @@ Module QuickAction
 			End Using
 		End Using
 		Return imageData
-	End Function
-
-	' Hàm cập nhật ảnh trong cơ sở dữ liệu
-	Function UpdateUserImageInDatabase(ByVal userId As String, ByVal imageBytes As Byte(), ByVal isTeacher As Boolean) As Boolean
-		Dim sql As String
-
-		If isTeacher Then
-			sql = "UPDATE Giangvien SET Image = @Image WHERE Magv = @Magv"
-		Else
-			sql = "UPDATE Sinhvien SET Image = @Image WHERE Masv = @Masv"
-		End If
-
-		Using conn As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
-			Using cmd As New SqlCommand(sql, conn)
-				cmd.Parameters.AddWithValue(If(isTeacher, "@Magv", "@Masv"), userId)
-				cmd.Parameters.AddWithValue("@image", imageBytes)
-				conn.Open()
-				Return cmd.ExecuteNonQuery() > 0
-			End Using
-		End Using
 	End Function
 End Module
