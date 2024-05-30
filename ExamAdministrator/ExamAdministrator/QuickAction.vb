@@ -3,16 +3,17 @@ Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Text
 Imports System.Security.Cryptography
+Imports System.IO
 Module QuickAction
 	Public sqlCon As SqlClient.SqlConnection
 	Public dataAdapter As SqlClient.SqlDataAdapter
 	Public dataTable As DataTable
 	Dim sqlCommand As SqlCommand
 	Public sql As String
+	Dim machineName As String = Environment.MachineName
 
 	Public Function runSqlCommand(sql As String, params As List(Of SqlParameter)) As Boolean
 		Try
-			Dim machineName As String = Environment.MachineName
 			Using sqlCon As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
 				Using sqlCommand As New SqlCommand(sql, sqlCon)
 					If params IsNot Nothing AndAlso params.Count > 0 Then
@@ -45,7 +46,6 @@ Module QuickAction
 
 	Public Function getData(sql As String, params As List(Of SqlParameter)) As DataTable
 		Dim dataTable As New DataTable()
-		Dim machineName As String = Environment.MachineName
 		Using sqlCon As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
 			Using sqlCommand As New SqlCommand(sql, sqlCon)
 				If params IsNot Nothing AndAlso params.Count > 0 Then
@@ -122,5 +122,99 @@ Module QuickAction
 		Dim salt As String = Convert.ToBase64String(saltBytes)
 
 		Return salt
+	End Function
+
+	' Hàm chuyển đổi từ mảng byte sang đối tượng Image
+	Function ByteArrayToImage(ByVal byteArray As Byte()) As Image
+		Using ms As New MemoryStream(byteArray)
+			Return Image.FromStream(ms)
+		End Using
+	End Function
+
+	' Hàm chuyển đổi từ đối tượng Image sang mảng byte
+	Function ImageToByteArray(ByVal image As Image) As Byte()
+		Using ms As New MemoryStream()
+			image.Save(ms, image.RawFormat)
+			Return ms.ToArray()
+		End Using
+	End Function
+
+	' Hàm tải ảnh từ hộp thoại tệp và hiển thị trong PictureBox
+	Function LoadImage(picture As PictureBox) As Byte()
+		Using ofd As New OpenFileDialog()
+			ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp"
+			If ofd.ShowDialog() = DialogResult.OK Then
+				Dim img As Image = Image.FromFile(ofd.FileName)
+				picture.Image = img
+				Return ImageToByteArray(img)
+			End If
+		End Using
+		Return Nothing
+	End Function
+
+	' Hàm lấy dữ liệu ảnh từ cơ sở dữ liệu
+	Function GetUserImageFromDatabase(ByVal userId As String, ByVal isTeacher As Boolean) As Byte()
+		Dim imageData As Byte() = Nothing
+		Dim sql As String
+
+		If isTeacher Then
+			sql = "SELECT image FROM Giangvien WHERE Magv = @Magv"
+		Else
+			sql = "SELECT image FROM Sinhvien WHERE Masv = @Masv"
+		End If
+
+		Using conn As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
+			Using cmd As New SqlCommand(sql, conn)
+				cmd.Parameters.AddWithValue(If(isTeacher, "@Magv", "@Masv"), userId)
+				conn.Open()
+				Dim reader As SqlDataReader = cmd.ExecuteReader()
+				If reader.Read() Then
+					If Not IsDBNull(reader("image")) Then
+						imageData = CType(reader("image"), Byte())
+					End If
+				End If
+			End Using
+		End Using
+		Return imageData
+	End Function
+
+	Function GetQuestionImageFromDatabase(ByVal maAnh As String) As Byte()
+		Dim imageData As Byte() = Nothing
+
+		sql = "SELECT image FROM ImageData WHERE Maanh = @MaAnh"
+
+		Using conn As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
+			Using cmd As New SqlCommand(sql, conn)
+				cmd.Parameters.AddWithValue("@MaAnh", maAnh)
+				conn.Open()
+				Dim reader As SqlDataReader = cmd.ExecuteReader()
+				If reader.Read() Then
+					If Not IsDBNull(reader("image")) Then
+						imageData = CType(reader("image"), Byte())
+					End If
+				End If
+			End Using
+		End Using
+		Return imageData
+	End Function
+
+	' Hàm cập nhật ảnh trong cơ sở dữ liệu
+	Function UpdateUserImageInDatabase(ByVal userId As String, ByVal imageBytes As Byte(), ByVal isTeacher As Boolean) As Boolean
+		Dim sql As String
+
+		If isTeacher Then
+			sql = "UPDATE Giangvien SET Image = @Image WHERE Magv = @Magv"
+		Else
+			sql = "UPDATE Sinhvien SET Image = @Image WHERE Masv = @Masv"
+		End If
+
+		Using conn As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
+			Using cmd As New SqlCommand(sql, conn)
+				cmd.Parameters.AddWithValue(If(isTeacher, "@Magv", "@Masv"), userId)
+				cmd.Parameters.AddWithValue("@image", imageBytes)
+				conn.Open()
+				Return cmd.ExecuteNonQuery() > 0
+			End Using
+		End Using
 	End Function
 End Module
