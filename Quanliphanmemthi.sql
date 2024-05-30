@@ -9,12 +9,12 @@ create table Sinhvien(
 	Ngaysinh date not null,
 	Lop nvarchar(20) not null,
 	Khoa nvarchar(100) not null,
-	salt nvarchar(24) not null
+	salt nvarchar(40) not null
 	constraint sinhvien_id primary key (Masv)
 )
 	use ExamDB
-insert into Sinhvien(Masv,da7b628aa72d4dc9b8349bafbf9b4b7ed8df0bd4432e35392c70f27a08254d7b,image,HoTen,Gioitinh,Ngaysinh,Lop,Khoa,salt) values 
-('2823220212',2823220212,(SELECT * FROM OPENROWSET(BULK 'C:\Users\ntv\Downloads\Compressed\VbExam\imagesv\2823220212.jpg', SINGLE_BLOB) AS image),N'Ngô Tuấn Việt',N'Nam','2005-12-12',N'TH28.27',N'Công Nghệ Thông Tin',434282283)
+insert into Sinhvien(Masv,Passsv,image,HoTen,Gioitinh,Ngaysinh,Lop,Khoa,salt) values 
+('2823220212','da7b628aa72d4dc9b8349bafbf9b4b7ed8df0bd4432e35392c70f27a08254d7b',(SELECT * FROM OPENROWSET(BULK 'C:\Users\Admin\Documents\VbExam\imagesv\2823220212.jpg', SINGLE_BLOB) AS image),N'Ngô Tuấn Việt',N'Nam','2005-12-12',N'TH28.27',N'Công Nghệ Thông Tin',434282283)
 
 select * from Loginfo
 delete Loginfo
@@ -36,11 +36,11 @@ create table Giangvien(
 	Ngaysinh date not null,
 	Chucvu nvarchar(50) not null,
 	Khoa nvarchar(50) not null,
-	salt nvarchar not null,
+	salt nvarchar(60) not null,
 	Administrator BIT not null
 )
 use ExamDB
-insert into Giangvien(Magv,Passgv,image,Hotengv,Gioitinh,Ngaysinh,Chucvu,Khoa,salt,Administrator) values ('GV012@','12345',(SELECT * FROM OPENROWSET(BULK 'C:\Users\ntv\Downloads\Compressed\VbExam\imagegv\GV012@.jpg', SINGLE_BLOB) AS image),N'Mai Quang Hải',N'Nam','07/16/2005',N'Trưởng Khoa',N'Công Nghệ Thông Tin',3456467, 1)
+insert into Giangvien(Magv,Passgv,image,Hotengv,Gioitinh,Ngaysinh,Chucvu,Khoa,salt,Administrator) values ('GV012','da7b628aa72d4dc9b8349bafbf9b4b7ed8df0bd4432e35392c70f27a08254d7b',(SELECT * FROM OPENROWSET(BULK 'C:\Users\Admin\Documents\VbExam\imagegv\GV012@.jpg', SINGLE_BLOB) AS image),N'Mai Quang Hải',N'Nam','07/16/2005',N'Trưởng Khoa',N'Công Nghệ Thông Tin',3456467, 1)
 select * from Loginfo
 Create table Bangdiem(
 	Mamonhoc nvarchar(60) not null,

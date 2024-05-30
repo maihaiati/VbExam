@@ -16,6 +16,7 @@ Public Class LoginForm
             MessageBox.Show("Đăng nhập thất bại!", "Exam Student", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             txtUser.Text = ""
             txtPass.Text = ""
+            Return
         End If
 
         Dim inputPass = HashPasswordWithSalt(txtPass.Text, dataTable.Rows.Item(0).Item("salt"))

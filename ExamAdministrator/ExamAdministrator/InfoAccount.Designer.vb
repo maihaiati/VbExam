@@ -35,8 +35,8 @@ Partial Class InfoAccount
         txtchucvu = New TextBox()
         txtkhoa = New TextBox()
         dtpBirth = New DateTimePicker()
-        btnedit = New Button()
-        btncancel = New Button()
+        btnEdit = New Button()
+        btnCancel = New Button()
         imgAvatar = New PictureBox()
         cbgender = New ComboBox()
         CType(imgAvatar, ComponentModel.ISupportInitialize).BeginInit()
@@ -164,23 +164,23 @@ Partial Class InfoAccount
         dtpBirth.Size = New Size(163, 27)
         dtpBirth.TabIndex = 12
         ' 
-        ' btnedit
+        ' btnEdit
         ' 
-        btnedit.Location = New Point(99, 452)
-        btnedit.Name = "btnedit"
-        btnedit.Size = New Size(185, 48)
-        btnedit.TabIndex = 13
-        btnedit.Text = "Thay Đổi Thông Tin"
-        btnedit.UseVisualStyleBackColor = True
+        btnEdit.Location = New Point(99, 452)
+        btnEdit.Name = "btnEdit"
+        btnEdit.Size = New Size(185, 48)
+        btnEdit.TabIndex = 13
+        btnEdit.Text = "Thay Đổi Thông Tin"
+        btnEdit.UseVisualStyleBackColor = True
         ' 
-        ' btncancel
+        ' btnCancel
         ' 
-        btncancel.Location = New Point(462, 452)
-        btncancel.Name = "btncancel"
-        btncancel.Size = New Size(135, 48)
-        btncancel.TabIndex = 14
-        btncancel.Text = "Huỷ Bỏ"
-        btncancel.UseVisualStyleBackColor = True
+        btnCancel.Location = New Point(462, 452)
+        btnCancel.Name = "btnCancel"
+        btnCancel.Size = New Size(135, 48)
+        btnCancel.TabIndex = 14
+        btnCancel.Text = "Huỷ Bỏ"
+        btnCancel.UseVisualStyleBackColor = True
         ' 
         ' imgAvatar
         ' 
@@ -207,8 +207,8 @@ Partial Class InfoAccount
         ClientSize = New Size(745, 531)
         Controls.Add(cbgender)
         Controls.Add(imgAvatar)
-        Controls.Add(btncancel)
-        Controls.Add(btnedit)
+        Controls.Add(btnCancel)
+        Controls.Add(btnEdit)
         Controls.Add(dtpBirth)
         Controls.Add(TXTtensinhvien)
         Controls.Add(txtkhoa)
@@ -241,8 +241,8 @@ Partial Class InfoAccount
     Friend WithEvents txtchucvu As TextBox
     Friend WithEvents txtkhoa As TextBox
     Friend WithEvents dtpBirth As DateTimePicker
-    Friend WithEvents btnedit As Button
-    Friend WithEvents btncancel As Button
+    Friend WithEvents btnEdit As Button
+    Friend WithEvents btnCancel As Button
     Friend WithEvents imgAvatar As PictureBox
     Friend WithEvents cbgender As ComboBox
 End Class

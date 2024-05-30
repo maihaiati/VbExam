@@ -24,7 +24,7 @@ Public Class CreateExam
 			params.Add(New SqlParameter("@HienDeThi", If(cbAnHien.Checked, 1, 0)))
 			If runSqlCommand(sql, params) Then
 				ExamManagement.loadData("SELECT * FROM DeThi", Nothing)
-				MessageBox.Show("Tạo lịch thi thành công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
+				MessageBox.Show("Tạo đề thi thành công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
 			Else
 				MessageBox.Show("Tạo đề thi thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 			End If

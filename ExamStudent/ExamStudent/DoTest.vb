@@ -100,7 +100,7 @@ Public Class DoTest
 		dataTable = getData("SELECT * FROM DeThi WHERE MaDeThi = @MaDeThi", params)
 		If dataTable.Rows.Count > 0 Then
 			lblSoPhut.Text = "Số phút: " & dataTable.Rows(0)("ThoiGian")
-			hour = Convert.ToInt32(dataTable.Rows(0)("ThoiGian")) / 60
+			hour = Convert.ToInt32(dataTable.Rows(0)("ThoiGian")) \ 60
 			minute = Convert.ToInt32(dataTable.Rows(0)("ThoiGian")) Mod 60
 			second = 0
 
@@ -167,6 +167,11 @@ Public Class DoTest
 				scoreCal()
 			End If
 		End If
+		quesIndex += 1
+		If quesIndex > numOfQues - 1 Then
+			quesIndex = 0
+		End If
+		loadQues(quesIndex)
 	End Sub
 
 	Private Sub btnB_Click(sender As Object, e As EventArgs) Handles btnB.Click
@@ -182,6 +187,11 @@ Public Class DoTest
 				scoreCal()
 			End If
 		End If
+		quesIndex += 1
+		If quesIndex > numOfQues - 1 Then
+			quesIndex = 0
+		End If
+		loadQues(quesIndex)
 	End Sub
 
 	Private Sub btnC_Click(sender As Object, e As EventArgs) Handles btnC.Click
@@ -197,6 +207,11 @@ Public Class DoTest
 				scoreCal()
 			End If
 		End If
+		quesIndex += 1
+		If quesIndex > numOfQues - 1 Then
+			quesIndex = 0
+		End If
+		loadQues(quesIndex)
 	End Sub
 
 	Private Sub btnD_Click(sender As Object, e As EventArgs) Handles btnD.Click
@@ -212,9 +227,22 @@ Public Class DoTest
 				scoreCal()
 			End If
 		End If
+		quesIndex += 1
+		If quesIndex > numOfQues - 1 Then
+			quesIndex = 0
+		End If
+		loadQues(quesIndex)
 	End Sub
 
 	Private Sub DoTest_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+		Dim result As DialogResult = MessageBox.Show("Bạn có chắc muốn nộp bài?", "Exam Student", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+		If result = DialogResult.Yes Then
+			scoreCal()
+		Else
+			e.Cancel = True
+			Return
+		End If
+		MessageBox.Show("Chương trình sẽ thoát khỏi đề thi!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
 		ConfirmInfoForm.Close()
 		DashboardForm.Show()
 	End Sub
