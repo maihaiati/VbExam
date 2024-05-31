@@ -23,12 +23,6 @@ Public Class DoTest
 	Dim minute As Integer
 	Dim second As Integer
 
-	Function ByteArrayToImage(ByVal byteArray As Byte()) As Image ' Chuyển đổi mảng byte thành ảnh
-		Using ms As New MemoryStream(byteArray)
-			Return Image.FromStream(ms)
-		End Using
-	End Function
-
 	Function GetImageFromDatabase(ByVal maAnh As String) As Byte() ' Lấy ảnh từ database theo mã ảnh
 		Dim imageData As Byte() = Nothing
 		Dim sql As String
@@ -165,6 +159,7 @@ Public Class DoTest
 			Dim result As DialogResult = MessageBox.Show("Bạn đã làm xong đề thi. Bạn có muốn nộp bài?", "Exam Student", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
 			If result = DialogResult.Yes Then
 				scoreCal()
+				Return
 			End If
 		End If
 		quesIndex += 1
@@ -185,6 +180,7 @@ Public Class DoTest
 			Dim result As DialogResult = MessageBox.Show("Bạn đã làm xong đề thi. Bạn có muốn nộp bài?", "Exam Student", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
 			If result = DialogResult.Yes Then
 				scoreCal()
+				Return
 			End If
 		End If
 		quesIndex += 1
@@ -205,6 +201,7 @@ Public Class DoTest
 			Dim result As DialogResult = MessageBox.Show("Bạn đã làm xong đề thi. Bạn có muốn nộp bài?", "Exam Student", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
 			If result = DialogResult.Yes Then
 				scoreCal()
+				Return
 			End If
 		End If
 		quesIndex += 1
@@ -225,6 +222,7 @@ Public Class DoTest
 			Dim result As DialogResult = MessageBox.Show("Bạn đã làm xong đề thi. Bạn có muốn nộp bài?", "Exam Student", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
 			If result = DialogResult.Yes Then
 				scoreCal()
+				Return
 			End If
 		End If
 		quesIndex += 1
