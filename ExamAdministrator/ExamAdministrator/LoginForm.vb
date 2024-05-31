@@ -18,6 +18,7 @@ Public Class LoginForm
             'Không ghi log vì trường hợp này mã gv không tồn tại (tương tự với Exam Student)
             txtUser.Text = ""
             txtPass.Text = ""
+            Return
         End If
 
         Dim inputPass = HashPasswordWithSalt(txtPass.Text, dataTable.Rows.Item(0).Item("salt"))
