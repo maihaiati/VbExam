@@ -131,6 +131,7 @@ Partial Class EditAccount
 		' 
 		txtUser.Location = New Point(440, 84)
 		txtUser.Name = "txtUser"
+		txtUser.ReadOnly = True
 		txtUser.Size = New Size(225, 23)
 		txtUser.TabIndex = 27
 		' 

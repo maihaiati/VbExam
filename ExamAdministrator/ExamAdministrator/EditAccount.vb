@@ -70,27 +70,23 @@ Public Class EditAccount
                 Dim salt = GenerateSalt(15)
                 Dim pass As String = HashPasswordWithSalt(txtPass.Text, salt)
 
-                If checkExists("Magv", "Giangvien", userName) Then
-                    params.Add(New SqlParameter("@Magv", userName))
-                    params.Add(New SqlParameter("@Passgv", pass))
-                    params.Add(New SqlParameter("@Image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)))
-                    params.Add(New SqlParameter("@Hotengv", txtName.Text))
-                    params.Add(New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()))
-                    params.Add(New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")))
-                    params.Add(New SqlParameter("@Chucvu", txtLopChucVu.Text))
-                    params.Add(New SqlParameter("@Khoa", txtKhoa.Text))
-                    params.Add(New SqlParameter("@Salt", salt))
-                    params.Add(New SqlParameter("@Administrator", admin))
+                params.Add(New SqlParameter("@Magv", userName))
+                params.Add(New SqlParameter("@Passgv", pass))
+                params.Add(New SqlParameter("@Image", If(imageBytes IsNot Nothing, imageBytes, DBNull.Value)))
+                params.Add(New SqlParameter("@Hotengv", txtName.Text))
+                params.Add(New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()))
+                params.Add(New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")))
+                params.Add(New SqlParameter("@Chucvu", txtLopChucVu.Text))
+                params.Add(New SqlParameter("@Khoa", txtKhoa.Text))
+                params.Add(New SqlParameter("@Salt", salt))
+                params.Add(New SqlParameter("@Administrator", admin))
 
-                    If runSqlCommand(sql, params) Then
-                        MessageBox.Show("Chỉnh sửa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        success = True
-                        AccountManagement.loadData()
-                    Else
-                        MessageBox.Show("Chỉnh sửa tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                    End If
+                If runSqlCommand(sql, params) Then
+                    MessageBox.Show("Chỉnh sửa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    success = True
+                    AccountManagement.loadData()
                 Else
-                    MsgBox("Không tìm thấy mã giảng viên!")
+                    MessageBox.Show("Chỉnh sửa tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
             Else
                 sql = "UPDATE Giangvien SET Hotengv = @Hotengv,Image = @Image, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Chucvu = @Chucvu, Khoa = @Khoa, Administrator = @Administrator " &
@@ -118,7 +114,7 @@ Public Class EditAccount
                 End If
             End If
 
-            log(userName, "Chỉnh sửa tài khoản", If(success, "Thành công", "Thất bại"), "Chỉnh sửa tài khoản giảng viên")
+            log(activeUserName, "Chỉnh sửa tài khoản", If(success, "Thành công", "Thất bại"), "Chỉnh sửa tài khoản giảng viên " & userName)
 
         Else
             If txtPass.Text <> "" Then
@@ -174,7 +170,7 @@ Public Class EditAccount
                 End If
             End If
 
-            log(userName, "Chỉnh sửa tài khoản", If(success, "Thành công", "Thất bại"), "Chỉnh sửa tài khoản sinh viên")
+            log(activeUserName, "Chỉnh sửa tài khoản", If(success, "Thành công", "Thất bại"), "Chỉnh sửa tài khoản sinh viên " & userName)
         End If
     End Sub
 
@@ -189,23 +185,17 @@ Public Class EditAccount
         If accountType = 0 Then
             sql = "DELETE FROM Giangvien WHERE Magv = @Magv"
 
-            If checkExists("Magv", "Giangvien", userName) Then
-                Dim params As New List(Of SqlParameter) From {
-                New SqlParameter("@Magv", userName)
-            }
+            Dim params As New List(Of SqlParameter) From {New SqlParameter("@Magv", userName)}
 
-                If runSqlCommand(sql, params) Then
-                    MessageBox.Show("Xóa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    success = True
-                    AccountManagement.loadData()
-                Else
-                    MessageBox.Show("Xóa tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                End If
+            If runSqlCommand(sql, params) Then
+                MessageBox.Show("Xóa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                success = True
+                AccountManagement.loadData()
             Else
-                MessageBox.Show("Không tìm thấy mã giảng viên!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Xóa tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
 
-            log(userName, "Xóa tài khoản", If(success, "Thành công", "Thất bại"), "Xóa tài khoản giảng viên")
+            log(activeUserName, "Xóa tài khoản", If(success, "Thành công", "Thất bại"), "Xóa tài khoản giảng viên " & userName)
             If success Then
                 Close()
             End If
@@ -213,23 +203,21 @@ Public Class EditAccount
         Else
             sql = "DELETE FROM Sinhvien WHERE Masv = @Masv"
 
-            If checkExists("Masv", "Sinhvien", userName) Then
-                Dim params As New List(Of SqlParameter) From {
-                New SqlParameter("@Masv", userName)
-            }
+            Dim params As New List(Of SqlParameter) From {New SqlParameter("@Masv", userName)}
 
-                If runSqlCommand(sql, params) Then
-                    MessageBox.Show("Xóa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    success = True
-                    AccountManagement.loadData()
-                Else
-                    MessageBox.Show("Xóa tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                End If
+            If runSqlCommand(sql, params) Then
+                MessageBox.Show("Xóa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                success = True
+                AccountManagement.loadData()
             Else
-                MessageBox.Show("Không tìm thấy mã sinh viên!", "Exam Adminstrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Xóa tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
 
-            log(userName, "Xóa tài khoản", If(success, "Thành công", "Thất bại"), "Xóa tài khoản sinh viên")
+            log(activeUserName, "Xóa tài khoản", If(success, "Thành công", "Thất bại"), "Xóa tài khoản sinh viên " & userName)
+
+            If success Then
+                Close()
+            End If
         End If
 
     End Sub

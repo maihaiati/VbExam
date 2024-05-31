@@ -5,6 +5,7 @@
     Public tenDe As String
     Public soPhut As Integer
     Public hienDeThi As Boolean
+    Public userName As String
 
     Private Sub btnProperties_Click(sender As Object, e As EventArgs) Handles btnProperties.Click
         EditExam.maDe = maDe
@@ -12,8 +13,9 @@
 		EditExam.maMonHoc = maMonHoc
 		EditExam.tenDe = tenDe
 		EditExam.soPhut = soPhut
-		EditExam.hienDeThi = hienDeThi
-		Hide()
+        EditExam.hienDeThi = hienDeThi
+        EditExam.userName = userName
+        Hide()
         EditExam.Show()
     End Sub
 

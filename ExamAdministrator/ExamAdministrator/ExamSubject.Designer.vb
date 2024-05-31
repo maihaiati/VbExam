@@ -192,7 +192,7 @@ Partial Class ExamSubject
 		Controls.Add(DGVMonhoc)
 		Margin = New Padding(3, 2, 3, 2)
 		Name = "ExamSubject"
-		Text = "ExamSubject"
+		Text = "Exam Administrator - Exam Subject"
 		CType(DGVMonhoc, ComponentModel.ISupportInitialize).EndInit()
 		ResumeLayout(False)
 		PerformLayout()

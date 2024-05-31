@@ -45,6 +45,7 @@ Public Class Dashboard
     End Sub
 
     Private Sub btnmonhoc_Click(sender As Object, e As EventArgs) Handles btnmonhoc.Click
+        ExamSubject.userName = userName
         ExamSubject.Show()
     End Sub
 End Class

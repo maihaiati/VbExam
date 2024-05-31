@@ -58,6 +58,7 @@ Public Class ExamManagement
 			EditType.tenDe = dataTable.Rows(0)("Tenmonhoc")
 			EditType.soPhut = selectedRow.Cells("ThoiGian").Value
 			EditType.hienDeThi = selectedRow.Cells("HienDeThi").Value
+			EditType.userName = userName
 			EditType.Show()
 		End If
 	End Sub
@@ -67,6 +68,7 @@ Public Class ExamManagement
 	End Sub
 
 	Private Sub btnCreateExam_Click(sender As Object, e As EventArgs) Handles btnCreateExam.Click
+		CreateExam.userName = userName
 		CreateExam.Show()
 	End Sub
 End Class
