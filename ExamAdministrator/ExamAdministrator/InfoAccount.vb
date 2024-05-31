@@ -31,6 +31,10 @@ Public Class InfoAccount
 	End Sub
 
 	Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+		Dim result As DialogResult = MessageBox.Show("Xác nhận thay đổi thông tin?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+		If result = DialogResult.No Then
+			Return
+		End If
 		Dim sql As String = "UPDATE Giangvien SET Image = @Image, Hotengv = @HoTen, Gioitinh = @GioiTinh, Ngaysinh = @NgaySinh, Chucvu = @ChucVu, Khoa = @Khoa WHERE Magv = @MaGv"
 		Dim params As New List(Of SqlParameter)
 		params.Add(New SqlParameter("@Image", If(imageByte IsNot Nothing, imageByte, DBNull.Value)))

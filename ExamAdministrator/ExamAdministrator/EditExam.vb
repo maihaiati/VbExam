@@ -11,6 +11,10 @@ Public Class EditExam
     Dim sql As String
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        Dim result As DialogResult = MessageBox.Show("Xác nhận xoá đề thi?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+        If result = DialogResult.No Then
+            Return
+        End If
         Dim params As New List(Of SqlParameter)
 
         ' Xoá câu hỏi
@@ -58,18 +62,22 @@ Public Class EditExam
         If cbbMaKhoa.SelectedItem = "" Or txtTenDe.Text = "" Then
             MessageBox.Show("Không được để trống thông tin!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
+            Dim result As DialogResult = MessageBox.Show("Xác nhận thay đổi thông tin?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+            If result = DialogResult.No Then
+                Return
+            End If
             Dim params As New List(Of SqlParameter)
             sql = "UPDATE DeThi SET MaKhoa = @MaKhoa, Mamonhoc = @MaMonHoc, ThoiGian = @ThoiGian, HienDeThi = @HienDeThi WHERE MaDeThi = @MaDe"
             params.Add(New SqlParameter("@MaKhoa", cbbMaKhoa.SelectedItem))
             params.Add(New SqlParameter("@MaMonHoc", cbbMaMonHoc.SelectedItem))
             params.Add(New SqlParameter("@MaDe", maDe))
-			params.Add(New SqlParameter("@ThoiGian", numMinute.Value))
+            params.Add(New SqlParameter("@ThoiGian", numMinute.Value))
             params.Add(New SqlParameter("@HienDeThi", If(cbAnHien.Checked, 1, 0)))
             If Not runSqlCommand(sql, params) Then
-				MessageBox.Show("Chỉnh sửa đề thi thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-			Else
-				ExamManagement.loadData("SELECT * FROM DeThi", Nothing)
-			End If
+                MessageBox.Show("Chỉnh sửa đề thi thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Else
+                ExamManagement.loadData("SELECT * FROM DeThi", Nothing)
+            End If
         End If
     End Sub
 

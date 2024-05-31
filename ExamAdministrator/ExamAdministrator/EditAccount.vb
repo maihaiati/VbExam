@@ -45,7 +45,6 @@ Public Class EditAccount
     End Sub
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
-
         Dim sql As String
         Dim success = False
         Dim admin As Integer
@@ -54,6 +53,11 @@ Public Class EditAccount
 
         If txtName.Text = "" Or cbbGender.SelectedItem = "" Or txtLopChucVu.Text = "" Or txtKhoa.Text = "" Then
             MessageBox.Show("Không được để trống thông tin trừ mật khẩu!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
+        Dim result As DialogResult = MessageBox.Show("Xác nhận thay đổi thông tin?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+        If result = DialogResult.No Then
             Return
         End If
 
@@ -175,6 +179,10 @@ Public Class EditAccount
     End Sub
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        Dim result As DialogResult = MessageBox.Show("Xác nhận xoá thông tin?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+        If result = DialogResult.No Then
+            Return
+        End If
         Dim sql As String
         Dim success = False
 
@@ -232,6 +240,5 @@ Public Class EditAccount
 
     Private Sub imgAvatar_Click(sender As Object, e As EventArgs) Handles imgAvatar.Click
         imageBytes = LoadImage(imgAvatar)
-        MessageBox.Show("Đẩy hình ảnh thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 End Class

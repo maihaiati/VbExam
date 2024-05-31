@@ -26,7 +26,11 @@ Public Class ExamSubject
         txttmh.Text = ""
         txtsotiet.Text = ""
     End Sub
-    Private Sub btnxoa_Click(sender As Object, e As EventArgs) Handles btnxoa.Click
+	Private Sub btnxoa_Click(sender As Object, e As EventArgs) Handles btnxoa.Click
+        Dim result As DialogResult = MessageBox.Show("Xác nhận xoá môn học?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+        If result = DialogResult.No Then
+            Return
+        End If
         Dim query As String = "DELETE FROM MonHoc WHERE MaMonHoc = @MaMonHoc"
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@MaMonHoc", txtmamh.Text))
@@ -42,6 +46,10 @@ Public Class ExamSubject
     End Sub
 
     Private Sub btnchinhsua_Click(sender As Object, e As EventArgs) Handles btnchinhsua.Click
+        Dim result As DialogResult = MessageBox.Show("Xác nhận chỉnh sửa môn học?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+        If result = DialogResult.No Then
+            Return
+        End If
         Dim query As String = "UPDATE MonHoc SET TenMonHoc = @TenMonHoc,SoTiet = @SoTiet WHERE MaMonHoc = @MaMonHoc"
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@MaMonHoc", txtmamh.Text))

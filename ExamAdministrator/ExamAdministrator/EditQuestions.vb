@@ -305,6 +305,10 @@ Public Class EditQuestions
 			MessageBox.Show("Không cho phép xoá câu hỏi duy nhất trong đề", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 			Return
 		End If
+		Dim result As DialogResult = MessageBox.Show("Xác nhận xoá câu hỏi?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+		If result = DialogResult.No Then
+			Return
+		End If
 		sql = "DELETE CauHoi WHERE MaCauHoi = @MaCauHoi"
 		params.Add(New SqlParameter("@MaCauHoi", maCauHoi))
 		If Not runSqlCommand(sql, params) Then

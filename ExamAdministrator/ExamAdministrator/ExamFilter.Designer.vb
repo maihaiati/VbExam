@@ -29,12 +29,12 @@ Partial Class ExamFilter
 		Label5 = New Label()
 		Label6 = New Label()
 		txtMaDeThi = New TextBox()
-		txtMaKhoa = New TextBox()
-		txtTenDeThi = New TextBox()
 		cbAllTrue = New CheckBox()
 		btnFilter = New Button()
 		btnExit = New Button()
 		numOfQues = New NumericUpDown()
+		cbbMaKhoa = New ComboBox()
+		cbbMaMonHoc = New ComboBox()
 		CType(numOfQues, ComponentModel.ISupportInitialize).BeginInit()
 		SuspendLayout()
 		' 
@@ -71,9 +71,9 @@ Partial Class ExamFilter
 		Label4.AutoSize = True
 		Label4.Location = New Point(36, 133)
 		Label4.Name = "Label4"
-		Label4.Size = New Size(58, 15)
+		Label4.Size = New Size(75, 15)
 		Label4.TabIndex = 3
-		Label4.Text = "Tên đề thi"
+		Label4.Text = "Mã môn học"
 		' 
 		' Label5
 		' 
@@ -99,20 +99,6 @@ Partial Class ExamFilter
 		txtMaDeThi.Name = "txtMaDeThi"
 		txtMaDeThi.Size = New Size(171, 23)
 		txtMaDeThi.TabIndex = 6
-		' 
-		' txtMaKhoa
-		' 
-		txtMaKhoa.Location = New Point(248, 101)
-		txtMaKhoa.Name = "txtMaKhoa"
-		txtMaKhoa.Size = New Size(171, 23)
-		txtMaKhoa.TabIndex = 7
-		' 
-		' txtTenDeThi
-		' 
-		txtTenDeThi.Location = New Point(248, 130)
-		txtTenDeThi.Name = "txtTenDeThi"
-		txtTenDeThi.Size = New Size(171, 23)
-		txtTenDeThi.TabIndex = 8
 		' 
 		' cbAllTrue
 		' 
@@ -151,17 +137,33 @@ Partial Class ExamFilter
 		numOfQues.TabIndex = 13
 		numOfQues.Value = New Decimal(New Integer() {1, 0, 0, 0})
 		' 
+		' cbbMaKhoa
+		' 
+		cbbMaKhoa.FormattingEnabled = True
+		cbbMaKhoa.Location = New Point(248, 101)
+		cbbMaKhoa.Name = "cbbMaKhoa"
+		cbbMaKhoa.Size = New Size(171, 23)
+		cbbMaKhoa.TabIndex = 14
+		' 
+		' cbbMaMonHoc
+		' 
+		cbbMaMonHoc.FormattingEnabled = True
+		cbbMaMonHoc.Location = New Point(248, 130)
+		cbbMaMonHoc.Name = "cbbMaMonHoc"
+		cbbMaMonHoc.Size = New Size(171, 23)
+		cbbMaMonHoc.TabIndex = 15
+		' 
 		' ExamFilter
 		' 
 		AutoScaleDimensions = New SizeF(7F, 15F)
 		AutoScaleMode = AutoScaleMode.Font
 		ClientSize = New Size(456, 287)
+		Controls.Add(cbbMaMonHoc)
+		Controls.Add(cbbMaKhoa)
 		Controls.Add(numOfQues)
 		Controls.Add(btnExit)
 		Controls.Add(btnFilter)
 		Controls.Add(cbAllTrue)
-		Controls.Add(txtTenDeThi)
-		Controls.Add(txtMaKhoa)
 		Controls.Add(txtMaDeThi)
 		Controls.Add(Label6)
 		Controls.Add(Label5)
@@ -183,10 +185,10 @@ Partial Class ExamFilter
 	Friend WithEvents Label5 As Label
 	Friend WithEvents Label6 As Label
 	Friend WithEvents txtMaDeThi As TextBox
-	Friend WithEvents txtMaKhoa As TextBox
-	Friend WithEvents txtTenDeThi As TextBox
 	Friend WithEvents cbAllTrue As CheckBox
 	Friend WithEvents btnFilter As Button
 	Friend WithEvents btnExit As Button
 	Friend WithEvents numOfQues As NumericUpDown
+	Friend WithEvents cbbMaKhoa As ComboBox
+	Friend WithEvents cbbMaMonHoc As ComboBox
 End Class
