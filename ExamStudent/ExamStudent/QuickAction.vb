@@ -129,12 +129,15 @@ Module QuickAction
 	End Function
 
 	' Hàm tải ảnh từ hộp thoại tệp và hiển thị trong PictureBox
-	Function LoadImage(picture As PictureBox) As Byte()
+	Function LoadImage(picture As PictureBox, ByRef imageName As String) As Byte()
 		Using ofd As New OpenFileDialog()
 			ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp"
 			If ofd.ShowDialog() = DialogResult.OK Then
 				Dim img As Image = Image.FromFile(ofd.FileName)
 				picture.Image = img
+				If imageName IsNot Nothing Then
+					imageName = Path.GetFileName(ofd.FileName)
+				End If
 				Return ImageToByteArray(img)
 			End If
 		End Using

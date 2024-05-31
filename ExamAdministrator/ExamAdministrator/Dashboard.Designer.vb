@@ -33,7 +33,7 @@ Partial Class Dashboard
         btnmonhoc = New ToolStripMenuItem()
         KhoaToolStripMenuItem = New ToolStripMenuItem()
         Label1 = New Label()
-        Label2 = New Label()
+        lblLoiChao = New Label()
         lblTime = New Label()
         Timer = New Timer(components)
         MenuStrip1.SuspendLayout()
@@ -102,23 +102,22 @@ Partial Class Dashboard
         ' 
         ' Label1
         ' 
-        Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 15F)
-        Label1.Location = New Point(134, 68)
+        Label1.Location = New Point(187, 65)
         Label1.Name = "Label1"
-        Label1.Size = New Size(663, 35)
+        Label1.Size = New Size(578, 35)
         Label1.TabIndex = 1
-        Label1.Text = "Chào Mừng Bạn Đến Hệ Thống Tài Khoản Thi Trắc Nghiệm"
+        Label1.Text = "Trường Đại Học Kinh Doanh và Công Nghệ Hà Nội"
+        Label1.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Label2
+        ' lblLoiChao
         ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 12F)
-        Label2.Location = New Point(240, 119)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(451, 28)
-        Label2.TabIndex = 2
-        Label2.Text = "Trường Đại Học Kinh Doanh và Công Nghệ Hà Nội"
+        lblLoiChao.Font = New Font("Segoe UI", 12F)
+        lblLoiChao.Location = New Point(245, 119)
+        lblLoiChao.Name = "lblLoiChao"
+        lblLoiChao.Size = New Size(451, 28)
+        lblLoiChao.TabIndex = 2
+        lblLoiChao.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' lblTime
         ' 
@@ -127,7 +126,6 @@ Partial Class Dashboard
         lblTime.Name = "lblTime"
         lblTime.Size = New Size(545, 145)
         lblTime.TabIndex = 3
-        lblTime.Text = "lblTime"
         lblTime.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Timer
@@ -142,7 +140,7 @@ Partial Class Dashboard
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(926, 512)
         Controls.Add(lblTime)
-        Controls.Add(Label2)
+        Controls.Add(lblLoiChao)
         Controls.Add(Label1)
         Controls.Add(MenuStrip1)
         MainMenuStrip = MenuStrip1
@@ -163,7 +161,7 @@ Partial Class Dashboard
 	Friend WithEvents btnMyAcc As ToolStripMenuItem
 	Friend WithEvents btnLogout As ToolStripMenuItem
     Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
+    Friend WithEvents lblLoiChao As Label
     Friend WithEvents btnmonhoc As ToolStripMenuItem
     Friend WithEvents KhoaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents lblTime As Label

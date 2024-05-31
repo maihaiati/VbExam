@@ -360,7 +360,7 @@ Public Class EditQuestions
 	End Sub
 
 	Private Sub btnBrowImg_Click(sender As Object, e As EventArgs) Handles btnBrowImg.Click
-		imageBytes = LoadImage(picPreview)
+		imageBytes = LoadImage(picPreview, imageName)
 		saved = False
 	End Sub
 

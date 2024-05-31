@@ -114,6 +114,6 @@ Public Class CreateAccount
 
     Private Sub imgAcc_Click(sender As Object, e As EventArgs) Handles imgAcc.Click
         imgAcc.SizeMode = PictureBoxSizeMode.Zoom
-        imageBytes = LoadImage(imgAcc)
+        imageBytes = LoadImage(imgAcc, Nothing)
     End Sub
 End Class

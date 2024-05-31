@@ -227,6 +227,6 @@ Public Class EditAccount
     End Sub
 
     Private Sub imgAvatar_Click(sender As Object, e As EventArgs) Handles imgAvatar.Click
-        imageBytes = LoadImage(imgAvatar)
+        imageBytes = LoadImage(imgAvatar, Nothing)
     End Sub
 End Class
