@@ -22,6 +22,7 @@ Partial Class Dashboard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        components = New ComponentModel.Container()
         MenuStrip1 = New MenuStrip()
         btnAccount = New ToolStripMenuItem()
         btnExam = New ToolStripMenuItem()
@@ -30,15 +31,18 @@ Partial Class Dashboard
         btnMyAcc = New ToolStripMenuItem()
         btnLogout = New ToolStripMenuItem()
         btnmonhoc = New ToolStripMenuItem()
+        KhoaToolStripMenuItem = New ToolStripMenuItem()
         Label1 = New Label()
         Label2 = New Label()
+        lblTime = New Label()
+        Timer = New Timer(components)
         MenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
         ' MenuStrip1
         ' 
         MenuStrip1.ImageScalingSize = New Size(20, 20)
-        MenuStrip1.Items.AddRange(New ToolStripItem() {btnAccount, btnExam, btnResult, btnMe, btnmonhoc})
+        MenuStrip1.Items.AddRange(New ToolStripItem() {btnAccount, btnExam, btnResult, btnMe, btnmonhoc, KhoaToolStripMenuItem})
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
         MenuStrip1.Padding = New Padding(7, 3, 0, 3)
@@ -90,6 +94,12 @@ Partial Class Dashboard
         btnmonhoc.Size = New Size(132, 24)
         btnmonhoc.Text = "Quản lí &môn học"
         ' 
+        ' KhoaToolStripMenuItem
+        ' 
+        KhoaToolStripMenuItem.Name = "KhoaToolStripMenuItem"
+        KhoaToolStripMenuItem.Size = New Size(106, 24)
+        KhoaToolStripMenuItem.Text = "Quản lí &khoa"
+        ' 
         ' Label1
         ' 
         Label1.AutoSize = True
@@ -110,13 +120,28 @@ Partial Class Dashboard
         Label2.TabIndex = 2
         Label2.Text = "Trường Đại Học Kinh Doanh và Công Nghệ Hà Nội"
         ' 
+        ' lblTime
+        ' 
+        lblTime.Font = New Font("Segoe UI", 30F)
+        lblTime.Location = New Point(187, 232)
+        lblTime.Name = "lblTime"
+        lblTime.Size = New Size(545, 145)
+        lblTime.TabIndex = 3
+        lblTime.Text = "lblTime"
+        lblTime.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Timer
+        ' 
+        Timer.Enabled = True
+        Timer.Interval = 1000
+        ' 
         ' Dashboard
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        BackgroundImage = My.Resources.Resources.imgae_truong_hubt
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(926, 512)
+        Controls.Add(lblTime)
         Controls.Add(Label2)
         Controls.Add(Label1)
         Controls.Add(MenuStrip1)
@@ -140,4 +165,7 @@ Partial Class Dashboard
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents btnmonhoc As ToolStripMenuItem
+    Friend WithEvents KhoaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents lblTime As Label
+    Friend WithEvents Timer As Timer
 End Class

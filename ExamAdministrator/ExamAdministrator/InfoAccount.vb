@@ -46,8 +46,10 @@ Public Class InfoAccount
 		params.Add(New SqlParameter("@MaGv", userName))
 		If runSqlCommand(sql, params) Then
 			MessageBox.Show("Thay đổi thông tin thành công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
+			log(userName, "Thay đổi thông tin", "Thành công", "Thay đổi thông tin tài khoản " & userName)
 		Else
 			MessageBox.Show("Thay đổi thông tin thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+			log(userName, "Thay đổi thông tin", "Thất bại", "Thay đổi thông tin tài khoản " & userName)
 		End If
 	End Sub
 

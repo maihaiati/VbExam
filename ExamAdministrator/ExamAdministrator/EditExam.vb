@@ -31,11 +31,9 @@ Public Class EditExam
         params.Add(New SqlParameter("@Made", maDe))
         If runSqlCommand(sql, params) Then
             ExamManagement.loadData("SELECT * FROM DeThi", Nothing)
-            log(userName, "Xoá đề thi", "Thành công", "Xoá đề thi " & maDe)
             Close()
         Else
             MessageBox.Show("Xoá đề thi thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            log(userName, "Xoá đề thi", "Thất bại", "Xoá đề thi " & maDe)
         End If
 
     End Sub
@@ -78,10 +76,8 @@ Public Class EditExam
             params.Add(New SqlParameter("@HienDeThi", If(cbAnHien.Checked, 1, 0)))
             If Not runSqlCommand(sql, params) Then
                 MessageBox.Show("Chỉnh sửa đề thi thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                log(userName, "Chỉnh sửa đề thi", "Thất bại", "Chỉnh sửa đề thi " & maDe)
             Else
                 ExamManagement.loadData("SELECT * FROM DeThi", Nothing)
-                log(userName, "Chỉnh sửa đề thi", "Thành công", "Chỉnh sửa đề thi " & maDe)
             End If
         End If
     End Sub

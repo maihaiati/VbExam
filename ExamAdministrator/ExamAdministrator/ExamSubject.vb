@@ -19,7 +19,6 @@ Public Class ExamSubject
         params.Add(New SqlParameter("@SoTiet", txtsotiet.Text))
         If runSqlCommand(query, params) Then
             MessageBox.Show("Thêm thành công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            log(userName, "Thêm môn học", ) ' Code tiếp ở đây
         Else
             MessageBox.Show("Thêm thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If

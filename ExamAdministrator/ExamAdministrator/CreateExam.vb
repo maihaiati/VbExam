@@ -26,10 +26,8 @@ Public Class CreateExam
 			If runSqlCommand(sql, params) Then
 				ExamManagement.loadData("SELECT * FROM DeThi", Nothing)
 				MessageBox.Show("Tạo đề thi thành công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
-				log(userName, "Tạo đề thi", "Thành công", "Tạo đề thi " & txtMaDe.Text)
 			Else
 				MessageBox.Show("Tạo đề thi thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-				log(userName, "Tạo đề thi", "Thất bại", "Tạo đề thi " & txtMaDe.Text)
 			End If
 		End If
 	End Sub
