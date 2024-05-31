@@ -6,13 +6,47 @@ Public Class Dashboard
     Public userName As String
     Dim sql As String
     Dim params As New List(Of SqlParameter)
+    Dim timeInitSuccess = True
+    Dim morningStart, morningEnd, noonStart, noonEnd, afternoonStart, afternoonEnd, eveningStart, eveningEnd, nightStart, nightEnd As TimeSpan
+
+    Private Sub updateWelcome()
+        If timeInitSuccess Then
+            lblLoiChao.Text = "Chúc một ngày tốt lành!"
+            Return
+        End If
+        Dim currentTime As TimeSpan = DateTime.Now.TimeOfDay
+		If currentTime >= morningStart And currentTime <= morningEnd Then
+            lblLoiChao.Text = "Chúc buổi sáng tốt lành!"
+        ElseIf currentTime >= noonStart And currentTime <= noonEnd Then
+            lblLoiChao.Text = "Chúc buổi trưa tốt lành!"
+        ElseIf currentTime >= afternoonStart And currentTime <= afternoonEnd Then
+            lblLoiChao.Text = "Chúc buổi chiều tốt lành!"
+        ElseIf currentTime >= eveningStart And currentTime <= eveningEnd Then
+            lblLoiChao.Text = "Chúc buổi tối tốt lành!"
+        ElseIf currentTime >= nightStart And currentTime <= nightEnd Then
+            lblLoiChao.Text = "Chúc buổi đêm tốt lành!"
+        Else
+            lblLoiChao.Text = "Chúc một ngày tốt lành!"
+        End If
+    End Sub
 
     Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         btnMe.Text = fullName
-        lblTime.Text = DateTime.Now().ToString("hh:mm:ss tt")
-        'If DateTime.Now() Then
-
-        'End If
+        lblTime.Text = DateTime.Now().ToString("HH:mm:ss")
+        If (Not TimeSpan.TryParse("01:00:00", morningStart) Or
+            Not TimeSpan.TryParse("10:59:59", morningEnd) Or
+            Not TimeSpan.TryParse("11:00:00", noonStart) Or
+            Not TimeSpan.TryParse("12:59:59", noonEnd) Or
+            Not TimeSpan.TryParse("13:00:00", afternoonStart) Or
+            Not TimeSpan.TryParse("18:59:59", afternoonEnd) Or
+            Not TimeSpan.TryParse("19:00:00", eveningStart) Or
+            Not TimeSpan.TryParse("22:59:59", eveningEnd) Or
+            Not TimeSpan.TryParse("23:00:00", nightStart) Or
+            Not TimeSpan.TryParse("00:59:59", nightEnd)) Then
+            timeInitSuccess = False
+            Debug.WriteLine("Init timeline failed!")
+        End If
+        updateWelcome()
         sql = "SELECT Administrator FROM Giangvien WHERE Magv = @Magv"
         params.Add(New SqlParameter("@Magv", userName))
         If getData(sql, params).Rows.Item(0).Item("Administrator") = 0 Then
@@ -54,6 +88,7 @@ Public Class Dashboard
     End Sub
 
     Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
-        lblTime.Text = DateTime.Now().ToString("hh:mm:ss tt")
+        lblTime.Text = DateTime.Now().ToString("HH:mm:ss")
+        updateWelcome()
     End Sub
 End Class
