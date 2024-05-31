@@ -16,9 +16,10 @@ Public Class ConfirmInfoForm
 
 
 	Private Sub btnDenied_Click(sender As Object, e As EventArgs) Handles btnDenied.Click
-		MessageBox.Show("Vui lòng vào thông tin tài khoản để sửa lại thông tin", "Exam Student", MessageBoxButtons.OK, MessageBoxIcon.Information)
-		Hide()
-		DashboardForm.Show()
+		'MessageBox.Show("Vui lòng vào thông tin tài khoản để sửa lại thông tin", "Exam Student", MessageBoxButtons.OK, MessageBoxIcon.Information)
+		'Hide()
+		'DashboardForm.Show()
+		DashboardForm.needToChangeInfo()
 	End Sub
 	Private Sub btnConfirm_Click(sender As Object, e As EventArgs) Handles btnConfirm.Click
 		DoTest.userName = userName

@@ -60,4 +60,11 @@ Public Class DashboardForm
 			Hide()
 		End If
 	End Sub
+
+	Public Sub needToChangeInfo()
+		ConfirmInfoForm.Close()
+		Show()
+		InfoAccount.userName = userName
+		InfoAccount.Show()
+	End Sub
 End Class
