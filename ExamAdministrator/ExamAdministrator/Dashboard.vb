@@ -11,29 +11,29 @@ Public Class Dashboard
 
     Private Sub updateWelcome()
         If timeInitSuccess Then
-            lblLoiChao.Text = "Chúc một ngày tốt lành!"
+            lblLoiChao.Text = "Xin chào " & fullName
             Return
         End If
         Dim currentTime As TimeSpan = DateTime.Now.TimeOfDay
 		If currentTime >= morningStart And currentTime <= morningEnd Then
-            lblLoiChao.Text = "Chúc buổi sáng tốt lành!"
+            lblLoiChao.Text = "Chào buổi sáng " & fullName
         ElseIf currentTime >= noonStart And currentTime <= noonEnd Then
-            lblLoiChao.Text = "Chúc buổi trưa tốt lành!"
+            lblLoiChao.Text = "Chào buổi trưa " & fullName
         ElseIf currentTime >= afternoonStart And currentTime <= afternoonEnd Then
-            lblLoiChao.Text = "Chúc buổi chiều tốt lành!"
+            lblLoiChao.Text = "Chào buổi chiều " & fullName
         ElseIf currentTime >= eveningStart And currentTime <= eveningEnd Then
-            lblLoiChao.Text = "Chúc buổi tối tốt lành!"
+            lblLoiChao.Text = "Chào buổi tối " & fullName
         ElseIf currentTime >= nightStart And currentTime <= nightEnd Then
-            lblLoiChao.Text = "Chúc buổi đêm tốt lành!"
+            lblLoiChao.Text = "Chào buổi đêm " & fullName
         Else
-            lblLoiChao.Text = "Chúc một ngày tốt lành!"
+            lblLoiChao.Text = "Xin chào " & fullName
         End If
     End Sub
 
     Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         btnMe.Text = fullName
         lblTime.Text = DateTime.Now().ToString("HH:mm:ss")
-        If (Not TimeSpan.TryParse("01:00:00", morningStart) Or
+        If Not (Not TimeSpan.TryParse("01:00:00", morningStart) Or
             Not TimeSpan.TryParse("10:59:59", morningEnd) Or
             Not TimeSpan.TryParse("11:00:00", noonStart) Or
             Not TimeSpan.TryParse("12:59:59", noonEnd) Or
