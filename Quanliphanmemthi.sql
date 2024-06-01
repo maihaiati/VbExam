@@ -14,7 +14,7 @@ create table Sinhvien(
 )
 	use ExamDB
 insert into Sinhvien(Masv,Passsv,image,HoTen,Gioitinh,Ngaysinh,Lop,Khoa,salt) values 
-('2823220212','da7b628aa72d4dc9b8349bafbf9b4b7ed8df0bd4432e35392c70f27a08254d7b',(SELECT * FROM OPENROWSET(BULK 'C:\Users\Admin\Documents\VbExam\imagesv\2823220212.jpg', SINGLE_BLOB) AS image),N'Ngô Tuấn Việt',N'Nam','2005-12-12',N'TH28.27',N'Công Nghệ Thông Tin',434282283)
+('2823220212','da7b628aa72d4dc9b8349bafbf9b4b7ed8df0bd4432e35392c70f27a08254d7b',(SELECT * FROM OPENROWSET(BULK 'C:\Users\ntv\Downloads\Compressed\VbExam\imagesv\2823220212.jpg', SINGLE_BLOB) AS image),N'Ngô Tuấn Việt',N'Nam','2005-12-12',N'TH28.27',N'Công Nghệ Thông Tin',434282283)
 
 select * from Loginfo
 delete Loginfo
@@ -40,10 +40,10 @@ create table Giangvien(
 	Administrator BIT not null
 )
 use ExamDB
-insert into Giangvien(Magv,Passgv,image,Hotengv,Gioitinh,Ngaysinh,Chucvu,Khoa,salt,Administrator) values ('GV012','da7b628aa72d4dc9b8349bafbf9b4b7ed8df0bd4432e35392c70f27a08254d7b',(SELECT * FROM OPENROWSET(BULK 'C:\Users\Admin\Documents\VbExam\imagegv\GV012@.jpg', SINGLE_BLOB) AS image),N'Mai Quang Hải',N'Nam','07/16/2005',N'Trưởng Khoa',N'Công Nghệ Thông Tin',3456467, 1)
+insert into Giangvien(Magv,Passgv,image,Hotengv,Gioitinh,Ngaysinh,Chucvu,Khoa,salt,Administrator) values ('GV012','da7b628aa72d4dc9b8349bafbf9b4b7ed8df0bd4432e35392c70f27a08254d7b',(SELECT * FROM OPENROWSET(BULK 'C:\Users\ntv\Downloads\Compressed\VbExam\imagegv\GV012@.jpg', SINGLE_BLOB) AS image),N'Mai Quang Hải',N'Nam','07/16/2005',N'Trưởng Khoa',N'Công Nghệ Thông Tin',3456467, 1)
 select * from Loginfo
 Create table Bangdiem(
-	Mamonhoc nvarchar(60) not null,
+	Mamonhoc nvarchar(10) not null,
 	Masv nvarchar(60) not null,
 	tenmonhoc nvarchar(60) not null,
 	Diemthi int  not null,
@@ -51,7 +51,7 @@ Create table Bangdiem(
 )
 use ExamDB
 CREATE TABLE Monhoc(
-	Mamonhoc nvarchar(60) not null primary key,
+	Mamonhoc nvarchar(10) not null primary key,
 	Tenmonhoc nvarchar(60) not null,
 	SoTiet int not null
 )
@@ -65,15 +65,17 @@ use ExamDB
 CREATE TABLE DeThi (
 	MaDeThi NVARCHAR(40) NOT NULL PRIMARY KEY,
 	MaKhoa NVARCHAR(40) NOT NULL,
-	Mamonhoc NVARCHAR(40) NOT NULL,
+	Mamonhoc NVARCHAR(10) NOT NULL,
 	SoCau int,
 	ThoiGian int,
 	HienDeThi BIT
 )
-INSERT INTO DeThi (MaDeThi, MaKhoa, TenDeThi, SoCau,ThoiGian) VALUES ('TIN01', 'CNTT', N'Tin 1', 15, 5, 1)
+insert into DeThi(MaDeThi,MaKhoa,Mamonhoc,SoCau,ThoiGian,HienDeThi) values ('TIN01','CNTT','TIN01',0,5,1)
+
+use ExamDB
 CREATE TABLE CauHoi (
 	MaCauHoi NVARCHAR(40) NOT NULL PRIMARY KEY,
-	MaDeThi NVARCHAR(20) NOT NULL,
+	MaDeThi NVARCHAR(40) NOT NULL,
 	Maanh nvarchar(40),
 	NoiDung NVARCHAR(MAX) NOT NULL,
 	DapAnA NVARCHAR(MAX),
@@ -82,6 +84,7 @@ CREATE TABLE CauHoi (
 	DapAnD NVARCHAR(MAX),
 	DapAnDung int,
 	ThuTuCau int NOT NULL
+	constraint fk_MaDeThi foreign key (MaDeThi) references DeThi(MaDeThi)
 )
 
 INSERT INTO CauHoi (MaCauHoi, MaDeThi, NoiDung, DapAnA, DapAnB, DapAnC, DapAnD, DapAnDung, ThuTuCau) 
