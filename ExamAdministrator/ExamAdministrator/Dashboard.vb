@@ -33,16 +33,16 @@ Public Class Dashboard
 	Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 		btnMe.Text = fullName
 		lblTime.Text = DateTime.Now().ToString("HH:mm:ss")
-		If Not (Not TimeSpan.TryParse("01:00:00", morningStart) Or
-			Not TimeSpan.TryParse("10:59:59", morningEnd) Or
-			Not TimeSpan.TryParse("11:00:00", noonStart) Or
-			Not TimeSpan.TryParse("12:59:59", noonEnd) Or
-			Not TimeSpan.TryParse("13:00:00", afternoonStart) Or
-			Not TimeSpan.TryParse("18:59:59", afternoonEnd) Or
-			Not TimeSpan.TryParse("19:00:00", eveningStart) Or
-			Not TimeSpan.TryParse("22:59:59", eveningEnd) Or
-			Not TimeSpan.TryParse("23:00:00", nightStart) Or
-			Not TimeSpan.TryParse("00:59:59", nightEnd)) Then
+		If (TimeSpan.TryParse("01:00:00", morningStart) And
+			TimeSpan.TryParse("10:59:59", morningEnd) And
+			TimeSpan.TryParse("11:00:00", noonStart) And
+			TimeSpan.TryParse("12:59:59", noonEnd) And
+			TimeSpan.TryParse("13:00:00", afternoonStart) And
+			TimeSpan.TryParse("18:59:59", afternoonEnd) And
+			TimeSpan.TryParse("19:00:00", eveningStart) And
+			TimeSpan.TryParse("22:59:59", eveningEnd) And
+			TimeSpan.TryParse("23:00:00", nightStart) And
+			TimeSpan.TryParse("00:59:59", nightEnd)) Then
 			timeInitSuccess = False
 			Debug.WriteLine("Init timeline failed!")
 		End If
