@@ -1,7 +1,7 @@
 ﻿CREATE DATABASE ExamDB
 use ExamDB
 create table Sinhvien(
-	Masv nvarchar(60) not null,
+	Masv nvarchar(60) not null primary key,
 	Passsv nvarchar(70) not null,
 	Image varbinary(max),
 	HoTen Nvarchar(100) not null,
@@ -10,7 +10,6 @@ create table Sinhvien(
 	Lop nvarchar(20) not null,
 	MaKhoa nvarchar(40) not null,
 	salt nvarchar(40) not null
-	constraint sinhvien_id primary key (Masv)
 )
 	use ExamDB
 insert into Sinhvien(Masv,Passsv,image,HoTen,Gioitinh,Ngaysinh,Lop,Khoa,salt) values 
@@ -48,7 +47,6 @@ Create table Bangdiem(
 	Masv nvarchar(60) not null,
 	tenmonhoc nvarchar(60) not null,
 	Diemthi int  not null,
-	constraint fk_masv foreign key (Masv) references sinhvien(Masv)
 )
 use ExamDB
 CREATE TABLE Monhoc(
@@ -86,7 +84,6 @@ CREATE TABLE CauHoi (
 	DapAnD NVARCHAR(MAX),
 	DapAnDung int,
 	ThuTuCau int NOT NULL
-	constraint fk_MaDeThi foreign key (MaDeThi) references DeThi(MaDeThi)
 )
 
 INSERT INTO CauHoi (MaCauHoi, MaDeThi, NoiDung, DapAnA, DapAnB, DapAnC, DapAnD, DapAnDung, ThuTuCau) 
