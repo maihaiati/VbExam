@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.ApplicationServices
+﻿Imports System.Data.SqlClient
+Imports Microsoft.VisualBasic.ApplicationServices
 
 Namespace My
 	' The following events are available for MyApplication:
@@ -24,6 +25,26 @@ Namespace My
 	' End Sub
 
 	Partial Friend Class MyApplication
+		Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
+			' Kiểm tra database tồn tại
+			Dim machineName As String = Environment.MachineName
+			Dim connectionString As String = "Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;"
+			Dim databaseName As String = "ExamDB"
 
+			Using connection As New SqlConnection(connectionString)
+				connection.Open()
+				Dim command As New SqlCommand()
+				command.Connection = connection
+				command.CommandText = "IF DATABASEPROPERTYEX(@dbname, 'Version') IS NOT NULL SELECT 1 ELSE SELECT 0"
+				command.Parameters.AddWithValue("@dbname", databaseName)
+
+				Dim result As Integer = Convert.ToInt32(command.ExecuteScalar())
+
+				If Not (result = 1) Then
+					MessageBox.Show("Cơ sở dữ liệu không tồn tại. Chương trình sẽ thoát!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+					End
+				End If
+			End Using
+		End Sub
 	End Class
 End Namespace
