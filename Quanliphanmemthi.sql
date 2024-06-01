@@ -8,7 +8,7 @@ create table Sinhvien(
 	Gioitinh nvarchar(10) not null,
 	Ngaysinh date not null,
 	Lop nvarchar(20) not null,
-	MaKhoa nvarchar(100) not null,
+	MaKhoa nvarchar(40) not null,
 	salt nvarchar(40) not null
 	constraint sinhvien_id primary key (Masv)
 )
@@ -35,7 +35,7 @@ create table Giangvien(
 	Gioitinh nvarchar(10) not null,
 	Ngaysinh date not null,
 	Chucvu nvarchar(50) not null,
-	MaKhoa nvarchar(50) not null,
+	MaKhoa nvarchar(40) not null,
 	salt nvarchar(60) not null,
 	Administrator BIT not null
 )
