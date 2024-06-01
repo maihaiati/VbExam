@@ -13,8 +13,8 @@ Public Class CreateExam
 			MessageBox.Show("Không được để trống thông tin!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
 			Return
 		Else
-			If txtMaDe.Text.Length > 20 Then
-				MessageBox.Show("Mã đề không được quá 20 ký tự!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
+			If txtMaDe.Text.Length > 40 Then
+				MessageBox.Show("Mã đề không được quá 40 ký tự!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
 				Return
 			End If
 			sql = "INSERT INTO DeThi (MaDeThi, MaKhoa, Mamonhoc, SoCau, ThoiGian, HienDeThi) VALUES (@Madethi, @Makhoa, @Mamonhoc, 0, @ThoiGian, @HienDeThi)"

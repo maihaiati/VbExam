@@ -1,10 +1,8 @@
 ﻿Imports System.Data.SqlClient
 
-Public Class ExamScienceBranch
+Public Class ExamDepartment
     Public userName As String
     Dim machineName As String = Environment.MachineName
-    Dim connectionString As String = "Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;"
-    Dim connection As New SqlConnection(connectionString)
 
     Private Sub ExamScienceBranch_Load(sender As Object, e As EventArgs) Handles Me.Load
         LoadData()
@@ -61,16 +59,16 @@ Public Class ExamScienceBranch
             Return
         End If
         ' Xóa những người liên quan đến khoa
-        Dim deleteGVQuery As String = "DELETE FROM GiangVien WHERE Khoa = @MaKhoa"
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@MaKhoa", txtmakhoa.Text))
-        If Not runSqlCommand(deleteGVQuery, params) Then
-            Throw New Exception("Xoá người trong khoa thất bại.")
+        If Not (runSqlCommand("DELETE FROM Giangvien WHERE MaKhoa = @MaKhoa", params) And runSqlCommand("DELETE FROM Sinhvien WHERE MaKhoa = @MaKhoa", params)) Then
+            MessageBox.Show("Xoá người trong khoa thất bại.", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
         End If
         ' Xóa khoa
         Dim deleteKhoaQuery As String = "DELETE FROM Khoa WHERE MaKhoa = @MaKhoa"
         If Not runSqlCommand(deleteKhoaQuery, params) Then
-            Throw New Exception("Xoá khoa thất bại.")
+            MessageBox.Show("Xoá khoa thất bại.", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         Else
             ' Cam kết giao dịch nếu cả hai lệnh xoá thành công
             MessageBox.Show("Xoá Thành Công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -80,8 +78,7 @@ Public Class ExamScienceBranch
         txttkhoa.Text = ""
     End Sub
 
-    Private Sub ThoátToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ThoátToolStripMenuItem.Click
-        Hide()
-        Dashboard.Show()
+    Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+        Close()
     End Sub
 End Class

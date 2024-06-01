@@ -27,7 +27,6 @@ Partial Class EditAccount
 		btnUpdate = New Button()
 		btnExit = New Button()
 		cbAdmin = New CheckBox()
-		txtKhoa = New TextBox()
 		txtLopChucVu = New TextBox()
 		dtpBirth = New DateTimePicker()
 		cbbGender = New ComboBox()
@@ -43,6 +42,7 @@ Partial Class EditAccount
 		lblUser = New Label()
 		btnDelete = New Button()
 		imgAvatar = New PictureBox()
+		cbbKhoa = New ComboBox()
 		CType(imgAvatar, ComponentModel.ISupportInitialize).BeginInit()
 		SuspendLayout()
 		' 
@@ -88,13 +88,6 @@ Partial Class EditAccount
 		cbAdmin.Size = New Size(15, 14)
 		cbAdmin.TabIndex = 33
 		cbAdmin.UseVisualStyleBackColor = True
-		' 
-		' txtKhoa
-		' 
-		txtKhoa.Location = New Point(440, 260)
-		txtKhoa.Name = "txtKhoa"
-		txtKhoa.Size = New Size(225, 23)
-		txtKhoa.TabIndex = 32
 		' 
 		' txtLopChucVu
 		' 
@@ -159,9 +152,9 @@ Partial Class EditAccount
 		Label4.AutoSize = True
 		Label4.Location = New Point(279, 263)
 		Label4.Name = "Label4"
-		Label4.Size = New Size(34, 15)
+		Label4.Size = New Size(53, 15)
 		Label4.TabIndex = 24
-		Label4.Text = "Khoa"
+		Label4.Text = "Mã khoa"
 		' 
 		' lblLopChucVu
 		' 
@@ -227,11 +220,20 @@ Partial Class EditAccount
 		imgAvatar.TabIndex = 39
 		imgAvatar.TabStop = False
 		' 
+		' cbbKhoa
+		' 
+		cbbKhoa.FormattingEnabled = True
+		cbbKhoa.Location = New Point(440, 260)
+		cbbKhoa.Name = "cbbKhoa"
+		cbbKhoa.Size = New Size(225, 23)
+		cbbKhoa.TabIndex = 40
+		' 
 		' EditAccount
 		' 
 		AutoScaleDimensions = New SizeF(7F, 15F)
 		AutoScaleMode = AutoScaleMode.Font
 		ClientSize = New Size(686, 384)
+		Controls.Add(cbbKhoa)
 		Controls.Add(imgAvatar)
 		Controls.Add(btnDelete)
 		Controls.Add(Label7)
@@ -239,7 +241,6 @@ Partial Class EditAccount
 		Controls.Add(btnUpdate)
 		Controls.Add(btnExit)
 		Controls.Add(cbAdmin)
-		Controls.Add(txtKhoa)
 		Controls.Add(txtLopChucVu)
 		Controls.Add(dtpBirth)
 		Controls.Add(cbbGender)
@@ -265,7 +266,6 @@ Partial Class EditAccount
 	Friend WithEvents btnUpdate As Button
 	Friend WithEvents btnExit As Button
 	Friend WithEvents cbAdmin As CheckBox
-	Friend WithEvents txtKhoa As TextBox
 	Friend WithEvents txtLopChucVu As TextBox
 	Friend WithEvents dtpBirth As DateTimePicker
 	Friend WithEvents cbbGender As ComboBox
@@ -281,4 +281,5 @@ Partial Class EditAccount
 	Friend WithEvents lblUser As Label
     Friend WithEvents btnDelete As Button
     Friend WithEvents imgAvatar As PictureBox
+	Friend WithEvents cbbKhoa As ComboBox
 End Class

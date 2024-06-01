@@ -33,12 +33,12 @@ Partial Class InfoAccount
 		txtMaGV = New TextBox()
 		txtTenGV = New TextBox()
 		txtChucVu = New TextBox()
-		txtKhoa = New TextBox()
 		dtpBirth = New DateTimePicker()
 		btnEdit = New Button()
 		btnCancel = New Button()
 		imgAvatar = New PictureBox()
 		cbbGender = New ComboBox()
+		cbbKhoa = New ComboBox()
 		CType(imgAvatar, ComponentModel.ISupportInitialize).BeginInit()
 		SuspendLayout()
 		' 
@@ -93,9 +93,9 @@ Partial Class InfoAccount
 		Label5.ForeColor = SystemColors.HotTrack
 		Label5.Location = New Point(258, 283)
 		Label5.Name = "Label5"
-		Label5.Size = New Size(47, 17)
+		Label5.Size = New Size(69, 17)
 		Label5.TabIndex = 5
-		Label5.Text = "Khoa :"
+		Label5.Text = "Mã khoa :"
 		' 
 		' Label6
 		' 
@@ -152,14 +152,6 @@ Partial Class InfoAccount
 		txtChucVu.Size = New Size(227, 23)
 		txtChucVu.TabIndex = 10
 		' 
-		' txtKhoa
-		' 
-		txtKhoa.Location = New Point(380, 282)
-		txtKhoa.Margin = New Padding(3, 2, 3, 2)
-		txtKhoa.Name = "txtKhoa"
-		txtKhoa.Size = New Size(227, 23)
-		txtKhoa.TabIndex = 10
-		' 
 		' dtpBirth
 		' 
 		dtpBirth.CustomFormat = ""
@@ -210,18 +202,28 @@ Partial Class InfoAccount
 		cbbGender.Size = New Size(133, 23)
 		cbbGender.TabIndex = 16
 		' 
+		' cbbKhoa
+		' 
+		cbbKhoa.FormattingEnabled = True
+		cbbKhoa.Items.AddRange(New Object() {"Nam", "Nữ"})
+		cbbKhoa.Location = New Point(380, 282)
+		cbbKhoa.Margin = New Padding(3, 2, 3, 2)
+		cbbKhoa.Name = "cbbKhoa"
+		cbbKhoa.Size = New Size(227, 23)
+		cbbKhoa.TabIndex = 17
+		' 
 		' InfoAccount
 		' 
 		AutoScaleDimensions = New SizeF(7F, 15F)
 		AutoScaleMode = AutoScaleMode.Font
 		ClientSize = New Size(652, 398)
+		Controls.Add(cbbKhoa)
 		Controls.Add(cbbGender)
 		Controls.Add(imgAvatar)
 		Controls.Add(btnCancel)
 		Controls.Add(btnEdit)
 		Controls.Add(dtpBirth)
 		Controls.Add(txtTenGV)
-		Controls.Add(txtKhoa)
 		Controls.Add(txtChucVu)
 		Controls.Add(txtMaGV)
 		Controls.Add(TextBox1)
@@ -250,10 +252,10 @@ Partial Class InfoAccount
     Friend WithEvents txtMaGV As TextBox
     Friend WithEvents txtTenGV As TextBox
     Friend WithEvents txtChucVu As TextBox
-    Friend WithEvents txtKhoa As TextBox
     Friend WithEvents dtpBirth As DateTimePicker
     Friend WithEvents btnEdit As Button
     Friend WithEvents btnCancel As Button
     Friend WithEvents imgAvatar As PictureBox
     Friend WithEvents cbbGender As ComboBox
+	Friend WithEvents cbbKhoa As ComboBox
 End Class

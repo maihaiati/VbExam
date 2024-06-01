@@ -17,14 +17,16 @@ Public Class InfoAccount
 		txtMsv.Text = userName
 		txtHoTen.Text = dataTable.Rows(0)("HoTen")
 		txtLop.Text = dataTable.Rows(0)("Lop")
-		txtKhoa.Text = dataTable.Rows(0)("Khoa")
+		For Each row As DataRow In getData("SELECT MaKhoa FROM Khoa", Nothing).Rows
+			cbbKhoa.Items.Add(row("MaKhoa"))
+		Next
+		cbbKhoa.SelectedItem = dataTable.Rows(0)("MaKhoa")
 		dtpNgaySinh.Value = dataTable.Rows(0)("Ngaysinh")
 		cbbGioiTinh.Items.Add("Nam")
 		cbbGioiTinh.Items.Add("Nữ")
 		cbbGioiTinh.SelectedItem = dataTable.Rows(0)("Gioitinh")
 		imageByte = GetUserImageFromDatabase(userName)
 		picture.Image = ByteArrayToImage(imageByte)
-		txtMsv.Enabled = False
 	End Sub
 
 	Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
@@ -36,14 +38,14 @@ Public Class InfoAccount
 		If result = DialogResult.No Then
 			Return
 		End If
-		sql = "UPDATE Sinhvien SET Image = @Image, HoTen = @HoTen, Gioitinh = @GioiTinh, Ngaysinh = @NgaySinh, Lop = @Lop, Khoa = @Khoa WHERE Masv = @MaSv"
+		sql = "UPDATE Sinhvien SET Image = @Image, HoTen = @HoTen, Gioitinh = @GioiTinh, Ngaysinh = @NgaySinh, Lop = @Lop, MaKhoa = @MaKhoa WHERE Masv = @MaSv"
 		Dim params As New List(Of SqlParameter)
 		params.Add(New SqlParameter("@Image", If(imageByte IsNot Nothing, imageByte, DBNull.Value)))
 		params.Add(New SqlParameter("@HoTen", txtHoTen.Text))
 		params.Add(New SqlParameter("@GioiTinh", cbbGioiTinh.SelectedItem))
 		params.Add(New SqlParameter("@NgaySinh", dtpNgaySinh.Value.ToString))
 		params.Add(New SqlParameter("@Lop", txtLop.Text))
-		params.Add(New SqlParameter("@Khoa", txtKhoa.Text))
+		params.Add(New SqlParameter("@MaKhoa", cbbKhoa.SelectedItem))
 		params.Add(New SqlParameter("@MaSv", userName))
 		If runSqlCommand(sql, params) Then
 			MessageBox.Show("Thay đổi thông tin thành công!", "Exam Student", MessageBoxButtons.OK, MessageBoxIcon.Information)

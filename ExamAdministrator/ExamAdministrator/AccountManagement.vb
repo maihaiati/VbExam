@@ -8,10 +8,10 @@ Public Class AccountManagement
 
     Public Sub loadData()
         If accountType = 0 Then
-            assignData(dgAccount, "SELECT Magv, Hotengv, Gioitinh, Ngaysinh, Chucvu, Khoa, Administrator FROM Giangvien", Nothing)
+            assignData(dgAccount, "SELECT Magv, Hotengv, Gioitinh, Ngaysinh, Chucvu, MaKhoa, Administrator FROM Giangvien", Nothing)
             lblFilter.Text = "Lọc tài khoản: Giảng viên"
         Else
-            assignData(dgAccount, "SELECT Masv, HoTen, Gioitinh, Ngaysinh, Lop, Khoa FROM Sinhvien", Nothing)
+            assignData(dgAccount, "SELECT Masv, HoTen, Gioitinh, Ngaysinh, Lop, MaKhoa FROM Sinhvien", Nothing)
             lblFilter.Text = "Lọc tài khoản: Sinh viên"
         End If
     End Sub
@@ -53,7 +53,7 @@ Public Class AccountManagement
                 EditAccount.gender = selectedRow.Cells("Gioitinh").Value.ToString()
                 EditAccount.dtpBirth.Value = DateTime.Parse(selectedRow.Cells("Ngaysinh").Value.ToString())
                 EditAccount.lopChucVu = selectedRow.Cells("Chucvu").Value.ToString()
-                EditAccount.khoa = selectedRow.Cells("Khoa").Value.ToString()
+                EditAccount.khoa = selectedRow.Cells("MaKhoa").Value.ToString()
                 EditAccount.administrator = Convert.ToBoolean(selectedRow.Cells("Administrator").Value)
             Else
                 If selectedRow.Cells("Masv").Value.ToString() = "" Then
@@ -66,7 +66,7 @@ Public Class AccountManagement
                 EditAccount.gender = selectedRow.Cells("Gioitinh").Value.ToString()
                 EditAccount.dtpBirth.Value = DateTime.Parse(selectedRow.Cells("Ngaysinh").Value.ToString())
                 EditAccount.lopChucVu = selectedRow.Cells("Lop").Value.ToString()
-                EditAccount.khoa = selectedRow.Cells("Khoa").Value.ToString()
+                EditAccount.khoa = selectedRow.Cells("MaKhoa").Value.ToString()
             End If
             EditAccount.Show()
         End If

@@ -7,14 +7,6 @@ Public Class ConfirmInfoForm
 	Public maDeThi As String
 	Dim fullName As String
 
-
-	Function ByteArrayToImage(ByVal byteArray As Byte()) As Image
-		Using ms As New MemoryStream(byteArray)
-			Return Image.FromStream(ms)
-		End Using
-	End Function
-
-
 	Private Sub btnDenied_Click(sender As Object, e As EventArgs) Handles btnDenied.Click
 		DashboardForm.needToChangeInfo()
 	End Sub
@@ -31,7 +23,7 @@ Public Class ConfirmInfoForm
 	End Sub
 
 	Private Sub ConfirmInfoForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-		Dim sql = "SELECT HoTen, Gioitinh, Ngaysinh, Lop, Khoa FROM Sinhvien WHERE Masv = @MaSv"
+		Dim sql = "SELECT HoTen, Gioitinh, Ngaysinh, Lop, MaKhoa FROM Sinhvien WHERE Masv = @MaSv"
 		Dim params As New List(Of SqlParameter)
 		params.Add(New SqlParameter("@MaSv", userName))
 		Dim dataTable As DataTable = getData(sql, params)
@@ -42,7 +34,7 @@ Public Class ConfirmInfoForm
 			lbGioiTinh.Text = dataTable.Rows.Item(0).Item("Gioitinh")
 			lbNgaySinh.Text = dataTable.Rows.Item(0).Item("Ngaysinh")
 			lbLop.Text = dataTable.Rows.Item(0).Item("Lop")
-			lbKhoa.Text = dataTable.Rows.Item(0).Item("Khoa")
+			lbKhoa.Text = dataTable.Rows.Item(0).Item("MaKhoa")
 			picture.Image = ByteArrayToImage(GetUserImageFromDatabase(userName))
 		Else
 			MessageBox.Show("Không tìm thấy dữ liệu. Vui lòng báo cáo giám thị để được giải quyết!", "Exam Student", MessageBoxButtons.OK, MessageBoxIcon.Warning)

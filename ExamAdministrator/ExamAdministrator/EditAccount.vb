@@ -36,7 +36,10 @@ Public Class EditAccount
         cbbGender.Items.Add("Nữ")
         cbbGender.SelectedItem = gender
         txtLopChucVu.Text = lopChucVu
-        txtKhoa.Text = khoa
+        For Each row As DataRow In getData("SELECT MaKhoa FROM Khoa", Nothing).Rows
+            cbbKhoa.Items.Add(row("MaKhoa"))
+        Next
+        cbbKhoa.SelectedItem = khoa
         imgAvatar.SizeMode = PictureBoxSizeMode.Zoom
         imageBytes = GetUserImageFromDatabase(userName, accountType = 0)
         If imageBytes IsNot Nothing Then
@@ -51,7 +54,7 @@ Public Class EditAccount
         admin = If(cbAdmin.Checked, 1, 0)
         Dim params As New List(Of SqlParameter)
 
-        If txtName.Text = "" Or cbbGender.SelectedItem = "" Or txtLopChucVu.Text = "" Or txtKhoa.Text = "" Then
+        If txtName.Text = "" Or cbbGender.SelectedItem = "" Or txtLopChucVu.Text = "" Or cbbKhoa.SelectedItem = "" Then
             MessageBox.Show("Không được để trống thông tin trừ mật khẩu!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
@@ -64,7 +67,7 @@ Public Class EditAccount
         If accountType = 0 Then
 
             If txtPass.Text <> "" Then
-                sql = "UPDATE Giangvien SET Passgv = @Passgv, Image = @Image , Hotengv = @Hotengv, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Chucvu = @Chucvu, Khoa = @Khoa, salt = @Salt, Administrator = @Administrator " &
+                sql = "UPDATE Giangvien SET Passgv = @Passgv, Image = @Image , Hotengv = @Hotengv, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Chucvu = @Chucvu, MaKhoa = @MaKhoa, salt = @Salt, Administrator = @Administrator " &
               "WHERE Magv = @Magv"
 
                 Dim salt = GenerateSalt(15)
@@ -77,7 +80,7 @@ Public Class EditAccount
                 params.Add(New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()))
                 params.Add(New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")))
                 params.Add(New SqlParameter("@Chucvu", txtLopChucVu.Text))
-                params.Add(New SqlParameter("@Khoa", txtKhoa.Text))
+                params.Add(New SqlParameter("@MaKhoa", cbbKhoa.SelectedItem))
                 params.Add(New SqlParameter("@Salt", salt))
                 params.Add(New SqlParameter("@Administrator", admin))
 
@@ -89,7 +92,7 @@ Public Class EditAccount
                     MessageBox.Show("Chỉnh sửa tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
             Else
-                sql = "UPDATE Giangvien SET Hotengv = @Hotengv,Image = @Image, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Chucvu = @Chucvu, Khoa = @Khoa, Administrator = @Administrator " &
+                sql = "UPDATE Giangvien SET Hotengv = @Hotengv,Image = @Image, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Chucvu = @Chucvu, MaKhoa = @MaKhoa, Administrator = @Administrator " &
               "WHERE Magv = @Magv"
 
                 If checkExists("Magv", "Giangvien", userName) Then
@@ -99,7 +102,7 @@ Public Class EditAccount
                     params.Add(New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()))
                     params.Add(New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")))
                     params.Add(New SqlParameter("@Chucvu", txtLopChucVu.Text))
-                    params.Add(New SqlParameter("@Khoa", txtKhoa.Text))
+                    params.Add(New SqlParameter("@MaKhoa", cbbKhoa.SelectedItem))
                     params.Add(New SqlParameter("@Administrator", admin))
 
                     If runSqlCommand(sql, params) Then
@@ -118,7 +121,7 @@ Public Class EditAccount
 
         Else
             If txtPass.Text <> "" Then
-                sql = "UPDATE Sinhvien SET Passsv = @Passsv,image = @image, HoTen = @HoTen, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Lop = @Lop, Khoa = @Khoa, salt = @Salt " &
+                sql = "UPDATE Sinhvien SET Passsv = @Passsv,image = @image, HoTen = @HoTen, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Lop = @Lop, MaKhoa = @MaKhoa, salt = @Salt " &
                 "WHERE Masv = @Masv"
 
                 Dim salt = GenerateSalt(15)
@@ -132,7 +135,7 @@ Public Class EditAccount
                     params.Add(New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()))
                     params.Add(New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")))
                     params.Add(New SqlParameter("@Lop", txtLopChucVu.Text))
-                    params.Add(New SqlParameter("@Khoa", txtKhoa.Text))
+                    params.Add(New SqlParameter("@MaKhoa", cbbKhoa.SelectedItem))
                     params.Add(New SqlParameter("@Salt", salt))
 
                     If runSqlCommand(sql, params) Then
@@ -146,7 +149,7 @@ Public Class EditAccount
                     MessageBox.Show("Không tìm thấy mã sinh viên!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             Else
-                sql = "UPDATE Sinhvien SET image = @image, HoTen = @HoTen, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Lop = @Lop, Khoa = @Khoa " &
+                sql = "UPDATE Sinhvien SET image = @image, HoTen = @HoTen, Gioitinh = @Gioitinh, Ngaysinh = @Ngaysinh, Lop = @Lop, MaKhoa = @MaKhoa " &
                 "WHERE Masv = @Masv"
 
                 If checkExists("Masv", "Sinhvien", userName) Then
@@ -156,7 +159,7 @@ Public Class EditAccount
                     params.Add(New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()))
                     params.Add(New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")))
                     params.Add(New SqlParameter("@Lop", txtLopChucVu.Text))
-                    params.Add(New SqlParameter("@Khoa", txtKhoa.Text))
+                    params.Add(New SqlParameter("@MaKhoa", cbbKhoa.SelectedItem))
 
                     If runSqlCommand(sql, params) Then
                         MessageBox.Show("Chỉnh sửa tài khoản thành công", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)

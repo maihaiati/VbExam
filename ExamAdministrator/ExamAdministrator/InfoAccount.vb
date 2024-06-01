@@ -12,7 +12,7 @@ Public Class InfoAccount
 
 	Private Sub InfoAccount_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 		Dim params As New List(Of SqlParameter) From {New SqlParameter("@MaGv", userName)}
-		Dim dataTable As DataTable = getData("SELECT Image, Hotengv, Gioitinh, Ngaysinh, Chucvu, Khoa FROM Giangvien WHERE Magv = @MaGv", params)
+		Dim dataTable As DataTable = getData("SELECT Image, Hotengv, Gioitinh, Ngaysinh, Chucvu, MaKhoa FROM Giangvien WHERE Magv = @MaGv", params)
 
 		If dataTable.Rows.Count > 0 Then
 			txtMaGV.Text = userName
@@ -22,7 +22,10 @@ Public Class InfoAccount
 			cbbGender.Items.Add("Nữ")
 			cbbGender.SelectedItem = dataTable.Rows(0)("Gioitinh")
 			txtChucVu.Text = dataTable.Rows(0)("Chucvu")
-			txtKhoa.Text = dataTable.Rows(0)("Khoa")
+			For Each row As DataRow In getData("SELECT MaKhoa FROM Khoa", Nothing).Rows
+				cbbKhoa.Items.Add(row("MaKhoa"))
+			Next
+			cbbKhoa.SelectedItem = dataTable.Rows(0)("MaKhoa")
 			imageByte = GetUserImageFromDatabase(userName, True)
 			imgAvatar.Image = ByteArrayToImage(imageByte)
 		Else
@@ -35,14 +38,14 @@ Public Class InfoAccount
 		If result = DialogResult.No Then
 			Return
 		End If
-		Dim sql As String = "UPDATE Giangvien SET Image = @Image, Hotengv = @HoTen, Gioitinh = @GioiTinh, Ngaysinh = @NgaySinh, Chucvu = @ChucVu, Khoa = @Khoa WHERE Magv = @MaGv"
+		Dim sql As String = "UPDATE Giangvien SET Image = @Image, Hotengv = @HoTen, Gioitinh = @GioiTinh, Ngaysinh = @NgaySinh, Chucvu = @ChucVu, MaKhoa = @MaKhoa WHERE Magv = @MaGv"
 		Dim params As New List(Of SqlParameter)
 		params.Add(New SqlParameter("@Image", If(imageByte IsNot Nothing, imageByte, DBNull.Value)))
 		params.Add(New SqlParameter("@HoTen", txtTenGV.Text))
 		params.Add(New SqlParameter("@GioiTinh", cbbGender.SelectedItem))
 		params.Add(New SqlParameter("@NgaySinh", dtpBirth.Value.ToString))
 		params.Add(New SqlParameter("@ChucVu", txtChucVu.Text))
-		params.Add(New SqlParameter("@Khoa", txtKhoa.Text))
+		params.Add(New SqlParameter("@MaKhoa", cbbKhoa.SelectedItem))
 		params.Add(New SqlParameter("@MaGv", userName))
 		If runSqlCommand(sql, params) Then
 			MessageBox.Show("Thay đổi thông tin thành công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)

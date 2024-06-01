@@ -18,6 +18,9 @@ Public Class CreateAccount
         cbbGender.Items.Add("Nam")
         cbbGender.Items.Add("Nữ")
         cbbGender.SelectedIndex = 0
+        For Each row As DataRow In getData("SELECT MaKhoa FROM Khoa", Nothing).Rows
+            cbbKhoa.Items.Add(row("MaKhoa"))
+        Next
     End Sub
 
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
@@ -32,8 +35,8 @@ Public Class CreateAccount
         If accountType = 0 Then
             Dim admin As Integer
             admin = If(cbAdmin.Checked, 1, 0)
-            sql = "INSERT INTO Giangvien (Magv, Passgv,image, Hotengv, Gioitinh, Ngaysinh, Chucvu, Khoa, salt, Administrator) " &
-          "VALUES (@Magv, @Passgv,@image, @Hotengv, @Gioitinh, @Ngaysinh, @Chucvu, @Khoa, @Salt, @Administrator)"
+            sql = "INSERT INTO Giangvien (Magv, Passgv,image, Hotengv, Gioitinh, Ngaysinh, Chucvu, MaKhoa, salt, Administrator) " &
+          "VALUES (@Magv, @Passgv,@image, @Hotengv, @Gioitinh, @Ngaysinh, @Chucvu, @MaKhoa, @Salt, @Administrator)"
 
             If txtPass.Text = "" Then
                 MessageBox.Show("Tạo tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -53,7 +56,7 @@ Public Class CreateAccount
                     New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()),
                     New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")),
                     New SqlParameter("@Chucvu", txtLopChucVu.Text),
-                    New SqlParameter("@Khoa", txtKhoa.Text),
+                    New SqlParameter("@MaKhoa", cbbKhoa.SelectedItem),
                     New SqlParameter("@Salt", salt),
                     New SqlParameter("@Administrator", admin)
                 }
@@ -72,8 +75,8 @@ Public Class CreateAccount
             log(userName, "Tạo tài khoản", If(success, "Thành công", "Thất bại"), "Tạo tài khoản giảng viên")
 
         Else
-            sql = "INSERT INTO Sinhvien (Masv, Passsv,image, HoTen, Gioitinh, Ngaysinh, Lop, Khoa, salt) " &
-          "VALUES (@Masv, @Passsv,@image, @HoTen, @Gioitinh, @Ngaysinh, @Lop, @Khoa, @Salt)"
+            sql = "INSERT INTO Sinhvien (Masv, Passsv,image, HoTen, Gioitinh, Ngaysinh, Lop, MaKhoa, salt) " &
+          "VALUES (@Masv, @Passsv,@image, @HoTen, @Gioitinh, @Ngaysinh, @Lop, @MaKhoa, @Salt)"
 
             If txtPass.Text = "" Then
                 MessageBox.Show("Tạo tài khoản thất bại", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -93,7 +96,7 @@ Public Class CreateAccount
                     New SqlParameter("@Gioitinh", cbbGender.SelectedItem.ToString()),
                     New SqlParameter("@Ngaysinh", dtpBirth.Value.ToString("MM-dd-yyyy")),
                     New SqlParameter("@Lop", txtLopChucVu.Text),
-                    New SqlParameter("@Khoa", txtKhoa.Text),
+                    New SqlParameter("@MaKhoa", cbbKhoa.SelectedItem),
                     New SqlParameter("@Salt", salt)
                 }
 
