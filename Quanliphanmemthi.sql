@@ -46,8 +46,6 @@ Create table Bangdiem(
 	Mamonhoc nvarchar(60) not null,
 	Masv nvarchar(60) not null,
 	tenmonhoc nvarchar(60) not null,
-	Diemkt int not null,
-	Diemchuyencan int not null,
 	Diemthi int  not null,
 	constraint fk_masv foreign key (Masv) references sinhvien(Masv)
 )
