@@ -43,6 +43,7 @@ use ExamDB
 insert into Giangvien(Magv,Passgv,image,Hotengv,Gioitinh,Ngaysinh,Chucvu,Khoa,salt,Administrator) values ('GV012','da7b628aa72d4dc9b8349bafbf9b4b7ed8df0bd4432e35392c70f27a08254d7b',(SELECT * FROM OPENROWSET(BULK 'C:\Users\ntv\Downloads\Compressed\VbExam\imagegv\GV012@.jpg', SINGLE_BLOB) AS image),N'Mai Quang Hải',N'Nam','07/16/2005',N'Trưởng Khoa',N'Công Nghệ Thông Tin',3456467, 1)
 select * from Loginfo
 Create table Bangdiem(
+	MaDiem nvarchar(10) not null primary key,
 	Mamonhoc nvarchar(10) not null,
 	Masv nvarchar(60) not null,
 	tenmonhoc nvarchar(60) not null,
@@ -53,6 +54,7 @@ use ExamDB
 CREATE TABLE Monhoc(
 	Mamonhoc nvarchar(10) not null primary key,
 	Tenmonhoc nvarchar(60) not null,
+	MaKhoa nvarchar(40) not null,
 	SoTiet int not null
 )
 		
