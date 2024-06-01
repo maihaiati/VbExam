@@ -31,7 +31,7 @@ Partial Class Dashboard
         btnMyAcc = New ToolStripMenuItem()
         btnLogout = New ToolStripMenuItem()
         btnmonhoc = New ToolStripMenuItem()
-        KhoaToolStripMenuItem = New ToolStripMenuItem()
+        btnKhoa = New ToolStripMenuItem()
         Label1 = New Label()
         lblLoiChao = New Label()
         lblTime = New Label()
@@ -42,7 +42,7 @@ Partial Class Dashboard
         ' MenuStrip1
         ' 
         MenuStrip1.ImageScalingSize = New Size(20, 20)
-        MenuStrip1.Items.AddRange(New ToolStripItem() {btnAccount, btnExam, btnResult, btnMe, btnmonhoc, KhoaToolStripMenuItem})
+        MenuStrip1.Items.AddRange(New ToolStripItem() {btnAccount, btnExam, btnResult, btnMe, btnmonhoc, btnKhoa})
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
         MenuStrip1.Padding = New Padding(7, 3, 0, 3)
@@ -94,11 +94,11 @@ Partial Class Dashboard
         btnmonhoc.Size = New Size(132, 24)
         btnmonhoc.Text = "Quản lí &môn học"
         ' 
-        ' KhoaToolStripMenuItem
+        ' btnKhoa
         ' 
-        KhoaToolStripMenuItem.Name = "KhoaToolStripMenuItem"
-        KhoaToolStripMenuItem.Size = New Size(106, 24)
-        KhoaToolStripMenuItem.Text = "Quản lí &khoa"
+        btnKhoa.Name = "btnKhoa"
+        btnKhoa.Size = New Size(106, 24)
+        btnKhoa.Text = "Quản lí &khoa"
         ' 
         ' Label1
         ' 
@@ -163,7 +163,7 @@ Partial Class Dashboard
     Friend WithEvents Label1 As Label
     Friend WithEvents lblLoiChao As Label
     Friend WithEvents btnmonhoc As ToolStripMenuItem
-    Friend WithEvents KhoaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents btnKhoa As ToolStripMenuItem
     Friend WithEvents lblTime As Label
     Friend WithEvents Timer As Timer
 End Class

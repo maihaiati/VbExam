@@ -83,4 +83,9 @@ Public Class ExamSubject
             txtsotiet.Text = row.Cells("SoTiet").Value.ToString()
         End If
     End Sub
+
+    Private Sub btnthoat_Click(sender As Object, e As EventArgs) Handles btnthoat.Click
+        Dashboard.Show()
+        Hide()
+    End Sub
 End Class

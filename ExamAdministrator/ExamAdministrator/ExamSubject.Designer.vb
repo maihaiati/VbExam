@@ -22,6 +22,7 @@ Partial Class ExamSubject
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        components = New ComponentModel.Container()
         DGVMonhoc = New DataGridView()
         Label1 = New Label()
         Label2 = New Label()
@@ -35,7 +36,13 @@ Partial Class ExamSubject
         txttimkiem = New TextBox()
         txtsotiet = New TextBox()
         Label5 = New Label()
+        ContextMenuStrip1 = New ContextMenuStrip(components)
+        ThoátToolStripMenuItem = New ToolStripMenuItem()
+        MenuStrip1 = New MenuStrip()
+        btnthoat = New ToolStripMenuItem()
         CType(DGVMonhoc, ComponentModel.ISupportInitialize).BeginInit()
+        ContextMenuStrip1.SuspendLayout()
+        MenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
         ' DGVMonhoc
@@ -53,7 +60,7 @@ Partial Class ExamSubject
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 14F, FontStyle.Bold)
         Label1.ForeColor = Color.Coral
-        Label1.Location = New Point(385, 23)
+        Label1.Location = New Point(392, 33)
         Label1.Name = "Label1"
         Label1.Size = New Size(242, 32)
         Label1.TabIndex = 1
@@ -164,11 +171,41 @@ Partial Class ExamSubject
         Label5.TabIndex = 11
         Label5.Text = "Số tiết:"
         ' 
+        ' ContextMenuStrip1
+        ' 
+        ContextMenuStrip1.ImageScalingSize = New Size(20, 20)
+        ContextMenuStrip1.Items.AddRange(New ToolStripItem() {ThoátToolStripMenuItem})
+        ContextMenuStrip1.Name = "ContextMenuStrip1"
+        ContextMenuStrip1.Size = New Size(117, 28)
+        ' 
+        ' ThoátToolStripMenuItem
+        ' 
+        ThoátToolStripMenuItem.Name = "ThoátToolStripMenuItem"
+        ThoátToolStripMenuItem.Size = New Size(116, 24)
+        ThoátToolStripMenuItem.Text = "Thoát"
+        ' 
+        ' MenuStrip1
+        ' 
+        MenuStrip1.ImageScalingSize = New Size(20, 20)
+        MenuStrip1.Items.AddRange(New ToolStripItem() {btnthoat})
+        MenuStrip1.Location = New Point(0, 0)
+        MenuStrip1.Name = "MenuStrip1"
+        MenuStrip1.Size = New Size(1053, 28)
+        MenuStrip1.TabIndex = 14
+        MenuStrip1.Text = "MenuStrip1"
+        ' 
+        ' btnthoat
+        ' 
+        btnthoat.Name = "btnthoat"
+        btnthoat.Size = New Size(61, 24)
+        btnthoat.Text = "Thoát"
+        ' 
         ' ExamSubject
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1053, 539)
+        Controls.Add(MenuStrip1)
         Controls.Add(txtsotiet)
         Controls.Add(Label5)
         Controls.Add(txttimkiem)
@@ -182,9 +219,13 @@ Partial Class ExamSubject
         Controls.Add(Label2)
         Controls.Add(Label1)
         Controls.Add(DGVMonhoc)
+        MainMenuStrip = MenuStrip1
         Name = "ExamSubject"
         Text = "Exam Administrator - Exam Subject"
         CType(DGVMonhoc, ComponentModel.ISupportInitialize).EndInit()
+        ContextMenuStrip1.ResumeLayout(False)
+        MenuStrip1.ResumeLayout(False)
+        MenuStrip1.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -202,4 +243,8 @@ Partial Class ExamSubject
     Friend WithEvents txttimkiem As TextBox
     Friend WithEvents txtsotiet As TextBox
     Friend WithEvents Label5 As Label
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ThoátToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents btnthoat As ToolStripMenuItem
 End Class
