@@ -12,7 +12,7 @@ Public Class DoTest
 	Public lop As String
 
 	Dim sql As String
-	Dim dataTable As DataTable ' Dữ liệu đề thi chưa đảo
+	Dim dataTable As DataTable ' Dữ liệu đề thi chưa đảo, thông tin đề thi
 	Dim shuffleDataTable As New DataTable ' Dữ liệu đề thi đảo
 	Dim numOfQues As Integer ' Số câu
 	Dim quesIndex As Integer ' Câu hỏi đang xem
@@ -22,29 +22,10 @@ Public Class DoTest
 	Dim hour As Integer
 	Dim minute As Integer
 	Dim second As Integer
-
-	Function GetImageFromDatabase(ByVal maAnh As String) As Byte() ' Lấy ảnh từ database theo mã ảnh
-		Dim imageData As Byte() = Nothing
-		Dim sql As String
-		sql = "SELECT image FROM ImageData WHERE Maanh = @MaAnh"
-
-		Using conn As New SqlConnection("Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;")
-			Using cmd As New SqlCommand(sql, conn)
-				cmd.Parameters.AddWithValue("@MaAnh", maAnh)
-				conn.Open()
-				Dim reader As SqlDataReader = cmd.ExecuteReader()
-				If reader.Read() Then
-					If Not IsDBNull(reader("image")) Then
-						imageData = CType(reader("image"), Byte())
-					End If
-				End If
-			End Using
-		End Using
-		Return imageData
-	End Function
+	Dim isClosing = False
 
 	Private Sub insertImage(rtb As RichTextBox, maAnh As String) ' Chèn ảnh vào textbox
-		Dim image As Image = ByteArrayToImage(GetImageFromDatabase(maAnh))
+		Dim image As Image = ByteArrayToImage(GetQuestionImageFromDatabase(maAnh))
 		Clipboard.SetImage(image)
 		rtb.Paste()
 	End Sub
@@ -233,16 +214,15 @@ Public Class DoTest
 	End Sub
 
 	Private Sub DoTest_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+		If isClosing Then
+			Return
+		End If
 		Dim result As DialogResult = MessageBox.Show("Bạn có chắc muốn nộp bài?", "Exam Student", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
 		If result = DialogResult.Yes Then
 			scoreCal()
 		Else
 			e.Cancel = True
-			Return
 		End If
-		MessageBox.Show("Chương trình sẽ thoát khỏi đề thi!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
-		ConfirmInfoForm.Close()
-		DashboardForm.Show()
 	End Sub
 
 	Private Sub scoreCal()
@@ -269,6 +249,26 @@ Public Class DoTest
 		Next
 		score = (10 / numOfQues) * trueAnsNum
 		txtQues.Text = "Điểm của bạn: " & score
+
+		Dim params As New List(Of SqlParameter) From {New SqlParameter("@MaDeThi", maDeThi)}
+		dataTable = getData("SELECT * FROM DeThi WHERE MaDeThi = @MaDeThi", params)
+		Dim timeID = getData("SELECT CONCAT(MONTH(GETDATE()), DAY(GETDATE()), YEAR(GETDATE()), '_', DATEPART(HOUR, GETDATE()), DATEPART(MINUTE, GETDATE()), DATEPART(SECOND, GETDATE())) AS TimeID", Nothing).Rows.Item(0).Item("TimeID")
+		sql = "INSERT INTO Bangdiem (MaDiem, Mamonhoc, Masv, tenmonhoc, Diemthi) VALUES (@MaDiem, @MaMonHoc, @MaSv, @TenMonHoc, @DiemThi)"
+		params.Clear()
+		params.Add(New SqlParameter("@MaDiem", timeID))
+		params.Add(New SqlParameter("@MaMonHoc", dataTable.Rows(0)("Mamonhoc")))
+		params.Add(New SqlParameter("@MaSv", userName))
+		params.Add(New SqlParameter("@TenMonHoc", lblTenDeThi.Text))
+		params.Add(New SqlParameter("@DiemThi", score))
+		If Not runSqlCommand(sql, params) Then
+			MessageBox.Show("Lưu điểm không thành công. Hãy báo giám thị để được giải quyết!", "Exam Student", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+			Return
+		End If
+		MessageBox.Show("Chương trình sẽ thoát khỏi đề thi. Ok để thoát!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
+		isClosing = True
+		Close()
+		ConfirmInfoForm.Close()
+		DashboardForm.Show()
 	End Sub
 
 	Private Sub countDown() ' Hàm đếm ngược
@@ -303,9 +303,10 @@ Public Class DoTest
 	End Sub
 
 	Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
-		Dim result As DialogResult = MessageBox.Show("Bạn có chắc muốn nộp bài?", "Exam Student", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-		If result = DialogResult.Yes Then
-			scoreCal()
-		End If
+		'Dim result As DialogResult = MessageBox.Show("Bạn có chắc muốn nộp bài?", "Exam Student", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+		'If result = DialogResult.Yes Then
+		'scoreCal()
+		'End If
+		Close()
 	End Sub
 End Class
