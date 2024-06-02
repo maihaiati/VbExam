@@ -32,18 +32,28 @@ Public Class ExamSubject
         txtsotiet.Text = ""
     End Sub
     Private Sub btnxoa_Click(sender As Object, e As EventArgs) Handles btnxoa.Click
-        Dim result As DialogResult = MessageBox.Show("Xác nhận xoá môn học?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+        Dim result As DialogResult = MessageBox.Show("Xác nhận xoá môn học và toàn bộ các điểm thi liên quan?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
         If result = DialogResult.No Then
             Return
         End If
-        Dim query As String = "DELETE FROM MonHoc WHERE MaMonHoc = @MaMonHoc"
+
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@MaMonHoc", txtmamh.Text))
+
+        Dim query As String = "DELETE FROM Bangdiem WHERE Mamonhoc = @MaMonHoc"
         If runSqlCommand(query, params) Then
             MessageBox.Show("Xoá Thành Công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             MessageBox.Show("Xoá Thất Bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
+
+        query = "DELETE FROM MonHoc WHERE Mamonhoc = @MaMonHoc"
+        If runSqlCommand(query, params) Then
+            MessageBox.Show("Xoá Thành Công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            MessageBox.Show("Xoá Thất Bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+
         LoadData()
         txtmamh.Text = ""
         txttmh.Text = ""
