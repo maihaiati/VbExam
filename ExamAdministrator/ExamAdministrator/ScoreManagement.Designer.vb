@@ -29,21 +29,24 @@ Partial Class ScoreManagement
         btnSua = New Button()
         btnXoa = New Button()
         GroupBox1 = New GroupBox()
-        txtmadiem = New TextBox()
-        Label2 = New Label()
-        Label3 = New Label()
-        txtsinhvien = New TextBox()
-        Label4 = New Label()
-        txttmh = New TextBox()
-        Label5 = New Label()
-        txtmamh = New TextBox()
         Label6 = New Label()
         txtdiemthi = New TextBox()
+        Label5 = New Label()
+        txtmamh = New TextBox()
+        Label4 = New Label()
+        txttmh = New TextBox()
+        Label3 = New Label()
+        txtsinhvien = New TextBox()
+        Label2 = New Label()
+        txtmadiem = New TextBox()
         Label7 = New Label()
         txtsreach = New TextBox()
         cblop = New ComboBox()
+        MenuStrip1 = New MenuStrip()
+        ThoátToolStripMenuItem = New ToolStripMenuItem()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox1.SuspendLayout()
+        MenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
         ' Label1
@@ -51,7 +54,7 @@ Partial Class ScoreManagement
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 13F, FontStyle.Bold)
         Label1.ForeColor = Color.DeepSkyBlue
-        Label1.Location = New Point(732, 19)
+        Label1.Location = New Point(723, 38)
         Label1.Name = "Label1"
         Label1.Size = New Size(215, 30)
         Label1.TabIndex = 0
@@ -112,56 +115,22 @@ Partial Class ScoreManagement
         GroupBox1.TabStop = False
         GroupBox1.Text = "Thông Tin Điểm"
         ' 
-        ' txtmadiem
+        ' Label6
         ' 
-        txtmadiem.Location = New Point(26, 65)
-        txtmadiem.Name = "txtmadiem"
-        txtmadiem.Size = New Size(390, 27)
-        txtmadiem.TabIndex = 0
+        Label6.AutoSize = True
+        Label6.Font = New Font("Segoe UI", 9.5F)
+        Label6.Location = New Point(27, 331)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(75, 21)
+        Label6.TabIndex = 9
+        Label6.Text = "Điểm Thi:"
         ' 
-        ' Label2
+        ' txtdiemthi
         ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 9.5F)
-        Label2.Location = New Point(26, 42)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(76, 21)
-        Label2.TabIndex = 1
-        Label2.Text = "Mã Điểm:"
-        ' 
-        ' Label3
-        ' 
-        Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI", 9.5F)
-        Label3.Location = New Point(27, 184)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(105, 21)
-        Label3.TabIndex = 3
-        Label3.Text = "Mã Sinh Viên:"
-        ' 
-        ' txtsinhvien
-        ' 
-        txtsinhvien.Location = New Point(26, 206)
-        txtsinhvien.Name = "txtsinhvien"
-        txtsinhvien.Size = New Size(390, 27)
-        txtsinhvien.TabIndex = 2
-        ' 
-        ' Label4
-        ' 
-        Label4.AutoSize = True
-        Label4.Font = New Font("Segoe UI", 9.5F)
-        Label4.Location = New Point(27, 252)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(103, 21)
-        Label4.TabIndex = 5
-        Label4.Text = "Tên Môn Học:"
-        ' 
-        ' txttmh
-        ' 
-        txttmh.Location = New Point(26, 274)
-        txttmh.Name = "txttmh"
-        txttmh.Size = New Size(390, 27)
-        txttmh.TabIndex = 4
+        txtdiemthi.Location = New Point(26, 354)
+        txtdiemthi.Name = "txtdiemthi"
+        txtdiemthi.Size = New Size(390, 27)
+        txtdiemthi.TabIndex = 8
         ' 
         ' Label5
         ' 
@@ -180,22 +149,56 @@ Partial Class ScoreManagement
         txtmamh.Size = New Size(390, 27)
         txtmamh.TabIndex = 6
         ' 
-        ' Label6
+        ' Label4
         ' 
-        Label6.AutoSize = True
-        Label6.Font = New Font("Segoe UI", 9.5F)
-        Label6.Location = New Point(27, 331)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(75, 21)
-        Label6.TabIndex = 9
-        Label6.Text = "Điểm Thi:"
+        Label4.AutoSize = True
+        Label4.Font = New Font("Segoe UI", 9.5F)
+        Label4.Location = New Point(27, 252)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(103, 21)
+        Label4.TabIndex = 5
+        Label4.Text = "Tên Môn Học:"
         ' 
-        ' txtdiemthi
+        ' txttmh
         ' 
-        txtdiemthi.Location = New Point(26, 354)
-        txtdiemthi.Name = "txtdiemthi"
-        txtdiemthi.Size = New Size(390, 27)
-        txtdiemthi.TabIndex = 8
+        txttmh.Location = New Point(26, 274)
+        txttmh.Name = "txttmh"
+        txttmh.Size = New Size(390, 27)
+        txttmh.TabIndex = 4
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Font = New Font("Segoe UI", 9.5F)
+        Label3.Location = New Point(27, 184)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(105, 21)
+        Label3.TabIndex = 3
+        Label3.Text = "Mã Sinh Viên:"
+        ' 
+        ' txtsinhvien
+        ' 
+        txtsinhvien.Location = New Point(26, 206)
+        txtsinhvien.Name = "txtsinhvien"
+        txtsinhvien.Size = New Size(390, 27)
+        txtsinhvien.TabIndex = 2
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Font = New Font("Segoe UI", 9.5F)
+        Label2.Location = New Point(26, 42)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(76, 21)
+        Label2.TabIndex = 1
+        Label2.Text = "Mã Điểm:"
+        ' 
+        ' txtmadiem
+        ' 
+        txtmadiem.Location = New Point(26, 65)
+        txtmadiem.Name = "txtmadiem"
+        txtmadiem.Size = New Size(390, 27)
+        txtmadiem.TabIndex = 0
         ' 
         ' Label7
         ' 
@@ -221,6 +224,22 @@ Partial Class ScoreManagement
         cblop.Size = New Size(151, 28)
         cblop.TabIndex = 8
         ' 
+        ' MenuStrip1
+        ' 
+        MenuStrip1.ImageScalingSize = New Size(20, 20)
+        MenuStrip1.Items.AddRange(New ToolStripItem() {ThoátToolStripMenuItem})
+        MenuStrip1.Location = New Point(0, 0)
+        MenuStrip1.Name = "MenuStrip1"
+        MenuStrip1.Size = New Size(1516, 28)
+        MenuStrip1.TabIndex = 9
+        MenuStrip1.Text = "MenuStrip1"
+        ' 
+        ' ThoátToolStripMenuItem
+        ' 
+        ThoátToolStripMenuItem.Name = "ThoátToolStripMenuItem"
+        ThoátToolStripMenuItem.Size = New Size(61, 24)
+        ThoátToolStripMenuItem.Text = "Thoát"
+        ' 
         ' ScoreManagement
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
@@ -235,12 +254,16 @@ Partial Class ScoreManagement
         Controls.Add(btnthem)
         Controls.Add(DataGridView1)
         Controls.Add(Label1)
+        Controls.Add(MenuStrip1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        MainMenuStrip = MenuStrip1
         Name = "ScoreManagement"
         Text = "ScoreManagement"
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         GroupBox1.ResumeLayout(False)
         GroupBox1.PerformLayout()
+        MenuStrip1.ResumeLayout(False)
+        MenuStrip1.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -264,4 +287,6 @@ Partial Class ScoreManagement
     Friend WithEvents Label7 As Label
     Friend WithEvents txtsreach As TextBox
     Friend WithEvents cblop As ComboBox
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents ThoátToolStripMenuItem As ToolStripMenuItem
 End Class
