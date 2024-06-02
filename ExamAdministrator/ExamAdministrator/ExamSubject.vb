@@ -1,9 +1,9 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class ExamSubject
-	Public userName As String
-	Public fullName As String
-	Dim machineName As String = Environment.MachineName
+    Public userName As String
+    Public fullName As String
+    Dim machineName As String = Environment.MachineName
     Dim connectionString As String = "Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;"
     Dim connection As New SqlConnection(connectionString)
     Private Sub ExamSubject_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -14,10 +14,11 @@ Public Class ExamSubject
         assignData(DGVMonhoc, "SELECT * FROM MonHoc", Nothing)
     End Sub
     Private Sub btnthem_Click(sender As Object, e As EventArgs) Handles btnthem.Click
-        Dim query As String = "INSERT INTO MonHoc (Mamonhoc, Tenmonhoc,Sotiet) VALUES (@MaMonHoc, @TenMonHoc, @SoTiet)"
+        Dim query As String = "INSERT INTO MonHoc (Mamonhoc, Tenmonhoc, MaKhoa, Sotiet) VALUES (@MaMonHoc, @TenMonHoc, @MaKhoa, @SoTiet)"
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@MaMonHoc", txtmamh.Text))
         params.Add(New SqlParameter("@TenMonHoc", txttmh.Text))
+        params.Add(New SqlParameter("@MaKhoa", txtmakhoa.Text))
         params.Add(New SqlParameter("@SoTiet", txtsotiet.Text))
         If runSqlCommand(query, params) Then
             MessageBox.Show("Thêm thành công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -57,6 +58,7 @@ Public Class ExamSubject
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@MaMonHoc", txtmamh.Text))
         params.Add(New SqlParameter("@TenMonHoc", txttmh.Text))
+        params.Add(New SqlParameter("@MaKhoa", txtmakhoa.Text))
         params.Add(New SqlParameter("@SoTiet", txtsotiet.Text))
         If runSqlCommand(query, params) Then
             MessageBox.Show("Cập Nhập Thành Công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -82,6 +84,7 @@ Public Class ExamSubject
             Dim row As DataGridViewRow = DGVMonhoc.Rows(e.RowIndex)
             txtmamh.Text = row.Cells("MaMonHoc").Value.ToString()
             txttmh.Text = row.Cells("TenMonHoc").Value.ToString()
+            txtmakhoa.Text = row.Cells("MaKhoa").Value.ToString()
             txtsotiet.Text = row.Cells("SoTiet").Value.ToString()
         End If
     End Sub
@@ -90,4 +93,5 @@ Public Class ExamSubject
         Dashboard.Show()
         Hide()
     End Sub
+
 End Class

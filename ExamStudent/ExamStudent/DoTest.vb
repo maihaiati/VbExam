@@ -249,7 +249,8 @@ Public Class DoTest
 		Next
 		score = (10 / numOfQues) * trueAnsNum
 		txtQues.Text = "Điểm của bạn: " & score
-
+		Dim tenMonHoc As String = lblTenDeThi.Text
+		tenMonHoc = tenMonHoc.Substring(11)
 		Dim params As New List(Of SqlParameter) From {New SqlParameter("@MaDeThi", maDeThi)}
 		dataTable = getData("SELECT * FROM DeThi WHERE MaDeThi = @MaDeThi", params)
 		Dim timeID = getData("SELECT CONCAT(MONTH(GETDATE()), DAY(GETDATE()), YEAR(GETDATE()), '_', DATEPART(HOUR, GETDATE()), DATEPART(MINUTE, GETDATE()), DATEPART(SECOND, GETDATE())) AS TimeID", Nothing).Rows.Item(0).Item("TimeID")
@@ -258,7 +259,7 @@ Public Class DoTest
 		params.Add(New SqlParameter("@MaDiem", timeID))
 		params.Add(New SqlParameter("@MaMonHoc", dataTable.Rows(0)("Mamonhoc")))
 		params.Add(New SqlParameter("@MaSv", userName))
-		params.Add(New SqlParameter("@TenMonHoc", lblTenDeThi.Text))
+		params.Add(New SqlParameter("@TenMonHoc", tenMonHoc))
 		params.Add(New SqlParameter("@DiemThi", score))
 		If Not runSqlCommand(sql, params) Then
 			MessageBox.Show("Lưu điểm không thành công. Hãy báo giám thị để được giải quyết!", "Exam Student", MessageBoxButtons.OK, MessageBoxIcon.Warning)
