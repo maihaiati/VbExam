@@ -28,6 +28,7 @@ Public Class ExamSubject
         LoadData()
         txtmamh.Text = ""
         txttmh.Text = ""
+        txtmakhoa.Text = ""
         txtsotiet.Text = ""
     End Sub
     Private Sub btnxoa_Click(sender As Object, e As EventArgs) Handles btnxoa.Click
