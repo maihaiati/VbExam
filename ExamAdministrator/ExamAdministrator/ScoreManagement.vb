@@ -36,13 +36,51 @@ Public Class ScoreManagement
 	End Sub
 
 	Private Sub btnThem_Click(sender As Object, e As EventArgs) Handles btnThem.Click
+		If txtMaSV.ReadOnly Then
+			Return
+		End If
+		If cbbMaMH.SelectedItem <> "" And txtMaSV.Text <> "" And txtTenMH.Text <> "" And txtDiemThi.Text <> "" Then
+			Dim timeID As String = getData("SELECT CONCAT(MONTH(GETDATE()), DAY(GETDATE()), YEAR(GETDATE()), '_', DATEPART(HOUR, GETDATE()), DATEPART(MINUTE, GETDATE()), DATEPART(SECOND, GETDATE())) AS TimeID", Nothing).Rows.Item(0).Item("TimeID")
+			Dim params As New List(Of SqlParameter)
+			params.Add(New SqlParameter("@MaDiem", timeID))
+			params.Add(New SqlParameter("@MaMonHoc", cbbMaMH.SelectedItem))
+			params.Add(New SqlParameter("@MaSv", txtMaSV.Text))
+			params.Add(New SqlParameter("@TenMonHoc", txtTenMH.Text))
+			params.Add(New SqlParameter("@DiemThi", txtDiemThi.Text))
 
+			sql = "SELECT * FROM Sinhvien WHERE Masv = @MaSv"
+			If getData(sql, params).Rows.Count = 0 Then
+				MessageBox.Show("Không tồn tại mã sinh viên!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+				log(userName, "Thêm điểm thi", "Thất bại", "Thêm điểm thi cho sv" & txtMaSV.Text)
+				Return
+			End If
+
+			If Not (CInt(txtDiemThi.Text) >= 0 And CInt(txtDiemThi.Text) <= 10) Then
+				MessageBox.Show("Điểm không hợp lệ!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+				log(userName, "Thêm điểm thi", "Thất bại", "Thêm điểm thi cho sv" & txtMaSV.Text)
+				Return
+			End If
+
+			sql = "INSERT INTO Bangdiem (MaDiem, Mamonhoc, Masv, tenmonhoc, Diemthi) VALUES (@MaDiem, @MaMonHoc, @MaSv, @TenMonHoc, @DiemThi)"
+			If Not runSqlCommand(sql, params) Then
+				MessageBox.Show("Thêm điểm thi không thành công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+				log(userName, "Thêm điểm thi", "Thất bại", "Thêm điểm thi cho sv " & txtMaSV.Text)
+			Else
+				log(userName, "Thêm điểm thi", "Thành công", "Thêm điểm thi cho sv " & txtMaSV.Text)
+			End If
+
+		Else
+			MessageBox.Show("Không được để trống thông tin!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+			log(userName, "Thêm điểm thi", "Thất bại", "Thêm điểm thi cho sv" & txtMaSV.Text)
+		End If
+		loadData()
 	End Sub
 
 	Private Sub btnSua_Click(sender As Object, e As EventArgs) Handles btnSua.Click
 		If maDiem = "" Then
 			Return
 		End If
+		loadData()
 	End Sub
 
 	Private Sub btnXoa_Click(sender As Object, e As EventArgs) Handles btnXoa.Click
@@ -53,7 +91,11 @@ Public Class ScoreManagement
 		sql = "DELETE FROM Bangdiem WHERE MaDiem = @MaDiem"
 		If Not runSqlCommand(sql, params) Then
 			MessageBox.Show("Xoá điểm thi không thành công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+			log(userName, "Xoá điểm thi", "Thất bại", "Xoá điểm thi của sv " & txtMaSV.Text)
+		Else
+			log(userName, "Xoá điểm thi", "Thành công", "Xoá điểm thi của sv " & txtMaSV.Text)
 		End If
+		loadData()
 	End Sub
 
 	Private Sub dgScore_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgScore.CellMouseClick
@@ -61,11 +103,13 @@ Public Class ScoreManagement
 		If row.Cells("MaDiem").Value.ToString = "" Then
 			maDiem = ""
 			txtMaSV.ReadOnly = False
+			cbbMaMH.Enabled = True
 			txtMaSV.Clear()
 			txtDiemThi.Clear()
 		Else
 			maDiem = row.Cells("MaDiem").Value.ToString
 			txtMaSV.ReadOnly = True
+			cbbMaMH.Enabled = False
 			txtMaSV.Text = row.Cells("Masv").Value.ToString
 			cbbMaMH.SelectedItem = row.Cells("Mamonhoc").Value.ToString
 			txtDiemThi.Text = row.Cells("Diemthi").Value.ToString
