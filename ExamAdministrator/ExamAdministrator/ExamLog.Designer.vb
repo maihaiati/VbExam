@@ -22,6 +22,7 @@ Partial Class ExamLog
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ExamLog))
         DGV_Log = New DataGridView()
         txttimkiem = New TextBox()
         Label1 = New Label()
@@ -76,6 +77,7 @@ Partial Class ExamLog
         Controls.Add(Label1)
         Controls.Add(txttimkiem)
         Controls.Add(DGV_Log)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "ExamLog"
         Text = "ExamLog"
         CType(DGV_Log, ComponentModel.ISupportInitialize).EndInit()
