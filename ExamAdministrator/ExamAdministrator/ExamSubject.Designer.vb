@@ -23,6 +23,7 @@ Partial Class ExamSubject
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ExamSubject))
         DGVMonhoc = New DataGridView()
         Label1 = New Label()
         Label2 = New Label()
@@ -219,6 +220,7 @@ Partial Class ExamSubject
         Controls.Add(Label2)
         Controls.Add(Label1)
         Controls.Add(DGVMonhoc)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MainMenuStrip = MenuStrip1
         Name = "ExamSubject"
         Text = "Exam Administrator - Exam Subject"

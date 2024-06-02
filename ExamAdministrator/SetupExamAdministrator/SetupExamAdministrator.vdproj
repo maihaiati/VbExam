@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_1DD635998BEC43A7B3EB2ADD2DFEAAAD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_412B420C0928430CBF0AC7243C3148FA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -37,6 +43,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -53,6 +75,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -84,6 +114,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1DD635998BEC43A7B3EB2ADD2DFEAAAD"
+            {
+            "SourcePath" = "8:..\\..\\asset\\admin.ico"
+            "TargetName" = "8:admin.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_FB35F96E02394129A13F1AFC4E70943B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -152,7 +202,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Exam Administrator"
         "ProductCode" = "8:{EB6C6582-F327-4839-A042-B9FB8EDF367A}"
-        "PackageCode" = "8:{4BE7BC58-57E1-4431-B911-4AD189622ACF}"
+        "PackageCode" = "8:{F573E9C3-EBD7-4CBE-9ECE-952E65FF6DA0}"
         "UpgradeCode" = "8:{7DC11DE6-D693-4A54-AF29-D4CC60D588C1}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
@@ -283,7 +333,7 @@
             "Target" = "8:_412B420C0928430CBF0AC7243C3148FA"
             "Folder" = "8:_712EA13B23714ADFA2FC4364917BE2D1"
             "WorkingFolder" = "8:_FB35F96E02394129A13F1AFC4E70943B"
-            "Icon" = "8:"
+            "Icon" = "8:_1DD635998BEC43A7B3EB2ADD2DFEAAAD"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F21A539F42D24DE2B6AE6D69649E83B9"
@@ -297,7 +347,7 @@
             "Target" = "8:_412B420C0928430CBF0AC7243C3148FA"
             "Folder" = "8:_14CAEBB965B141D08163A8B591DA613A"
             "WorkingFolder" = "8:_FB35F96E02394129A13F1AFC4E70943B"
-            "Icon" = "8:"
+            "Icon" = "8:_1DD635998BEC43A7B3EB2ADD2DFEAAAD"
             "Feature" = "8:"
             }
         }

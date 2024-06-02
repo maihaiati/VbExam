@@ -17,14 +17,22 @@ Partial Class ScoreManagement
 	'Required by the Windows Form Designer
 	Private components As System.ComponentModel.IContainer
 
-	'NOTE: The following procedure is required by the Windows Form Designer
-	'It can be modified using the Windows Form Designer.  
-	'Do not modify it using the code editor.
-	<System.Diagnostics.DebuggerStepThrough()> _
-	Private Sub InitializeComponent()
-		components = New System.ComponentModel.Container
-		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(800, 450)
-		Me.Text = "ScoreManagement"
-	End Sub
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ScoreManagement))
+        SuspendLayout()
+        ' 
+        ' ScoreManagement
+        ' 
+        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(800, 450)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        Name = "ScoreManagement"
+        Text = "ScoreManagement"
+        ResumeLayout(False)
+    End Sub
 End Class

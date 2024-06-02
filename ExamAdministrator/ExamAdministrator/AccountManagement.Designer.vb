@@ -22,6 +22,7 @@ Partial Class AccountManagement
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AccountManagement))
         MenuStrip1 = New MenuStrip()
         btnCreate = New ToolStripMenuItem()
         btnCreateTeacher = New ToolStripMenuItem()
@@ -143,6 +144,7 @@ Partial Class AccountManagement
         Controls.Add(lblFilter)
         Controls.Add(dgAccount)
         Controls.Add(MenuStrip1)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Margin = New Padding(3, 4, 3, 4)
         Name = "AccountManagement"
         Text = "Exam Administrator - Account Manager"

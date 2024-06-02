@@ -130,6 +130,7 @@ Partial Class LoginForm
         Controls.Add(Label3)
         Controls.Add(Label2)
         Controls.Add(Label1)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Margin = New Padding(3, 4, 3, 4)
         Name = "LoginForm"
         Text = "Exam Administrator - Login"
