@@ -100,4 +100,8 @@ Public Class Dashboard
 	Private Sub btnResult_Click(sender As Object, e As EventArgs) Handles btnResult.Click
 		ScoreManagement.Show()
 	End Sub
+
+	Private Sub btnLog_Click(sender As Object, e As EventArgs) Handles btnLog.Click
+		ExamLog.Show()
+	End Sub
 End Class
