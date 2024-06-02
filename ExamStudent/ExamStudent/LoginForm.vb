@@ -4,7 +4,7 @@ Public Class LoginForm
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Dim dataTable As DataTable
         If txtUser.Text = "" Or txtPass.Text = "" Then
-            MsgBox("Không được để trống thông tin đăng nhập!")
+            MessageBox.Show("Không được để trống thông tin đăng nhập!", "Exam Student", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
