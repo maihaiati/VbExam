@@ -1,10 +1,12 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class ExamDepartment
-    Public userName As String
+	Public userName As String
+    Public fullName As String
     Dim machineName As String = Environment.MachineName
 
-    Private Sub ExamScienceBranch_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub ExamDepartment_Load(sender As Object, e As EventArgs) Handles Me.Load
+        btnMe.Text = fullName
         LoadData()
     End Sub
     Private Sub LoadData()

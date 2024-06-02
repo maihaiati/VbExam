@@ -1,11 +1,13 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class ExamSubject
-    Public userName As String
-    Dim machineName As String = Environment.MachineName
+	Public userName As String
+	Public fullName As String
+	Dim machineName As String = Environment.MachineName
     Dim connectionString As String = "Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;"
     Dim connection As New SqlConnection(connectionString)
     Private Sub ExamSubject_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        btnMe.Text = fullName
         LoadData()
     End Sub
     Private Sub LoadData()

@@ -84,6 +84,7 @@ Public Class Dashboard
 
 	Private Sub btnmonhoc_Click(sender As Object, e As EventArgs) Handles btnmonhoc.Click
 		ExamSubject.userName = userName
+		ExamSubject.fullName = fullName
 		ExamSubject.Show()
 	End Sub
 
@@ -94,10 +95,13 @@ Public Class Dashboard
 
 	Private Sub btnKhoa_Click(sender As Object, e As EventArgs) Handles btnKhoa.Click
 		ExamDepartment.userName = userName
+		ExamDepartment.fullName = fullName
 		ExamDepartment.Show()
 	End Sub
 
 	Private Sub btnResult_Click(sender As Object, e As EventArgs) Handles btnResult.Click
+		ScoreManagement.userName = userName
+		ScoreManagement.fullName = fullName
 		ScoreManagement.Show()
 	End Sub
 
