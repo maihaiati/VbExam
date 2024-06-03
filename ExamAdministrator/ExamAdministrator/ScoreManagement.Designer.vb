@@ -250,13 +250,13 @@ Partial Class ScoreManagement
 		' btnMyAccount
 		' 
 		btnMyAccount.Name = "btnMyAccount"
-		btnMyAccount.Size = New Size(163, 22)
+		btnMyAccount.Size = New Size(180, 22)
 		btnMyAccount.Text = "Tài khoản của tôi"
 		' 
 		' btnLogout
 		' 
 		btnLogout.Name = "btnLogout"
-		btnLogout.Size = New Size(163, 22)
+		btnLogout.Size = New Size(180, 22)
 		btnLogout.Text = "Đăng xuất"
 		' 
 		' Label8

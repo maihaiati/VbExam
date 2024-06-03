@@ -89,6 +89,10 @@ Public Class ScoreManagement
 		If maDiem = "" Then
 			Return
 		End If
+		Dim result As DialogResult = MessageBox.Show("Xác nhận xoá điểm thi?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+		If result = DialogResult.No Then
+			Return
+		End If
 		Dim params As New List(Of SqlParameter) From {New SqlParameter("@MaDiem", maDiem)}
 		sql = "DELETE FROM Bangdiem WHERE MaDiem = @MaDiem"
 		If Not runSqlCommand(sql, params) Then
@@ -143,5 +147,13 @@ Public Class ScoreManagement
 
 	Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
 		Close()
+	End Sub
+
+	Private Sub btnMyAccount_Click(sender As Object, e As EventArgs) Handles btnMyAccount.Click
+		Dim result As DialogResult = MessageBox.Show("Chuyển sang tài khoản của bạn, các tiến trình bạn thực hiện tại đây sẽ bị loại bỏ. Xác nhận?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+		If result = DialogResult.Yes Then
+			Dashboard.openInfoAccount()
+			Close()
+		End If
 	End Sub
 End Class

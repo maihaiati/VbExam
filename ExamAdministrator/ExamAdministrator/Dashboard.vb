@@ -79,12 +79,13 @@ Public Class Dashboard
 	End Sub
 
 	Public Sub openInfoAccount()
-
+		Show()
+		InfoAccount.userName = userName
+		InfoAccount.Show()
 	End Sub
 
 	Private Sub btnMyAcc_Click(sender As Object, e As EventArgs) Handles btnMyAcc.Click
-		InfoAccount.userName = userName
-		InfoAccount.Show()
+		openInfoAccount()
 	End Sub
 
 	Private Sub btnmonhoc_Click(sender As Object, e As EventArgs) Handles btnmonhoc.Click

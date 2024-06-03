@@ -102,4 +102,13 @@ Public Class AccountManagement
             Dashboard.Close()
         End If
     End Sub
+
+    Private Sub btnMyAcc_Click(sender As Object, e As EventArgs) Handles btnMyAcc.Click
+        Dim result As DialogResult = MessageBox.Show("Chuyển sang tài khoản của bạn, các tiến trình bạn thực hiện tại đây sẽ bị loại bỏ. Xác nhận?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If result = DialogResult.Yes Then
+            Dashboard.openInfoAccount()
+            CreateAccount.Close()
+            Close()
+        End If
+    End Sub
 End Class

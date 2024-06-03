@@ -1,4 +1,5 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.ComponentModel
+Imports System.Data.SqlClient
 
 Public Class ExamLog
     Private Sub loadData(sql As String, params As List(Of SqlParameter))
@@ -12,5 +13,9 @@ Public Class ExamLog
 
     Private Sub ExamLog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         loadData("SELECT * FROM Loginfo", Nothing)
+    End Sub
+
+    Private Sub ExamLog_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        Dashboard.Show()
     End Sub
 End Class

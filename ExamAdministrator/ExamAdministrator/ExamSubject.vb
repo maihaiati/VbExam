@@ -43,7 +43,7 @@ Public Class ExamSubject
 			MessageBox.Show("Không được để trống thông tin!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 			Return
 		End If
-		Dim result As DialogResult = MessageBox.Show("Xác nhận xoá môn học và toàn bộ các dữ liệu liên quan?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+		Dim result As DialogResult = MessageBox.Show("Xác nhận xoá môn học và toàn bộ các dữ liệu liên quan?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 		If result = DialogResult.No Then
 			Return
 		End If
@@ -100,7 +100,7 @@ Public Class ExamSubject
 	End Sub
 
 	Private Sub btnchinhsua_Click(sender As Object, e As EventArgs) Handles btnchinhsua.Click
-		Dim result As DialogResult = MessageBox.Show("Xác nhận chỉnh sửa môn học?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+		Dim result As DialogResult = MessageBox.Show("Xác nhận chỉnh sửa môn học?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 		If result = DialogResult.No Then
 			Return
 		End If
@@ -154,5 +154,13 @@ Public Class ExamSubject
 	Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
 		logout = True
 		Close()
+	End Sub
+
+	Private Sub btnMyAccount_Click(sender As Object, e As EventArgs) Handles btnMyAccount.Click
+		Dim result As DialogResult = MessageBox.Show("Chuyển sang tài khoản của bạn, các tiến trình bạn thực hiện tại đây sẽ bị loại bỏ. Xác nhận?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+		If result = DialogResult.Yes Then
+			Dashboard.openInfoAccount()
+			Close()
+		End If
 	End Sub
 End Class

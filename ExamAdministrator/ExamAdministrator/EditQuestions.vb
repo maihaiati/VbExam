@@ -305,7 +305,7 @@ Public Class EditQuestions
 			MessageBox.Show("Không cho phép xoá câu hỏi duy nhất trong đề", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 			Return
 		End If
-		Dim result As DialogResult = MessageBox.Show("Xác nhận xoá câu hỏi?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+		Dim result As DialogResult = MessageBox.Show("Xác nhận xoá câu hỏi?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 		If result = DialogResult.No Then
 			Return
 		End If
