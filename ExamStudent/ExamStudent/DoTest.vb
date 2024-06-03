@@ -23,6 +23,7 @@ Public Class DoTest
 	Dim minute As Integer
 	Dim second As Integer
 	Dim isClosing = False
+	Dim showMessage = False
 
 	Private Sub insertImage(rtb As RichTextBox, maAnh As String) ' Chèn ảnh vào textbox
 		Dim image As Image = ByteArrayToImage(GetQuestionImageFromDatabase(maAnh))
@@ -136,7 +137,8 @@ Public Class DoTest
 		End If
 		lblTienTrinh.Text = "Số câu đã làm: " & progress & "/" & numOfQues
 		studentAnswer.Item(quesIndex) = 1
-		If progress = numOfQues Then
+		If progress = numOfQues And Not showMessage Then
+			showMessage = True
 			Dim result As DialogResult = MessageBox.Show("Bạn đã làm xong đề thi. Bạn có muốn nộp bài?", "Exam Student", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
 			If result = DialogResult.Yes Then
 				scoreCal()
@@ -157,7 +159,8 @@ Public Class DoTest
 		End If
 		lblTienTrinh.Text = "Số câu đã làm: " & progress & "/" & numOfQues
 		studentAnswer.Item(quesIndex) = 2
-		If progress = numOfQues Then
+		If progress = numOfQues And Not showMessage Then
+			showMessage = True
 			Dim result As DialogResult = MessageBox.Show("Bạn đã làm xong đề thi. Bạn có muốn nộp bài?", "Exam Student", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
 			If result = DialogResult.Yes Then
 				scoreCal()
@@ -178,7 +181,8 @@ Public Class DoTest
 		End If
 		lblTienTrinh.Text = "Số câu đã làm: " & progress & "/" & numOfQues
 		studentAnswer.Item(quesIndex) = 3
-		If progress = numOfQues Then
+		If progress = numOfQues And Not showMessage Then
+			showMessage = True
 			Dim result As DialogResult = MessageBox.Show("Bạn đã làm xong đề thi. Bạn có muốn nộp bài?", "Exam Student", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
 			If result = DialogResult.Yes Then
 				scoreCal()
@@ -199,7 +203,8 @@ Public Class DoTest
 		End If
 		lblTienTrinh.Text = "Số câu đã làm: " & progress & "/" & numOfQues
 		studentAnswer.Item(quesIndex) = 4
-		If progress = numOfQues Then
+		If progress = numOfQues And Not showMessage Then
+			showMessage = True
 			Dim result As DialogResult = MessageBox.Show("Bạn đã làm xong đề thi. Bạn có muốn nộp bài?", "Exam Student", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
 			If result = DialogResult.Yes Then
 				scoreCal()
