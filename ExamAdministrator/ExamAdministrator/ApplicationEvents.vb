@@ -32,18 +32,25 @@ Namespace My
 			Dim databaseName As String = "ExamDB"
 
 			Using connection As New SqlConnection(connectionString)
-				connection.Open()
-				Dim command As New SqlCommand()
-				command.Connection = connection
-				command.CommandText = "IF DATABASEPROPERTYEX(@dbname, 'Version') IS NOT NULL SELECT 1 ELSE SELECT 0"
-				command.Parameters.AddWithValue("@dbname", databaseName)
+				Try
+					connection.Open()
+					Dim command As New SqlCommand()
+					command.Connection = connection
+					command.CommandText = "IF DATABASEPROPERTYEX(@dbname, 'Version') IS NOT NULL SELECT 1 ELSE SELECT 0"
+					command.Parameters.AddWithValue("@dbname", databaseName)
 
-				Dim result As Integer = Convert.ToInt32(command.ExecuteScalar())
+					Dim result As Integer = Convert.ToInt32(command.ExecuteScalar())
 
-				If Not (result = 1) Then
-					MessageBox.Show("Cơ sở dữ liệu không tồn tại. Chương trình sẽ thoát!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-					End
-				End If
+					If Not (result = 1) Then
+						MessageBox.Show("Cơ sở dữ liệu không tồn tại. Chương trình sẽ thoát!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+						End
+					End If
+				Catch ex As Exception
+					MessageBox.Show("Lỗi cơ sở dữ liệu!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+					Debug.WriteLine("==============================")
+					Debug.WriteLine(ex.ToString)
+					Debug.WriteLine("==============================")
+				End Try
 			End Using
 		End Sub
 	End Class
