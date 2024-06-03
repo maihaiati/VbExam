@@ -6,11 +6,11 @@ Public Class Dashboard
 	Public userName As String
 	Dim sql As String
 	Dim params As New List(Of SqlParameter)
-	Dim timeInitSuccess = True
+	Dim timeInitSuccess = False
 	Dim morningStart, morningEnd, noonStart, noonEnd, afternoonStart, afternoonEnd, eveningStart, eveningEnd, nightStart, nightEnd As TimeSpan
 
 	Private Sub updateWelcome()
-		If timeInitSuccess Then
+		If Not timeInitSuccess Then
 			lblLoiChao.Text = "Xin chào " & fullName
 			Return
 		End If
@@ -43,7 +43,8 @@ Public Class Dashboard
 			TimeSpan.TryParse("22:59:59", eveningEnd) And
 			TimeSpan.TryParse("23:00:00", nightStart) And
 			TimeSpan.TryParse("00:59:59", nightEnd)) Then
-			timeInitSuccess = False
+			timeInitSuccess = True
+		Else
 			Debug.WriteLine("Init timeline failed!")
 		End If
 		updateWelcome()
