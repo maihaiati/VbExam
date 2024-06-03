@@ -28,7 +28,9 @@ Public Class DoTest
 	Private Sub insertImage(rtb As RichTextBox, maAnh As String) ' Chèn ảnh vào textbox
 		Dim image As Image = ByteArrayToImage(GetQuestionImageFromDatabase(maAnh))
 		Clipboard.SetImage(image)
+		rtb.ReadOnly = False
 		rtb.Paste()
+		rtb.ReadOnly = True
 	End Sub
 
 	Private Sub loadQues(quesIndex As Integer) ' Hàm hiển thị câu hỏi
