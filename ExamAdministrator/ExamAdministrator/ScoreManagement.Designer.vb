@@ -31,7 +31,6 @@ Partial Class ScoreManagement
 		GroupBox1 = New GroupBox()
 		cbbMaMH = New ComboBox()
 		Label6 = New Label()
-		txtDiemThi = New TextBox()
 		Label5 = New Label()
 		Label4 = New Label()
 		txtTenMH = New TextBox()
@@ -46,9 +45,11 @@ Partial Class ScoreManagement
 		btnMyAccount = New ToolStripMenuItem()
 		btnLogout = New ToolStripMenuItem()
 		Label8 = New Label()
+		numDiemThi = New NumericUpDown()
 		CType(dgScore, ComponentModel.ISupportInitialize).BeginInit()
 		GroupBox1.SuspendLayout()
 		MenuStrip1.SuspendLayout()
+		CType(numDiemThi, ComponentModel.ISupportInitialize).BeginInit()
 		SuspendLayout()
 		' 
 		' Label1
@@ -105,9 +106,9 @@ Partial Class ScoreManagement
 		' 
 		' GroupBox1
 		' 
+		GroupBox1.Controls.Add(numDiemThi)
 		GroupBox1.Controls.Add(cbbMaMH)
 		GroupBox1.Controls.Add(Label6)
-		GroupBox1.Controls.Add(txtDiemThi)
 		GroupBox1.Controls.Add(Label5)
 		GroupBox1.Controls.Add(Label4)
 		GroupBox1.Controls.Add(txtTenMH)
@@ -139,14 +140,6 @@ Partial Class ScoreManagement
 		Label6.Size = New Size(62, 17)
 		Label6.TabIndex = 9
 		Label6.Text = "Điểm Thi:"
-		' 
-		' txtDiemThi
-		' 
-		txtDiemThi.Location = New Point(23, 257)
-		txtDiemThi.Margin = New Padding(3, 2, 3, 2)
-		txtDiemThi.Name = "txtDiemThi"
-		txtDiemThi.Size = New Size(342, 23)
-		txtDiemThi.TabIndex = 8
 		' 
 		' Label5
 		' 
@@ -250,13 +243,13 @@ Partial Class ScoreManagement
 		' btnMyAccount
 		' 
 		btnMyAccount.Name = "btnMyAccount"
-		btnMyAccount.Size = New Size(180, 22)
+		btnMyAccount.Size = New Size(163, 22)
 		btnMyAccount.Text = "Tài khoản của tôi"
 		' 
 		' btnLogout
 		' 
 		btnLogout.Name = "btnLogout"
-		btnLogout.Size = New Size(180, 22)
+		btnLogout.Size = New Size(163, 22)
 		btnLogout.Text = "Đăng xuất"
 		' 
 		' Label8
@@ -267,6 +260,15 @@ Partial Class ScoreManagement
 		Label8.Size = New Size(78, 15)
 		Label8.TabIndex = 10
 		Label8.Text = "Mã môn học:"
+		' 
+		' numDiemThi
+		' 
+		numDiemThi.DecimalPlaces = 2
+		numDiemThi.Location = New Point(23, 256)
+		numDiemThi.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
+		numDiemThi.Name = "numDiemThi"
+		numDiemThi.Size = New Size(342, 23)
+		numDiemThi.TabIndex = 11
 		' 
 		' ScoreManagement
 		' 
@@ -294,6 +296,7 @@ Partial Class ScoreManagement
 		GroupBox1.PerformLayout()
 		MenuStrip1.ResumeLayout(False)
 		MenuStrip1.PerformLayout()
+		CType(numDiemThi, ComponentModel.ISupportInitialize).EndInit()
 		ResumeLayout(False)
 		PerformLayout()
 	End Sub
@@ -305,7 +308,6 @@ Partial Class ScoreManagement
     Friend WithEvents btnXoa As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents txtDiemThi As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents txtTenMH As TextBox
@@ -321,4 +323,5 @@ Partial Class ScoreManagement
 	Friend WithEvents cbbMaMH As ComboBox
 	Friend WithEvents btnMyAccount As ToolStripMenuItem
 	Friend WithEvents btnLogout As ToolStripMenuItem
+	Friend WithEvents numDiemThi As NumericUpDown
 End Class

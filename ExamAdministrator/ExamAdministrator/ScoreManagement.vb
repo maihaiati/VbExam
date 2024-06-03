@@ -41,24 +41,18 @@ Public Class ScoreManagement
 		If txtMaSV.ReadOnly Then
 			Return
 		End If
-		If cbbMaMH.SelectedItem <> "" And txtMaSV.Text <> "" And txtTenMH.Text <> "" And txtDiemThi.Text <> "" Then
+		If cbbMaMH.SelectedItem <> "" And txtMaSV.Text <> "" And txtTenMH.Text <> "" Then
 			Dim timeID As String = getData("SELECT CONCAT(MONTH(GETDATE()), DAY(GETDATE()), YEAR(GETDATE()), '_', DATEPART(HOUR, GETDATE()), DATEPART(MINUTE, GETDATE()), DATEPART(SECOND, GETDATE())) AS TimeID", Nothing).Rows.Item(0).Item("TimeID")
 			Dim params As New List(Of SqlParameter)
 			params.Add(New SqlParameter("@MaDiem", timeID))
 			params.Add(New SqlParameter("@MaMonHoc", cbbMaMH.SelectedItem))
 			params.Add(New SqlParameter("@MaSv", txtMaSV.Text))
 			params.Add(New SqlParameter("@TenMonHoc", txtTenMH.Text))
-			params.Add(New SqlParameter("@DiemThi", txtDiemThi.Text))
+			params.Add(New SqlParameter("@DiemThi", numDiemThi.Value))
 
 			sql = "SELECT * FROM Sinhvien WHERE Masv = @MaSv"
 			If getData(sql, params).Rows.Count = 0 Then
 				MessageBox.Show("Không tồn tại mã sinh viên!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-				log(userName, "Thêm điểm thi", "Thất bại", "Thêm điểm thi cho sv" & txtMaSV.Text)
-				Return
-			End If
-
-			If Not (CInt(txtDiemThi.Text) >= 0 And CInt(txtDiemThi.Text) <= 10) Then
-				MessageBox.Show("Điểm không hợp lệ!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 				log(userName, "Thêm điểm thi", "Thất bại", "Thêm điểm thi cho sv" & txtMaSV.Text)
 				Return
 			End If
@@ -81,6 +75,20 @@ Public Class ScoreManagement
 	Private Sub btnSua_Click(sender As Object, e As EventArgs) Handles btnSua.Click
 		If maDiem = "" Then
 			Return
+		End If
+		Dim result As DialogResult = MessageBox.Show("Xác nhận chỉnh sửa điểm thi?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+		If result = DialogResult.No Then
+			Return
+		End If
+		Dim params As New List(Of SqlParameter)
+		params.Add(New SqlParameter("@MaDiem", maDiem))
+		params.Add(New SqlParameter("@DiemThi", numDiemThi.Value))
+		sql = "UPDATE Bangdiem SET Diemthi = @DiemThi WHERE MaDiem = @MaDiem"
+		If Not runSqlCommand(sql, params) Then
+			MessageBox.Show("Sửa điểm thi không thành công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+			log(userName, "Sửa điểm thi", "Thất bại", "Sửa điểm thi của sv " & txtMaSV.Text)
+		Else
+			log(userName, "Sửa điểm thi", "Thành công", "Sửa điểm thi của sv " & txtMaSV.Text)
 		End If
 		loadData()
 	End Sub
@@ -111,14 +119,13 @@ Public Class ScoreManagement
 			txtMaSV.ReadOnly = False
 			cbbMaMH.Enabled = True
 			txtMaSV.Clear()
-			txtDiemThi.Clear()
 		Else
 			maDiem = row.Cells("MaDiem").Value.ToString
 			txtMaSV.ReadOnly = True
 			cbbMaMH.Enabled = False
 			txtMaSV.Text = row.Cells("Masv").Value.ToString
 			cbbMaMH.SelectedItem = row.Cells("Mamonhoc").Value.ToString
-			txtDiemThi.Text = row.Cells("Diemthi").Value.ToString
+			numDiemThi.Value = row.Cells("Diemthi").Value
 		End If
 	End Sub
 
