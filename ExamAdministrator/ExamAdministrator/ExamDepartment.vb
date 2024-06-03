@@ -14,6 +14,10 @@ Public Class ExamDepartment
     End Sub
 
     Private Sub btnthem_Click(sender As Object, e As EventArgs) Handles btnthem.Click
+        If txtmakhoa.Text = "" Or txttkhoa.Text = "" Then
+            MessageBox.Show("Không được để trống thông tin!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
         Dim query As String = "INSERT INTO Khoa (MaKhoa, TenKhoa) VALUES (@MaKhoa, @TenKhoa)"
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@MaKhoa", txtmakhoa.Text))
@@ -60,21 +64,58 @@ Public Class ExamDepartment
         If result = DialogResult.No Then
             Return
         End If
-        ' Xóa những người liên quan đến khoa
+
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@MaKhoa", txtmakhoa.Text))
-        If Not (runSqlCommand("DELETE FROM Giangvien WHERE MaKhoa = @MaKhoa", params) And runSqlCommand("DELETE FROM Sinhvien WHERE MaKhoa = @MaKhoa", params)) Then
-            MessageBox.Show("Xoá người trong khoa thất bại.", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
+
+        ' Xóa những người liên quan đến khoa
+        If getData("SELECT * FROM Giangvien WHERE MaKhoa = @MaKhoa", params).Rows.Count > 0 Or getData("SELECT * FROM Sinhvien WHERE MaKhoa = @MaKhoa", params).Rows.Count > 0 Then
+            If Not (runSqlCommand("DELETE FROM Giangvien WHERE MaKhoa = @MaKhoa", params) And runSqlCommand("DELETE FROM Sinhvien WHERE MaKhoa = @MaKhoa", params)) Then
+                MessageBox.Show("Xoá người trong khoa thất bại.", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
         End If
+
+        ' Xoá bảng điểm
+        For Each row As DataRow In getData("SELECT * FROM Monhoc WHERE MaKhoa = @MaKhoa", params).Rows
+            params.Clear()
+            params.Add(New SqlParameter("@MaMonHoc", row("Mamonhoc")))
+            If Not runSqlCommand("DELETE FROM Bangdiem WHERE Mamonhoc = @MaMonHoc", params) Then
+                MessageBox.Show("Xoá Thất Bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+        Next
+
+        ' Xoá câu hỏi và đề thi
+        params.Clear()
+        params.Add(New SqlParameter("@MaKhoa", txtmakhoa.Text))
+        For Each row As DataRow In getData("SELECT * FROM DeThi WHERE MaKhoa = @MaKhoa", params).Rows
+            params.Clear()
+            params.Add(New SqlParameter("@MaDeThi", row("MaDeThi")))
+            If Not runSqlCommand("DELETE FROM CauHoi WHERE MaDeThi = @MaDeThi", params) Then
+                MessageBox.Show("Xoá Thất Bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+            If Not runSqlCommand("DELETE FROM DeThi WHERE MaDeThi = @MaDeThi", params) Then
+                MessageBox.Show("Xoá Thất Bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+        Next
+
+        'Xoá môn học
+        params.Clear()
+        params.Add(New SqlParameter("@MaKhoa", txtmakhoa.Text))
+        If Not runSqlCommand("DELETE FROM Monhoc WHERE MaKhoa = @MaKhoa", params) Then
+            MessageBox.Show("Xoá khoa thất bại.", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+
         ' Xóa khoa
-        Dim deleteKhoaQuery As String = "DELETE FROM Khoa WHERE MaKhoa = @MaKhoa"
-        If Not runSqlCommand(deleteKhoaQuery, params) Then
+        If Not runSqlCommand("DELETE FROM Khoa WHERE MaKhoa = @MaKhoa", params) Then
             MessageBox.Show("Xoá khoa thất bại.", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         Else
-            ' Cam kết giao dịch nếu cả hai lệnh xoá thành công
             MessageBox.Show("Xoá Thành Công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
+
         LoadData()
         txtmakhoa.Text = ""
         txttkhoa.Text = ""

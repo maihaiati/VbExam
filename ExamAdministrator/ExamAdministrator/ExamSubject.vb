@@ -38,6 +38,10 @@ Public Class ExamSubject
         txtsotiet.Text = ""
     End Sub
     Private Sub btnxoa_Click(sender As Object, e As EventArgs) Handles btnxoa.Click
+        If txtmamh.Text = "" Or txttmh.Text = "" Or cbbMaKhoa.SelectedItem = "" Or txtsotiet.Text = "" Then
+            MessageBox.Show("Không được để trống thông tin!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
         Dim result As DialogResult = MessageBox.Show("Xác nhận xoá môn học và toàn bộ các dữ liệu liên quan?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
         If result = DialogResult.No Then
             Return
