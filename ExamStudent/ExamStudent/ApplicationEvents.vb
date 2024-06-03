@@ -54,5 +54,9 @@ Namespace My
 				End Try
 			End Using
 		End Sub
+
+		Private Sub MyApplication_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs) Handles Me.UnhandledException
+			MessageBox.Show("Đã xảy ra lỗi không xác định!", "Exam Student", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+		End Sub
 	End Class
 End Namespace
