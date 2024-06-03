@@ -50,6 +50,7 @@ Namespace My
 					Debug.WriteLine("==============================")
 					Debug.WriteLine(ex.ToString)
 					Debug.WriteLine("==============================")
+					End
 				End Try
 			End Using
 		End Sub
