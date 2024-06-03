@@ -32,7 +32,7 @@ Public Class ExamSubject
         txtsotiet.Text = ""
     End Sub
     Private Sub btnxoa_Click(sender As Object, e As EventArgs) Handles btnxoa.Click
-        Dim result As DialogResult = MessageBox.Show("Xác nhận xoá môn học và toàn bộ các điểm thi liên quan?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+        Dim result As DialogResult = MessageBox.Show("Xác nhận xoá môn học và toàn bộ các dữ liệu liên quan?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
         If result = DialogResult.No Then
             Return
         End If
@@ -40,14 +40,41 @@ Public Class ExamSubject
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@MaMonHoc", txtmamh.Text))
 
+        ' Xoá các bảng điểm
         Dim query As String = "DELETE FROM Bangdiem WHERE Mamonhoc = @MaMonHoc"
-        If runSqlCommand(query, params) Then
-            MessageBox.Show("Xoá Thành Công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Else
+        If Not runSqlCommand(query, params) Then
             MessageBox.Show("Xoá Thất Bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
         End If
 
+        ' Xoá câu hỏi
+        query = "DELETE FROM CauHoi WHERE MaDeThi = @Made"
+        Dim dataTable As DataTable = getData("SELECT * FROM DeThi WHERE Mamonhoc = @MaMonHoc", params)
+
+        For Each row As DataRow In dataTable.Rows
+            params.Add(New SqlParameter("@Made", row("MaDeThi")))
+            If Not runSqlCommand(query, params) Then
+                MessageBox.Show("Xoá đề thi thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+            params.Clear()
+        Next
+
+        ' Xoá thông tin đề
+        query = "DELETE FROM DeThi WHERE MaDeThi = @Made"
+
+        For Each row As DataRow In dataTable.Rows
+            params.Add(New SqlParameter("@Made", row("MaDeThi")))
+            If Not runSqlCommand(query, params) Then
+                MessageBox.Show("Xoá đề thi thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
+            params.Clear()
+        Next
+
+        ' Xoá môn học
         query = "DELETE FROM MonHoc WHERE Mamonhoc = @MaMonHoc"
+        params.Add(New SqlParameter("@MaMonHoc", txtmamh.Text))
+
         If runSqlCommand(query, params) Then
             MessageBox.Show("Xoá Thành Công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
