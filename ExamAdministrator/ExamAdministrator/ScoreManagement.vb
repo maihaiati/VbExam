@@ -1,10 +1,12 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.ComponentModel
+Imports System.Data.SqlClient
 
 Public Class ScoreManagement
 	Public userName As String
 	Public fullName As String
 	Dim sql As String
 	Dim maDiem As String
+	Dim logout = False
 	Private Sub loadData()
 		Dim params As New List(Of SqlParameter)
 		params.Add(New SqlParameter("@MaSv", "%" & txtSearchSV.Text & "%"))
@@ -124,5 +126,22 @@ Public Class ScoreManagement
 		Else
 			MessageBox.Show("Không tìm thấy thông tin môn học!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 		End If
+	End Sub
+
+	Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
+		logout = True
+		Close()
+	End Sub
+
+	Private Sub ScoreManagement_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+		If logout Then
+			Dashboard.Close()
+		Else
+			Dashboard.Show()
+		End If
+	End Sub
+
+	Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
+		Close()
 	End Sub
 End Class

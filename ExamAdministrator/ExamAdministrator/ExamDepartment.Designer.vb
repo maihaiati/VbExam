@@ -33,7 +33,7 @@ Partial Class ExamDepartment
 		Label1 = New Label()
 		DGVKhoa = New DataGridView()
 		MenuStrip1 = New MenuStrip()
-		btnExit = New ToolStripMenuItem()
+		btnDashboard = New ToolStripMenuItem()
 		btnMe = New ToolStripMenuItem()
 		btnMyAccount = New ToolStripMenuItem()
 		btnLogout = New ToolStripMenuItem()
@@ -140,7 +140,7 @@ Partial Class ExamDepartment
 		' MenuStrip1
 		' 
 		MenuStrip1.ImageScalingSize = New Size(20, 20)
-		MenuStrip1.Items.AddRange(New ToolStripItem() {btnExit, btnMe})
+		MenuStrip1.Items.AddRange(New ToolStripItem() {btnDashboard, btnMe})
 		MenuStrip1.Location = New Point(0, 0)
 		MenuStrip1.Name = "MenuStrip1"
 		MenuStrip1.Padding = New Padding(5, 2, 0, 2)
@@ -148,11 +148,11 @@ Partial Class ExamDepartment
 		MenuStrip1.TabIndex = 23
 		MenuStrip1.Text = "MenuStrip1"
 		' 
-		' btnExit
+		' btnDashboard
 		' 
-		btnExit.Name = "btnExit"
-		btnExit.Size = New Size(49, 20)
-		btnExit.Text = "Thoát"
+		btnDashboard.Name = "btnDashboard"
+		btnDashboard.Size = New Size(86, 20)
+		btnDashboard.Text = "Về trang chủ"
 		' 
 		' btnMe
 		' 
@@ -165,13 +165,13 @@ Partial Class ExamDepartment
 		' btnMyAccount
 		' 
 		btnMyAccount.Name = "btnMyAccount"
-		btnMyAccount.Size = New Size(180, 22)
+		btnMyAccount.Size = New Size(163, 22)
 		btnMyAccount.Text = "Tài khoản của tôi"
 		' 
 		' btnLogout
 		' 
 		btnLogout.Name = "btnLogout"
-		btnLogout.Size = New Size(180, 22)
+		btnLogout.Size = New Size(163, 22)
 		btnLogout.Text = "Đăng xuất"
 		' 
 		' ExamDepartment
@@ -210,7 +210,7 @@ Partial Class ExamDepartment
     Friend WithEvents Label1 As Label
     Friend WithEvents DGVKhoa As DataGridView
     Friend WithEvents MenuStrip1 As MenuStrip
-    Friend WithEvents btnExit As ToolStripMenuItem
+    Friend WithEvents btnDashboard As ToolStripMenuItem
 	Friend WithEvents btnMe As ToolStripMenuItem
 	Friend WithEvents btnMyAccount As ToolStripMenuItem
 	Friend WithEvents btnLogout As ToolStripMenuItem

@@ -41,8 +41,10 @@ Partial Class ScoreManagement
 		txtSearchSV = New TextBox()
 		cbbSearchMH = New ComboBox()
 		MenuStrip1 = New MenuStrip()
-		ThoátToolStripMenuItem = New ToolStripMenuItem()
+		btnDashboard = New ToolStripMenuItem()
 		btnMe = New ToolStripMenuItem()
+		btnMyAccount = New ToolStripMenuItem()
+		btnLogout = New ToolStripMenuItem()
 		Label8 = New Label()
 		CType(dgScore, ComponentModel.ISupportInitialize).BeginInit()
 		GroupBox1.SuspendLayout()
@@ -223,7 +225,7 @@ Partial Class ScoreManagement
 		' MenuStrip1
 		' 
 		MenuStrip1.ImageScalingSize = New Size(20, 20)
-		MenuStrip1.Items.AddRange(New ToolStripItem() {ThoátToolStripMenuItem, btnMe})
+		MenuStrip1.Items.AddRange(New ToolStripItem() {btnDashboard, btnMe})
 		MenuStrip1.Location = New Point(0, 0)
 		MenuStrip1.Name = "MenuStrip1"
 		MenuStrip1.Padding = New Padding(5, 2, 0, 2)
@@ -231,18 +233,31 @@ Partial Class ScoreManagement
 		MenuStrip1.TabIndex = 9
 		MenuStrip1.Text = "MenuStrip1"
 		' 
-		' ThoátToolStripMenuItem
+		' btnDashboard
 		' 
-		ThoátToolStripMenuItem.Name = "ThoátToolStripMenuItem"
-		ThoátToolStripMenuItem.Size = New Size(49, 20)
-		ThoátToolStripMenuItem.Text = "Thoát"
+		btnDashboard.Name = "btnDashboard"
+		btnDashboard.Size = New Size(86, 20)
+		btnDashboard.Text = "Về trang chủ"
 		' 
 		' btnMe
 		' 
 		btnMe.Alignment = ToolStripItemAlignment.Right
+		btnMe.DropDownItems.AddRange(New ToolStripItem() {btnMyAccount, btnLogout})
 		btnMe.Name = "btnMe"
 		btnMe.Size = New Size(22, 20)
 		btnMe.Text = " "
+		' 
+		' btnMyAccount
+		' 
+		btnMyAccount.Name = "btnMyAccount"
+		btnMyAccount.Size = New Size(163, 22)
+		btnMyAccount.Text = "Tài khoản của tôi"
+		' 
+		' btnLogout
+		' 
+		btnLogout.Name = "btnLogout"
+		btnLogout.Size = New Size(163, 22)
+		btnLogout.Text = "Đăng xuất"
 		' 
 		' Label8
 		' 
@@ -300,8 +315,10 @@ Partial Class ScoreManagement
     Friend WithEvents txtSearchSV As TextBox
     Friend WithEvents cbbSearchMH As ComboBox
     Friend WithEvents MenuStrip1 As MenuStrip
-    Friend WithEvents ThoátToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents btnDashboard As ToolStripMenuItem
 	Friend WithEvents Label8 As Label
 	Friend WithEvents btnMe As ToolStripMenuItem
 	Friend WithEvents cbbMaMH As ComboBox
+	Friend WithEvents btnMyAccount As ToolStripMenuItem
+	Friend WithEvents btnLogout As ToolStripMenuItem
 End Class
