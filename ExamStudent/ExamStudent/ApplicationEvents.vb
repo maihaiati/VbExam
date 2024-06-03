@@ -30,7 +30,6 @@ Namespace My
 			Dim machineName As String = Environment.MachineName
 			Dim connectionString As String = "Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;"
 			Dim databaseName As String = "ExamDB"
-			Dim except = False
 
 			Using connection As New SqlConnection(connectionString)
 				Try
@@ -47,37 +46,17 @@ Namespace My
 						End
 					End If
 				Catch ex As Exception
-					except = True
+					MessageBox.Show("Lỗi cơ sở dữ liệu!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+					Debug.WriteLine("==============================")
+					Debug.WriteLine(ex.ToString)
+					Debug.WriteLine("==============================")
+					End
 				End Try
 			End Using
+		End Sub
 
-			If except Then
-				machineName = Environment.MachineName & "\SQLEXPRESS"
-				connectionString = "Data Source=" + machineName + ";Initial Catalog=ExamDB;Integrated Security=True;"
-
-				Using connection As New SqlConnection(connectionString)
-					Try
-						connection.Open()
-						Dim command As New SqlCommand()
-						command.Connection = connection
-						command.CommandText = "IF DATABASEPROPERTYEX(@dbname, 'Version') IS NOT NULL SELECT 1 ELSE SELECT 0"
-						command.Parameters.AddWithValue("@dbname", databaseName)
-
-						Dim result As Integer = Convert.ToInt32(command.ExecuteScalar())
-
-						If Not (result = 1) Then
-							MessageBox.Show("Cơ sở dữ liệu không tồn tại. Chương trình sẽ thoát!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-							End
-						End If
-					Catch ex As Exception
-						MessageBox.Show("Lỗi cơ sở dữ liệu!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-						Debug.WriteLine("==============================")
-						Debug.WriteLine(ex.ToString)
-						Debug.WriteLine("==============================")
-						End
-					End Try
-				End Using
-			End If
+		Private Sub MyApplication_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs) Handles Me.UnhandledException
+			MessageBox.Show("Đã xảy ra lỗi không xác định!", "Exam Student", MessageBoxButtons.OK, MessageBoxIcon.Stop)
 		End Sub
 	End Class
 End Namespace

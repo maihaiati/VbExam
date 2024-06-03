@@ -34,7 +34,7 @@ Public Class InfoAccount
 	End Sub
 
 	Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
-		Dim result As DialogResult = MessageBox.Show("Xác nhận thay đổi thông tin?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+		Dim result As DialogResult = MessageBox.Show("Xác nhận thay đổi thông tin?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 		If result = DialogResult.No Then
 			Return
 		End If

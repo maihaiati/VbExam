@@ -12,7 +12,7 @@ Public Class EditExam
     Dim sql As String
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-        Dim result As DialogResult = MessageBox.Show("Xác nhận xoá đề thi?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+        Dim result As DialogResult = MessageBox.Show("Xác nhận xoá đề thi?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.No Then
             Return
         End If
@@ -63,7 +63,7 @@ Public Class EditExam
         If cbbMaKhoa.SelectedItem = "" Or txtTenDe.Text = "" Then
             MessageBox.Show("Không được để trống thông tin!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            Dim result As DialogResult = MessageBox.Show("Xác nhận thay đổi thông tin?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+            Dim result As DialogResult = MessageBox.Show("Xác nhận thay đổi thông tin?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If result = DialogResult.No Then
                 Return
             End If

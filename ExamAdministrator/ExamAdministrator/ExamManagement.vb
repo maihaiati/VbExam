@@ -71,4 +71,16 @@ Public Class ExamManagement
 		CreateExam.userName = userName
 		CreateExam.Show()
 	End Sub
+
+	Private Sub btnMyAccount_Click(sender As Object, e As EventArgs) Handles btnMyAccount.Click
+		Dim result As DialogResult = MessageBox.Show("Chuyển sang tài khoản của bạn, các tiến trình bạn thực hiện tại đây sẽ bị loại bỏ. Xác nhận?", "Exam Administrator", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+		If result = DialogResult.Yes Then
+			Dashboard.openInfoAccount()
+			CreateExam.Close()
+			ExamFilter.Close()
+			EditType.Close()
+			EditExam.Close()
+			Close()
+		End If
+	End Sub
 End Class

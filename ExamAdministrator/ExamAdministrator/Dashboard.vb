@@ -78,9 +78,14 @@ Public Class Dashboard
 		Hide()
 	End Sub
 
-	Private Sub btnMyAcc_Click(sender As Object, e As EventArgs) Handles btnMyAcc.Click
+	Public Sub openInfoAccount()
+		Show()
 		InfoAccount.userName = userName
 		InfoAccount.Show()
+	End Sub
+
+	Private Sub btnMyAcc_Click(sender As Object, e As EventArgs) Handles btnMyAcc.Click
+		openInfoAccount()
 	End Sub
 
 	Private Sub btnmonhoc_Click(sender As Object, e As EventArgs) Handles btnmonhoc.Click
@@ -98,15 +103,18 @@ Public Class Dashboard
 		ExamDepartment.userName = userName
 		ExamDepartment.fullName = fullName
 		ExamDepartment.Show()
+		Hide()
 	End Sub
 
 	Private Sub btnResult_Click(sender As Object, e As EventArgs) Handles btnResult.Click
 		ScoreManagement.userName = userName
 		ScoreManagement.fullName = fullName
 		ScoreManagement.Show()
+		Hide()
 	End Sub
 
 	Private Sub btnLog_Click(sender As Object, e As EventArgs) Handles btnLog.Click
 		ExamLog.Show()
+		Hide()
 	End Sub
 End Class
