@@ -276,6 +276,7 @@ Public Class DoTest
 		isClosing = True
 		Close()
 		ConfirmInfoForm.Close()
+		DashboardForm.updateList()
 		DashboardForm.Show()
 	End Sub
 

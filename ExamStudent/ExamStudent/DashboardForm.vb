@@ -28,12 +28,22 @@ Public Class DashboardForm
 		Close()
 	End Sub
 
-	Private Sub updateList()
+	Public Sub updateList()
 		Dim currentTime As DateTime = DateTime.Now
 		sql = "SELECT MaDeThi, MaKhoa, Mamonhoc, SoCau, ThoiGian FROM DeThi WHERE HienDeThi = 1"
 
-		Dim dataTable As DataTable = getData(sql, Nothing)
-		loadData(dataTable)
+		Dim deThi As DataTable = getData(sql, Nothing)
+		Dim showExam As DataTable = deThi.Clone()
+		Dim params As New List(Of SqlParameter)
+		For Each row As DataRow In deThi.Rows
+			params.Clear()
+			params.Add(New SqlParameter("@MaSv", userName))
+			params.Add(New SqlParameter("@MaMonHoc", row("Mamonhoc")))
+			If getData("SELECT * FROM Bangdiem WHERE Mamonhoc = @MaMonHoc AND Masv = @MaSv", params).Rows.Count = 0 Then
+				showExam.ImportRow(row)
+			End If
+		Next
+		loadData(showExam)
 	End Sub
 
 	Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
