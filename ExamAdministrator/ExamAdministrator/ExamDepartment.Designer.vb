@@ -35,6 +35,8 @@ Partial Class ExamDepartment
 		MenuStrip1 = New MenuStrip()
 		btnExit = New ToolStripMenuItem()
 		btnMe = New ToolStripMenuItem()
+		btnMyAccount = New ToolStripMenuItem()
+		btnLogout = New ToolStripMenuItem()
 		CType(DGVKhoa, ComponentModel.ISupportInitialize).BeginInit()
 		MenuStrip1.SuspendLayout()
 		SuspendLayout()
@@ -155,9 +157,22 @@ Partial Class ExamDepartment
 		' btnMe
 		' 
 		btnMe.Alignment = ToolStripItemAlignment.Right
+		btnMe.DropDownItems.AddRange(New ToolStripItem() {btnMyAccount, btnLogout})
 		btnMe.Name = "btnMe"
 		btnMe.Size = New Size(22, 20)
 		btnMe.Text = " "
+		' 
+		' btnMyAccount
+		' 
+		btnMyAccount.Name = "btnMyAccount"
+		btnMyAccount.Size = New Size(180, 22)
+		btnMyAccount.Text = "Tài khoản của tôi"
+		' 
+		' btnLogout
+		' 
+		btnLogout.Name = "btnLogout"
+		btnLogout.Size = New Size(180, 22)
+		btnLogout.Text = "Đăng xuất"
 		' 
 		' ExamDepartment
 		' 
@@ -197,4 +212,6 @@ Partial Class ExamDepartment
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents btnExit As ToolStripMenuItem
 	Friend WithEvents btnMe As ToolStripMenuItem
+	Friend WithEvents btnMyAccount As ToolStripMenuItem
+	Friend WithEvents btnLogout As ToolStripMenuItem
 End Class
