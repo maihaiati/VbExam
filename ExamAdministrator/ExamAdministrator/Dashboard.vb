@@ -92,6 +92,7 @@ Public Class Dashboard
 		ExamSubject.userName = userName
 		ExamSubject.fullName = fullName
 		ExamSubject.Show()
+		Hide()
 	End Sub
 
 	Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
