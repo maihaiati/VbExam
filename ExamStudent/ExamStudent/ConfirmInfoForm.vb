@@ -9,6 +9,7 @@ Public Class ConfirmInfoForm
 
 	Private Sub btnDenied_Click(sender As Object, e As EventArgs) Handles btnDenied.Click
 		DashboardForm.needToChangeInfo()
+		Close()
 	End Sub
 	Private Sub btnConfirm_Click(sender As Object, e As EventArgs) Handles btnConfirm.Click
 		DoTest.userName = userName

@@ -72,9 +72,15 @@ Public Class DashboardForm
 	End Sub
 
 	Public Sub needToChangeInfo()
-		ConfirmInfoForm.Close()
 		Show()
 		InfoAccount.userName = userName
 		InfoAccount.Show()
+	End Sub
+
+	Private Sub btnScoreView_Click(sender As Object, e As EventArgs) Handles btnScoreView.Click
+		ScoreView.userName = userName
+		ScoreView.fullName = fullName
+		ScoreView.Show()
+		Hide()
 	End Sub
 End Class
