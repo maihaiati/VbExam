@@ -46,7 +46,7 @@ Namespace My
 						End
 					End If
 				Catch ex As Exception
-					MessageBox.Show("Lỗi cơ sở dữ liệu!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+					MessageBox.Show("Lỗi cơ sở dữ liệu!", "Exam Student", MessageBoxButtons.OK, MessageBoxIcon.Stop)
 					Debug.WriteLine("==============================")
 					Debug.WriteLine(ex.ToString)
 					Debug.WriteLine("==============================")
