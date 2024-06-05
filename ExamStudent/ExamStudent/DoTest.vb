@@ -55,6 +55,7 @@ Public Class DoTest
 		Dim rows As DataRow() = dataTable.Select()
 		shuffleDataTable = dataTable.Clone()
 
+		' Thuật toán xáo trộn Fisher-Yates
 		Dim random As New Random()
 		Dim index As Integer = rows.Length
 		While index > 1
@@ -247,15 +248,24 @@ Public Class DoTest
 		Dim score As Double = 0 ' Điểm
 		Dim trueAnsNum As Integer = 0 ' Số câu đúng
 		Dim skipNum As Integer = 0 ' Số câu bỏ qua
+		Dim nonAnswerQues As Integer = 0 ' Số câu không có đáp áp đúng
 		For answer = 0 To numOfQues - 1
-			If studentAnswer.Item(answer) = shuffleDataTable.Rows.Item(answer).Item("DapAnDung") Then
-				trueAnsNum += 1
+			If shuffleDataTable.Rows(answer)("DapAnDung") = -1 Then
+				nonAnswerQues += 1
 			ElseIf studentAnswer.Item(answer) = -1 Then
 				skipNum += 1
+			ElseIf studentAnswer.Item(answer) = shuffleDataTable.Rows(answer)("DapAnDung") Then
+				trueAnsNum += 1
 			End If
 		Next
-		score = (10 / numOfQues) * trueAnsNum
-		txtQues.Text = "Điểm của bạn: " & score
+		score = (10 / numOfQues) * (trueAnsNum + nonAnswerQues)
+		txtQues.Text = "Điểm của bạn: " & score & vbCrLf
+		txtQues.AppendText("Số câu đúng: " & trueAnsNum & vbCrLf)
+		txtQues.AppendText("Số câu sai: " & numOfQues - trueAnsNum - skipNum - nonAnswerQues & vbCrLf)
+		txtQues.AppendText("Số câu bỏ qua: " & skipNum & vbCrLf)
+		txtQues.AppendText("Số câu lỗi không có đáp án: " & nonAnswerQues & vbCrLf)
+
+		' Lưu kết quả vào csdl
 		Dim tenMonHoc As String = lblTenDeThi.Text
 		tenMonHoc = tenMonHoc.Substring(11)
 		Dim params As New List(Of SqlParameter) From {New SqlParameter("@MaDeThi", maDeThi)}
