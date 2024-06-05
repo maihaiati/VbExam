@@ -29,6 +29,7 @@ Partial Class ScoreManagement
 		btnSua = New Button()
 		btnXoa = New Button()
 		GroupBox1 = New GroupBox()
+		numDiemThi = New NumericUpDown()
 		cbbMaMH = New ComboBox()
 		Label6 = New Label()
 		Label5 = New Label()
@@ -45,11 +46,11 @@ Partial Class ScoreManagement
 		btnMyAccount = New ToolStripMenuItem()
 		btnLogout = New ToolStripMenuItem()
 		Label8 = New Label()
-		numDiemThi = New NumericUpDown()
+		Label2 = New Label()
 		CType(dgScore, ComponentModel.ISupportInitialize).BeginInit()
 		GroupBox1.SuspendLayout()
-		MenuStrip1.SuspendLayout()
 		CType(numDiemThi, ComponentModel.ISupportInitialize).BeginInit()
+		MenuStrip1.SuspendLayout()
 		SuspendLayout()
 		' 
 		' Label1
@@ -122,6 +123,15 @@ Partial Class ScoreManagement
 		GroupBox1.TabIndex = 5
 		GroupBox1.TabStop = False
 		GroupBox1.Text = "Thông Tin Điểm"
+		' 
+		' numDiemThi
+		' 
+		numDiemThi.DecimalPlaces = 2
+		numDiemThi.Location = New Point(23, 256)
+		numDiemThi.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
+		numDiemThi.Name = "numDiemThi"
+		numDiemThi.Size = New Size(342, 23)
+		numDiemThi.TabIndex = 11
 		' 
 		' cbbMaMH
 		' 
@@ -261,20 +271,22 @@ Partial Class ScoreManagement
 		Label8.TabIndex = 10
 		Label8.Text = "Mã môn học:"
 		' 
-		' numDiemThi
+		' Label2
 		' 
-		numDiemThi.DecimalPlaces = 2
-		numDiemThi.Location = New Point(23, 256)
-		numDiemThi.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
-		numDiemThi.Name = "numDiemThi"
-		numDiemThi.Size = New Size(342, 23)
-		numDiemThi.TabIndex = 11
+		Label2.AutoSize = True
+		Label2.ForeColor = Color.Red
+		Label2.Location = New Point(10, 490)
+		Label2.Name = "Label2"
+		Label2.Size = New Size(295, 15)
+		Label2.TabIndex = 11
+		Label2.Text = "Click vào ô dữ liệu trống để có thể thêm thông tin mới"
 		' 
 		' ScoreManagement
 		' 
 		AutoScaleDimensions = New SizeF(7F, 15F)
 		AutoScaleMode = AutoScaleMode.Font
-		ClientSize = New Size(1094, 490)
+		ClientSize = New Size(1094, 514)
+		Controls.Add(Label2)
 		Controls.Add(Label8)
 		Controls.Add(cbbSearchMH)
 		Controls.Add(txtSearchSV)
@@ -294,9 +306,9 @@ Partial Class ScoreManagement
 		CType(dgScore, ComponentModel.ISupportInitialize).EndInit()
 		GroupBox1.ResumeLayout(False)
 		GroupBox1.PerformLayout()
+		CType(numDiemThi, ComponentModel.ISupportInitialize).EndInit()
 		MenuStrip1.ResumeLayout(False)
 		MenuStrip1.PerformLayout()
-		CType(numDiemThi, ComponentModel.ISupportInitialize).EndInit()
 		ResumeLayout(False)
 		PerformLayout()
 	End Sub
@@ -324,4 +336,5 @@ Partial Class ScoreManagement
 	Friend WithEvents btnMyAccount As ToolStripMenuItem
 	Friend WithEvents btnLogout As ToolStripMenuItem
 	Friend WithEvents numDiemThi As NumericUpDown
+	Friend WithEvents Label2 As Label
 End Class

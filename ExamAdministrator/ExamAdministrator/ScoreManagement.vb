@@ -10,12 +10,13 @@ Public Class ScoreManagement
 	Private Sub loadData()
 		Dim params As New List(Of SqlParameter)
 		params.Add(New SqlParameter("@MaSv", "%" & txtSearchSV.Text & "%"))
-		params.Add(New SqlParameter("@MaMonHoc", cbbSearchMH.SelectedItem))
+		params.Add(New SqlParameter("@MaMonHoc", If(cbbSearchMH.SelectedItem <> "", cbbSearchMH.SelectedItem, "")))
 		If txtSearchSV.Text = "" And cbbSearchMH.SelectedItem = "None" Then
 			dgScore.DataSource = getData("SELECT * FROM Bangdiem", Nothing)
 			Return
 		End If
-		sql = "SELECT * FROM Bangdiem WHERE Masv LIKE @MaSv Or Mamonhoc = @MaMonHoc"
+		sql = "SELECT * FROM Bangdiem WHERE Masv LIKE @MaSv AND Mamonhoc = @MaMonHoc"
+
 		dgScore.DataSource = getData(sql, params)
 	End Sub
 	Private Sub ScoreManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load

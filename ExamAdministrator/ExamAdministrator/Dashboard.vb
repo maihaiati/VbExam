@@ -115,6 +115,8 @@ Public Class Dashboard
 	End Sub
 
 	Private Sub btnLog_Click(sender As Object, e As EventArgs) Handles btnLog.Click
+		ExamLog.userName = userName
+		ExamLog.fullName = fullName
 		ExamLog.Show()
 		Hide()
 	End Sub

@@ -77,6 +77,7 @@ Public Class EditExam
             If Not runSqlCommand(sql, params) Then
                 MessageBox.Show("Chỉnh sửa đề thi thất bại!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Else
+                MessageBox.Show("Chỉnh sửa đề thi thành công!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 ExamManagement.loadData("SELECT * FROM DeThi", Nothing)
             End If
         End If

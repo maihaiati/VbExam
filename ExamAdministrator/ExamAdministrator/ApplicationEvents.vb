@@ -57,6 +57,10 @@ Namespace My
 
 		Private Sub MyApplication_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs) Handles Me.UnhandledException
 			MessageBox.Show("Đã xảy ra lỗi không xác định!", "Exam Administrator", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+			Debug.WriteLine("==============================")
+			Debug.WriteLine(e.Exception.Message)
+			Debug.WriteLine(e.Exception.StackTrace)
+			Debug.WriteLine("==============================")
 		End Sub
 	End Class
 End Namespace
