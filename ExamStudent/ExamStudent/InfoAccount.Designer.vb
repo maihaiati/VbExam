@@ -266,7 +266,7 @@ Partial Class InfoAccount
 		Controls.Add(Label2)
 		Icon = CType(resources.GetObject("$this.Icon"), Icon)
 		Name = "InfoAccount"
-		Text = "ExamStudent - InfoAccount"
+		Text = "Exam Student - Info account"
 		CType(picture, ComponentModel.ISupportInitialize).EndInit()
 		ResumeLayout(False)
 		PerformLayout()

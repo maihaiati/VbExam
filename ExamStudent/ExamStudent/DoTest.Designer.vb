@@ -311,7 +311,7 @@ Partial Class DoTest
 		Controls.Add(txtQues)
 		Icon = CType(resources.GetObject("$this.Icon"), Icon)
 		Name = "DoTest"
-		Text = "Exam Student"
+		Text = "Exam Student - Test"
 		CType(picture, ComponentModel.ISupportInitialize).EndInit()
 		ResumeLayout(False)
 		PerformLayout()

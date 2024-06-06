@@ -234,7 +234,7 @@ Partial Class InfoAccount
 		Icon = CType(resources.GetObject("$this.Icon"), Icon)
 		Margin = New Padding(3, 2, 3, 2)
 		Name = "InfoAccount"
-		Text = "InfoAccount"
+		Text = "Exam Administrator - Info account"
 		CType(imgAvatar, ComponentModel.ISupportInitialize).EndInit()
 		ResumeLayout(False)
 		PerformLayout()
