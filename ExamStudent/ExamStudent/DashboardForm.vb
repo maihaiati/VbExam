@@ -3,6 +3,7 @@ Imports System.Data.SqlClient
 
 Public Class DashboardForm
 	Dim sql As String
+	Dim maKhoa As String
 	Public userName As String
 	Public fullName As String
 
@@ -16,6 +17,11 @@ Public Class DashboardForm
 
 	Private Sub DashboardForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 		btnMe.Text = fullName
+		Dim params As New List(Of SqlParameter) From {New SqlParameter("@MaSv", userName)}
+		Dim dataTable As DataTable = getData("SELECT MaKhoa FROM Sinhvien WHERE Masv = @MaSv", params)
+		If dataTable.Rows.Count > 0 Then
+			maKhoa = dataTable.Rows(0)("MaKhoa")
+		End If
 		updateList()
 	End Sub
 
@@ -36,11 +42,13 @@ Public Class DashboardForm
 		Dim showExam As DataTable = deThi.Clone()
 		Dim params As New List(Of SqlParameter)
 		For Each row As DataRow In deThi.Rows
-			params.Clear()
-			params.Add(New SqlParameter("@MaSv", userName))
-			params.Add(New SqlParameter("@MaMonHoc", row("Mamonhoc")))
-			If getData("SELECT * FROM Bangdiem WHERE Mamonhoc = @MaMonHoc AND Masv = @MaSv", params).Rows.Count = 0 Then
-				showExam.ImportRow(row)
+			If maKhoa = row("MaKhoa") And maKhoa <> "" Then
+				params.Clear()
+				params.Add(New SqlParameter("@MaSv", userName))
+				params.Add(New SqlParameter("@MaMonHoc", row("Mamonhoc")))
+				If getData("SELECT * FROM Bangdiem WHERE Mamonhoc = @MaMonHoc AND Masv = @MaSv", params).Rows.Count = 0 Then
+					showExam.ImportRow(row)
+				End If
 			End If
 		Next
 		loadData(showExam)
